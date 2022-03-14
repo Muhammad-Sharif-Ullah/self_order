@@ -11,6 +11,7 @@ class Dimensions{
  static final TextSize50 = height/24.64;
  static final TextSize18 = height/68.44;
  static final TextSize20 = height/61.6;
+ static final TextSize30 = height/41.066;
 
 
   /// padding
@@ -26,10 +27,12 @@ class Dimensions{
   static final SizedBoxValue70 = height/17.6;
   static final SizedBoxValue30 = height/41.06;
   static final SizedBoxValue59 = height/20.88;
+  static final SizedBoxValue100 = height/12.32;
 
   /// BorderRadius
 
   static final BorderRadius100 = height/12.32;
+  static final BorderRadius10 = height/123.2;
 
 
 

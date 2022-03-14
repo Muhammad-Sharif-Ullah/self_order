@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 
 class ColorConstants
 {
-  static Color backgroundColor = hexToColor("#181716");
-  static Color textFormFieldUnderlineColor = hexToColor("#AAAAAA");
-  static Color primaryButtonColor = hexToColor("#40CC6F");
+
+
+  static Color primaryButtonColor = hexToColor("#5AB99D");
   static Color bannerPrimaryColor = hexToColor("#EDEDED");
   static Color bannerHeadingTextColor = hexToColor("#FF8A21");
+  static Color secondaryTextColor = hexToColor("#24242480");
+  static Color textFormFieldUnderlineColor = hexToColor("#EDEDED");
+  static Color videoScreenButtonColor = hexToColor("#AA7459");
+  static Color primaryBigTextColor = hexToColor("#505050");
 
 
 

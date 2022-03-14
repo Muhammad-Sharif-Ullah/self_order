@@ -36,6 +36,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   device_preview: ^1.0.0
   get: ^4.6.1
+  get_storage: ^2.0.3
   flutter_easyloading: ^3.0.3
   flutter_feather_icons: ^2.0.0
 

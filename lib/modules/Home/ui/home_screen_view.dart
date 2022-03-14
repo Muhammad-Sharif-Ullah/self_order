@@ -49,34 +49,40 @@ class HomeScreen extends GetView<HomeScreenController> {
                           TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
                     ),
                     Spacer(),
-                    Container(
-                      height: 60,
-                      width: 100,
-                      decoration: BoxDecoration(
+                    InkWell(
+                      onTap: (){
+                        Get.changeThemeMode(Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 100,
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(100),
                           color: Colors.white,
                           boxShadow: [
                             BoxShadow(
                                 color: Colors.black.withOpacity(0.5),
                                 blurRadius: 0.5),
-                          ],),
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            top: 5, left: 5, right: 5, bottom: 5),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Colors.amber,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(FeatherIcons.shoppingBag),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Text('2'),
-                            ],
+                          ],
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              top: 5, left: 5, right: 5, bottom: 5),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: Colors.amber,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(FeatherIcons.shoppingBag),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text('2'),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -86,8 +92,10 @@ class HomeScreen extends GetView<HomeScreenController> {
                 SizedBox(
                   height: 30,
                 ),
-                customDeliciousFood(),
-                SizedBox(height: 25,),
+                customDeliciousFood(context: context),
+                SizedBox(
+                  height: 25,
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
                   child: Container(
@@ -98,28 +106,40 @@ class HomeScreen extends GetView<HomeScreenController> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Row(
-                      children:
-                      [
+                      children: [
                         Padding(
-                          padding: EdgeInsets.only(left: 40),
-                          child: Image(image: AssetImage("assets/images/bannerImage.png"),)
-
-                        ),
+                            padding: EdgeInsets.only(left: 40),
+                            child: Image(
+                              image:
+                                  AssetImage("assets/images/bannerImage.png"),
+                            )),
                         Spacer(),
                         Padding(
                           padding: EdgeInsets.only(left: 20),
                           child: Column(
                             children: [
-                              Text('Make your own COMBO!! 🍔 🍟 🍕',overflow: TextOverflow.ellipsis,style: TextStyle(color:ColorConstants.bannerHeadingTextColor ),),
-                              SizedBox(height: 5,),
-                              Text('Enjoy customise combo Food, Sides, Drink with few steps.'),
-                              SizedBox(height: 15,),
+                              Text(
+                                'Make your own COMBO!! 🍔 🍟 🍕',
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color:
+                                        ColorConstants.bannerHeadingTextColor),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                  'Enjoy customise combo Food, Sides, Drink with few steps.'),
+                              SizedBox(
+                                height: 15,
+                              ),
                               Container(
-
                                 padding: EdgeInsets.only(left: 5, right: 5),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(100),
-                                  border: Border.all(color: ColorConstants.bannerHeadingTextColor),
+                                  border: Border.all(
+                                      color: ColorConstants
+                                          .bannerHeadingTextColor),
                                   color: Colors.white,
                                 ),
                                 child: Text('hello'),

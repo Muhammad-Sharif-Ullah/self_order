@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget customDeliciousFood ()
+Widget customDeliciousFood ({required BuildContext context})
 {
   return  Padding(
     padding: EdgeInsets.only(left: 37),
@@ -20,7 +20,7 @@ Widget customDeliciousFood ()
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    color: Colors.green,
+                    color: index == 0 ? Theme.of(context).buttonColor: null,
                   ),
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24, vertical: 6),
