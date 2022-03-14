@@ -5,6 +5,8 @@ class ColorConstants
   static Color backgroundColor = hexToColor("#181716");
   static Color textFormFieldUnderlineColor = hexToColor("#AAAAAA");
   static Color primaryButtonColor = hexToColor("#40CC6F");
+  static Color bannerPrimaryColor = hexToColor("#EDEDED");
+  static Color bannerHeadingTextColor = hexToColor("#FF8A21");
 
 
 

@@ -58,11 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Get.offNamed(Routes.Login);
   
   }
-
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: AppBar(),
       body: const Center(

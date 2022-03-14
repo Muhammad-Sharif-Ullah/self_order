@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:self_order/modules/Home/ui/home_screen_view.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
 
@@ -65,7 +66,12 @@ class LoginScreen extends GetView<LoginScreenController> {
                   child: CustomTextField(name: 'Password', obscureValue: true),
                 ),
                 SizedBox(height: Dimensions.SizedBoxValue59,),
-                Center(child:  CustomWidget.CustomButton(text: 'Submit'),)
+                InkWell(
+                  onTap: (){
+                    Get.to(HomeScreen());
+                  },
+
+                    child: Center(child:  CustomWidget.CustomButton(text: 'Submit'),))
 
 
               ],
