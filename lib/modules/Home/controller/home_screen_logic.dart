@@ -6,6 +6,7 @@ class HomeScreenController extends GetxController {
   void onInit() async {}
 
 
+  RxInt selectedItemColor = 0.obs;
 
 
 }
