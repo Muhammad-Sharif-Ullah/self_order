@@ -4,6 +4,8 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:self_order/modules/Home/controller/home_screen_logic.dart';
 import 'package:self_order/modules/Home/ui/home_screen_view.dart';
 
+import '../../ItemPage/ui/item_screen_view.dart';
+
 Widget customDeliciousFood({required BuildContext context}) {
   HomeScreenController controller = Get.find();
 
@@ -23,6 +25,7 @@ Widget customDeliciousFood({required BuildContext context}) {
               child: InkWell(
                 onTap: () {
                   controller.selectedItemColor.value = index;
+                  Get.to(ItemPageScreen());
                 },
                 child: Column(
                   children: [

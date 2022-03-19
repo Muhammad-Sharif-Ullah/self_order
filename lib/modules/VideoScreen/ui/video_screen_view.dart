@@ -5,6 +5,7 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:self_order/modules/UserChoice/ui/userchoice_screen_view.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
+import '../../../routes/app_routes.dart';
 import '../../../shared/constants/colors.dart';
 import '../../base_widget.dart';
 import '../controller/video_screen_logic.dart';
@@ -31,10 +32,9 @@ class VideoScreenView extends GetView<VideoScreenController> {
                 bottom: Dimensions.SizedBoxValue100,
                 child: InkWell(
                   onTap: () {
-                    Get.to(UserChoiceScreen());
-
+                    Get.to(UserChoiceScreen(),transition: Transition.fade);
                   },
-                  child:   CustomWidget.CustomButton(
+                  child: CustomWidget.CustomButton(
                       color: ColorConstants.videoScreenButtonColor,
                       text: 'Tap to Start'),
                 ),

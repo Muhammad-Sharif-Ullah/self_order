@@ -8,6 +8,7 @@ import 'package:get/get_core/src/smart_management.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:self_order/modules/LogIn/ui/Login_screen.dart';
 import 'package:self_order/routes/app_pages.dart';
 import 'package:self_order/routes/app_routes.dart';
 import 'package:self_order/shared/theme/theme_service.dart';
@@ -62,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() async {
     super.initState();
-    Get.offNamed(Routes.Login);
+    Get.to(LoginScreen(),transition: Transition.fade);
   
   }
   @override

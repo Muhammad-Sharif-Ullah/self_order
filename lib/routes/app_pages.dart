@@ -3,6 +3,8 @@ import 'package:self_order/modules/Home/bindings/home_screen_binding.dart';
 import 'package:self_order/modules/Home/ui/home_screen_view.dart';
 import 'package:self_order/modules/LogIn/bindings/Login_screen_binding.dart';
 import 'package:self_order/modules/LogIn/ui/Login_screen.dart';
+import '../modules/UserChoice/bindings/userchoice_screen_binding.dart';
+import '../modules/UserChoice/ui/userchoice_screen_view.dart';
 import '../modules/VideoScreen/bindings/video_screen_binding.dart';
 import '../modules/VideoScreen/ui/video_screen_view.dart';
 import 'app_routes.dart';
@@ -25,6 +27,16 @@ class AppPages {
       name: Routes.VideoScreen,
       page: () => VideoScreenView(),
       binding: VideoScreenBinding(),
+    ),
+    GetPage(
+      name: Routes.VideoScreen,
+      page: () => VideoScreenView(),
+      binding: VideoScreenBinding(),
+    ),
+    GetPage(
+      name: Routes.UserChoice,
+      page: () => UserChoiceScreen(),
+      binding: UserChoiceBinding(),
     ),
   ];
 }

@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:self_order/modules/Home/ui/home_screen_view.dart';
 import 'package:self_order/modules/VideoScreen/ui/video_screen_view.dart';
+import 'package:self_order/routes/app_routes.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
 
@@ -64,14 +65,9 @@ class LoginScreen extends GetView<LoginScreenController> {
                   child: CustomTextField(name: 'Password', obscureValue: true, context: context),
                 ),
                 SizedBox(height: Dimensions.SizedBoxValue59,),
-                InkWell(
-                  onTap: (){
-                    Get.to(HomeScreen());
-                  },
-
-                    child: InkWell(onTap:(){
-                      Get.to(VideoScreenView());
-                    },child: Center(child:  CustomWidget.CustomButton(text: 'Submit',color: Theme.of(context).buttonColor),)))
+                InkWell(onTap:(){
+                 Get.to(VideoScreenView(),transition: Transition.fade );
+                },child: Center(child:  CustomWidget.CustomButton(text: 'Submit',color: Theme.of(context).buttonColor),))
 
 
               ],

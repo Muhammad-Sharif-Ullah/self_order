@@ -72,7 +72,7 @@ class UserChoiceScreen extends GetView<UserChoiceController> {
                     ),
                     InkWell(
                       onTap: (){
-                        Get.to(HomeScreen());
+                        Get.to(HomeScreen(),transition: Transition.fade);
                       },
                       child: Row(
                         children: [

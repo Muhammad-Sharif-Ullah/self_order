@@ -3,6 +3,8 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:self_order/shared/constants/Dimensions.dart';
+import 'package:self_order/shared/utils/customWidget_utils.dart';
 
 import '../../../shared/constants/colors.dart';
 import '../../base_widget.dart';
@@ -26,7 +28,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                 Stack(
                   alignment: Alignment.topRight,
                   children: [
-                    Image(image: AssetImage("assets/images/home.png")),
+                    Image(image: AssetImage("assets/images/item.png")),
                     Positioned(
                       top: 10,
                       right: 15,
@@ -48,7 +50,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                     Text(
                       "Enjoy Delicious food",
                       style: TextStyle(
-                          fontSize: 24, fontWeight: FontWeight.w700),
+                          fontSize: Dimensions.TextSize30, fontWeight: FontWeight.w700),
                     ),
                     Spacer(),
                     InkWell(
@@ -189,60 +191,12 @@ class HomeScreen extends GetView<HomeScreenController> {
                   child: Text(
                     "Enjoy Delicious food",
                     style:
-                        TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
+                        TextStyle(fontSize: Dimensions.TextSize30, fontWeight: FontWeight.w700),
                   ),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: GridView.count(
-                    shrinkWrap: true,
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 15.0,
-                    childAspectRatio: 0.6,
-                    physics: NeverScrollableScrollPhysics(),
-                    children: List.generate(10, (index) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children:
-                        [
-                          Image(
-                            image:
-                                AssetImage("assets/images/smallburger.png"),
-                          ),
-                          Text(
-                            'Chicken Burger',
-                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 14, ),
-                          ),
-                          SizedBox(height: 5,),
-                          Text(
-                            'Chicken Burger',
-                            style: TextStyle(color: ColorConstants.primaryBigTextColor, fontWeight: FontWeight.bold,
-                                fontSize: 14),
-                          ),
-                          SizedBox(height: 25,),
-                          Row(
-                            children: [
-                              Text('\$9.00'),
-                              SizedBox(width: 60,),
-                              Container(
-                                height: 30,
-                                width: 30,
-                                decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(20),
-
-                                ),
-                                child: Icon(FeatherIcons.plus),
-                              )
-                            ],
-                          )
-
-
-                        ],
-                      );
-                    }),
-                  ),
+                  child: CustomWidget.CustomItemwithPrice(),
                 )
               ],
             ),

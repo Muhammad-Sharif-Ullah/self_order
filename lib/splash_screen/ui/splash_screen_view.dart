@@ -14,7 +14,7 @@ class SplashScreen extends GetView<SplashScreenController>{
     Get.put<SplashScreenController>(SplashScreenController());
     return BaseWidget(
       builder: (context, sizingInformation) => Scaffold(
-        backgroundColor: ColorConstants.backgroundColor,
+        backgroundColor: Theme.of(context).backgroundColor,
        
       ),
     );

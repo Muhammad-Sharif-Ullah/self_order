@@ -12,6 +12,7 @@ class ColorConstants
   static Color textFormFieldUnderlineColor = hexToColor("#EDEDED");
   static Color videoScreenButtonColor = hexToColor("#AA7459");
   static Color primaryBigTextColor = hexToColor("#505050");
+  static Color borderColor = hexToColor("#00000000");
 
 
 
