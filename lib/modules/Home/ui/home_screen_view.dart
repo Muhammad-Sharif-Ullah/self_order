@@ -27,7 +27,8 @@ class HomeScreen extends GetView<HomeScreenController> {
               children: [
                 Stack(
                   alignment: Alignment.topRight,
-                  children: [
+                  children:
+                  [
                     Image(image: AssetImage("assets/images/item.png")),
                     Positioned(
                       top: 10,
@@ -196,7 +197,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: CustomWidget.CustomItemwithPrice(),
+                  child: CustomWidget.CustomItemwithPrice(Tap: null),
                 )
               ],
             ),

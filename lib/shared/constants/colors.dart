@@ -13,6 +13,7 @@ class ColorConstants
   static Color videoScreenButtonColor = hexToColor("#AA7459");
   static Color primaryBigTextColor = hexToColor("#505050");
   static Color borderColor = hexToColor("#00000000");
+  static Color customizeBackgroundColor = hexToColor("#F7F7F7");
 
 
 

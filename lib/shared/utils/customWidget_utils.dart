@@ -87,7 +87,7 @@ class CustomWidget {
     );
   }
 
-  static CustomItemwithPrice({ Function ? onTap }) {
+  static CustomItemwithPrice({VoidCallback? Tap}) {
     return GridView.count(
       shrinkWrap: true,
       crossAxisCount: 3,
@@ -97,7 +97,9 @@ class CustomWidget {
       physics: NeverScrollableScrollPhysics(),
       children: List.generate(15, (index) {
         return GestureDetector(
-          onTap: onTap != null ? onTap() : null,
+          onTap: () {
+            Tap;
+          },
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -105,7 +107,9 @@ class CustomWidget {
               Image(
                 image: AssetImage("assets/images/item.png"),
               ),
-              SizedBox(height: Dimensions.SizedBoxValue20,),
+              SizedBox(
+                height: Dimensions.SizedBoxValue20,
+              ),
               Text(
                 'Chicken Burger',
                 style: TextStyle(
@@ -129,7 +133,13 @@ class CustomWidget {
               ),
               Row(
                 children: [
-                  Text('\$9.00',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontWeight: FontWeight.bold,fontSize: Dimensions.TextSize18),),
+                  Text(
+                    '\$9.00',
+                    style: TextStyle(
+                        color: ColorConstants.primaryBigTextColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: Dimensions.TextSize18),
+                  ),
                   SizedBox(
                     width: 60,
                   ),
@@ -148,6 +158,114 @@ class CustomWidget {
           ),
         );
       }),
+    );
+  }
+
+  static CustomCloseSection({required BuildContext context}) {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context).pop();
+      },
+      child: Container(
+        height: 50,
+        width: 50,
+        child: Icon(
+          Icons.close,
+          color: Colors.white,
+          size: 40,
+        ),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            color: ColorConstants.primaryBigTextColor.withOpacity(0.2),
+            border: Border.all(color: Colors.white, width: 2),
+            boxShadow: [
+              BoxShadow(
+                  color: ColorConstants.primaryBigTextColor.withOpacity(.15),
+                  blurRadius: 0.2,
+                  offset: Offset(1, 1))
+            ]),
+      ),
+    );
+  }
+
+  static ItemCountSection() {
+    return Row(
+      children: [
+        Container(
+            height: 24,
+            width: 37,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(9),
+                color: Colors.white,
+                border: Border.all(color: ColorConstants.primaryBigTextColor)),
+            child: Icon(
+              FeatherIcons.minus,
+              size: Dimensions.TextSize15,
+              color: ColorConstants.primaryBigTextColor,
+            )),
+        SizedBox(
+          width: Dimensions.SizedBoxValue25,
+        ),
+        Text(
+          '2',
+          style: TextStyle(
+              fontSize: Dimensions.TextSize30, fontWeight: FontWeight.bold),
+        ),
+        SizedBox(
+          width: Dimensions.SizedBoxValue25,
+        ),
+        Container(
+            height: 24,
+            width: 37,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(9),
+                color: ColorConstants.bannerHeadingTextColor,
+                border:
+                    Border.all(color: ColorConstants.bannerHeadingTextColor)),
+            child: Icon(
+              FeatherIcons.plus,
+              size: Dimensions.TextSize15,
+              color: Colors.white,
+            )),
+      ],
+    );
+  }
+
+  static CustomcustomizeButton({height, width, context, onTap})
+  {
+    return SizedBox(
+      height: height,
+      width: width,
+      child: ElevatedButton(
+        onPressed: () {
+          onTap();
+        },
+        style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),),
+            backgroundColor: MaterialStateProperty.all(ColorConstants.bannerHeadingTextColor)
+        ),
+        child: Text('Customise',style: TextStyle(fontSize: Dimensions.TextSize30),),
+      ),
+    );
+  }
+  static CustomAddtoCartButton({height, width , context}) {
+    return SizedBox(
+      height: height,
+      width: width ,
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),),
+            backgroundColor: MaterialStateProperty.all(Theme.of(context).buttonColor)
+        ),
+        child: Text('Add to cart',style: TextStyle(fontSize: Dimensions.TextSize30),),
+      ),
     );
   }
 }

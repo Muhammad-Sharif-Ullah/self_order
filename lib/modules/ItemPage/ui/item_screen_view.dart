@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:self_order/modules/ItemPage/ui/user_choice_dialog.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
@@ -99,7 +101,68 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                             SizedBox(
                               height: Dimensions.SizedBoxValue30,
                             ),
-                            CustomWidget.CustomItemwithPrice(onTap: userChoice(context: context)),
+                            GridView.count(
+                              shrinkWrap: true,
+                              crossAxisCount: 3,
+                              crossAxisSpacing: 20,
+                              mainAxisSpacing: 15.0,
+                              childAspectRatio: 0.6,
+                              physics: NeverScrollableScrollPhysics(),
+                              children: List.generate(15, (index) {
+                                return GestureDetector(
+                                  onTap: (){
+                                    uerChoiceDialog(context: context, heading: 'Beef Burger', subHeading: 'Beef with cheese', price: '\$18.00');
+
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Image(
+                                        image: AssetImage("assets/images/item.png"),
+                                      ),
+                                      SizedBox(height: Dimensions.SizedBoxValue20,),
+                                      Text(
+                                        'Chicken Burger',
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: Dimensions.TextSize20,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        'Chicken Burger',
+                                        style: TextStyle(
+                                            color: ColorConstants.primaryBigTextColor,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: Dimensions.TextSize18),
+                                      ),
+                                      SizedBox( height: Dimensions.SizedBoxValue25, ),
+                                      Row(
+                                        children: [
+                                          Text('\$9.00',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontWeight: FontWeight.bold,fontSize: Dimensions.TextSize18),),
+                                          SizedBox(
+                                            width: 60,
+                                          ),
+                                          Container(
+                                            height: 30,
+                                            width: 30,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey,
+                                              borderRadius: BorderRadius.circular(20),
+                                            ),
+                                            child: Icon(FeatherIcons.plus),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                );
+                              }),
+                            )
                           ]),
                         ),
                       ),
@@ -114,8 +177,7 @@ class ItemPageScreen extends GetView<ItemScreenController> {
     );
   }
 
-  Widget foodVarision({required String text})
-  {
+  Widget foodVarision({required String text}) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
@@ -126,14 +188,22 @@ class ItemPageScreen extends GetView<ItemScreenController> {
     );
   }
 
-  userChoice({required BuildContext context}) {
-    return showDialog(
-      context: context,
-      builder: (context) => Dialog(
-        child: Container(
-          child: Text('hello'),
-        ),
-      ),
-    );
-  }
+  // userChoice({required BuildContext context}) {
+  //   WidgetsBinding.instance?.addPostFrameCallback((_){
+  //     showDialog(
+  //       context: context,
+  //       builder: (context) => Dialog(
+  //         child: Container(
+  //           child: Text('hello'),
+  //         ),
+  //       ),
+  //     );
+  //   });
+  //
+  // }
+
+
+
 }
+
+
