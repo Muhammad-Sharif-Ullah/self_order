@@ -87,7 +87,7 @@ class CustomWidget {
     );
   }
 
-  static CustomItemwithPrice({VoidCallback? Tap}) {
+  static CustomItemwithPrice({ Tap}) {
     return GridView.count(
       shrinkWrap: true,
       crossAxisCount: 3,
@@ -97,9 +97,7 @@ class CustomWidget {
       physics: NeverScrollableScrollPhysics(),
       children: List.generate(15, (index) {
         return GestureDetector(
-          onTap: () {
-            Tap;
-          },
+          onTap: Tap!= null ? Tap : null,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -231,7 +229,7 @@ class CustomWidget {
     );
   }
 
-  static CustomcustomizeButton({height, width, context, onTap})
+  static CustomcustomiseButton({height, width, context, onTap})
   {
     return SizedBox(
       height: height,
@@ -241,22 +239,19 @@ class CustomWidget {
           onTap();
         },
         style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>( RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),),),
             backgroundColor: MaterialStateProperty.all(ColorConstants.bannerHeadingTextColor)
         ),
         child: Text('Customise',style: TextStyle(fontSize: Dimensions.TextSize30),),
       ),
     );
   }
-  static CustomAddtoCartButton({height, width , context}) {
+  static CustomAddtoCartButton({height, width , context, ontap}) {
     return SizedBox(
       height: height,
       width: width ,
       child: ElevatedButton(
-        onPressed: () {},
+       onPressed: ontap!= null ? ontap : null,
         style: ButtonStyle(
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(

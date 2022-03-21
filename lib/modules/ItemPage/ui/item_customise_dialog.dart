@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:self_order/modules/cart/ui/cart_screen_view.dart';
 
 import '../../../shared/constants/Dimensions.dart';
 import '../../../shared/constants/colors.dart';
@@ -155,7 +158,13 @@ itemCustomiseDialog({context}) {
                 CustomWidget.CustomAddtoCartButton(
                     height: Dimensions.height60 * 1.0,
                     width: Dimensions.width579,
-                    context: context),
+                    context: context,
+                    ontap: () {
+                      WidgetsBinding.instance?.addPostFrameCallback((_){
+                        Get.to(CartScreen());
+                      });
+
+                    }),
               ],
             ),
           ),

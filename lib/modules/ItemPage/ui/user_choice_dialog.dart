@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:self_order/modules/cart/ui/cart_screen_view.dart';
 
 import '../../../shared/constants/Dimensions.dart';
 import '../../../shared/constants/colors.dart';
 import '../../../shared/utils/customWidget_utils.dart';
 import 'item_customise_dialog.dart';
 
-uerChoiceDialog(
-    {required BuildContext context,
-    required String heading,
-    required String subHeading,
-    required String price}) {
+uerChoiceDialog({required BuildContext context, required String heading, required String subHeading, required String price}) {
   showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -103,7 +102,7 @@ uerChoiceDialog(
                       EdgeInsets.symmetric(horizontal: Dimensions.padding30),
                   child: Row(
                     children: [
-                      CustomWidget.CustomcustomizeButton(
+                      CustomWidget.CustomcustomiseButton(
                         height: 60.0,
                         width: 253.0,
                         context: context,
@@ -113,8 +112,7 @@ uerChoiceDialog(
                         },
                       ),
                       Spacer(),
-                      CustomWidget.CustomAddtoCartButton(
-                          height: 60.0, width: 253.0, context: context),
+                      CustomWidget.CustomAddtoCartButton(height: 60.0, width: 253.0, context: context,ontap: (){ Get.to(CartScreen()); }),
                     ],
                   ),
                 )

@@ -7,6 +7,8 @@ import '../modules/UserChoice/bindings/userchoice_screen_binding.dart';
 import '../modules/UserChoice/ui/userchoice_screen_view.dart';
 import '../modules/VideoScreen/bindings/video_screen_binding.dart';
 import '../modules/VideoScreen/ui/video_screen_view.dart';
+import '../modules/cart/bindings/cart_screen_binding.dart';
+import '../modules/cart/ui/cart_screen_view.dart';
 import 'app_routes.dart';
 
 class AppPages {
@@ -37,6 +39,11 @@ class AppPages {
       name: Routes.UserChoice,
       page: () => UserChoiceScreen(),
       binding: UserChoiceBinding(),
+    ),
+    GetPage(
+      name: Routes.Cart,
+      page: () => CartScreen(),
+      binding: CartScreenBinding(),
     ),
   ];
 }

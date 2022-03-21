@@ -162,7 +162,9 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                   ),
                                 );
                               }),
-                            )
+                            ),
+
+                          // CustomWidget.CustomItemwithPrice(Tap:userChoice(context: context) ),
                           ]),
                         ),
                       ),
