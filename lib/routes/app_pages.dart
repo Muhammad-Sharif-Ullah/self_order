@@ -3,6 +3,8 @@ import 'package:self_order/modules/Home/bindings/home_screen_binding.dart';
 import 'package:self_order/modules/Home/ui/home_screen_view.dart';
 import 'package:self_order/modules/LogIn/bindings/Login_screen_binding.dart';
 import 'package:self_order/modules/LogIn/ui/Login_screen.dart';
+import 'package:self_order/modules/check_out/bindings/checkout_binding.dart';
+import 'package:self_order/modules/check_out/ui/check_out_view.dart';
 import '../modules/UserChoice/bindings/userchoice_screen_binding.dart';
 import '../modules/UserChoice/ui/userchoice_screen_view.dart';
 import '../modules/VideoScreen/bindings/video_screen_binding.dart';
@@ -44,6 +46,11 @@ class AppPages {
       name: Routes.Cart,
       page: () => CartScreen(),
       binding: CartScreenBinding(),
+    ),
+    GetPage(
+      name: Routes.Checkout,
+      page: () => CheckoutScreen(),
+      binding: CheckoutBinding(),
     ),
   ];
 }

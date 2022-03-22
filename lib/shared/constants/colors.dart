@@ -14,6 +14,7 @@ class ColorConstants
   static Color primaryBigTextColor = hexToColor("#505050");
   static Color borderColor = hexToColor("#00000000");
   static Color customizeBackgroundColor = hexToColor("#F7F7F7");
+  static Color redButtonColor = hexToColor("#FF000E");
 
 
 

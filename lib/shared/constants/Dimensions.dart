@@ -12,6 +12,7 @@ class Dimensions{
  static final TextSize15 = height/82.13;
  static final TextSize18 = height/68.44;
  static final TextSize20 = height/61.6;
+ static final TextSize25 = height/49.28;
  static final TextSize30 = height/41.066;
 
 
@@ -51,9 +52,18 @@ class Dimensions{
  static final height550 = height/2.24;
  static final height90 = height/13.68;
  static final height60 = height/20.53;
+ static final height50 = height/24.64;
+ static final height65 = height/18.95;
+ static final height25 = height/49.28;
+ static final height30 = height/41.06;
+ static final height80 = height/15.4;
+ static final width80 = height/15.4;
+ static final width85 = height/14.49;
+ static final width320 = height/3.85;
 
  static final height250 = height/4.92;
  static final height70 = height/17.6;
+ static final width70 = height/17.6;
  static final width90 = height/13.68;
  static final width100 = height/12.32;
  static final width110 = height/11.2;
