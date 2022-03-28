@@ -5,7 +5,7 @@ abstract class Routes
   static const HomeScreen = '/home';
   static const VideoScreen = '/videoScreen';
   static const UserChoice = '/UerChoice';
-  static const Cart = '/cart';
+
   static const Checkout = '/checkout';
 
 }

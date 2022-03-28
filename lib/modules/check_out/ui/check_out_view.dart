@@ -42,8 +42,10 @@ class CheckoutScreen extends GetView<CheckoutController> {
                     shrinkWrap: true,
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return  Padding(padding: EdgeInsets.only(bottom: 50),
-                      child: CustomWidget.CustomOrderView(),
+                      return  Center(
+                        child: Padding(padding: EdgeInsets.only(bottom: 50),
+                        child: CustomWidget.CustomOrderView(),
+                        ),
                       );
                     },
                   ),

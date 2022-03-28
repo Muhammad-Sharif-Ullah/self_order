@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:self_order/modules/cart/ui/cart_screen_view.dart';
-
 import '../../../shared/constants/Dimensions.dart';
 import '../../../shared/constants/colors.dart';
 import '../../../shared/utils/customWidget_utils.dart';
@@ -161,7 +159,7 @@ itemCustomiseDialog({context}) {
                     context: context,
                     ontap: () {
                       WidgetsBinding.instance?.addPostFrameCallback((_){
-                        Get.to(CartScreen());
+                      //  Get.to(CartScreen());
                       });
 
                     }),

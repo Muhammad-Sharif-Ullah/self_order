@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
+
+import '../../modules/check_out/ui/check_out_view.dart';
 
 class CustomWidget {
   static CustomButton({required String text, required Color color}) {
@@ -153,6 +156,56 @@ class CustomWidget {
         );
       }),
     );}
+  static CustomTitleWithVariation({Tap}) {return GridView.count(
+    shrinkWrap: true,
+    crossAxisCount: 3,
+    crossAxisSpacing: 20,
+    mainAxisSpacing: 15.0,
+    childAspectRatio: 0.6,
+    physics: NeverScrollableScrollPhysics(),
+    children: List.generate(15, (index) {
+      return GestureDetector(
+        onTap: Tap != null ? Tap : null,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image(
+              image: AssetImage("assets/images/item.png"),
+            ),
+            SizedBox(
+              height: Dimensions.SizedBoxValue20,
+            ),
+            Center(
+              child: Text(
+                'Chicken Burger',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: Dimensions.TextSize20,
+
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Center(
+              child: Text(
+                'Chicken Burger',
+                style: TextStyle(
+                    color: ColorConstants.primaryBigTextColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: Dimensions.TextSize18),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
+      );
+    }),
+  );}
 
   static CustomCloseSection({required BuildContext context}) { return InkWell(
       onTap: () {
@@ -363,6 +416,72 @@ class CustomWidget {
       ],
     );
   }
+
+  static CustomCartModalBottomSheet({context})
+  {
+    return Column(
+      children: [
+        Container(
+          height: Dimensions.height80,
+          color: ColorConstants.primaryBigTextColor.withOpacity(0.5),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
+            child: Row(
+              children: [
+                Text(
+                  'My order (Eat in)',
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: Dimensions.TextSize25),
+                ),
+                Spacer(),
+                Text(
+                  'Total:  \$72.00',
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: Dimensions.TextSize25),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SizedBox(height: Dimensions.SizedBoxValue30,),
+        Expanded(
+          flex: 10,
+          child: Padding(
+            padding:
+            EdgeInsets.symmetric(horizontal: Dimensions.padding30),
+            child: GridView.count(
+              //  shrinkWrap: true,
+              crossAxisCount: 2,
+              childAspectRatio: 3,
+              physics: ScrollPhysics(),
+              children: List.generate(
+                70,
+                    (index) {
+                  return CustomWidget.CustomOrderView();
+                },
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 2,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
+            child: Row(
+              children: [
+                CustomWidget.CustomRedButton(height: 60.0, width: 320.0, text: 'Cancel Order', context: context),
+                Spacer(),
+                CustomWidget.CustomAddtoCartButton(height: 60.0, width: 320.0, text: 'Done', context: context, ontap: (){Get.to(CheckoutScreen());}),
+              ],
+            ),
+          ),
+        )
+      ],
+    );
+
+
+  }
+
+
+
 
 
 }

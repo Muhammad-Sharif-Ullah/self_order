@@ -55,12 +55,29 @@ class PaymentScreen extends GetView<PaymentScreenController> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children:
                             [
-                              paymentType(image: "assets/images/paywithcard.png", flag: 0,text: 'Pay with Card'),
-                              paymentType(image: "assets/images/paywithcash.png", flag: 1,text: 'Pay with Cash'),
-                              paymentType(image: "assets/images/paycounter.png", flag: 2,text: 'Pay Counter'),
+                              paymentWay(image: "assets/images/paywithcard.png", flag: 0,text: 'Pay with Card'),
+                              paymentWay(image: "assets/images/paywithcash.png", flag: 1,text: 'Pay with Cash'),
+                              paymentWay(image: "assets/images/paycounter.png", flag: 2,text: 'Pay Counter'),
                             ],
                           ),
                         ),
+                        SizedBox(height: Dimensions.height50,),
+                        Text('Select payment type',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontSize: Dimensions.height25,fontWeight: FontWeight.w700),),
+                        SizedBox(height: Dimensions.height30,),
+                        Container(
+                          height: Dimensions.height50,
+                          child: Padding(padding: EdgeInsets.symmetric(horizontal: 80),
+                           child: ListView.builder(
+                             itemCount: 15,
+                             scrollDirection: Axis.horizontal,
+                             itemBuilder: (context,index){
+                               return Padding(padding: EdgeInsets.only(right: Dimensions.padding30),
+                                 child: paymentType(image: Image.asset("assets/images/amex.png")),
+                               );
+                             },
+                           ),
+                          ),
+                        )
 
                       ],
                     ),
@@ -68,6 +85,17 @@ class PaymentScreen extends GetView<PaymentScreenController> {
                   Column(
                     children: [
                       Text('Total:  \$54.20',style: TextStyle(color: ColorConstants.bannerHeadingTextColor,fontSize: Dimensions.height30),),
+                      SizedBox(height: Dimensions.height30,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
+                        child: Row(
+                          children: [
+                            CustomWidget.CustomAddtoCartButton(height: Dimensions.height60*1.0, width: Dimensions.width320*1.0, text: 'Payment',context: context,ontap: (){Get.to(PaymentScreen());}),
+
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10,),
                     ],
                   )
                 ],
@@ -77,7 +105,7 @@ class PaymentScreen extends GetView<PaymentScreenController> {
     );
   }
 
-  paymentType({image, text, flag}) {
+  paymentWay({image, text, flag}) {
     return Obx(() {
       return InkWell(
         onTap: () { controller.controllerValue.value = flag; },
@@ -110,7 +138,9 @@ class PaymentScreen extends GetView<PaymentScreenController> {
                   ),
                 ): SizedBox(),
                 SizedBox(width: Dimensions.SizedBoxValue10,),
-                Text(text,style: TextStyle(fontSize: Dimensions.TextSize20,color:  controller.controllerValue.value == flag ? ColorConstants.primaryButtonColor: ColorConstants.primaryButtonColor.withOpacity(0.25)),)
+                Text(text,style: TextStyle(fontSize: Dimensions.TextSize20,color:  controller.controllerValue.value == flag ? ColorConstants.primaryButtonColor: ColorConstants.primaryButtonColor.withOpacity(0.25)),),
+
+
               ],
             ),
             //Spacer(),
@@ -121,4 +151,20 @@ class PaymentScreen extends GetView<PaymentScreenController> {
       );
     });
   }
+  paymentType({image}){
+    return Container(
+      height: 25,
+      width: 70,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: ColorConstants.paymentTypeBackgroundColor,
+      ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+        child: image,
+      )
+    );
+  }
+
+
 }

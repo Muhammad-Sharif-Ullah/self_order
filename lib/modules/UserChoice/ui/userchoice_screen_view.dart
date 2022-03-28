@@ -40,7 +40,7 @@ class UserChoiceScreen extends GetView<UserChoiceController> {
                 ),
               ),
               Positioned(
-                bottom: 30,
+                bottom: 500,
                 left: 25,
                 right: 25,
                 child: Column(

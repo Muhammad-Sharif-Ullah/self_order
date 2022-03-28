@@ -197,7 +197,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: CustomWidget.CustomItemwithPrice(Tap: null),
+                  child: CustomWidget.CustomTitleWithVariation(Tap: null),
                 )
               ],
             ),
