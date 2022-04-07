@@ -58,7 +58,8 @@ class CustomWidget {
     );
   }
 
-  static CustomButtonInImage({required String text, required onTap}) {return InkWell(
+  static CustomButtonInImage({required String text, required onTap}) {
+    return InkWell(
       onTap: () => onTap(),
       child: Container(
         height: 70,
@@ -85,9 +86,11 @@ class CustomWidget {
           ),
         ),
       ),
-    );}
+    );
+  }
 
-  static CustomItemwithPrice({Tap}) {return GridView.count(
+  static CustomItemwithPrice({Tap}) {
+    return GridView.count(
       shrinkWrap: true,
       crossAxisCount: 3,
       crossAxisSpacing: 20,
@@ -155,59 +158,63 @@ class CustomWidget {
           ),
         );
       }),
-    );}
-  static CustomTitleWithVariation({Tap}) {return GridView.count(
-    shrinkWrap: true,
-    crossAxisCount: 3,
-    crossAxisSpacing: 20,
-    mainAxisSpacing: 15.0,
-    childAspectRatio: 0.6,
-    physics: NeverScrollableScrollPhysics(),
-    children: List.generate(15, (index) {
-      return GestureDetector(
-        onTap: Tap != null ? Tap : null,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Image(
-              image: AssetImage("assets/images/item.png"),
-            ),
-            SizedBox(
-              height: Dimensions.SizedBoxValue20,
-            ),
-            Center(
-              child: Text(
-                'Chicken Burger',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: Dimensions.TextSize20,
+    );
+  }
 
-                ),
-                textAlign: TextAlign.center,
+  static CustomTitleWithVariation({Tap}) {
+    return GridView.count(
+      shrinkWrap: true,
+      crossAxisCount: 3,
+      crossAxisSpacing: 20,
+      mainAxisSpacing: 15.0,
+      childAspectRatio: 0.6,
+      physics: NeverScrollableScrollPhysics(),
+      children: List.generate(15, (index) {
+        return GestureDetector(
+          onTap: Tap != null ? Tap : null,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Image(
+                image: AssetImage("assets/images/item.png"),
               ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Center(
-              child: Text(
-                'Chicken Burger',
-                style: TextStyle(
-                    color: ColorConstants.primaryBigTextColor,
+              SizedBox(
+                height: Dimensions.SizedBoxValue20,
+              ),
+              Center(
+                child: Text(
+                  'Chicken Burger',
+                  style: TextStyle(
+                    color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontSize: Dimensions.TextSize18),
-                textAlign: TextAlign.center,
+                    fontSize: Dimensions.TextSize20,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
               ),
-            ),
-          ],
-        ),
-      );
-    }),
-  );}
+              SizedBox(
+                height: 5,
+              ),
+              Center(
+                child: Text(
+                  'Chicken Burger',
+                  style: TextStyle(
+                      color: ColorConstants.primaryBigTextColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: Dimensions.TextSize18),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+        );
+      }),
+    );
+  }
 
-  static CustomCloseSection({required BuildContext context}) { return InkWell(
+  static CustomCloseSection({required BuildContext context}) {
+    return InkWell(
       onTap: () {
         Navigator.of(context).pop();
       },
@@ -230,9 +237,11 @@ class CustomWidget {
                   offset: Offset(1, 1))
             ]),
       ),
-    );}
+    );
+  }
 
-  static ItemCountSection() { return Row(
+  static ItemCountSection() {
+    return Row(
       children: [
         Container(
             height: 24,
@@ -271,7 +280,8 @@ class CustomWidget {
               color: Colors.white,
             )),
       ],
-    ); }
+    );
+  }
 
   static CustomcustomiseButton({height, width, context, onTap, text = 'Customise'}) {
     return SizedBox(
@@ -344,81 +354,96 @@ class CustomWidget {
   }
 
   static CustomOrderView() {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-          height: Dimensions.height65,
-          width: Dimensions.width80,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(1),
-            border: Border.all(color: ColorConstants.primaryButtonColor),
-          ),
-          child: Image(
-            image: AssetImage('assets/images/bug.png'),
-            height: Dimensions.height60,
-            width: Dimensions.width70,
-          ),
-        ),
-        SizedBox(
-          width: Dimensions.SizedBoxValue20,
-        ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Beef Burger',
-              style: TextStyle(
-                  fontSize: Dimensions.TextSize20, fontWeight: FontWeight.w700),
+            Container(
+              height: Dimensions.height65,
+              // width: 100,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(1),
+                border: Border.all(color: ColorConstants.primaryButtonColor),
+              ),
+              child: Image(
+                image: AssetImage('assets/images/bug.png'),
+                height: Dimensions.height60,
+                width: Dimensions.width70,
+              ),
             ),
             SizedBox(
-              height: Dimensions.SizedBoxValue2,
+              width: Dimensions.SizedBoxValue20,
             ),
-            Text(
-              '+ 1 Beef patty',
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: Dimensions.TextSize15,
-                  color: ColorConstants.bannerHeadingTextColor),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Beef Burger',
+                  style: TextStyle(
+                      fontSize: Dimensions.TextSize20,
+                      fontWeight: FontWeight.w700),
+                ),
+                SizedBox(
+                  width: 150,
+                ),
+                SizedBox(
+                  height: Dimensions.SizedBoxValue15,
+                ),
+                Text(
+                  '+ 1 Beef patty',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: Dimensions.TextSize15,
+                      color:
+                          ColorConstants.primaryBigTextColor.withOpacity(0.5)),
+                ),
+                SizedBox(
+                  height: Dimensions.SizedBoxValue10,
+                ),
+              ],
             ),
             SizedBox(
-              height: Dimensions.SizedBoxValue10,
+              width: Dimensions.SizedBoxValue30,
             ),
             Text(
-              '\$' + '18.00 (x2)',
+              '2X \$18.00',
               style: TextStyle(
-                  color: ColorConstants.bannerHeadingTextColor,
-                  fontSize: Dimensions.TextSize15),
+                fontSize: Dimensions.SizedBoxValue20,
+              ),
+            ),
+            SizedBox(
+              width: 30,
+            ),
+            Container(
+              height: Dimensions.height25,
+              width: Dimensions.width85,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(96),
+                color: ColorConstants.bannerHeadingTextColor,
+              ),
+              child: Center(
+                child: Text(
+                  'Customise',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w900),
+                ),
+              ),
             ),
           ],
         ),
         SizedBox(
-          width: Dimensions.SizedBoxValue30,
+          height: 20,
         ),
-        Container(
-          height: Dimensions.height25,
-          width: Dimensions.width85,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(96),
-            color: ColorConstants.bannerHeadingTextColor,
-          ),
-          child: Center(
-            child: Text(
-              'Customise',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.w900),
-            ),
-          ),
-        ),
+        Divider(color: ColorConstants.bannerBackgroundColor, height: 8, endIndent: 100, indent: 165),
       ],
     );
   }
 
-  static CustomCartModalBottomSheet({context})
-  {
+  static CustomCartModalBottomSheet({context}) {
     return Column(
       children: [
         Container(
@@ -430,23 +455,30 @@ class CustomWidget {
               children: [
                 Text(
                   'My order (Eat in)',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: Dimensions.TextSize25),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: Dimensions.TextSize25),
                 ),
                 Spacer(),
                 Text(
                   'Total:  \$72.00',
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: Dimensions.TextSize25),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: Dimensions.TextSize25),
                 ),
               ],
             ),
           ),
         ),
-        SizedBox(height: Dimensions.SizedBoxValue30,),
+        SizedBox(
+          height: Dimensions.SizedBoxValue30,
+        ),
         Expanded(
           flex: 10,
           child: Padding(
-            padding:
-            EdgeInsets.symmetric(horizontal: Dimensions.padding30),
+            padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
             child: GridView.count(
               //  shrinkWrap: true,
               crossAxisCount: 2,
@@ -454,7 +486,7 @@ class CustomWidget {
               physics: ScrollPhysics(),
               children: List.generate(
                 70,
-                    (index) {
+                (index) {
                   return CustomWidget.CustomOrderView();
                 },
               ),
@@ -467,21 +499,25 @@ class CustomWidget {
             padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
             child: Row(
               children: [
-                CustomWidget.CustomRedButton(height: 60.0, width: 320.0, text: 'Cancel Order', context: context),
+                CustomWidget.CustomRedButton(
+                    height: 60.0,
+                    width: 320.0,
+                    text: 'Cancel Order',
+                    context: context),
                 Spacer(),
-                CustomWidget.CustomAddtoCartButton(height: 60.0, width: 320.0, text: 'Done', context: context, ontap: (){Get.to(CheckoutScreen());}),
+                CustomWidget.CustomAddtoCartButton(
+                    height: 60.0,
+                    width: 320.0,
+                    text: 'Done',
+                    context: context,
+                    ontap: () {
+                      Get.to(CheckoutScreen());
+                    }),
               ],
             ),
           ),
         )
       ],
     );
-
-
   }
-
-
-
-
-
 }
