@@ -112,17 +112,9 @@ class CheckoutScreen extends GetView<CheckoutController> {
                 padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
                 child: Row(
                   children: [
-                    CustomWidget.CustomRedButton(
-                        height: Dimensions.height60 * 1.0,
-                        width: Dimensions.width320 * 1.0,
-                        text: 'cancel order',
-                        context: context),
+                    CustomWidget.CustomRedButton(height: Dimensions.height60 * 1.0, width: Dimensions.width320 * 1.0, text: 'cancel order', context: context),
                     Spacer(),
-                    CustomWidget.CustomAddtoCartButton(
-                        height: Dimensions.height60 * 1.0,
-                        width: Dimensions.width320 * 1.0,
-                        text: 'Confirm',
-                        context: context,
+                    CustomWidget.CustomAddtoCartButton(height: Dimensions.height60 * 1.0, width: Dimensions.width320 * 1.0, text: 'Confirm', context: context,
                         ontap: () {
                           Get.to(PaymentScreen());
                         })

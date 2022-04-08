@@ -28,9 +28,25 @@ class ComboScreenOne extends GetView<ComboScreenController> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    customDesire(imageName: Image(image: AssetImage("assets/images/small_type.png"),),),
-                    customDesire(imageName: Image(image: AssetImage("assets/images/medium_type.png"),),),
-                    customDesire(imageName: Image(image: AssetImage("assets/images/large_type.png"),),),
+                    customDesire(imageName: Image(image: AssetImage("assets/images/small_type.png"),), type: 'small', flag: 0    ),
+                    customDesire(imageName: Image(image: AssetImage("assets/images/medium_type.png"),),type: 'medium', flag: 1),
+                    customDesire(imageName: Image(image: AssetImage("assets/images/large_type.png"),),type: 'large' , flag: 2)
+
+                    // Padding(
+                    //     padding:
+                    //     EdgeInsets.symmetric(horizontal: Dimensions.padding30),
+                    //     child: ListView.builder(
+                    //       itemCount: 3,
+                    //       scrollDirection: Axis.horizontal,
+                    //       itemBuilder: (context, index) {
+                    //         return Padding(padding: EdgeInsets.only(left: 20),
+                    //           child: customDesire(imageName: Image(
+                    //             image: AssetImage("assets/images/small_type.png"),
+                    //           ), type: 'small', flag: controller.flag.value),
+                    //         );
+                    //       },
+                    //     )),
+
                   ],
                 ),
               )
@@ -40,14 +56,30 @@ class ComboScreenOne extends GetView<ComboScreenController> {
       ),
     );
   }
-  customDesire({imageName}) {
+  customDesire({imageName, type, flag}) {
     return InkWell(
-      onTap: null,
-      child: Container(
-        height: 167,
-        width: 208,
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(11),color: ColorConstants.unselectedDesire),
-        child: imageName
+      onTap: (){
+        controller.itemIndex.value = flag;
+      },
+      child: Column(
+        children: [
+          Container(
+            height: 167,
+            width: 208,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(11),color: flag == controller.itemIndex ? ColorConstants.selectedDesire : ColorConstants.unselectedDesire,),
+            child: imageName
+          ),
+          SizedBox(height: 15,),
+          Text(type,style: TextStyle(color: ColorConstants.primaryBigTextColor,fontSize: 18),),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              children: [
+
+              ],
+            ),
+          )
+        ],
       ),
     );
   }

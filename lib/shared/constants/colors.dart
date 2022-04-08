@@ -19,6 +19,7 @@ class ColorConstants
   static Color secondBackgroundColor = hexToColor("#F6D1A7");
   static Color priceborderColor  = hexToColor("#FFB15B");
   static Color unselectedDesire  = hexToColor("#FFF4EC");
+  static Color selectedDesire  = hexToColor("#E5F2F0");
 
 
 
