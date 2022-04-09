@@ -438,7 +438,11 @@ class CustomWidget {
         SizedBox(
           height: 20,
         ),
-        Divider(color: ColorConstants.bannerBackgroundColor, height: 8, endIndent: 100, indent: 165),
+        Divider(
+            color: ColorConstants.bannerBackgroundColor,
+            height: 8,
+            endIndent: 100,
+            indent: 165),
       ],
     );
   }
@@ -520,4 +524,88 @@ class CustomWidget {
       ],
     );
   }
+
+  static CustomPrimaryButton({context, height, width, title, borderradius, backgroundcolor,  titlecolor = Colors.white , Color ? borderColor}) {return Container(
+      height: height*1.0,
+      width: width*1.0,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(borderradius*1.0),
+          color: backgroundcolor),
+      child: Center(
+        child: Text(
+          title,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+              fontSize: 24, fontWeight: FontWeight.w700, color: titlecolor),
+        ),
+      ),
+    );}
+
+  static CustomComboPackName({context, img, flag}) {return Container(
+      height: 92,
+      width: 342,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(11), color: ColorConstants.selectedDesire),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          children: [
+            img,
+            SizedBox(width: 15,),
+            Text(flag == 0? 'Small Combo': flag == 1 ? 'Medium Combo' : 'Large Combo',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontWeight: FontWeight.w700,fontSize: 24),),
+          ],
+        ),
+      ),
+    );}
+
+  static CustomComboPackItem({context, image }){return GestureDetector(onTap: (){},
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          image,
+          SizedBox(height: Dimensions.SizedBoxValue20,),
+          Text(
+            'Chicken Burger',
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: Dimensions.TextSize20,
+            ),
+          ),
+          SizedBox(
+            height: 5,
+          ),
+          Text(
+            'Chicken Burger',
+            style: TextStyle(
+                color: ColorConstants.primaryBigTextColor,
+                fontWeight: FontWeight.bold,
+                fontSize: Dimensions.TextSize18),
+          ),
+          SizedBox( height: Dimensions.SizedBoxValue25, ),
+          Row(
+            children: [
+              Text('\$9.00',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontWeight: FontWeight.bold,fontSize: Dimensions.TextSize18),),
+              SizedBox(
+                width: 60,
+              ),
+              Container(
+                height: 30,
+                width: 30,
+                decoration: BoxDecoration(
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Icon(FeatherIcons.plus),
+              )
+            ],
+          )
+        ],
+      ),
+    );}
+
+  static CustomComboCart({context, itemName, extraItemName, quantity, price}){
+     return
+  }
+
 }

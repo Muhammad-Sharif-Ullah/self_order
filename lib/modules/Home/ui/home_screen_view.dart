@@ -142,7 +142,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                               ),
                               InkWell(
                                 onTap: (){
-                                  Get.to(ComboScreenOne());
+                                  Get.to(ComboScreenViewOne());
                                 },
                                 child: Padding(
                                   padding: EdgeInsets.only(left: 20),
