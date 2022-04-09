@@ -542,7 +542,7 @@ class CustomWidget {
       height: height * 1.0,
       width: width * 1.0,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderradius * 1.0),
+          borderRadius: BorderRadius.circular(borderradius*1.0),
           color: backgroundcolor),
       child: Center(
         child: Text(
@@ -690,9 +690,9 @@ class CustomWidget {
             minSpacing: 40,
             children: count.map((i) {
               return Container(
-                  height: 150,
+                  height: 90,
                   alignment: Alignment(0, 0),
-                  color: Colors.green,
+                  color: Colors.white,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

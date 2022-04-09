@@ -3,19 +3,20 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:responsive_grid/responsive_grid.dart';
-import 'package:self_order/shared/constants/Dimensions.dart';
-import 'package:self_order/shared/constants/colors.dart';
-import 'package:self_order/shared/utils/customWidget_utils.dart';
+import '../../../shared/constants/Dimensions.dart';
+import '../../../shared/constants/colors.dart';
+import '../../../shared/utils/customWidget_utils.dart';
 import '../../base_widget.dart';
-import '../controller/add_side_screen_logic.dart';
+import '../../check_out/ui/check_out_view.dart';
+import '../controller/add_drink_screen_logic.dart';
 
-class AddSidesScreen extends GetView<AddSidesScreenController> {
+class AddDrinkScreenView extends GetView<AddDrinkScreenController>{
   int itemtype;
-  AddSidesScreen({Key? key, required this.itemtype}) : super(key: key);
+   AddDrinkScreenView({Key? key,required this.itemtype}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put<AddSidesScreenController>(AddSidesScreenController());
+    Get.put<AddDrinkScreenController>(AddDrinkScreenController());
     return BaseWidget(
       builder: (context, sizingInformation) => SafeArea(
         child: Scaffold(
@@ -43,7 +44,7 @@ class AddSidesScreen extends GetView<AddSidesScreenController> {
                 height: 30,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: Dimensions.SizedBoxValue30),
+                  padding: EdgeInsets.symmetric(horizontal: Dimensions.SizedBoxValue30),
                   child: Text('Choose a Sides',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontWeight: FontWeight.w700,fontSize: 24),)),
               SizedBox(height: Dimensions.SizedBoxValue30,),
               Expanded(
@@ -58,19 +59,43 @@ class AddSidesScreen extends GetView<AddSidesScreenController> {
                           child: CustomWidget.CustomComboPackItem(
                             context: context,
                             image: Image(
-                              image: AssetImage("assets/images/side.png"),
+                              image: AssetImage("assets/images/fanta.png",),
+                              height: 130,
+                              width: 139,
                             ),
                           ));
                     }).toList()),
               ),
               SizedBox(height: Dimensions.SizedBoxValue10,),
               CustomWidget.CustomComboCart(context: context,quantity: 2,Itemprice: '100',extraItemName: 'Bee'),
+              SizedBox(height: 30,),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.SizedBoxValue30),
+                child: Row(
+                  children: [
+                    CustomWidget.CustomPrimaryButton(context: context,width: 320, height: 60, borderradius: 5,backgroundcolor: ColorConstants.bannerBackgroundColor,title: 'Cancel Order',titlecolor: Colors.white),
+                    Spacer(),
+                    InkWell(
+                      onTap: (){
+                          Get.to(CheckoutScreen());
+                      },
+                      child:CustomWidget.CustomPrimaryButton(context: context,width: 320, height: 60, borderradius: 5,backgroundcolor: ColorConstants.primaryButtonColor,title: 'Confirm',titlecolor: Colors.white),
+                    )
+
+
+                  ],
+                ),
+              ),
+              SizedBox(height: 10,),
 
 
             ],
           ),
+
         ),
       ),
     );
   }
+
+
 }

@@ -6,7 +6,7 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
-import '../../add_sides/ui/add_side_screen_view.dart';
+import '../../Add_Sides/ui/add_side_screen_view.dart';
 import '../../base_widget.dart';
 import '../controller/combo_screen_two_logic.dart';
 import 'package:responsive_grid/responsive_grid.dart';
