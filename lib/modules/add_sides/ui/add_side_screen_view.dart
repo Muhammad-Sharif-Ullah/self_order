@@ -64,7 +64,7 @@ class AddSidesScreen extends GetView<AddSidesScreenController> {
                     }).toList()),
               ),
               SizedBox(height: Dimensions.SizedBoxValue10,),
-              CustomWidget.CustomComboCart(context: context,quantity: 2,price: '100',extraItemName: 'Beef Mixed',itemName: 'Beef')
+              CustomWidget.CustomComboCart(context: context,quantity: 2,Itemprice: '100',extraItemName: 'Bee'),
 
 
             ],

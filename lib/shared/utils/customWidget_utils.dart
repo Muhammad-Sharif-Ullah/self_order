@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:responsive_grid/responsive_grid.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 
@@ -31,7 +32,8 @@ class CustomWidget {
     );
   }
 
-  static CustomImageButton({required String text, required Color color, required Image image}) {
+  static CustomImageButton(
+      {required String text, required Color color, required Image image}) {
     return Container(
       height: 90,
       width: 250,
@@ -283,7 +285,8 @@ class CustomWidget {
     );
   }
 
-  static CustomcustomiseButton({height, width, context, onTap, text = 'Customise'}) {
+  static CustomcustomiseButton(
+      {height, width, context, onTap, text = 'Customise'}) {
     return SizedBox(
       height: height,
       width: width,
@@ -307,7 +310,8 @@ class CustomWidget {
     );
   }
 
-  static CustomAddtoCartButton({height, width, context, ontap, text = 'Add to cart'}) {
+  static CustomAddtoCartButton(
+      {height, width, context, ontap, text = 'Add to cart'}) {
     return SizedBox(
       height: height,
       width: width,
@@ -525,11 +529,20 @@ class CustomWidget {
     );
   }
 
-  static CustomPrimaryButton({context, height, width, title, borderradius, backgroundcolor,  titlecolor = Colors.white , Color ? borderColor}) {return Container(
-      height: height*1.0,
-      width: width*1.0,
+  static CustomPrimaryButton(
+      {context,
+      height,
+      width,
+      title,
+      borderradius,
+      backgroundcolor,
+      titlecolor = Colors.white,
+      Color? borderColor}) {
+    return Container(
+      height: height * 1.0,
+      width: width * 1.0,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(borderradius*1.0),
+          borderRadius: BorderRadius.circular(borderradius * 1.0),
           color: backgroundcolor),
       child: Center(
         child: Text(
@@ -539,31 +552,52 @@ class CustomWidget {
               fontSize: 24, fontWeight: FontWeight.w700, color: titlecolor),
         ),
       ),
-    );}
+    );
+  }
 
-  static CustomComboPackName({context, img, flag}) {return Container(
+  static CustomComboPackName({context, img, flag}) {
+    return Container(
       height: 92,
       width: 342,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(11), color: ColorConstants.selectedDesire),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(11),
+          color: ColorConstants.selectedDesire),
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           children: [
             img,
-            SizedBox(width: 15,),
-            Text(flag == 0? 'Small Combo': flag == 1 ? 'Medium Combo' : 'Large Combo',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontWeight: FontWeight.w700,fontSize: 24),),
+            SizedBox(
+              width: 15,
+            ),
+            Text(
+              flag == 0
+                  ? 'Small Combo'
+                  : flag == 1
+                      ? 'Medium Combo'
+                      : 'Large Combo',
+              style: TextStyle(
+                  color: ColorConstants.primaryBigTextColor,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 24),
+            ),
           ],
         ),
       ),
-    );}
+    );
+  }
 
-  static CustomComboPackItem({context, image }){return GestureDetector(onTap: (){},
+  static CustomComboPackItem({context, image}) {
+    return GestureDetector(
+      onTap: () {},
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           image,
-          SizedBox(height: Dimensions.SizedBoxValue20,),
+          SizedBox(
+            height: Dimensions.SizedBoxValue20,
+          ),
           Text(
             'Chicken Burger',
             style: TextStyle(
@@ -582,10 +616,18 @@ class CustomWidget {
                 fontWeight: FontWeight.bold,
                 fontSize: Dimensions.TextSize18),
           ),
-          SizedBox( height: Dimensions.SizedBoxValue25, ),
+          SizedBox(
+            height: Dimensions.SizedBoxValue25,
+          ),
           Row(
             children: [
-              Text('\$9.00',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontWeight: FontWeight.bold,fontSize: Dimensions.TextSize18),),
+              Text(
+                '\$9.00',
+                style: TextStyle(
+                    color: ColorConstants.primaryBigTextColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: Dimensions.TextSize18),
+              ),
               SizedBox(
                 width: 60,
               ),
@@ -602,10 +644,91 @@ class CustomWidget {
           )
         ],
       ),
-    );}
-
-  static CustomComboCart({context, itemName, extraItemName, quantity, price}){
-     return
+    );
   }
 
+  static CustomComboCart(
+      {context, itemName, extraItemName, quantity, Itemprice}) {
+    List count = [1, 2, 3, 4, 5];
+    return Column(children: [
+      Container(
+        height: 50,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: ColorConstants.primaryBigTextColor,
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
+          child: Row(
+            children: [
+              Text(
+                'My order (Eat in)',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 24),
+              ),
+              Spacer(),
+              Text(
+                'Total:  \$20.00',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 20),
+              ),
+            ],
+          ),
+        ),
+      ),
+      SizedBox(
+        height: 25,
+      ),
+      Container(
+        height: 200,
+        child: ResponsiveGridList(
+            desiredItemWidth: 200,
+            minSpacing: 40,
+            children: count.map((i) {
+              return Container(
+                  height: 150,
+                  alignment: Alignment(0, 0),
+                  color: Colors.green,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                          height: 60,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color: ColorConstants.cartImageBorderColor),
+                          ),
+                          child: Image(
+                            image: AssetImage("assets/images/bug.png"),
+                            height: 60,
+                            width: 80,
+                          )),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            'Beef Burger',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                          SizedBox(height: 7,),
+                          Text('+ 1 Beef patty',style: TextStyle(color: ColorConstants.primaryBigTextColor.withOpacity(0.5)),),
+                          SizedBox(height: 7,),
+                          Text('1X    \$9.00',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontSize: 16),)
+                        ],
+                      )
+                    ],
+                  ));
+            }).toList()),
+      ),
+    ]);
+  }
 }

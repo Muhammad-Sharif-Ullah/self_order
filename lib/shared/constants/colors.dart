@@ -20,6 +20,7 @@ class ColorConstants
   static Color priceborderColor  = hexToColor("#FFB15B");
   static Color unselectedDesire  = hexToColor("#FFF4EC");
   static Color selectedDesire  = hexToColor("#E5F2F0");
+  static Color cartImageBorderColor  = hexToColor("#C4C4C4");
 
 
 
