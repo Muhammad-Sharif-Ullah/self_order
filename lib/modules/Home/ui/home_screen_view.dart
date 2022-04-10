@@ -8,6 +8,7 @@ import 'package:self_order/shared/utils/customWidget_utils.dart';
 
 import '../../../shared/constants/colors.dart';
 import '../../base_widget.dart';
+import '../../combo_screen_one/ui/combo_screen_one_view.dart';
 import '../controller/home_screen_logic.dart';
 import 'custom_delicious_food.dart';
 
@@ -18,7 +19,8 @@ class HomeScreen extends GetView<HomeScreenController> {
   Widget build(BuildContext context) {
     Get.put<HomeScreenController>(HomeScreenController());
     return BaseWidget(
-      builder: (context, sizingInformation) => Scaffold(
+      builder: (context, sizingInformation) => SafeArea(
+        child: Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
           body: SingleChildScrollView(
             child: Column(
@@ -27,18 +29,13 @@ class HomeScreen extends GetView<HomeScreenController> {
               children: [
                 Stack(
                   alignment: Alignment.topRight,
-                  children:
-                  [
-                    Image(image: AssetImage("assets/images/item.png")),
+                  children: [
+                    Image(image: AssetImage("assets/images/itempag.png")),
                     Positioned(
-                      top: 10,
-                      right: 15,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(100)),
-                        child: Text('Edit In'),
-                      ),
+                      top: Dimensions.SizedBoxValue25,
+                      right: Dimensions.SizedBoxValue15,
+                      child: CustomWidget.CustomButtonInImage(
+                          text: 'Eat in', onTap: () {}),
                     )
                   ],
                 ),
@@ -51,14 +48,14 @@ class HomeScreen extends GetView<HomeScreenController> {
                     Text(
                       "Enjoy Delicious food",
                       style: TextStyle(
-                          fontSize: Dimensions.TextSize30, fontWeight: FontWeight.w700),
+                          fontSize: Dimensions.TextSize30,
+                          fontWeight: FontWeight.w700),
                     ),
                     Spacer(),
                     InkWell(
                       onTap: () {
-                        Get.changeThemeMode(Get.isDarkMode
-                            ? ThemeMode.light
-                            : ThemeMode.dark);
+                        Get.changeThemeMode(
+                            Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
                       },
                       child: Container(
                         height: 60,
@@ -73,8 +70,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                           ],
                         ),
                         child: Padding(
-                          padding: EdgeInsets.only(
-                              top: 5, left: 5, right: 5, bottom: 5),
+                          padding: EdgeInsets.only(top: 5, left: 5, right: 5, bottom: 5),
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
@@ -103,6 +99,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                 SizedBox(
                   height: 25,
                 ),
+                /// 1st bannerrrr
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30),
                   child: Container(
@@ -117,11 +114,11 @@ class HomeScreen extends GetView<HomeScreenController> {
                         Padding(
                           padding: EdgeInsets.only(left: 40),
                           child: Image(
-                            image:
-                                AssetImage("assets/images/bannerImage.png"),
+                            image: AssetImage("assets/images/bannerImage.png"),
                           ),
                         ),
                         Spacer(),
+                        /// 1st header
                         Padding(
                           padding: EdgeInsets.only(left: 20),
                           child: Column(
@@ -131,9 +128,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                               Text(
                                 'Make your own COMBO!! 🍔 🍟 🍕',
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    color: ColorConstants
-                                        .bannerHeadingTextColor),
+                                style: TextStyle(color: ColorConstants.bannerHeadingTextColor),
                               ),
                               SizedBox(
                                 height: 5,
@@ -145,6 +140,86 @@ class HomeScreen extends GetView<HomeScreenController> {
                               SizedBox(
                                 height: 15,
                               ),
+                              InkWell(
+                                onTap: (){
+                                  Get.to(ComboScreenViewOne());
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 20),
+                                  child: Container(
+                                    height: 32,
+                                    width: 161,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(100),
+                                      border: Border.all(
+                                          color: ColorConstants
+                                              .bannerHeadingTextColor),
+                                      color: ColorConstants.bannerBackgroundColor,
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Lets get started',
+                                          style: TextStyle(
+                                              color: Colors.deepOrangeAccent),
+                                        ),
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Icon(
+                                          FeatherIcons.arrowRight,
+                                          color: Colors.deepOrangeAccent,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 30,),
+                /// 2nd bannerrrrrrr
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Container(
+                    height: 150,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: ColorConstants.secondBackgroundColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 40),
+                          child: Image(
+                            image: AssetImage("assets/images/bannerImage.png"),
+                          ),
+                        ),
+                        Spacer(),
+                        /// 1st header
+                        Padding(
+                          padding: EdgeInsets.only(left: 20, right: 180),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Looking for YAMMY deal?',
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: ColorConstants.bannerHeadingTextColor),
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
                               Padding(
                                 padding: EdgeInsets.only(left: 20),
                                 child: Container(
@@ -152,14 +227,11 @@ class HomeScreen extends GetView<HomeScreenController> {
                                   width: 161,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
-                                    border: Border.all(
-                                        color: ColorConstants
-                                            .bannerHeadingTextColor),
+                                    border: Border.all(color: ColorConstants.bannerHeadingTextColor),
                                     color: Colors.white,
                                   ),
                                   child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
                                         'Started',
@@ -191,8 +263,9 @@ class HomeScreen extends GetView<HomeScreenController> {
                   padding: EdgeInsets.only(left: 30),
                   child: Text(
                     "Enjoy Delicious food",
-                    style:
-                        TextStyle(fontSize: Dimensions.TextSize30, fontWeight: FontWeight.w700),
+                    style: TextStyle(
+                        fontSize: Dimensions.TextSize30,
+                        fontWeight: FontWeight.w700),
                   ),
                 ),
                 Padding(
@@ -201,7 +274,9 @@ class HomeScreen extends GetView<HomeScreenController> {
                 )
               ],
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

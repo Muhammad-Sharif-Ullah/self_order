@@ -16,6 +16,11 @@ class ColorConstants
   static Color customizeBackgroundColor = hexToColor("#F7F7F7");
   static Color redButtonColor = hexToColor("#FF000E");
   static Color paymentTypeBackgroundColor = hexToColor("#5555550D");
+  static Color secondBackgroundColor = hexToColor("#F6D1A7");
+  static Color priceborderColor  = hexToColor("#FFB15B");
+  static Color unselectedDesire  = hexToColor("#FFF4EC");
+  static Color selectedDesire  = hexToColor("#E5F2F0");
+  static Color cartImageBorderColor  = hexToColor("#C4C4C4");
 
 
 

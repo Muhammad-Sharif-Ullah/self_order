@@ -77,7 +77,7 @@ class UserChoiceScreen extends GetView<UserChoiceController> {
                       child: Row(
                         children: [
                           CustomWidget.CustomImageButton(
-                            color: Theme.of(context).buttonColor,
+                            color: ColorConstants.bannerHeadingTextColor,
                             image: Image(
                               image: AssetImage("assets/images/frame1.png"),
                               height: 50,
@@ -86,7 +86,7 @@ class UserChoiceScreen extends GetView<UserChoiceController> {
                             text: 'Eat in',
                           ),
                           SizedBox(
-                            width: 250,
+                            width: 150,
                           ),
                           CustomWidget.CustomImageButton(
                             color: Theme.of(context).buttonColor,

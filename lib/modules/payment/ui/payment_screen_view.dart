@@ -150,6 +150,8 @@ class PaymentScreen extends GetView<PaymentScreenController> {
         ),
       );
     });
+
+    }
   }
   paymentType({image}){
     return Container(
@@ -167,4 +169,4 @@ class PaymentScreen extends GetView<PaymentScreenController> {
   }
 
 
-}
+

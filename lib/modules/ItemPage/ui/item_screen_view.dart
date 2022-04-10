@@ -93,7 +93,6 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                               crossAxisSpacing: 10,
                               mainAxisSpacing: 10,
                               childAspectRatio: 2,
-                              physics: NeverScrollableScrollPhysics(),
                               children: List.generate(7, (index) {
                                 return foodVarision(text: 'Club Beef');
                               }),
@@ -107,7 +106,7 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                               crossAxisSpacing: 20,
                               mainAxisSpacing: 15.0,
                               childAspectRatio: 0.6,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: ScrollPhysics(),
                               children: List.generate(15, (index) {
                                 return GestureDetector(
                                   onTap: (){
