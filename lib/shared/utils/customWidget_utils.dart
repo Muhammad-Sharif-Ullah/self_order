@@ -775,7 +775,7 @@ class CustomWidget {
           title,
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontSize: titlefontSize, fontWeight: FontWeight.w700, color: titlecolor),
+              fontSize: titlefontSize*1.0, fontWeight: titleFontWeight, color: titlecolor),
         ),
       ),
     );

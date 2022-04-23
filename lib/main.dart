@@ -20,33 +20,33 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
   runApp(DevicePreview(
-      enabled: true,
-      builder: (context) =>  MyApp(
-        appRouter: AppRouter(),
-      ),
-    ),);
+    enabled: false,
+    builder: (context) =>  MyApp(
+      appRouter: AppRouter(),
+    ),
+  ),);
 
 
 }
 
 class MyApp extends StatelessWidget {
   final AppRouter? appRouter;
-   MyApp({Key? key,this.appRouter}) : super(key: key);
+  MyApp({Key? key,this.appRouter}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: Size(744,1133),
-      builder: () {
+      builder: (_) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           theme: Themes().lightTheme,
           darkTheme: Themes().darkTheme,
           themeMode: ThemeService().getThemeMode(),
-         // builder: EasyLoading.init(),
+          // builder: EasyLoading.init(),
           //theme: ThemeConfig.lightTheme,
           title: 'SelfOrder',
-         // enableLog: true,
+          // enableLog: true,
           onGenerateRoute: appRouter!.onGeneratedRoute,
           home: LoginScreen(),
         );
@@ -64,11 +64,11 @@ void configLoading() {
   // ..indicatorSize = 45.0
     ..radius = 10.0
   // ..progressColor = Colors.yellow
-   // ..backgroundColor = ColorConstants.lightGray
+  // ..backgroundColor = ColorConstants.lightGray
     ..maskType = EasyLoadingMaskType.custom
     ..maskColor = Colors.grey.withOpacity(0.3)
-    //..indicatorColor = hexToColor('#64DEE0')
-    //..textColor = hexToColor('#64DEE0')
+  //..indicatorColor = hexToColor('#64DEE0')
+  //..textColor = hexToColor('#64DEE0')
   // ..maskColor = Colors.red
     ..userInteractions = false
     ..dismissOnTap = false

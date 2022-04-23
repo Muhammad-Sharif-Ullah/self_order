@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:self_order/modules/ItemPage/ui/item_screen_view.dart';
+import 'package:self_order/modules/UserChoice/ui/userchoice_screen_view.dart';
 
+import '../../modules/Home/ui/home_screen_view.dart';
 import '../../modules/LogIn/ui/Login_screen.dart';
 import '../../modules/VideoScreen/ui/video_screen_view.dart';
 class AppRouter {
@@ -18,24 +21,24 @@ class AppRouter {
           type: PageTransitionType.fade,
         );
 
-      // case '/collectionprice':
-      //   return PageTransition(
-      //     child: CollectionPriceScreen(),
-      //     type: PageTransitionType.fade,
-      //   );
-      //
-      // case '/otpscreen':
-      //   return PageTransition(
-      //     child: OtpScreenView(),
-      //     type: PageTransitionType.fade,
-      //   );
-      //
-      //
-      // case '/homeScreen':
-      //   return PageTransition(
-      //     child: HomeScreenView(),
-      //     type: PageTransitionType.fade,
-      //   );
+      case '/userchoicescreen':
+        return PageTransition(
+          child: UserChoiceScreen(),
+          type: PageTransitionType.fade,
+        );
+
+      case '/homescreen':
+        return PageTransition(
+          child: HomeScreen(),
+          type: PageTransitionType.fade,
+        );
+
+      case '/itempagescreen':
+        return PageTransition(
+          child: ItemPageScreen(),
+          type: PageTransitionType.fade,
+        );
+
 
       default:
         return null;
