@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:self_order/Data/Model/page_route_arguments.dart';
 import '../../../shared/constants/Dimensions.dart';
 import '../../../shared/constants/colors.dart';
 import '../../../shared/utils/customWidget_utils.dart';
-import 'item_customise_dialog.dart';
+import 'item_customise_page.dart';
+import 'item_customise_page.dart';
 
 uerChoiceDialog(
     {required BuildContext context,
@@ -19,23 +22,18 @@ uerChoiceDialog(
             borderRadius: BorderRadius.circular(10.0),
           ), //this right here
           child: Container(
-            height: Dimensions.userChoiceDialogHeight,
-            width: Dimensions.userChoiceDialogWidth,
+            height: 530.h,
+            width: 656.w,
             child: Column(
               children: [
-                SizedBox(
-                  height: Dimensions.SizedBoxValue30,
-                ),
+                SizedBox(height: Dimensions.SizedBoxValue30,),
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: Dimensions.SizedBoxValue30),
+                  padding: EdgeInsets.symmetric(horizontal: 30.w),
                   child: Row(
                     children: [
                       Text(
                         'Make your choice',
-                        style: TextStyle(
-                            color: ColorConstants.primaryButtonColor,
-                            fontSize: Dimensions.TextSize30),
+                        style: TextStyle(color: ColorConstants.primaryButtonColor,fontSize: 30.sp),
                       ),
                       Spacer(),
                       CustomWidget.CustomCloseSection(context: context),
@@ -43,56 +41,53 @@ uerChoiceDialog(
                   ),
                 ),
                 SizedBox(
-                  height: Dimensions.SizedBoxValue30,
+                  height: 30.h,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 80),
+                  padding: EdgeInsets.symmetric(horizontal: 80.w),
                   child: Row(
                     children: [
                       Image(
                         image: AssetImage(
                           "assets/images/item.png",
                         ),
-                        height: 158,
-                        width: 212,
+                        height: 158.h,
+                        width: 212.w,
                       ),
                       SizedBox(
-                        width: Dimensions.SizedBoxValue30,
+                        width: 30.w
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             heading,
-                            style: TextStyle(
-                                color: ColorConstants.primaryBigTextColor,
-                                fontWeight: FontWeight.bold,
-                                fontSize: Dimensions.TextSize30),
+                            style: TextStyle(color: ColorConstants.primaryBigTextColor, fontWeight: FontWeight.bold, fontSize: 30.sp),
                           ),
                           SizedBox(
-                            height: Dimensions.SizedBoxValue8,
+                            height: 8.h,
                           ),
                           Text(
                             subHeading,
                             style: TextStyle(
                                 color: ColorConstants.primaryBigTextColor
                                     .withOpacity(0.5),
-                                fontSize: Dimensions.TextSize30),
+                                fontSize: 30.sp),
                           ),
                           SizedBox(
-                            height: Dimensions.SizedBoxValue15,
+                            height: 15.h,
                           ),
                           Text(
                             price,
                             style: TextStyle(
                                 color: ColorConstants.bannerHeadingTextColor
                                     .withOpacity(0.5),
-                                fontSize: Dimensions.TextSize30),
+                                fontSize: 30.sp),
                           ),
                           SizedBox(
-                            height: Dimensions.SizedBoxValue15,
+                            height: 15.h,
                           ),
-                          CustomWidget.ItemCountSection(),
+
                         ],
                       )
                     ],
@@ -106,33 +101,27 @@ uerChoiceDialog(
                       EdgeInsets.symmetric(horizontal: Dimensions.padding30),
                   child: Row(
                     children: [
-                      CustomWidget.CustomcustomiseButton(
-                        height: 60.0,
-                        width: 253.0,
-                        context: context,
-                        onTap: () {
-                          Navigator.of(context).pop();
-                          itemCustomiseDialog(context: context);
-                        },
-                      ),
+                      CustomWidget.CustomPrimaryButton(context: context,height: 60.h,width: 282.w, borderColor: ColorConstants.priceborderColor,title: 'Make it combo',titlecolor: Colors.white,titlefontSize:24.sp, borderradius: 5,backgroundcolor: ColorConstants.priceborderColor,titleFontWeight:FontWeight.w700  ),
                       Spacer(),
-                      CustomWidget.CustomAddtoCartButton(
-                          height: 60.0,
-                          width: 253.0,
-                          context: context,
-                          ontap: () {
+                      InkWell(
+                        onTap: (){
+                          Navigator.pushNamed(context, '/itemcustomisePage',arguments: PageRouteArguments(
+                            data: [],
+                            fromPage: 'itempage',
+                            toPage: 'itemcustomisePage'
+                          ));
+                        },
+                        child: CustomWidget.CustomPrimaryButton(context: context,height: 60.h,width: 282.w, borderColor: ColorConstants.bannerHeadingTextColor,title: 'Customise',titlecolor: Colors.white,titlefontSize:24.sp, borderradius: 5,backgroundcolor: ColorConstants.bannerHeadingTextColor,titleFontWeight:FontWeight.w700  ),
+                      )
 
-                            Navigator.of(context).pop();
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) =>
-                                  CustomWidget.CustomCartModalBottomSheet(
-                                      context: context),
-                            );
-                          }),
                     ],
                   ),
-                )
+                ),
+                SizedBox(height: 20.h,),
+                CustomWidget.CustomPrimaryButton(context: context,height: 60.h,width: 596.w, borderColor: ColorConstants.primaryButtonColor,title: 'Add to cart',titlecolor: Colors.white,titlefontSize:24.sp, borderradius: 5,backgroundcolor: ColorConstants.primaryButtonColor,titleFontWeight:FontWeight.w700  ),
+                SizedBox(height: 30.h,),
+
+
               ],
             ),
           ),

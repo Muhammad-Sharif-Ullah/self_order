@@ -287,30 +287,30 @@ class CustomWidget {
     );
   }
 
-  static CustomcustomiseButton(
-      {height, width, context, onTap, text = 'Customise'}) {
-    return SizedBox(
-      height: height,
-      width: width,
-      child: ElevatedButton(
-        onPressed: () {
-          onTap();
-        },
-        style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            backgroundColor: MaterialStateProperty.all(
-                ColorConstants.bannerHeadingTextColor)),
-        child: Text(
-          text,
-          style: TextStyle(fontSize: Dimensions.TextSize30),
-        ),
-      ),
-    );
-  }
+  // static CustomcustomiseButton(
+  //     {height, width, context, onTap, text = 'Customise'}) {
+  //   return SizedBox(
+  //     height: height,
+  //     width: width,
+  //     child: ElevatedButton(
+  //       onPressed: () {
+  //         onTap();
+  //       },
+  //       style: ButtonStyle(
+  //           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+  //             RoundedRectangleBorder(
+  //               borderRadius: BorderRadius.circular(10),
+  //             ),
+  //           ),
+  //           backgroundColor: MaterialStateProperty.all(
+  //               ColorConstants.bannerHeadingTextColor)),
+  //       child: Text(
+  //         text,
+  //         style: TextStyle(fontSize: Dimensions.TextSize30),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   static CustomAddtoCartButton(
       {height, width, context, ontap, text = 'Add to cart'}) {
