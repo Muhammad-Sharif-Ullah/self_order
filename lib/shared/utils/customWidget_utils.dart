@@ -176,41 +176,58 @@ class CustomWidget {
       children: List.generate(15, (index) {
         return GestureDetector(
           onTap: Tap != null ? Tap : null,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Image(
-                image: AssetImage("assets/images/item.png"),
+          child: Padding(
+            padding: EdgeInsets.only(bottom: 30.h,left: 30.w),
+            child: Container(
+              height: 209.h,
+              width: 208.w,
+              decoration: BoxDecoration(
+                boxShadow:[
+                  BoxShadow(
+                       color: ColorConstants.primaryBigTextColor.withOpacity(0.03),
+                      offset: Offset(0, 9),
+                      blurRadius: 10,
+                      spreadRadius: 1
+                  )
+                ],
               ),
-              SizedBox(
-                height: Dimensions.SizedBoxValue20,
-              ),
-              Center(
-                child: Text(
-                  'Chicken Burger',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: Dimensions.TextSize20,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image(
+                    image: AssetImage("assets/images/item.png"),
                   ),
-                  textAlign: TextAlign.center,
-                ),
+                  SizedBox(
+                    height: Dimensions.SizedBoxValue20,
+                  ),
+                  Center(
+                    child: Text(
+                      'Chicken Burger',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: Dimensions.TextSize20,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Center(
+                    child: Text(
+                      'Chicken Burger',
+                      style: TextStyle(
+                          color: ColorConstants.primaryBigTextColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: Dimensions.TextSize18),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 5,
-              ),
-              Center(
-                child: Text(
-                  'Chicken Burger',
-                  style: TextStyle(
-                      color: ColorConstants.primaryBigTextColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: Dimensions.TextSize18),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
+            ),
           ),
         );
       }),

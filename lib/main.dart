@@ -1,17 +1,12 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_core/src/smart_management.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:self_order/modules/LogIn/ui/Login_screen.dart';
-import 'package:self_order/routes/app_pages.dart';
 import 'package:self_order/shared/Route/route.dart';
 import 'package:self_order/shared/theme/theme_service.dart';
 import 'package:self_order/shared/theme/themes.dart';
