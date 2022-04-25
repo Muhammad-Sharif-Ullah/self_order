@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
@@ -91,7 +92,7 @@ class PaymentScreen extends GetView<PaymentScreenController> {
                         padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
                         child: Row(
                           children: [
-                            CustomWidget.CustomPrimaryButton(height: 60, width: 320, titlecolor: ColorConstants.primaryButtonColor,title: 'Split Payment',backgroundcolor: Colors.white,borderradius: 5, borderColor: ColorConstants.primaryButtonColor,context: context),
+                            CustomWidget.CustomPrimaryButton(height: 60, width: 320, titlecolor: ColorConstants.primaryButtonColor,title: 'Split Payment',backgroundcolor: Colors.white,borderradius: 5, borderColor: ColorConstants.primaryButtonColor,context: context,titlefontSize: 24.sp,),
                             Spacer(),
                             InkWell(
                               onTap: (){
@@ -99,7 +100,7 @@ class PaymentScreen extends GetView<PaymentScreenController> {
                                 Get.to(PaymentDoneScreenView());
 
                               },
-                             child: CustomWidget.CustomPrimaryButton(height: 60, width: 320, titlecolor: Colors.white,title: 'Payment',backgroundcolor: ColorConstants.primaryButtonColor,borderradius: 5, borderColor: ColorConstants.primaryButtonColor,context: context),
+                             child: CustomWidget.CustomPrimaryButton(height: 60, width: 320, titlecolor: Colors.white,title: 'Payment',backgroundcolor: ColorConstants.primaryButtonColor,borderradius: 5, borderColor: ColorConstants.primaryButtonColor,context: context,titlefontSize: 24.sp),
                             )
 
                           ],

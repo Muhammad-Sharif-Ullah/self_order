@@ -723,7 +723,7 @@ class CustomWidget {
     borderColor,
     helperTextColor,
     helperTextFontSize,
-    helperTextFontWeight = FontWeight.w400
+    helperTextFontWeight = FontWeight.w400,
   }) {
     return FormBuilderTextField(
       obscureText: obscureText,
@@ -752,6 +752,7 @@ class CustomWidget {
       name: name,
     );
   }
+
   static CustomPrimaryButton(
       {context,
         height,
@@ -762,6 +763,9 @@ class CustomWidget {
         borderradius,
         backgroundcolor,
         titlecolor = Colors.white,
+        buttonType = "text",
+        image,
+        icon,
         Color? borderColor}) {
     return Container(
       height: height * 1.0,
@@ -770,14 +774,12 @@ class CustomWidget {
         border:  borderColor!=null ? Border.all(color: borderColor):null,
 
       ),
-      child: Center(
-        child: Text(
+      child:  buttonType == 'text' ?  Center(child: Text(
           title,
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontSize: titlefontSize*1.0, fontWeight: titleFontWeight, color: titlecolor),
-        ),
-      ),
+              fontSize: 20, fontWeight: titleFontWeight, color: titlecolor),
+        ),): buttonType == 'image'? image: icon,
     );
   }
 

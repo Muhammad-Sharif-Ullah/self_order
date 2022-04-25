@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:self_order/Data/Model/page_route_arguments.dart';
 import 'package:self_order/modules/payment/ui/payment_screen_view.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
@@ -114,10 +115,20 @@ class CheckoutScreen extends GetView<CheckoutController> {
                   children: [
                     CustomWidget.CustomRedButton(height: Dimensions.height60 * 1.0, width: Dimensions.width320 * 1.0, text: 'cancel order', context: context),
                     Spacer(),
-                    CustomWidget.CustomAddtoCartButton(height: Dimensions.height60 * 1.0, width: Dimensions.width320 * 1.0, text: 'Confirm', context: context,
-                        ontap: () {
-                          Get.to(PaymentScreen());
-                        })
+
+                        InkWell(
+                          onTap: (){
+                            Navigator.pushNamed(context, '/paymentscreen',arguments: PageRouteArguments(
+                                data: [],
+                                fromPage: "a",
+                                toPage: "b"
+                            ));
+                          },
+                          child:CustomWidget.CustomAddtoCartButton(height: Dimensions.height60 * 1.0, width: Dimensions.width320 * 1.0, text: 'Confirm', context: context,
+                        )
+                        )
+
+
                   ],
                 ),
               ),
