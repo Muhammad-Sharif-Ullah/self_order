@@ -41,9 +41,7 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                   )
                 ],
               ),
-              SizedBox(
-                height: Dimensions.SizedBoxValue30,
-              ),
+              SizedBox(height: Dimensions.SizedBoxValue30,),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.w),
                 child: Text(
@@ -87,88 +85,105 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                       ),
                       Expanded(
                         flex: 7,
-                        child: SingleChildScrollView(
-                          child: Column(children: [
-                            /// ToDo: work here///
-                            GridView.count(
-                              shrinkWrap: true,
-                              crossAxisCount: 5,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10,
-                              childAspectRatio: 2,
-                              children: List.generate(7, (index) {
-                                return foodVarision(text: 'Club Beef');
-                              }),
-                            ),
-                            SizedBox(
-                              height: Dimensions.SizedBoxValue30,
-                            ),
-                            GridView.count(
-                              shrinkWrap: true,
-                              crossAxisCount: 3,
-                              crossAxisSpacing: 20,
-                              mainAxisSpacing: 15.0,
-                              childAspectRatio: 0.6,
-                              physics: ScrollPhysics(),
-                              children: List.generate(15, (index) {
-                                return GestureDetector(
-                                  onTap: (){
-                                    uerChoiceDialog(context: context, heading: 'Beef Burger', subHeading: 'Beef with cheese', price: '\$18.00');
-
-                                  },
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Image(
-                                        image: AssetImage("assets/images/item.png"),
-                                      ),
-                                      SizedBox(height: Dimensions.SizedBoxValue20,),
-                                      Text(
-                                        'Chicken Burger',
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: Dimensions.TextSize20,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text(
-                                        'Chicken Burger',
-                                        style: TextStyle(
-                                            color: ColorConstants.primaryBigTextColor,
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: Dimensions.TextSize18),
-                                      ),
-                                      SizedBox( height: Dimensions.SizedBoxValue25, ),
-                                      Row(
-                                        children: [
-                                          Text('\$9.00',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontWeight: FontWeight.bold,fontSize: Dimensions.TextSize18),),
-                                          SizedBox(
-                                            width: 60,
-                                          ),
-                                          Container(
-                                            height: 30,
-                                            width: 30,
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey,
-                                              borderRadius: BorderRadius.circular(20),
-                                            ),
-                                            child: Icon(FeatherIcons.plus),
-                                          )
-                                        ],
-                                      )
-                                    ],
+                        child: Column(children: [
+                          /// ToDo: work here///
+                          // GridView.count(
+                          //   shrinkWrap: true,
+                          //   crossAxisCount: 5,
+                          //   crossAxisSpacing: 10,
+                          //   mainAxisSpacing: 10,
+                          //   childAspectRatio: 2,
+                          //   children: List.generate(7, (index) {
+                          //     return foodVarision(text: 'Club Beef');
+                          //   }),
+                          // ),
+                          Wrap(
+                            spacing: 20.w,
+                            runSpacing: 12.h,
+                            alignment: WrapAlignment.center,
+                            children: [
+                              for(int i= 0; i<=5; i++)
+                                foodVarision(text: 'Culf Beef'),
+                            ],
+                          ),
+                          
+                          Flexible(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: Dimensions.SizedBoxValue30,
                                   ),
-                                );
-                              }),
-                            ),
+                                  GridView.count(
+                                    shrinkWrap: true,
+                                    crossAxisCount: 3,
+                                    crossAxisSpacing: 20,
+                                    mainAxisSpacing: 15.0,
+                                    childAspectRatio: 0.6,
+                                     physics: ScrollPhysics(),
+                                    children: List.generate(15, (index) {
+                                      return GestureDetector(
+                                        onTap: (){
+                                          uerChoiceDialog(context: context, heading: 'Beef Burger', subHeading: 'Beef with cheese', price: '\$18.00');
 
-                          // CustomWidget.CustomItemwithPrice(Tap:userChoice(context: context) ),
-                          ]),
-                        ),
+                                        },
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                            Image(
+                                              image: AssetImage("assets/images/item.png"),
+                                            ),
+                                            SizedBox(height: Dimensions.SizedBoxValue20,),
+                                            Text(
+                                              'Chicken Burger',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: Dimensions.TextSize20,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              'Chicken Burger',
+                                              style: TextStyle(
+                                                  color: ColorConstants.primaryBigTextColor,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: Dimensions.TextSize18),
+                                            ),
+                                            SizedBox( height: Dimensions.SizedBoxValue25, ),
+                                            Row(
+                                              children: [
+                                                Text('\$9.00',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontWeight: FontWeight.bold,fontSize: Dimensions.TextSize18),),
+                                                SizedBox(
+                                                  width: 60,
+                                                ),
+                                                Container(
+                                                  height: 30,
+                                                  width: 30,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey,
+                                                    borderRadius: BorderRadius.circular(20),
+                                                  ),
+                                                  child: Icon(FeatherIcons.plus),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    }),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                         
+
+                        // CustomWidget.CustomItemwithPrice(Tap:userChoice(context: context) ),
+                        ]),
                       ),
                     ],
                   ),
@@ -184,6 +199,8 @@ class ItemPageScreen extends GetView<ItemScreenController> {
 
   Widget foodVarision({required String text}) {
     return Container(
+      height: 30,
+      width: 110,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100),
         border: Border.all(
