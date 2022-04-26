@@ -9,6 +9,7 @@ import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
 import '../../../shared/constants/Dimensions.dart';
 import '../../../shared/constants/colors.dart';
 import '../../../shared/utils/customWidget_utils.dart';
+import 'add_extra_customise.dart';
 
 class ItemCustomisePage extends StatelessWidget {
 
@@ -266,34 +267,39 @@ class ItemCustomisePage extends StatelessWidget {
               /// Todo : Add Extra //
               Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
-                  child: Text('Add extra:',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 24.sp,),)),
+                  child: Text('Add extra:',style: TextStyle(fontWeight: FontWeight.w700,fontSize: 24.sp,color: ColorConstants.primaryButtonColor),),),
                SizedBox(height: 30.h,),
                Expanded(
                  child: ResponsiveGridList(
                      desiredItemWidth: 130.w,
                      minSpacing: 50.h,
                      children: controller.extraFood.map((i) {
-                       return Column(
-                         children: [
-                           Image(image: AssetImage("assets/images/extraFood.png"),height: 70,width: 130,),
-                           SizedBox(height: 10.h,),
-                           Text('Fried Egg',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontSize: 14.sp,fontWeight: FontWeight.w400, ),),
-                           SizedBox(height: 10,),
-                           Text('\$0.36',style: TextStyle(color: ColorConstants.bannerHeadingTextColor,fontWeight: FontWeight.w400,fontSize: 14.sp),),
-                           SizedBox(height: 15,),
-                           Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                             children: [
-                               CustomWidget.CustomPrimaryButton(context: context,width: 26.51.w,height: 16.87.h,borderColor: ColorConstants.primaryBigTextColor.withOpacity(0.5),backgroundcolor: Colors.white,borderradius: 6,buttonType: 'icon',icon: Icon(FeatherIcons.minus,size: 12,),),
-                               Text('2',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700,color: ColorConstants.primaryBigTextColor),),
-                               CustomWidget.CustomPrimaryButton(context: context,width: 26.51.w,height: 16.87.h,borderColor: ColorConstants.bannerHeadingTextColor,backgroundcolor: ColorConstants.bannerHeadingTextColor,borderradius: 6,buttonType: 'icon',icon: Icon(FeatherIcons.plus,size: 12,color: Colors.white,),),
+                       return InkWell(
+                         onTap: (){
+                           addExtraCustomisePage(context:context);
+                         },
+                         child: Column(
+                           children: [
+                             Image(image: AssetImage("assets/images/extraFood.png"),height: 70,width: 130,),
+                             SizedBox(height: 10.h,),
+                             Text('Fried Egg',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontSize: 14.sp,fontWeight: FontWeight.w400, ),),
+                             SizedBox(height: 10,),
+                             Text('\$0.36',style: TextStyle(color: ColorConstants.bannerHeadingTextColor,fontWeight: FontWeight.w400,fontSize: 14.sp),),
+                             SizedBox(height: 15,),
+                             Row(
+                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                               children: [
+                                 CustomWidget.CustomPrimaryButton(context: context,width: 26.51.w,height: 16.87.h,borderColor: ColorConstants.primaryBigTextColor.withOpacity(0.5),backgroundcolor: Colors.white,borderradius: 6,buttonType: 'icon',icon: Icon(FeatherIcons.minus,size: 12,),),
+                                 Text('2',style: TextStyle(fontSize: 16,fontWeight: FontWeight.w700,color: ColorConstants.primaryBigTextColor),),
+                                 CustomWidget.CustomPrimaryButton(context: context,width: 26.51.w,height: 16.87.h,borderColor: ColorConstants.bannerHeadingTextColor,backgroundcolor: ColorConstants.bannerHeadingTextColor,borderradius: 6,buttonType: 'icon',icon: Icon(FeatherIcons.plus,size: 12,color: Colors.white,),),
 
 
-                             ],
-                           )
+                               ],
+                             )
 
 
-                         ],
+                           ],
+                         ),
                        );
                      }).toList()),
                ),
