@@ -173,23 +173,18 @@ class UserChoiceScreen extends GetView<UserChoiceController> {
                       SizedBox(
                         height: 30.h,
                       ),
-
                     ],
                   ),
                 ),
-                SizedBox(height: 35.h,),
+                SizedBox(
+                  height: 35.h,
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
                   child: Row(
                     children: [
                       InkWell(
-                        onTap: (){
-                         Navigator.pushNamed(context, '/homescreen',arguments: PageRouteArguments(
-                           data: [],
-                           toPage: 'homescreen',
-                           fromPage: 'userchoicescreen'
-                         ));
-                        },
+                        onTap: () => controller.setUserChoice('E'),
                         child: CustomWidget.CustomImageButton(
                           image: Image(
                             image: AssetImage("assets/images/frame1.png"),
@@ -200,22 +195,22 @@ class UserChoiceScreen extends GetView<UserChoiceController> {
                           text: 'Eat in',
                           width: 290.w,
                           height: 90.h,
-
                         ),
                       ),
-
                       Spacer(),
-                      CustomWidget.CustomImageButton(
-                        image: Image(
-                          image: AssetImage("assets/images/frame1.png"),
-                          height: 50.h,
-                          width: 60.w,
+                      InkWell(
+                        onTap: () => controller.setUserChoice('T'),
+                        child: CustomWidget.CustomImageButton(
+                          image: Image(
+                            image: AssetImage("assets/images/frame1.png"),
+                            height: 50.h,
+                            width: 60.w,
+                          ),
+                          color: ColorConstants.primaryButtonColor,
+                          text: 'Take out',
+                          width: 290.w,
+                          height: 90.h,
                         ),
-                        color: ColorConstants.primaryButtonColor,
-                        text: 'Take out',
-                        width: 290.w,
-                        height: 90.h,
-
                       ),
                     ],
                   ),
