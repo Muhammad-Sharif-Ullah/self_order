@@ -391,6 +391,9 @@ class HomeScreen extends GetView<HomeScreenController> {
                     height: 30.h,
                   ),
                   customDeliciousFood(context: context),
+                  SizedBox(
+                    height: 30,
+                  ),
                 ],
               ),
             ),

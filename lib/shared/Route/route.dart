@@ -37,11 +37,11 @@ class AppRouter {
           type: PageTransitionType.fade,
         );
 
-      case '/itempagescreen':
-        return PageTransition(
-          child: ItemPageScreen(),
-          type: PageTransitionType.fade,
-        );
+      // case '/itempagescreen':
+      //   return PageTransition(
+      //     child: ItemPageScreen(),
+      //     type: PageTransitionType.fade,
+      //   );
 
       case '/itemcustomisePage':
         return PageTransition(

@@ -185,7 +185,9 @@ class CustomWidget {
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, int index) {
           return GestureDetector(
-            onTap: () => Get.to(ItemPageScreen()),
+            onTap: () => Get.to(ItemPageScreen(
+              id: controller.categories[index]['id'],
+            )),
             child: Padding(
               padding: EdgeInsets.only(bottom: 30.h, left: 30.w),
               child: Container(

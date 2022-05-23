@@ -6,4 +6,7 @@ class Routes {
   static const homePageBanner = base + 'homepagebanner';
   static const category = base + 'category';
   static const customerChoice = base + 'customerchoice';
+
+  static const itemPageBanner = base + 'itempagebanner';
+  static const productCategory = base + 'productcat/';
 }

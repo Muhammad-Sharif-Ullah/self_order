@@ -37,14 +37,11 @@ Widget customDeliciousFood({required BuildContext context}) {
                 child: Column(
                   children: [
                     CachedNetworkImage(
+                        height: 56.h,
+                        width: 76.w,
                         imageUrl: controller.customerChoices[index]
                                 ['base_url'] +
                             controller.customerChoices[index]['product_image']),
-                    Image(
-                      image: AssetImage("assets/images/smallBurger.png"),
-                      height: 56.h,
-                      width: 76.w,
-                    ),
                     SizedBox(
                       height: 10.h,
                     ),
