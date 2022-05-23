@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:self_order/Data/Model/page_route_arguments.dart';
+import 'package:self_order/modules/combo_screen_one/ui/combo_screen_one_view.dart';
 import '../../../shared/constants/Dimensions.dart';
 import '../../../shared/constants/colors.dart';
 import '../../../shared/utils/customWidget_utils.dart';
@@ -26,14 +27,18 @@ uerChoiceDialog(
             width: 656.w,
             child: Column(
               children: [
-                SizedBox(height: Dimensions.SizedBoxValue30,),
+                SizedBox(
+                  height: Dimensions.SizedBoxValue30,
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
                   child: Row(
                     children: [
                       Text(
                         'Make your choice',
-                        style: TextStyle(color: ColorConstants.primaryButtonColor,fontSize: 30.sp),
+                        style: TextStyle(
+                            color: ColorConstants.primaryButtonColor,
+                            fontSize: 30.sp),
                       ),
                       Spacer(),
                       CustomWidget.CustomCloseSection(context: context),
@@ -54,15 +59,16 @@ uerChoiceDialog(
                         height: 158.h,
                         width: 212.w,
                       ),
-                      SizedBox(
-                        width: 30.w
-                      ),
+                      SizedBox(width: 30.w),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             heading,
-                            style: TextStyle(color: ColorConstants.primaryBigTextColor, fontWeight: FontWeight.bold, fontSize: 30.sp),
+                            style: TextStyle(
+                                color: ColorConstants.primaryBigTextColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 30.sp),
                           ),
                           SizedBox(
                             height: 8.h,
@@ -87,7 +93,6 @@ uerChoiceDialog(
                           SizedBox(
                             height: 15.h,
                           ),
-
                         ],
                       )
                     ],
@@ -101,27 +106,62 @@ uerChoiceDialog(
                       EdgeInsets.symmetric(horizontal: Dimensions.padding30),
                   child: Row(
                     children: [
-                      CustomWidget.CustomPrimaryButton(context: context,height: 60.h,width: 282.w, borderColor: ColorConstants.priceborderColor,title: 'Make it combo',titlecolor: Colors.white,titlefontSize:24.sp, borderradius: 5,backgroundcolor: ColorConstants.priceborderColor,titleFontWeight:FontWeight.w700  ),
+                      InkWell(
+                        onTap: () => Get.to(ComboScreenViewOne()),
+                        child: CustomWidget.CustomPrimaryButton(
+                            context: context,
+                            height: 60.h,
+                            width: 282.w,
+                            borderColor: ColorConstants.priceborderColor,
+                            title: 'Make it combo',
+                            titlecolor: Colors.white,
+                            titlefontSize: 24.sp,
+                            borderradius: 5,
+                            backgroundcolor: ColorConstants.priceborderColor,
+                            titleFontWeight: FontWeight.w700),
+                      ),
                       Spacer(),
                       InkWell(
-                        onTap: (){
-                          Navigator.pushNamed(context, '/itemcustomisePage',arguments: PageRouteArguments(
-                            data: [],
-                            fromPage: 'itempage',
-                            toPage: 'itemcustomisePage'
-                          ));
+                        onTap: () {
+                          Navigator.pushNamed(context, '/itemcustomisePage',
+                              arguments: PageRouteArguments(
+                                  data: [],
+                                  fromPage: 'itempage',
+                                  toPage: 'itemcustomisePage'));
                         },
-                        child: CustomWidget.CustomPrimaryButton(context: context,height: 60.h,width: 282.w, borderColor: ColorConstants.bannerHeadingTextColor,title: 'Customise',titlecolor: Colors.white,titlefontSize:24.sp, borderradius: 5,backgroundcolor: ColorConstants.bannerHeadingTextColor,titleFontWeight:FontWeight.w700  ),
+                        child: CustomWidget.CustomPrimaryButton(
+                            context: context,
+                            height: 60.h,
+                            width: 282.w,
+                            borderColor: ColorConstants.bannerHeadingTextColor,
+                            title: 'Customise',
+                            titlecolor: Colors.white,
+                            titlefontSize: 24.sp,
+                            borderradius: 5,
+                            backgroundcolor:
+                                ColorConstants.bannerHeadingTextColor,
+                            titleFontWeight: FontWeight.w700),
                       )
-
                     ],
                   ),
                 ),
-                SizedBox(height: 20.h,),
-                CustomWidget.CustomPrimaryButton(context: context,height: 60.h,width: 596.w, borderColor: ColorConstants.primaryButtonColor,title: 'Add to cart',titlecolor: Colors.white,titlefontSize:24.sp, borderradius: 5,backgroundcolor: ColorConstants.primaryButtonColor,titleFontWeight:FontWeight.w700  ),
-                SizedBox(height: 30.h,),
-
-
+                SizedBox(
+                  height: 20.h,
+                ),
+                CustomWidget.CustomPrimaryButton(
+                    context: context,
+                    height: 60.h,
+                    width: 596.w,
+                    borderColor: ColorConstants.primaryButtonColor,
+                    title: 'Add to cart',
+                    titlecolor: Colors.white,
+                    titlefontSize: 24.sp,
+                    borderradius: 5,
+                    backgroundcolor: ColorConstants.primaryButtonColor,
+                    titleFontWeight: FontWeight.w700),
+                SizedBox(
+                  height: 30.h,
+                ),
               ],
             ),
           ),

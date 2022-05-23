@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:self_order/modules/ItemPage/ui/item_screen_view.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
@@ -42,7 +43,10 @@ class HomeScreen extends GetView<HomeScreenController> {
                     )
                   ],
                 ),
-                SizedBox(height: 30,),
+                SizedBox(
+                  height: 30,
+                ),
+
                 /// Todo: deleted from desigine ///
                 // Padding(
                 //   padding: EdgeInsets.only(left: 30, right: 30),
@@ -94,7 +98,10 @@ class HomeScreen extends GetView<HomeScreenController> {
                 //     ),
                 //   ]),
                 // ),
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
+
                 /// Todo: deleted from desigine ///
                 // customDeliciousFood(context: context ),
                 /// 1st bannerrrr
@@ -183,14 +190,21 @@ class HomeScreen extends GetView<HomeScreenController> {
                 //   ),
                 // ),
                 InkWell(
-                  onTap: (){
+                  onTap: () {
                     Get.to(ComboScreenViewOne());
                   },
                   child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 30.w),
-                      child: Image(image: AssetImage("assets/images/homebg1.png"),width: double.infinity,fit: BoxFit.cover,)),
+                      child: Image(
+                        image: AssetImage("assets/images/homebg1.png"),
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      )),
                 ),
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
+
                 /// 2nd bannerrrrrrr
                 // Padding(
                 //   padding: EdgeInsets.symmetric(horizontal: 30),
@@ -264,7 +278,11 @@ class HomeScreen extends GetView<HomeScreenController> {
                 // ),
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30.w),
-                    child: Image(image: AssetImage("assets/images/homebg2.png"),width: double.infinity,fit: BoxFit.cover,)),
+                    child: Image(
+                      image: AssetImage("assets/images/homebg2.png"),
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    )),
                 SizedBox(
                   height: 30,
                 ),
@@ -274,9 +292,9 @@ class HomeScreen extends GetView<HomeScreenController> {
                     Text(
                       "Menu",
                       style: TextStyle(
-                          fontSize: 24.sp,
-                          fontWeight: FontWeight.w700,
-                          color: ColorConstants.primaryBigTextColor,
+                        fontSize: 24.sp,
+                        fontWeight: FontWeight.w700,
+                        color: ColorConstants.primaryBigTextColor,
                       ),
                     ),
                     Spacer(),
@@ -298,7 +316,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                           ],
                         ),
                         child: Padding(
-                          padding: EdgeInsets.only(top: 5, left: 5, right: 5, bottom: 5),
+                          padding: EdgeInsets.only(
+                              top: 5, left: 5, right: 5, bottom: 5),
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(100),
@@ -307,11 +326,20 @@ class HomeScreen extends GetView<HomeScreenController> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(FeatherIcons.shoppingBag,color: Colors.white,),
+                                Icon(
+                                  FeatherIcons.shoppingBag,
+                                  color: Colors.white,
+                                ),
                                 SizedBox(
                                   width: 10,
                                 ),
-                                Text('2',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 16),),
+                                Text(
+                                  '2',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
                               ],
                             ),
                           ),
@@ -320,16 +348,31 @@ class HomeScreen extends GetView<HomeScreenController> {
                     ),
                   ]),
                 ),
-                SizedBox(height: 30.h,),
-                /// Todo: work///
-                Padding(padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: CustomWidget.CustomTitleWithVariation(Tap: null),),
-                SizedBox(height: 30.h,),
-                Padding(padding: EdgeInsets.symmetric(horizontal: 30.w),
-                    child: Text('Customer’s Choice',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontWeight: FontWeight.w700,fontSize: 24.sp),)),
-                SizedBox(height: 30.h,),
-                customDeliciousFood(context: context ),
+                SizedBox(
+                  height: 30.h,
+                ),
 
+                /// Todo: work///
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: CustomWidget.CustomTitleWithVariation(
+                        Tap: () => Get.to(ItemPageScreen()))),
+                SizedBox(
+                  height: 30.h,
+                ),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30.w),
+                    child: Text(
+                      'Customer’s Choice',
+                      style: TextStyle(
+                          color: ColorConstants.primaryBigTextColor,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 24.sp),
+                    )),
+                SizedBox(
+                  height: 30.h,
+                ),
+                customDeliciousFood(context: context),
               ],
             ),
           ),

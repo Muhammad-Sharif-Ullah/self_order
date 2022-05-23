@@ -34,10 +34,15 @@ class CustomWidget {
     );
   }
 
-  static CustomImageButton({required String text, required Color color, required Image image, height=90, width=250}) {
+  static CustomImageButton(
+      {required String text,
+      required Color color,
+      required Image image,
+      height = 90,
+      width = 250}) {
     return Container(
-      height: height*1.0,
-      width: width*1.0,
+      height: height * 1.0,
+      width: width * 1.0,
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(Dimensions.BorderRadius10),
@@ -48,7 +53,9 @@ class CustomWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             image,
-             SizedBox(width: 25.w,),
+            SizedBox(
+              width: 25.w,
+            ),
             Text(
               text,
               style: TextStyle(
@@ -177,18 +184,18 @@ class CustomWidget {
         return GestureDetector(
           onTap: Tap != null ? Tap : null,
           child: Padding(
-            padding: EdgeInsets.only(bottom: 30.h,left: 30.w),
+            padding: EdgeInsets.only(bottom: 30.h, left: 30.w),
             child: Container(
               height: 209.h,
               width: 208.w,
               decoration: BoxDecoration(
-                boxShadow:[
+                boxShadow: [
                   BoxShadow(
-                       color: ColorConstants.primaryBigTextColor.withOpacity(0.03),
+                      color:
+                          ColorConstants.primaryBigTextColor.withOpacity(0.03),
                       offset: Offset(0, 9),
                       blurRadius: 10,
-                      spreadRadius: 1
-                  )
+                      spreadRadius: 1)
                 ],
               ),
               child: Column(
@@ -548,8 +555,6 @@ class CustomWidget {
     );
   }
 
-
-
   static CustomComboPackName({context, img, flag}) {
     return Container(
       height: 92,
@@ -714,10 +719,24 @@ class CustomWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           ),
-                          SizedBox(height: 7,),
-                          Text('+ 1 Beef patty',style: TextStyle(color: ColorConstants.primaryBigTextColor.withOpacity(0.5)),),
-                          SizedBox(height: 7,),
-                          Text('1X    \$9.00',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontSize: 16),)
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Text(
+                            '+ 1 Beef patty',
+                            style: TextStyle(
+                                color: ColorConstants.primaryBigTextColor
+                                    .withOpacity(0.5)),
+                          ),
+                          SizedBox(
+                            height: 7,
+                          ),
+                          Text(
+                            '1X    \$9.00',
+                            style: TextStyle(
+                                color: ColorConstants.primaryBigTextColor,
+                                fontSize: 16),
+                          )
                         ],
                       )
                     ],
@@ -740,21 +759,24 @@ class CustomWidget {
     borderColor,
     helperTextColor,
     helperTextFontSize,
+    changed,
     helperTextFontWeight = FontWeight.w400,
   }) {
     return FormBuilderTextField(
       obscureText: obscureText,
       keyboardType:
-      TextType == 'number' ? TextInputType.number : TextInputType.text,
+          TextType == 'number' ? TextInputType.number : TextInputType.text,
       decoration: InputDecoration(
-
           contentPadding: EdgeInsets.symmetric(vertical: 15),
           labelText: labelText,
-          labelStyle: TextStyle(color: helperTextColor,fontSize: helperTextFontSize,fontWeight: helperTextFontWeight),
+          labelStyle: TextStyle(
+              color: helperTextColor,
+              fontSize: helperTextFontSize,
+              fontWeight: helperTextFontWeight),
           enabledBorder: UnderlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),
             borderSide: BorderSide(
-              color:borderColor,
+              color: borderColor,
               width: 2.0,
             ),
           ),
@@ -767,42 +789,46 @@ class CustomWidget {
           )),
       validator: validator,
       name: name,
+      onChanged: changed,
     );
   }
 
   static CustomPrimaryButton(
       {context,
-        height,
-        width,
-        title,
-        titleFontWeight,
-        titlefontSize,
-        borderradius,
-        backgroundcolor,
-        titlecolor = Colors.white,
-        buttonType = "text",
-        image,
-        icon,
-        Color? borderColor}) {
+      height,
+      width,
+      title,
+      titleFontWeight,
+      titlefontSize,
+      borderradius,
+      backgroundcolor,
+      titlecolor = Colors.white,
+      buttonType = "text",
+      image,
+      icon,
+      Color? borderColor}) {
     return Container(
       height: height * 1.0,
       width: width * 1.0,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(borderradius*1.0), color: backgroundcolor,
-        border:  borderColor!=null ? Border.all(color: borderColor):null,
-
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(borderradius * 1.0),
+        color: backgroundcolor,
+        border: borderColor != null ? Border.all(color: borderColor) : null,
       ),
-      child:  buttonType == 'text' ?  Center(child: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 20, fontWeight: titleFontWeight, color: titlecolor),
-        ),): buttonType == 'image'? image: icon,
+      child: buttonType == 'text'
+          ? Center(
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: titleFontWeight,
+                    color: titlecolor),
+              ),
+            )
+          : buttonType == 'image'
+              ? image
+              : icon,
     );
   }
-
-
-
-
-
-
 }
