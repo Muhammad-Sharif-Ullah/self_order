@@ -37,17 +37,19 @@ class MyApp extends StatelessWidget {
       designSize: Size(744, 1133),
       builder: (_) {
         return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: Themes().lightTheme,
-          darkTheme: Themes().darkTheme,
-          themeMode: ThemeService().getThemeMode(),
-          // builder: EasyLoading.init(),
-          //theme: ThemeConfig.lightTheme,
-          title: 'SelfOrder',
-          // enableLog: true,
-          onGenerateRoute: appRouter!.onGeneratedRoute,
-          home: (Session.getToken() == '') ? LoginScreen() : VideoScreenView(),
-        );
+            debugShowCheckedModeBanner: false,
+            theme: Themes().lightTheme,
+            darkTheme: Themes().darkTheme,
+            themeMode: ThemeService().getThemeMode(),
+            // builder: EasyLoading.init(),
+            //theme: ThemeConfig.lightTheme,
+            title: 'SelfOrder',
+            // enableLog: true,
+            onGenerateRoute: appRouter!.onGeneratedRoute,
+            home: (Session.getToken() == '')
+                ? LoginScreen()
+                : HomeScreen() // VideoScreenView(),
+            );
       },
     );
   }

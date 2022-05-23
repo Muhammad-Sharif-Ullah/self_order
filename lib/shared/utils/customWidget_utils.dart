@@ -1,13 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_grid/responsive_grid.dart';
+import 'package:self_order/modules/ItemPage/ui/item_screen_view.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 
+import '../../modules/Home/controller/home_screen_logic.dart';
 import '../../modules/check_out/ui/check_out_view.dart';
 
 class CustomWidget {
@@ -172,73 +174,62 @@ class CustomWidget {
     );
   }
 
-  static CustomTitleWithVariation({Tap}) {
-    return GridView.count(
-      shrinkWrap: true,
-      crossAxisCount: 3,
-      crossAxisSpacing: 20,
-      mainAxisSpacing: 15.0,
-      childAspectRatio: 0.8,
-      physics: NeverScrollableScrollPhysics(),
-      children: List.generate(15, (index) {
-        return GestureDetector(
-          onTap: Tap != null ? Tap : null,
-          child: Padding(
-            padding: EdgeInsets.only(bottom: 30.h, left: 30.w),
-            child: Container(
-              height: 209.h,
-              width: 208.w,
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                      color:
-                          ColorConstants.primaryBigTextColor.withOpacity(0.03),
-                      offset: Offset(0, 9),
-                      blurRadius: 10,
-                      spreadRadius: 1)
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image(
-                    image: AssetImage("assets/images/item.png"),
-                  ),
-                  SizedBox(
-                    height: Dimensions.SizedBoxValue20,
-                  ),
-                  Center(
-                    child: Text(
-                      'Chicken Burger',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: Dimensions.TextSize20,
-                      ),
-                      textAlign: TextAlign.center,
+  static CustomTitleWithVariation() {
+    HomeScreenController controller = Get.find();
+    final orientation = MediaQuery.of(Get.context!).orientation;
+    return GridView.builder(
+        shrinkWrap: true,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: (orientation == Orientation.portrait) ? 3 : 4),
+        itemCount: controller.categories.length,
+        physics: NeverScrollableScrollPhysics(),
+        itemBuilder: (context, int index) {
+          return GestureDetector(
+            onTap: () => Get.to(ItemPageScreen()),
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 30.h, left: 30.w),
+              child: Container(
+                height: 209.h,
+                width: 208.w,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                        color: ColorConstants.primaryBigTextColor
+                            .withOpacity(0.03),
+                        offset: Offset(0, 9),
+                        blurRadius: 10,
+                        spreadRadius: 1)
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CachedNetworkImage(
+                        width: 208.w,
+                        height: 100.h,
+                        imageUrl: controller.categories[index]['base_url'] +
+                            controller.categories[index]['sub_image']),
+                    SizedBox(
+                      height: Dimensions.SizedBoxValue20,
                     ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  Center(
-                    child: Text(
-                      'Chicken Burger',
-                      style: TextStyle(
-                          color: ColorConstants.primaryBigTextColor,
+                    Center(
+                      child: Text(
+                        '${controller.categories[index]['category_name']}',
+                        style: TextStyle(
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
-                          fontSize: Dimensions.TextSize18),
-                      textAlign: TextAlign.center,
+                          fontSize: Dimensions.TextSize20,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      }),
-    );
+          );
+        });
   }
 
   static CustomCloseSection({required BuildContext context}) {

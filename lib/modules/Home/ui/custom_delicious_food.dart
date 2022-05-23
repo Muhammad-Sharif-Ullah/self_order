@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,14 +14,13 @@ Widget customDeliciousFood({required BuildContext context}) {
   HomeScreenController controller = Get.find();
 
   return Padding(
-
     padding: EdgeInsets.only(left: 37),
     child: SizedBox(
       height: 100.h,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,
-        itemCount: 10,
+        itemCount: controller.customerChoices.length,
         itemBuilder: (context, index) {
           return Obx(() {
             return Padding(
@@ -28,29 +28,47 @@ Widget customDeliciousFood({required BuildContext context}) {
               child: InkWell(
                 onTap: () {
                   controller.selectedItemColor.value = index;
-                  Navigator.pushNamed(context, '/itempagescreen',arguments: PageRouteArguments(
-                    data: [],
-                    fromPage: 'homescreen',
-                    toPage: 'itempageScreen'
-                  ));
+                  Navigator.pushNamed(context, '/itempagescreen',
+                      arguments: PageRouteArguments(
+                          data: [],
+                          fromPage: 'homescreen',
+                          toPage: 'itempageScreen'));
                 },
                 child: Column(
                   children: [
-                    Image(image: AssetImage("assets/images/smallBurger.png"),
+                    CachedNetworkImage(
+                        imageUrl: controller.customerChoices[index]
+                                ['base_url'] +
+                            controller.customerChoices[index]['product_image']),
+                    Image(
+                      image: AssetImage("assets/images/smallBurger.png"),
                       height: 56.h,
-                      width: 76.w,),
-                    SizedBox(height: 10.h,),
+                      width: 76.w,
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: index == controller.selectedItemColor.value ? Theme.of(context).buttonColor : null,
+                        color: index == controller.selectedItemColor.value
+                            ? Theme.of(context).buttonColor
+                            : null,
                       ),
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 6.w),
-                        child: Text('Burger', style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700,color:  index == controller.selectedItemColor.value ?Colors.white: ColorConstants.primaryBigTextColor),),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 24.h, vertical: 6.w),
+                        child: Text(
+                          '${controller.customerChoices[index]['product_name']}',
+                          style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w700,
+                              color: index == controller.selectedItemColor.value
+                                  ? Colors.white
+                                  : ColorConstants.primaryBigTextColor),
+                        ),
                       ),
                     )
-
                   ],
                 ),
               ),
@@ -61,5 +79,3 @@ Widget customDeliciousFood({required BuildContext context}) {
     ),
   );
 }
-
-

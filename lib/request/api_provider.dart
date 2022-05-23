@@ -7,7 +7,6 @@ import 'dart:io';
 import 'dart:convert';
 import 'dart:async';
 import 'api_exception.dart';
-// import 'session.dart';
 
 class ApiProvider {
   Future<dynamic> get(String url) async {
@@ -15,7 +14,7 @@ class ApiProvider {
     try {
       final response = await http.get(Uri.parse(url), headers: {
         "Accept": "application/json",
-        'Authorization': 'Bearer ${await Session.getToken()}',
+        'Authorization': '${await Session.getToken()}',
         'x-api-key': Routes.api_key
       });
       responseJson = _response(response);
@@ -32,8 +31,8 @@ class ApiProvider {
         Uri.parse(url),
         headers: {
           "Accept": "application/json",
-          'Authorization': 'Bearer ${await Session.getToken()}',
-          'x-api-key': 'e807f1fcf82d132f9bb018ca6738a19f'
+          'Authorization': '${await Session.getToken()}',
+          'x-api-key': Routes.api_key
         },
         body: dynamic,
       );
@@ -52,8 +51,8 @@ class ApiProvider {
         Uri.parse(url + '/' + id),
         headers: {
           "Accept": "application/json",
-          'Authorization': 'Bearer ${await Session.getToken()}',
-          'x-api-key': 'e807f1fcf82d132f9bb018ca6738a19f'
+          'Authorization': '${await Session.getToken()}',
+          'x-api-key': Routes.api_key
         },
         body: dynamic,
       );
@@ -69,8 +68,8 @@ class ApiProvider {
     try {
       final response = await http.delete(Uri.parse(url + '/' + id), headers: {
         "Accept": "application/json",
-        'Authorization': 'Bearer ${await Session.getToken()}',
-        'x-api-key': 'e807f1fcf82d132f9bb018ca6738a19f'
+        'Authorization': '${await Session.getToken()}',
+        'x-api-key': Routes.api_key
       });
       responseJson = _response(response);
     } on SocketException {
@@ -84,8 +83,8 @@ class ApiProvider {
     try {
       final response = await http.get(Uri.parse(url + '/' + '$id'), headers: {
         "Accept": "application/json",
-        'Authorization': 'Bearer ${await Session.getToken()}',
-        'x-api-key': 'e807f1fcf82d132f9bb018ca6738a19f'
+        'Authorization': '${await Session.getToken()}',
+        'x-api-key': Routes.api_key
       });
       responseJson = _response(response);
     } on SocketException {
