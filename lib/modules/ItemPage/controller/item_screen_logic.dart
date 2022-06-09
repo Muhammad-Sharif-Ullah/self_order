@@ -14,6 +14,7 @@ class ItemScreenController extends GetxController {
 
   var foods = [].obs;
   var banner = ''.obs;
+  var subCategories = [].obs;
 
   itemPageBanner() {
     api.get(Routes.itemPageBanner).then((value) {
@@ -21,9 +22,30 @@ class ItemScreenController extends GetxController {
     });
   }
 
+  getSubCategory(id) {
+    api.get(Routes.productSubCategory + id).then((value) {
+      subCategories.value = value['subcategory'];
+    });
+  }
+
   getFoods(id) {
     api.get(Routes.productCategory + id).then((value) {
       foods.value = value['product'];
+    });
+  }
+
+  //
+  var customiseFoods = [].obs;
+  var customiseExtraFoods = [].obs;
+  getCustomiseFood(id) {
+    api.get(Routes.customiseProduct + id).then((value) {
+      customiseFoods.value = value['customise'];
+    });
+  }
+
+  getCustomiseExtra(id) {
+    api.get(Routes.customiseExtra + id).then((value) {
+      // customiseExtraFoods.value = value['product'];
     });
   }
 }

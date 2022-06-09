@@ -19,6 +19,7 @@ class ItemPageScreen extends GetView<ItemScreenController> {
   Widget build(BuildContext context) {
     Get.put<ItemScreenController>(ItemScreenController());
     controller.getFoods(id);
+    controller.getSubCategory(id);
     final orientation = MediaQuery.of(Get.context!).orientation;
     return BaseWidget(
       builder: (context, sizingInformation) => SafeArea(
@@ -70,7 +71,7 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                         Expanded(
                           flex: 2,
                           child: ListView.builder(
-                            itemCount: 8,
+                            itemCount: controller.subCategories.length,
                             itemBuilder: (context, index) {
                               return Padding(
                                 padding: EdgeInsets.only(bottom: 40.h),
@@ -84,7 +85,8 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                         width: 76,
                                       ),
                                     ),
-                                    Text('Dumpling'),
+                                    Text(
+                                        '${controller.subCategories[index]['subcategory_name']}'),
                                   ],
                                 ),
                               );
@@ -139,10 +141,14 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                             onTap: () {
                                               uerChoiceDialog(
                                                   context: context,
-                                                  heading: 'Beef Burger',
+                                                  id:
+                                                      '${controller.foods[index]['id']}',
+                                                  heading:
+                                                      '${controller.foods[index]['name']}',
                                                   subHeading:
-                                                      'Beef with cheese',
-                                                  price: '\$18.00');
+                                                      '${controller.foods[index]['product_description']}',
+                                                  price:
+                                                      '\$${controller.foods[index]['product_price']}');
                                             },
                                             child: Column(
                                               crossAxisAlignment:

@@ -43,11 +43,11 @@ class AppRouter {
       //     type: PageTransitionType.fade,
       //   );
 
-      case '/itemcustomisePage':
-        return PageTransition(
-          child: ItemCustomisePage(),
-          type: PageTransitionType.fade,
-        );
+      // case '/itemcustomisePage':
+      //   return PageTransition(
+      //     child: ItemCustomisePage(),
+      //     type: PageTransitionType.fade,
+      //   );
 
       case '/checkoutPage':
         return PageTransition(

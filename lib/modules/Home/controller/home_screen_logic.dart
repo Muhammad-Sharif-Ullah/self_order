@@ -36,6 +36,7 @@ class HomeScreenController extends GetxController {
 
   getCategories() {
     api.get(Routes.category + '/E').then((value) {
+      print(value);
       categories.value = value['category'];
     });
   }

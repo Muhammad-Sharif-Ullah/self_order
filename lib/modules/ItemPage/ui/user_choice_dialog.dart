@@ -12,6 +12,7 @@ import 'item_customise_page.dart';
 
 uerChoiceDialog(
     {required BuildContext context,
+    required String id,
     required String heading,
     required String subHeading,
     required String price}) {
@@ -123,11 +124,12 @@ uerChoiceDialog(
                       Spacer(),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, '/itemcustomisePage',
-                              arguments: PageRouteArguments(
-                                  data: [],
-                                  fromPage: 'itempage',
-                                  toPage: 'itemcustomisePage'));
+                          Get.to(ItemCustomisePage(id: id));
+                          // Navigator.pushNamed(context, '/itemcustomisePage',
+                          //     arguments: PageRouteArguments(
+                          //         data: [],
+                          //         fromPage: 'itempage',
+                          //         toPage: 'itemcustomisePage'));
                         },
                         child: CustomWidget.CustomPrimaryButton(
                             context: context,
