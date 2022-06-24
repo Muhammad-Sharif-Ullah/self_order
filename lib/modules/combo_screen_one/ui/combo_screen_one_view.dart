@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
@@ -21,13 +22,18 @@ class ComboScreenViewOne extends GetView<ComboScreenController> {
           backgroundColor: Theme.of(context).backgroundColor,
           body: Column(
             children: [
-              Image(
-                image: AssetImage("assets/images/combo_one.png"),
-                height: 180,
-                width: double.infinity,
+              Container(
+                height: 200.h,
+                decoration:
+                    BoxDecoration(color: ColorConstants.bannerPrimaryColor),
+                child: Image(
+                  image: AssetImage("assets/images/combobg.png"),
+                  height: double.infinity,
+                  width: double.infinity,
+                ),
               ),
               SizedBox(
-                height: 43,
+                height: 40.h,
               ),
               Text(
                 'Choose your desire',
@@ -42,13 +48,43 @@ class ComboScreenViewOne extends GetView<ComboScreenController> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    customDesire(imageName: Image(image: AssetImage("assets/images/small_type.png"),), type: 'small', flag: 0),
-                    customDesire(imageName: Image(image: AssetImage("assets/images/medium_type.png"),), type: 'medium', flag: 1),
-                    customDesire(imageName: Image(image: AssetImage("assets/images/large_type.png"),), type: 'large', flag: 2)
-
-
+                    customDesire(
+                        imageName: Image(
+                          image: AssetImage("assets/images/small_type.png"),
+                        ),
+                        type: 'small',
+                        flag: 's'),
+                    customDesire(
+                        imageName: Image(
+                          image: AssetImage("assets/images/medium_type.png"),
+                        ),
+                        type: 'medium',
+                        flag: 'm'),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    customDesire(
+                        imageName: Image(
+                          image: AssetImage("assets/images/large_type.png"),
+                        ),
+                        type: 'large',
+                        flag: 'l'),
+                    customDesire(
+                        imageName: Image(
+                          image: AssetImage("assets/images/large_type.png"),
+                        ),
+                        type: 'Extra Large',
+                        flag: 'el')
                   ],
                 ),
               ),
@@ -57,13 +93,25 @@ class ComboScreenViewOne extends GetView<ComboScreenController> {
                 padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
                 child: Row(
                   children: [
-                    CustomWidget.CustomPrimaryButton(title: 'Cancel Order',borderradius: 11.0,backgroundcolor: ColorConstants.bannerBackgroundColor,height: 60.0,width: 320.0),
+                    CustomWidget.CustomPrimaryButton(
+                        title: 'Back',
+                        borderradius: 11.0,
+                        backgroundcolor: ColorConstants.bannerBackgroundColor,
+                        height: 60.0,
+                        width: 320.0),
                     Spacer(),
-                    CustomWidget.CustomPrimaryButton(title: 'Add to cart',borderradius: 11.0,backgroundcolor: ColorConstants.bannerBackgroundColor,height: 60.0,width: 320.0),
+                    CustomWidget.CustomPrimaryButton(
+                        title: 'Cancel Combo',
+                        borderradius: 11.0,
+                        backgroundcolor: ColorConstants.redButtonColor,
+                        height: 60.0,
+                        width: 320.0),
                   ],
                 ),
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
             ],
           ),
         ),
@@ -74,8 +122,10 @@ class ComboScreenViewOne extends GetView<ComboScreenController> {
   customDesire({imageName, type, flag}) {
     return GestureDetector(
       onTap: () {
-        controller.itemIndex.value = flag;
-        Get.to(ComboScreenViewTwo(itemtype: flag,));
+        // controller.itemIndex.value = flag;
+        Get.to(ComboScreenViewTwo(
+          itemtype: flag,
+        ));
       },
       child: Column(
         children: [
@@ -97,7 +147,6 @@ class ComboScreenViewOne extends GetView<ComboScreenController> {
             style: TextStyle(
                 color: ColorConstants.primaryBigTextColor, fontSize: 18),
           ),
-
         ],
       ),
     );

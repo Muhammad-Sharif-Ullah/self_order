@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -78,9 +79,12 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                 child: Column(
                                   children: [
                                     Container(
-                                      child: Image(
-                                        image: AssetImage(
-                                            'assets/images/smallburger.png'),
+                                      child: CachedNetworkImage(
+                                        imageUrl:
+                                            controller.subCategories[index]
+                                                    ['base_url'] +
+                                                controller.subCategories[index]
+                                                    ['image'],
                                         height: 70,
                                         width: 76,
                                       ),
@@ -96,27 +100,16 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                         Expanded(
                           flex: 7,
                           child: Column(children: [
-                            /// ToDo: work here///
-                            // GridView.count(
-                            //   shrinkWrap: true,
-                            //   crossAxisCount: 5,
-                            //   crossAxisSpacing: 10,
-                            //   mainAxisSpacing: 10,
-                            //   childAspectRatio: 2,
-                            //   children: List.generate(7, (index) {
-                            //     return foodVarision(text: 'Club Beef');
-                            //   }),
-                            // ),
-                            Wrap(
-                              spacing: 20.w,
-                              runSpacing: 12.h,
-                              alignment: WrapAlignment.center,
-                              children: [
-                                for (int i = 0; i <= 5; i++)
-                                  foodVarision(text: 'Culf Beef'),
-                              ],
+                            GridView.count(
+                              shrinkWrap: true,
+                              crossAxisCount: 5,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 2,
+                              children: List.generate(7, (index) {
+                                return foodVarision(text: 'Culf Beef');
+                              }),
                             ),
-
                             Flexible(
                               child: SingleChildScrollView(
                                 child: Column(
@@ -141,14 +134,8 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                             onTap: () {
                                               uerChoiceDialog(
                                                   context: context,
-                                                  id:
-                                                      '${controller.foods[index]['id']}',
-                                                  heading:
-                                                      '${controller.foods[index]['name']}',
-                                                  subHeading:
-                                                      '${controller.foods[index]['product_description']}',
-                                                  price:
-                                                      '\$${controller.foods[index]['product_price']}');
+                                                  data:
+                                                      controller.foods[index]);
                                             },
                                             child: Column(
                                               crossAxisAlignment:
@@ -156,11 +143,14 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                               mainAxisAlignment:
                                                   MainAxisAlignment.start,
                                               children: [
-                                                Image(
+                                                CachedNetworkImage(
                                                   width: 208.w,
                                                   height: 90.h,
-                                                  image: AssetImage(
-                                                      "assets/images/item.png"),
+                                                  imageUrl: controller
+                                                              .foods[index]
+                                                          ['base_url'] +
+                                                      controller.foods[index]
+                                                          ['product_image'],
                                                 ),
                                                 SizedBox(
                                                   height: Dimensions

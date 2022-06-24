@@ -368,7 +368,6 @@ class HomeScreen extends GetView<HomeScreenController> {
                     height: 30.h,
                   ),
 
-                  /// Todo: work///
                   (controller.categories.length > 0)
                       ? Padding(
                           padding: EdgeInsets.symmetric(horizontal: 30),

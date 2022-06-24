@@ -12,4 +12,8 @@ class UserChoiceController extends GetxController {
         arguments: PageRouteArguments(
             data: [], toPage: 'homescreen', fromPage: 'userchoicescreen'));
   }
+
+  getUserChoice() {
+    return userChoice.value;
+  }
 }

@@ -9,6 +9,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:self_order/modules/Home/ui/home_screen_view.dart';
 import 'package:self_order/modules/LogIn/ui/Login_screen.dart';
 import 'package:self_order/modules/VideoScreen/ui/video_screen_view.dart';
+import 'package:self_order/modules/combo_screen_two/ui/combo_screen_two_view.dart';
 import 'package:self_order/request/session.dart';
 import 'package:self_order/shared/Route/route.dart';
 import 'package:self_order/shared/theme/theme_service.dart';
@@ -46,7 +47,8 @@ class MyApp extends StatelessWidget {
           title: 'SelfOrder',
           // enableLog: true,
           onGenerateRoute: appRouter!.onGeneratedRoute,
-          home: (Session.getToken() == '') ? LoginScreen() : VideoScreenView(),
+          home: ComboScreenViewTwo(itemtype: 'l'),
+          // (Session.getToken() == '') ? LoginScreen() : VideoScreenView(),
         );
       },
     );

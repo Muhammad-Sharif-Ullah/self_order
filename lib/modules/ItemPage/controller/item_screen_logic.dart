@@ -15,6 +15,7 @@ class ItemScreenController extends GetxController {
   var foods = [].obs;
   var banner = ''.obs;
   var subCategories = [].obs;
+  var subSubCategories = [].obs;
 
   itemPageBanner() {
     api.get(Routes.itemPageBanner).then((value) {
@@ -28,23 +29,32 @@ class ItemScreenController extends GetxController {
     });
   }
 
+  getSubSubCategory(id) {
+    api.get(Routes.productSubCategory + id).then((value) {
+      subCategories.value = value['subcategory'];
+    });
+  }
+
+  getFood(id) {}
+
   getFoods(id) {
     api.get(Routes.productCategory + id).then((value) {
       foods.value = value['product'];
     });
   }
 
-  //
   var customiseFoods = [].obs;
   var customiseExtraFoods = [].obs;
   getCustomiseFood(id) {
-    api.get(Routes.customiseProduct + id).then((value) {
+    print('customise id is $id');
+    api.get(Routes.customiseProduct + '22').then((value) {
+      print(value);
       customiseFoods.value = value['customise'];
     });
   }
 
   getCustomiseExtra(id) {
-    api.get(Routes.customiseExtra + id).then((value) {
+    api.get(Routes.customiseExtra + '22').then((value) {
       // customiseExtraFoods.value = value['product'];
     });
   }

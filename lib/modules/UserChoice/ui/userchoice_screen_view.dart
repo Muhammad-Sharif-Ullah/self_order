@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:flutter/material.dart';
 import 'package:self_order/Data/Model/page_route_arguments.dart';
+import 'package:self_order/modules/Home/controller/home_screen_logic.dart';
 import 'package:self_order/modules/Home/ui/home_screen_view.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
@@ -13,7 +14,7 @@ import '../../base_widget.dart';
 import '../controller/userchoice_screen_logic.dart';
 
 class UserChoiceScreen extends GetView<UserChoiceController> {
-  const UserChoiceScreen({Key? key}) : super(key: key);
+  UserChoiceScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

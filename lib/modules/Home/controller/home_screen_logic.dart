@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:self_order/modules/UserChoice/controller/userchoice_screen_logic.dart';
 import 'package:self_order/request/api_provider.dart';
 
 import '../../../request/routes.dart';
@@ -6,10 +7,12 @@ import '../../../request/routes.dart';
 class HomeScreenController extends GetxController {
   ApiProvider api = ApiProvider();
   RxInt selectedItemColor = 0.obs;
+  var userChoice = ''.obs;
 
   @override
   void onInit() {
     super.onInit();
+    getUserChoice();
     getSliders();
     getBanners();
     getCategories();
@@ -20,6 +23,11 @@ class HomeScreenController extends GetxController {
   final banners = [].obs;
   final categories = [].obs;
   final customerChoices = [].obs;
+
+  getUserChoice() {
+    UserChoiceController controller = Get.find();
+    userChoice.value = controller.getUserChoice();
+  }
 
   getSliders() {
     api.get(Routes.homePageSlider).then((value) {
@@ -35,7 +43,8 @@ class HomeScreenController extends GetxController {
   }
 
   getCategories() {
-    api.get(Routes.category + '/E').then((value) {
+    print('user choice' + userChoice.value);
+    api.get(Routes.category + '/${userChoice.value}').then((value) {
       print(value);
       categories.value = value['category'];
     });
