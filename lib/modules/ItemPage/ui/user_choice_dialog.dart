@@ -203,8 +203,7 @@ uerChoiceDialog({required BuildContext context}) {
                     child: Row(
                       children: [
                         InkWell(
-                          onTap: () =>
-                              Get.to(ComboScreenViewTwo(itemtype: 'l')),
+                          onTap: () => Get.to(ComboScreenViewOne()),
                           child: CustomWidget.CustomPrimaryButton(
                               context: context,
                               height: 60.h,

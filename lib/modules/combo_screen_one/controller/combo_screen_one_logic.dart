@@ -6,6 +6,7 @@ class ComboScreenController extends GetxController {
   ApiProvider api = ApiProvider();
 
   var itemIndex = 3.obs;
+  var comboVariations = [].obs;
   var combos = [].obs;
 
   index(id) {
