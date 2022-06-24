@@ -47,8 +47,9 @@ class MyApp extends StatelessWidget {
           title: 'SelfOrder',
           // enableLog: true,
           onGenerateRoute: appRouter!.onGeneratedRoute,
-          home: ComboScreenViewTwo(itemtype: 'l'),
-          // (Session.getToken() == '') ? LoginScreen() : VideoScreenView(),
+          home:
+              // ComboScreenViewTwo(itemtype: 'l'),
+              (Session.getToken() == '') ? LoginScreen() : VideoScreenView(),
         );
       },
     );

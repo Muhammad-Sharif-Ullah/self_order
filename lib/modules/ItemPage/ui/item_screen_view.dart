@@ -132,10 +132,10 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                         itemBuilder: (context, index) {
                                           return GestureDetector(
                                             onTap: () {
-                                              uerChoiceDialog(
-                                                  context: context,
-                                                  data:
-                                                      controller.foods[index]);
+                                              controller.getFood(index);
+                                              print(controller.menu.value
+                                                  .productDescription);
+                                              uerChoiceDialog(context: context);
                                             },
                                             child: Column(
                                               crossAxisAlignment:

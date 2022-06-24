@@ -3,24 +3,27 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:self_order/Data/Model/page_route_arguments.dart';
+import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
 import 'package:self_order/modules/combo_screen_one/ui/combo_screen_one_view.dart';
 import 'package:self_order/modules/combo_screen_two/ui/combo_screen_two_view.dart';
 import '../../../shared/constants/Dimensions.dart';
 import '../../../shared/constants/colors.dart';
 import '../../../shared/utils/customWidget_utils.dart';
+import '../model/MenuModel.dart';
 import 'item_customise_page.dart';
 import 'item_customise_page.dart';
 
-uerChoiceDialog({required BuildContext context, required dynamic data}) {
+uerChoiceDialog({required BuildContext context}) {
   showDialog(
       context: context,
       builder: (BuildContext context) {
+        ItemScreenController controller = Get.find();
+        Product data = controller.menu.value;
         return Dialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
-          ), //this right here
+          ),
           child: Container(
-            // height: 530.h,
             width: 656.w,
             child: SingleChildScrollView(
               child: Column(
@@ -62,7 +65,7 @@ uerChoiceDialog({required BuildContext context, required dynamic data}) {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              data['name'],
+                              data.name!,
                               style: TextStyle(
                                   color: ColorConstants.primaryBigTextColor,
                                   fontWeight: FontWeight.bold,
@@ -72,7 +75,7 @@ uerChoiceDialog({required BuildContext context, required dynamic data}) {
                               height: 8.h,
                             ),
                             Text(
-                              data['product_description'],
+                              data.productDescription!,
                               style: TextStyle(
                                   color: ColorConstants.primaryBigTextColor
                                       .withOpacity(0.5),
@@ -82,7 +85,7 @@ uerChoiceDialog({required BuildContext context, required dynamic data}) {
                               height: 15.h,
                             ),
                             Text(
-                              data['product_price'],
+                              data.productPrice!,
                               style: TextStyle(
                                   color: ColorConstants.bannerHeadingTextColor
                                       .withOpacity(0.5),
@@ -101,12 +104,42 @@ uerChoiceDialog({required BuildContext context, required dynamic data}) {
                     child: ListView(
                       shrinkWrap: true,
                       children: [
-                        Text(
-                          'Chrust',
-                          style: TextStyle(
-                              color: ColorConstants.primaryButtonColor,
-                              fontSize: 25.sp),
-                        ),
+                        Text('${data.toppings!.length}'),
+                        // ? Column(
+                        //     crossAxisAlignment: CrossAxisAlignment.start,
+                        //     children: [
+                        //       Text(
+                        //         'Chrust',
+                        //         style: TextStyle(
+                        //             color:
+                        //                 ColorConstants.primaryButtonColor,
+                        //             fontSize: 25.sp),
+                        //       ),
+                        //       // GridView.builder(
+                        //       //     itemCount: data.chrust!.isNotEmpty
+                        //       //         ? data.chrust!.length
+                        //       //         : 0,
+                        //       //     shrinkWrap: true,
+                        //       //     gridDelegate:
+                        //       //         SliverGridDelegateWithFixedCrossAxisCount(
+                        //       //             crossAxisCount: 5,
+                        //       //             childAspectRatio: 2,
+                        //       //             crossAxisSpacing: 10,
+                        //       //             mainAxisSpacing: 10),
+                        //       //     itemBuilder: (context, index) {
+                        //       //       return Row(
+                        //       //         children: [
+                        //       //           Checkbox(
+                        //       //               value: data
+                        //       //                   .chrust![index].selected,
+                        //       //               onChanged: (v) {}),
+                        //       //           Text('${data.chrust![index].name}')
+                        //       //         ],
+                        //       //       );
+                        //       //     }),
+                        //     ],
+                        //   )
+                        // : Container(),
                         Text(
                           'Toppings',
                           style: TextStyle(
@@ -187,7 +220,7 @@ uerChoiceDialog({required BuildContext context, required dynamic data}) {
                         Spacer(),
                         InkWell(
                           onTap: () {
-                            Get.to(ItemCustomisePage(id: data['id']));
+                            Get.to(ItemCustomisePage(id: data.id!));
                             // Navigator.pushNamed(context, '/itemcustomisePage',
                             //     arguments: PageRouteArguments(
                             //         data: [],

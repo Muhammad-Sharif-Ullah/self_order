@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:self_order/modules/ItemPage/model/MenuModel.dart';
 import 'package:self_order/request/routes.dart';
 
 import '../../../request/api_provider.dart';
@@ -35,7 +36,10 @@ class ItemScreenController extends GetxController {
     });
   }
 
-  getFood(id) {}
+  var menu = Product().obs;
+  getFood(index) {
+    menu.value = Product.fromJson(foods[index]);
+  }
 
   getFoods(id) {
     api.get(Routes.productCategory + id).then((value) {
