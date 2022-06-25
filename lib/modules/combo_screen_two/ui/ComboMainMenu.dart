@@ -18,55 +18,57 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
   var controller = Get.put(ComboScreenControllertwo());
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 40,
-          ),
-          Padding(
-            padding:
-                EdgeInsets.symmetric(horizontal: Dimensions.SizedBoxValue30),
-            child: Container(
-              height: 30,
-              child: ListView.builder(
-                itemCount: 10,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return Padding(
-                      padding: EdgeInsets.only(right: 15),
-                      child: selectedfoodVarision(text: 'pizza', index: index));
-                },
+    return Obx(
+      () => Container(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 40,
+            ),
+            Padding(
+              padding:
+                  EdgeInsets.symmetric(horizontal: Dimensions.SizedBoxValue30),
+              child: Container(
+                height: 30,
+                child: ListView.builder(
+                  itemCount: 10,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                        padding: EdgeInsets.only(right: 15),
+                        child:
+                            selectedfoodVarision(text: 'pizza', index: index));
+                  },
+                ),
               ),
             ),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Expanded(
-            child: ResponsiveGridList(
-                desiredItemWidth: 147,
-                minSpacing: 35,
-                children: controller.count.map((i) {
-                  return InkWell(
-                    onTap: () {
-                      print('clickeddd');
-                      Get.defaultDialog(content: selectComboOption());
-                    },
-                    child: Container(
-                        height: 270,
-                        alignment: Alignment(0, 0),
-                        color: Colors.white,
-                        child: CustomWidget.CustomComboPackItem(
-                          context: context,
-                          image: Image(
-                            image: AssetImage("assets/images/item.png"),
-                          ),
-                        )),
-                  );
-                }).toList()),
-          ),
-        ],
+            SizedBox(
+              height: 40,
+            ),
+            Expanded(
+              child: ResponsiveGridList(
+                  desiredItemWidth: 147,
+                  minSpacing: 35,
+                  children: controller.comboList.map((i) {
+                    i['selected'] = false;
+                    return InkWell(
+                      onTap: () {
+                        print('i si $i');
+                        Get.defaultDialog(content: selectComboOption());
+                      },
+                      child: Container(
+                          height: 270,
+                          alignment: Alignment(0, 0),
+                          color: Colors.white,
+                          child: CustomWidget.CustomComboPackItem(
+                            context: context,
+                            menu: i,
+                          )),
+                    );
+                  }).toList()),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -78,37 +80,26 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
         child: Column(
           children: [
             Text('Choose an Item - Burger'),
-            Container(
-              height: 250.h,
-              child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 6,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return Container(
-                      child: Row(children: [
-                        Image.asset(
-                          'name',
-                          height: 100.h,
-                          width: 100.h,
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        Text('Beef frieds'),
-                        Text(
-                          '12',
-                          style: TextStyle(
-                            color: Color(0xFF8A21),
-                          ),
-                        ),
-                      ]),
-                    );
-                  }),
-            ),
             SizedBox(
               height: 30,
             ),
+            ResponsiveGridList(
+                desiredItemWidth: 147,
+                minSpacing: 35,
+                children: controller.comboList.map((i) {
+                  i['selected'] = false;
+                  return InkWell(
+                    onTap: () {},
+                    child: Container(
+                        height: 270,
+                        alignment: Alignment(0, 0),
+                        color: Colors.white,
+                        child: CustomWidget.CustomComboPackItem(
+                          context: context,
+                          menu: i,
+                        )),
+                  );
+                }).toList()),
             Container(
               decoration: BoxDecoration(color: Color(0xFF5AB99D)),
               width: double.infinity,

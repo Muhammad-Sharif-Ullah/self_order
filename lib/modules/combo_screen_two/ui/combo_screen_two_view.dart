@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:self_order/modules/combo_screen_two/ui/ComboDrinkMenu.dart';
 import 'package:self_order/modules/combo_screen_two/ui/ComboMainMenu.dart';
+import 'package:self_order/modules/combo_screen_two/ui/ComboSideMenu.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
@@ -24,152 +26,170 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
       builder: (context, sizingInformation) => SafeArea(
         child: Scaffold(
           backgroundColor: Theme.of(context).backgroundColor,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image(
-                image: AssetImage("assets/images/combobg.png"),
-                fit: BoxFit.cover,
-              ),
-              Container(
-                margin: EdgeInsets.only(left: 20, right: 20),
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(color: Color(0xFFFFF4EC)),
-                          padding: EdgeInsets.all(15),
-                          child: Text('SMALL'),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(color: Color(0xFFF9EAE7)),
-                          padding: EdgeInsets.all(15),
-                          child: Text('MEDIUM'),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(color: Color(0xFFE5F2F0)),
-                          padding: EdgeInsets.all(15),
-                          child: Text('LARGE'),
-                        ),
-                      ],
-                    )),
-                    Expanded(
-                        child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Container(
-                            child: Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(bottom: 15),
-                              decoration: BoxDecoration(
-                                  // color: ColorConstants.primaryBigTextColor,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(50)),
-                                  border: Border.all(
-                                      color: ColorConstants.priceborderColor)),
-                              child: Image(
-                                image:
-                                    AssetImage("assets/images/smallburger.png"),
-                                height: 50.h,
-                                width: 60.w,
-                              ),
-                            ),
-                            Text('Sub Burger')
-                          ],
-                        )),
-                        Container(
-                            child: Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(bottom: 15),
-                              decoration: BoxDecoration(
-                                  // color: ColorConstants.primaryBigTextColor,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(50)),
-                                  border: Border.all(
-                                      color: ColorConstants.priceborderColor)),
-                              child: Image(
-                                image:
-                                    AssetImage("assets/images/smallburger.png"),
-                                height: 50.h,
-                                width: 60.w,
-                              ),
-                            ),
-                            Text('Sub Burger')
-                          ],
-                        )),
-                        Container(
-                            child: Column(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(bottom: 15),
-                              decoration: BoxDecoration(
-                                  // color: ColorConstants.primaryBigTextColor,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(50)),
-                                  border: Border.all(
-                                      color: ColorConstants.priceborderColor)),
-                              child: Image(
-                                image:
-                                    AssetImage("assets/images/smallburger.png"),
-                                height: 50.h,
-                                width: 60.w,
-                              ),
-                            ),
-                            Text('Sub Burger')
-                          ],
-                        )),
-                      ],
-                    )),
-                  ],
+          body: Obx(
+            () => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image(
+                  image: AssetImage("assets/images/combobg.png"),
+                  fit: BoxFit.cover,
                 ),
-              ),
-              SizedBox(
-                height: 30,
-              ),
-              Expanded(
-                child: ComboMainMenu(),
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {},
-                      child: CustomWidget.CustomPrimaryButton(
-                          context: context,
-                          width: 320.0,
-                          height: 60.0,
-                          borderradius: 5.0,
-                          backgroundcolor:
-                              ColorConstants.textFormFieldUnderlineColor,
-                          title: 'Cancel Order'),
-                    ),
-                    Spacer(),
-                    InkWell(
-                      onTap: () {
-                        // Get.to(AddSidesScreen(
-                        //   itemtype: itemtype,
-                        // ));
-                      },
-                      child: CustomWidget.CustomPrimaryButton(
-                          context: context,
-                          width: 320.0,
-                          height: 60.0,
-                          borderradius: 5.0,
-                          backgroundcolor: ColorConstants.primaryButtonColor,
-                          title: 'CONTINUE'),
-                    )
-                  ],
+                Container(
+                  margin: EdgeInsets.only(left: 20, right: 20),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          child: Row(
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(color: Color(0xFFFFF4EC)),
+                            padding: EdgeInsets.all(15),
+                            child: Text('SMALL'),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(color: Color(0xFFF9EAE7)),
+                            padding: EdgeInsets.all(15),
+                            child: Text('MEDIUM'),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(color: Color(0xFFE5F2F0)),
+                            padding: EdgeInsets.all(15),
+                            child: Text('LARGE'),
+                          ),
+                        ],
+                      )),
+                      Expanded(
+                          child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                              child: Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(bottom: 15),
+                                decoration: BoxDecoration(
+                                    // color: ColorConstants.primaryBigTextColor,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50)),
+                                    border: Border.all(
+                                        color:
+                                            ColorConstants.priceborderColor)),
+                                child: Image(
+                                  image: AssetImage(
+                                      "assets/images/smallburger.png"),
+                                  height: 50.h,
+                                  width: 60.w,
+                                ),
+                              ),
+                              Text('Sub Burger')
+                            ],
+                          )),
+                          Container(
+                              child: Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(bottom: 15),
+                                decoration: BoxDecoration(
+                                    // color: ColorConstants.primaryBigTextColor,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50)),
+                                    border: Border.all(
+                                        color:
+                                            ColorConstants.priceborderColor)),
+                                child: Image(
+                                  image: AssetImage(
+                                      "assets/images/smallburger.png"),
+                                  height: 50.h,
+                                  width: 60.w,
+                                ),
+                              ),
+                              Text('Sub Burger')
+                            ],
+                          )),
+                          Container(
+                              child: Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(bottom: 15),
+                                decoration: BoxDecoration(
+                                    // color: ColorConstants.primaryBigTextColor,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50)),
+                                    border: Border.all(
+                                        color:
+                                            ColorConstants.priceborderColor)),
+                                child: Image(
+                                  image: AssetImage(
+                                      "assets/images/smallburger.png"),
+                                  height: 50.h,
+                                  width: 60.w,
+                                ),
+                              ),
+                              Text('Sub Burger')
+                            ],
+                          )),
+                        ],
+                      )),
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-            ],
+                SizedBox(
+                  height: 30,
+                ),
+                Expanded(
+                  child: (controller.currentStatus.value == 1)
+                      ? ComboMainMenu()
+                      : (controller.currentStatus.value == 2)
+                          ? ComboSideMenu()
+                          : ComboDrinkMenu(),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: Dimensions.padding30),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          if (controller.currentStatus == 3) {
+                            controller.currentStatus.value--;
+                          } else if (controller.currentStatus == 2) {
+                            controller.currentStatus.value--;
+                          }
+                        },
+                        child: CustomWidget.CustomPrimaryButton(
+                            context: context,
+                            width: 320.0,
+                            height: 60.0,
+                            borderradius: 5.0,
+                            backgroundcolor:
+                                ColorConstants.textFormFieldUnderlineColor,
+                            title: 'Back'),
+                      ),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          if (controller.currentStatus == 1) {
+                            controller.currentStatus.value++;
+                          } else if (controller.currentStatus == 2) {
+                            controller.currentStatus.value++;
+                          }
+                        },
+                        child: CustomWidget.CustomPrimaryButton(
+                            context: context,
+                            width: 320.0,
+                            height: 60.0,
+                            borderradius: 5.0,
+                            backgroundcolor: ColorConstants.primaryButtonColor,
+                            title: 'CONTINUE'),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
+            ),
           ),
         ),
       ),

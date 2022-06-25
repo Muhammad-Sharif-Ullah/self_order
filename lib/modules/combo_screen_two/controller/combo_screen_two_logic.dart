@@ -4,19 +4,18 @@ import '../../../request/routes.dart';
 
 class ComboScreenControllertwo extends GetxController {
   ApiProvider api = ApiProvider();
-  @override
-  void onInit() async {}
+
+  var currentStatus = 1.obs;
 
   var selectedCombo = '18'.obs;
   var selectedSize = 'm'.obs;
 
   dynamic selectedFoodVersion = ''.obs;
 
-  List count = [];
+  List count = [3, 5, 8];
 
   var comboList = [].obs;
   getCombo() {
-    print('selected combo is ${selectedCombo.value}');
     api
         .get(Routes.combo +
             '/246' +
@@ -28,15 +27,19 @@ class ComboScreenControllertwo extends GetxController {
     });
   }
 
+  var comboChoices = [].obs;
+  getComboChoices() {}
+
   var sideList = [].obs;
   getSide() {
     api
-        .get(Routes.comboSide +
-            '/' +
-            selectedCombo.value +
-            '/' +
-            selectedSize.value)
+        .get(Routes.comboSide + '18/m'
+            // selectedCombo.value +
+
+            // +  selectedSize.value
+            )
         .then((value) {
+      print(value);
       sideList.value = value['comboside'];
     });
   }
@@ -44,12 +47,14 @@ class ComboScreenControllertwo extends GetxController {
   var drinkList = [].obs;
   getDrinks() {
     api
-        .get(Routes.comboDrink +
-            '/' +
-            selectedCombo.value +
-            '/' +
-            selectedSize.value)
+        .get(Routes.comboDrink + '18/m'
+            // +
+            // selectedCombo.value +
+            // '/' +
+            // selectedSize.value
+            )
         .then((value) {
+      print(value);
       drinkList.value = value['combodrink'];
     });
   }

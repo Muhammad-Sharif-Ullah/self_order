@@ -580,19 +580,19 @@ class CustomWidget {
     );
   }
 
-  static CustomComboPackItem({context, image}) {
+  static CustomComboPackItem({context, menu}) {
     return GestureDetector(
       onTap: () {},
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          image,
+          CachedNetworkImage(imageUrl: menu['base_url'] + menu['label_image']),
           SizedBox(
             height: Dimensions.SizedBoxValue20,
           ),
           Text(
-            'Chicken Burger',
+            '${menu['label']}',
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -602,20 +602,10 @@ class CustomWidget {
           SizedBox(
             height: 5,
           ),
-          Text(
-            'Chicken Burger',
-            style: TextStyle(
-                color: ColorConstants.primaryBigTextColor,
-                fontWeight: FontWeight.bold,
-                fontSize: Dimensions.TextSize18),
-          ),
-          SizedBox(
-            height: Dimensions.SizedBoxValue25,
-          ),
           Row(
             children: [
               Text(
-                '\$9.00',
+                '\$${menu['price']}',
                 style: TextStyle(
                     color: ColorConstants.primaryBigTextColor,
                     fontWeight: FontWeight.bold,

@@ -70,15 +70,7 @@ class AddDrinkScreenView extends GetView<AddDrinkScreenController> {
                           alignment: Alignment(0, 0),
                           color: Colors.white,
                           child: CustomWidget.CustomComboPackItem(
-                            context: context,
-                            image: Image(
-                              image: AssetImage(
-                                "assets/images/fanta.png",
-                              ),
-                              height: 130,
-                              width: 139,
-                            ),
-                          ));
+                              context: context, menu: ''));
                     }).toList()),
               ),
               SizedBox(

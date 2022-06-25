@@ -71,7 +71,7 @@ class AddSidesScreen extends GetView<AddSidesScreenController> {
                           color: Colors.white,
                           child: CustomWidget.CustomComboPackItem(
                             context: context,
-                            image: Image(
+                            menu: Image(
                               image: AssetImage("assets/images/side.png"),
                             ),
                           ));
