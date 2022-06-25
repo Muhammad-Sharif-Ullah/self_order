@@ -9,7 +9,7 @@ abstract class Routes {
   static const CustomiseExtraOptions = '/customiseextraoptions/';
 
   static const Combo = '/combo';
-  static const ComboSize = '/combosize';
+  static const ComboSide = '/comboside';
   static const ComboDrink = '/combodrinks/';
 
   static const Checkout = '/checkout';

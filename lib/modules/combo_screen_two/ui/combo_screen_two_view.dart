@@ -14,12 +14,12 @@ import '../controller/combo_screen_two_logic.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 
 class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
-  String itemtype;
-  ComboScreenViewTwo({Key? key, required this.itemtype}) : super(key: key);
+  ComboScreenViewTwo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put<ComboScreenControllertwo>(ComboScreenControllertwo());
+    Get.find<ComboScreenControllertwo>();
+    controller.getCombo();
     return BaseWidget(
       builder: (context, sizingInformation) => SafeArea(
         child: Scaffold(

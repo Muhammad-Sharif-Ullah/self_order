@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:self_order/modules/combo_screen_two/controller/combo_screen_two_logic.dart';
 import 'package:self_order/modules/combo_screen_two/ui/combo_screen_two_view.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
@@ -10,12 +11,15 @@ import 'package:self_order/shared/utils/customWidget_utils.dart';
 import '../../base_widget.dart';
 import '../controller/combo_screen_one_logic.dart';
 
-class ComboScreenViewOne extends GetView<ComboScreenController> {
-  const ComboScreenViewOne({Key? key}) : super(key: key);
+class ComboScreenViewOne extends GetView<ComboScreenControllertwo> {
+  String? id;
+  ComboScreenViewOne({Key? key, String? id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Get.put<ComboScreenController>(ComboScreenController());
+    Get.put<ComboScreenControllertwo>(ComboScreenControllertwo());
+    // controller.selectedCombo.value = id;
+    // print('selected combo is ${controller.selectedCombo.value}');
     return BaseWidget(
       builder: (context, sizingInformation) => SafeArea(
         child: Scaffold(
@@ -122,10 +126,8 @@ class ComboScreenViewOne extends GetView<ComboScreenController> {
   customDesire({imageName, type, flag}) {
     return GestureDetector(
       onTap: () {
-        // controller.itemIndex.value = flag;
-        Get.to(ComboScreenViewTwo(
-          itemtype: flag,
-        ));
+        controller.selectedSize.value = flag;
+        Get.to(ComboScreenViewTwo());
       },
       child: Column(
         children: [
@@ -134,7 +136,7 @@ class ComboScreenViewOne extends GetView<ComboScreenController> {
               width: 208,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(11),
-                color: flag == controller.itemIndex
+                color: flag == controller.selectedSize
                     ? ColorConstants.selectedDesire
                     : ColorConstants.unselectedDesire,
               ),

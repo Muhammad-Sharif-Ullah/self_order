@@ -21,29 +21,6 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
     return Container(
       child: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
-            child: CustomWidget.CustomComboPackName(
-                img: Image(
-                  image: AssetImage("assets/images/large_type.png"),
-                  height: 79,
-                  width: 119,
-                ),
-                flag: 'l',
-                context: context),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Padding(
-              padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
-              child: Text(
-                'Choose a Burger',
-                style: TextStyle(
-                    color: ColorConstants.primaryBigTextColor,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w700),
-              )),
           SizedBox(
             height: 40,
           ),

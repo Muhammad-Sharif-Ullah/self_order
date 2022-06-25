@@ -14,4 +14,8 @@ class Routes {
 
   static const customiseProduct = base + 'customise/';
   static const customiseExtra = base + 'customiseextra/';
+
+  static const combo = base + 'combo/';
+  static const comboSide = base + 'side/';
+  static const comboDrink = base + 'drink/';
 }
