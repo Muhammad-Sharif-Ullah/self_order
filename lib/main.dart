@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Session.getToken().then((value) => print('token is ' + value));
     return ScreenUtilInit(
       designSize: Size(744, 1133),
       builder: (_) {
@@ -47,9 +48,9 @@ class MyApp extends StatelessWidget {
           title: 'SelfOrder',
           // enableLog: true,
           onGenerateRoute: appRouter!.onGeneratedRoute,
-          home:
-              // ComboScreenViewTwo(itemtype: 'l'),
-              (Session.getToken() == '') ? LoginScreen() : VideoScreenView(),
+          home: (Session.getToken().toString() == '')
+              ? LoginScreen()
+              : VideoScreenView(),
         );
       },
     );
