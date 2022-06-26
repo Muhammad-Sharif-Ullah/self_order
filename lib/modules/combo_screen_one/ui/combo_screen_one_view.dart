@@ -97,12 +97,15 @@ class ComboScreenViewOne extends GetView<ComboScreenControllertwo> {
                 padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
                 child: Row(
                   children: [
-                    CustomWidget.CustomPrimaryButton(
-                        title: 'Back',
-                        borderradius: 11.0,
-                        backgroundcolor: ColorConstants.bannerBackgroundColor,
-                        height: 60.0,
-                        width: 320.0),
+                    GestureDetector(
+                      onTap: () => Get.back(),
+                      child: CustomWidget.CustomPrimaryButton(
+                          title: 'Back',
+                          borderradius: 11.0,
+                          backgroundcolor: ColorConstants.bannerBackgroundColor,
+                          height: 60.0,
+                          width: 320.0),
+                    ),
                     Spacer(),
                     CustomWidget.CustomPrimaryButton(
                         title: 'Cancel Combo',

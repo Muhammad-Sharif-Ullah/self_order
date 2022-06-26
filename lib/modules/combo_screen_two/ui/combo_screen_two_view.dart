@@ -154,6 +154,8 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                             controller.currentStatus.value--;
                           } else if (controller.currentStatus == 2) {
                             controller.currentStatus.value--;
+                          } else if (controller.currentStatus == 1) {
+                            Get.back();
                           }
                         },
                         child: CustomWidget.CustomPrimaryButton(

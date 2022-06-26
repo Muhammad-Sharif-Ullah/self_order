@@ -36,9 +36,11 @@ class ItemScreenController extends GetxController {
     });
   }
 
-  var menu = Product().obs;
+  var menu = {}.obs;
+  var chrust = [].obs;
   getFood(index) {
-    menu.value = Product.fromJson(foods[index]);
+    menu.value = foods[index];
+    chrust.value = menu.value['chrust'];
   }
 
   getFoods(id) {

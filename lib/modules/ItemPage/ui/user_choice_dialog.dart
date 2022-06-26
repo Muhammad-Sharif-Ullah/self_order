@@ -20,7 +20,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
       context: context,
       builder: (BuildContext context) {
         ItemScreenController controller = Get.find();
-        var data = controller.foods[index];
+        controller.getFood(index);
         return Dialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -117,115 +117,495 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                               ColorConstants.primaryButtonColor,
                                           fontSize: 25.sp),
                                     ),
-                                    // ResponsiveGridList(
-                                    //     desiredItemWidth: 147,
-                                    //     minSpacing: 35,
-                                    //     children: data['chrust'].map((i) {
-                                    //       // i['selected'] = false;
-                                    //       return Container(
-                                    //           height: 270,
-                                    //           alignment: Alignment(0, 0),
-                                    //           color: Colors.white,
-                                    //           child: Row(
-                                    //             children: [
-                                    //               Checkbox(
-                                    //                   value: true,
-                                    //                   onChanged: (v) {}),
-                                    //               Text('${i['name']}')
-                                    //             ],
-                                    //           ));
-                                    //     }).toList()),
-
                                     GridView.builder(
                                         itemCount: controller
                                             .foods[index]['chrust'].length,
                                         shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
                                             SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 5,
-                                                childAspectRatio: 2,
-                                                crossAxisSpacing: 10,
-                                                mainAxisSpacing: 10),
-                                        itemBuilder: (context, index) {
-                                          controller.foods[index]['chrust']
-                                              [index]['selected'] = false;
+                                                crossAxisCount: 3,
+                                                childAspectRatio: 1,
+                                                crossAxisSpacing: 5,
+                                                mainAxisExtent: 40,
+                                                mainAxisSpacing: 5),
+                                        itemBuilder: (context, i) {
+                                          controller.foods[index]['chrust'][i]
+                                              ['selected'] = false;
                                           return Row(
                                             children: [
                                               Checkbox(
                                                   value: controller.foods[index]
-                                                          ['chrust'][index]
-                                                      ['selected'],
+                                                      ['chrust'][i]['selected'],
                                                   onChanged: (v) {
                                                     controller.foods[index]
-                                                                    ['chrust']
-                                                                [index]
+                                                                ['chrust'][i]
                                                             ['selected'] =
                                                         !controller.foods[index]
-                                                                ['chrust']
-                                                            [index]['selected'];
+                                                                ['chrust'][i]
+                                                            ['selected'];
                                                   }),
                                               Text(
-                                                  '${controller.foods[index]['chrust'][index]['name']}')
+                                                  '${controller.foods[index]['chrust'][i]['name']}')
                                             ],
                                           );
                                         }),
                                   ],
                                 )
                               : Container(),
-                          Text(
-                            'Toppings',
-                            style: TextStyle(
-                                color: ColorConstants.primaryButtonColor,
-                                fontSize: 25.sp),
-                          ),
-                          Text(
-                            'Style',
-                            style: TextStyle(
-                                color: ColorConstants.primaryButtonColor,
-                                fontSize: 25.sp),
-                          ),
-                          Text(
-                            'Sauce',
-                            style: TextStyle(
-                                color: ColorConstants.primaryButtonColor,
-                                fontSize: 25.sp),
-                          ),
-                          Text(
-                            'Soda',
-                            style: TextStyle(
-                                color: ColorConstants.primaryButtonColor,
-                                fontSize: 25.sp),
-                          ),
-                          Text(
-                            'Side',
-                            style: TextStyle(
-                                color: ColorConstants.primaryButtonColor,
-                                fontSize: 25.sp),
-                          ),
-                          Text(
-                            'Preparation',
-                            style: TextStyle(
-                                color: ColorConstants.primaryButtonColor,
-                                fontSize: 25.sp),
-                          ),
-                          Text(
-                            'Extra',
-                            style: TextStyle(
-                                color: ColorConstants.primaryButtonColor,
-                                fontSize: 25.sp),
-                          ),
-                          Text(
-                            'Beacon',
-                            style: TextStyle(
-                                color: ColorConstants.primaryButtonColor,
-                                fontSize: 20.sp),
-                          ),
-                          Text(
-                            'Meal',
-                            style: TextStyle(
-                                color: ColorConstants.primaryButtonColor,
-                                fontSize: 20.sp),
-                          ),
+                          (controller.foods[index]['toppings'].length > 0)
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Toppings',
+                                      style: TextStyle(
+                                          color:
+                                              ColorConstants.primaryButtonColor,
+                                          fontSize: 25.sp),
+                                    ),
+                                    GridView.builder(
+                                        itemCount: controller
+                                            .foods[index]['toppings'].length,
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 3,
+                                                childAspectRatio: 1,
+                                                crossAxisSpacing: 5,
+                                                mainAxisExtent: 40,
+                                                mainAxisSpacing: 5),
+                                        itemBuilder: (context, i) {
+                                          controller.foods[index]['toppings'][i]
+                                              ['selected'] = false;
+                                          return Row(
+                                            children: [
+                                              Checkbox(
+                                                  value: controller.foods[index]
+                                                          ['toppings'][i]
+                                                      ['selected'],
+                                                  onChanged: (v) {
+                                                    controller.foods[index]
+                                                                ['toppings'][i]
+                                                            ['selected'] =
+                                                        !controller.foods[index]
+                                                                ['toppings'][i]
+                                                            ['selected'];
+                                                  }),
+                                              Text(
+                                                  '${controller.foods[index]['toppings'][i]['name']}')
+                                            ],
+                                          );
+                                        }),
+                                  ],
+                                )
+                              : Container(),
+                          (controller.foods[index]['style'].length > 0)
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Style',
+                                      style: TextStyle(
+                                          color:
+                                              ColorConstants.primaryButtonColor,
+                                          fontSize: 25.sp),
+                                    ),
+                                    GridView.builder(
+                                        itemCount: controller
+                                            .foods[index]['style'].length,
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 3,
+                                                childAspectRatio: 1,
+                                                crossAxisSpacing: 5,
+                                                mainAxisExtent: 40,
+                                                mainAxisSpacing: 5),
+                                        itemBuilder: (context, i) {
+                                          controller.foods[index]['style'][i]
+                                              ['selected'] = false;
+                                          return Row(
+                                            children: [
+                                              Checkbox(
+                                                  value: controller.foods[index]
+                                                      ['style'][i]['selected'],
+                                                  onChanged: (v) {
+                                                    controller.foods[index]
+                                                                ['style'][i]
+                                                            ['selected'] =
+                                                        !controller.foods[index]
+                                                                ['style'][i]
+                                                            ['selected'];
+                                                  }),
+                                              Text(
+                                                  '${controller.foods[index]['style'][i]['name']}')
+                                            ],
+                                          );
+                                        }),
+                                  ],
+                                )
+                              : Container(),
+                          (controller.foods[index]['sauce'].length > 0)
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Sauce',
+                                      style: TextStyle(
+                                          color:
+                                              ColorConstants.primaryButtonColor,
+                                          fontSize: 25.sp),
+                                    ),
+                                    GridView.builder(
+                                        itemCount: controller
+                                            .foods[index]['sauce'].length,
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 3,
+                                                childAspectRatio: 1,
+                                                crossAxisSpacing: 5,
+                                                mainAxisExtent: 40,
+                                                mainAxisSpacing: 5),
+                                        itemBuilder: (context, i) {
+                                          controller.foods[index]['sauce'][i]
+                                              ['selected'] = false;
+                                          return Row(
+                                            children: [
+                                              Checkbox(
+                                                  value: controller.foods[index]
+                                                      ['sauce'][i]['selected'],
+                                                  onChanged: (v) {
+                                                    controller.foods[index]
+                                                                ['sauce'][i]
+                                                            ['selected'] =
+                                                        !controller.foods[index]
+                                                                ['sauce'][i]
+                                                            ['selected'];
+                                                  }),
+                                              Expanded(
+                                                child: Text(
+                                                  '${controller.foods[index]['sauce'][i]['name']}',
+                                                  maxLines: 3,
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        }),
+                                  ],
+                                )
+                              : Container(),
+                          (controller.foods[index]['soda'].length > 0)
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Soda',
+                                      style: TextStyle(
+                                          color:
+                                              ColorConstants.primaryButtonColor,
+                                          fontSize: 25.sp),
+                                    ),
+                                    GridView.builder(
+                                        itemCount: controller
+                                            .foods[index]['soda'].length,
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 3,
+                                                childAspectRatio: 1,
+                                                crossAxisSpacing: 5,
+                                                mainAxisExtent: 40,
+                                                mainAxisSpacing: 5),
+                                        itemBuilder: (context, i) {
+                                          controller.foods[index]['soda'][i]
+                                              ['selected'] = false;
+                                          return Row(
+                                            children: [
+                                              Checkbox(
+                                                  value: controller.foods[index]
+                                                      ['soda'][i]['selected'],
+                                                  onChanged: (v) {
+                                                    controller.foods[index]
+                                                                ['soda'][i]
+                                                            ['selected'] =
+                                                        !controller.foods[index]
+                                                                ['soda'][i]
+                                                            ['selected'];
+                                                  }),
+                                              Expanded(
+                                                child: Text(
+                                                  '${controller.foods[index]['soda'][i]['name']}',
+                                                  maxLines: 3,
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        }),
+                                  ],
+                                )
+                              : Container(),
+                          (controller.foods[index]['side'].length > 0)
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Side',
+                                      style: TextStyle(
+                                          color:
+                                              ColorConstants.primaryButtonColor,
+                                          fontSize: 25.sp),
+                                    ),
+                                    GridView.builder(
+                                        itemCount: controller
+                                            .foods[index]['side'].length,
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 3,
+                                                childAspectRatio: 1,
+                                                crossAxisSpacing: 5,
+                                                mainAxisExtent: 40,
+                                                mainAxisSpacing: 5),
+                                        itemBuilder: (context, i) {
+                                          controller.foods[index]['side'][i]
+                                              ['selected'] = false;
+                                          return Row(
+                                            children: [
+                                              Checkbox(
+                                                  value: controller.foods[index]
+                                                      ['side'][i]['selected'],
+                                                  onChanged: (v) {
+                                                    controller.foods[index]
+                                                                ['side'][i]
+                                                            ['selected'] =
+                                                        !controller.foods[index]
+                                                                ['side'][i]
+                                                            ['selected'];
+                                                  }),
+                                              Expanded(
+                                                child: Text(
+                                                  '${controller.foods[index]['side'][i]['name']}',
+                                                  maxLines: 3,
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        }),
+                                  ],
+                                )
+                              : Container(),
+                          (controller.foods[index]['extra'].length > 0)
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Extra',
+                                      style: TextStyle(
+                                          color:
+                                              ColorConstants.primaryButtonColor,
+                                          fontSize: 25.sp),
+                                    ),
+                                    GridView.builder(
+                                        itemCount: controller
+                                            .foods[index]['extra'].length,
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 3,
+                                                childAspectRatio: 1,
+                                                crossAxisSpacing: 5,
+                                                mainAxisExtent: 40,
+                                                mainAxisSpacing: 5),
+                                        itemBuilder: (context, i) {
+                                          controller.foods[index]['extra'][i]
+                                              ['selected'] = false;
+                                          return Row(
+                                            children: [
+                                              Checkbox(
+                                                  value: controller.foods[index]
+                                                      ['extra'][i]['selected'],
+                                                  onChanged: (v) {
+                                                    controller.foods[index]
+                                                                ['extra'][i]
+                                                            ['selected'] =
+                                                        !controller.foods[index]
+                                                                ['extra'][i]
+                                                            ['selected'];
+                                                  }),
+                                              Expanded(
+                                                child: Text(
+                                                  '${controller.foods[index]['extra'][i]['name']}',
+                                                  maxLines: 3,
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        }),
+                                  ],
+                                )
+                              : Container(),
+                          (controller.foods[index]['preparation'].length > 0)
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Preparation',
+                                      style: TextStyle(
+                                          color:
+                                              ColorConstants.primaryButtonColor,
+                                          fontSize: 25.sp),
+                                    ),
+                                    GridView.builder(
+                                        itemCount: controller
+                                            .foods[index]['preparation'].length,
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 3,
+                                                childAspectRatio: 1,
+                                                crossAxisSpacing: 5,
+                                                mainAxisExtent: 40,
+                                                mainAxisSpacing: 5),
+                                        itemBuilder: (context, i) {
+                                          controller.foods[index]['preparation']
+                                              [i]['selected'] = false;
+                                          return Row(
+                                            children: [
+                                              Checkbox(
+                                                  value: controller.foods[index]
+                                                          ['preparation'][i]
+                                                      ['selected'],
+                                                  onChanged: (v) {
+                                                    controller.foods[index]
+                                                                ['preparation']
+                                                            [i]['selected'] =
+                                                        !controller.foods[index]
+                                                                ['preparation']
+                                                            [i]['selected'];
+                                                  }),
+                                              Expanded(
+                                                child: Text(
+                                                  '${controller.foods[index]['preparation'][i]['name']}',
+                                                  maxLines: 3,
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        }),
+                                  ],
+                                )
+                              : Container(),
+                          (controller.foods[index]['bacon'].length > 0)
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Bacon',
+                                      style: TextStyle(
+                                          color:
+                                              ColorConstants.primaryButtonColor,
+                                          fontSize: 25.sp),
+                                    ),
+                                    GridView.builder(
+                                        itemCount: controller
+                                            .foods[index]['bacon'].length,
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 3,
+                                                childAspectRatio: 1,
+                                                crossAxisSpacing: 5,
+                                                mainAxisExtent: 40,
+                                                mainAxisSpacing: 5),
+                                        itemBuilder: (context, i) {
+                                          controller.foods[index]['bacon'][i]
+                                              ['selected'] = false;
+                                          return Row(
+                                            children: [
+                                              Checkbox(
+                                                  value: controller.foods[index]
+                                                      ['bacon'][i]['selected'],
+                                                  onChanged: (v) {
+                                                    controller.foods[index]
+                                                                ['bacon'][i]
+                                                            ['selected'] =
+                                                        !controller.foods[index]
+                                                                ['bacon'][i]
+                                                            ['selected'];
+                                                  }),
+                                              Expanded(
+                                                child: Text(
+                                                  '${controller.foods[index]['bacon'][i]['name']}',
+                                                  maxLines: 3,
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        }),
+                                  ],
+                                )
+                              : Container(),
+                          (controller.foods[index]['meal'].length > 0)
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Meal',
+                                      style: TextStyle(
+                                          color:
+                                              ColorConstants.primaryButtonColor,
+                                          fontSize: 25.sp),
+                                    ),
+                                    GridView.builder(
+                                        itemCount: controller
+                                            .foods[index]['meal'].length,
+                                        shrinkWrap: true,
+                                        physics: NeverScrollableScrollPhysics(),
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 3,
+                                                childAspectRatio: 1,
+                                                crossAxisSpacing: 5,
+                                                mainAxisExtent: 40,
+                                                mainAxisSpacing: 5),
+                                        itemBuilder: (context, i) {
+                                          controller.foods[index]['meal'][i]
+                                              ['selected'] = false;
+                                          return Row(
+                                            children: [
+                                              Checkbox(
+                                                  value: controller.foods[index]
+                                                      ['meal'][i]['selected'],
+                                                  onChanged: (v) {
+                                                    controller.foods[index]
+                                                                ['meal'][i]
+                                                            ['selected'] =
+                                                        !controller.foods[index]
+                                                                ['meal'][i]
+                                                            ['selected'];
+                                                  }),
+                                              Expanded(
+                                                child: Text(
+                                                  '${controller.foods[index]['meal'][i]['name']}',
+                                                  maxLines: 3,
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        }),
+                                  ],
+                                )
+                              : Container(),
                         ],
                       ),
                     ),
