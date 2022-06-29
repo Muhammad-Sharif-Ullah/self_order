@@ -53,7 +53,9 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
                     i['selected'] = false;
                     return InkWell(
                       onTap: () {
-                        print('i si $i');
+                        print('i before ${i['selected']}');
+                        i['selected'] = true;
+                        print('i is ${i['selected']}');
                         Get.defaultDialog(content: selectComboOption());
                       },
                       child: Container(

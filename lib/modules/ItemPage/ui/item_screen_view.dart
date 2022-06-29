@@ -100,16 +100,16 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                         Expanded(
                           flex: 7,
                           child: Column(children: [
-                            GridView.count(
-                              shrinkWrap: true,
-                              crossAxisCount: 5,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10,
-                              childAspectRatio: 2,
-                              children: List.generate(7, (index) {
-                                return foodVarision(text: 'Culf Beef');
-                              }),
-                            ),
+                            // GridView.count(
+                            //   shrinkWrap: true,
+                            //   crossAxisCount: 5,
+                            //   crossAxisSpacing: 10,
+                            //   mainAxisSpacing: 10,
+                            //   childAspectRatio: 2,
+                            //   children: List.generate(7, (index) {
+                            //     return foodVarision(text: 'Culf Beef');
+                            //   }),
+                            // ),
                             Flexible(
                               child: SingleChildScrollView(
                                 child: Column(

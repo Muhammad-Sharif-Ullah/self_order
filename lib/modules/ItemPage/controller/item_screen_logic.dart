@@ -37,10 +37,10 @@ class ItemScreenController extends GetxController {
   }
 
   var menu = {}.obs;
-  var chrust = [].obs;
+  var style = [].obs;
   getFood(index) {
     menu.value = foods[index];
-    chrust.value = menu.value['chrust'];
+    style.value = foods[index]['style'];
   }
 
   getFoods(id) {
@@ -51,9 +51,9 @@ class ItemScreenController extends GetxController {
 
   var customiseFoods = [].obs;
   var customiseExtraFoods = [].obs;
+  var customiseExtraOptions = [].obs;
   getCustomiseFood(id) {
-    print('customise id is $id');
-    api.get(Routes.customiseProduct + '22').then((value) {
+    api.get(Routes.customiseProduct + '246').then((value) {
       print(value);
       customiseFoods.value = value['customise'];
     });
@@ -61,7 +61,13 @@ class ItemScreenController extends GetxController {
 
   getCustomiseExtra(id) {
     api.get(Routes.customiseExtra + '22').then((value) {
-      // customiseExtraFoods.value = value['product'];
+      customiseExtraFoods.value = value['customiseextra'];
+    });
+  }
+
+  getCustomiseExtraOption(id) {
+    api.get(Routes.customiseExtra + '34').then((value) {
+      customiseExtraOptions.value = value['customise_extra_options'];
     });
   }
 }

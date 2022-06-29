@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +17,7 @@ class ItemCustomisePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller.getCustomiseFood(id);
+    controller.getCustomiseExtra(id);
     return Obx(
       () => SafeArea(
           child: Scaffold(
@@ -55,11 +57,6 @@ class ItemCustomisePage extends StatelessWidget {
                   SizedBox(
                     height: 30.h,
                   ),
-
-                  //////////////////////////////shohag start///////////////////////////////////////////
-                  //////////////////////////////shohag start///////////////////////////////////////////
-                  //////////////////////////////shohag start///////////////////////////////////////////
-                  //////////////////////////////shohag start///////////////////////////////////////////
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30.w),
                     child: Row(
@@ -153,9 +150,6 @@ class ItemCustomisePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  /////////////////// sohagg end //////////////////////////////////////////////////////
-                  /////////////////// sohagg end //////////////////////////////////////////////////////
-                  /////////////////// sohagg end //////////////////////////////////////////////////////
 
                   SizedBox(
                     height: 50.h,
@@ -179,16 +173,15 @@ class ItemCustomisePage extends StatelessWidget {
                     child: ResponsiveGridList(
                         desiredItemWidth: 130.w,
                         minSpacing: 50.h,
-                        children: controller.extraFood.map((i) {
+                        children: controller.customiseExtraFoods.map((i) {
                           return InkWell(
                             onTap: () {
                               addExtraCustomisePage(context: context);
                             },
                             child: Column(
                               children: [
-                                Image(
-                                  image:
-                                      AssetImage("assets/images/extraFood.png"),
+                                CachedNetworkImage(
+                                  imageUrl: i['base_url'] + i['image'],
                                   height: 70,
                                   width: 130,
                                 ),
@@ -196,7 +189,7 @@ class ItemCustomisePage extends StatelessWidget {
                                   height: 10.h,
                                 ),
                                 Text(
-                                  'Fried Egg',
+                                  '${i['label']}',
                                   style: TextStyle(
                                     color: ColorConstants.primaryBigTextColor,
                                     fontSize: 14.sp,
@@ -207,7 +200,7 @@ class ItemCustomisePage extends StatelessWidget {
                                   height: 10,
                                 ),
                                 Text(
-                                  '\$0.36',
+                                  '\$${i['price']}',
                                   style: TextStyle(
                                       color:
                                           ColorConstants.bannerHeadingTextColor,
@@ -237,7 +230,7 @@ class ItemCustomisePage extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      '2',
+                                      '1',
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w700,

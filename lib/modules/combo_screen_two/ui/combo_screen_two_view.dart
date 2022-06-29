@@ -165,6 +165,7 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                             borderradius: 5.0,
                             backgroundcolor:
                                 ColorConstants.textFormFieldUnderlineColor,
+                            titlecolor: Colors.black,
                             title: 'Back'),
                       ),
                       Spacer(),

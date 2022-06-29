@@ -106,7 +106,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                       child: ListView(
                         shrinkWrap: true,
                         children: [
-                          (controller.foods[index]['chrust'].length > 0)
+                          (controller.menu['chrust'].length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -118,8 +118,8 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                           fontSize: 25.sp),
                                     ),
                                     GridView.builder(
-                                        itemCount: controller
-                                            .foods[index]['chrust'].length,
+                                        itemCount:
+                                            controller.menu['chrust'].length,
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
@@ -130,30 +130,30 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.foods[index]['chrust'][i]
+                                          controller.menu['chrust'][i]
                                               ['selected'] = false;
                                           return Row(
                                             children: [
                                               Checkbox(
-                                                  value: controller.foods[index]
-                                                      ['chrust'][i]['selected'],
+                                                  value:
+                                                      controller.menu['chrust']
+                                                          [i]['selected'],
                                                   onChanged: (v) {
-                                                    controller.foods[index]
-                                                                ['chrust'][i]
+                                                    controller.menu['chrust'][i]
                                                             ['selected'] =
-                                                        !controller.foods[index]
-                                                                ['chrust'][i]
-                                                            ['selected'];
+                                                        !controller
+                                                                .menu['chrust']
+                                                            [i]['selected'];
                                                   }),
                                               Text(
-                                                  '${controller.foods[index]['chrust'][i]['name']}')
+                                                  '${controller.menu['chrust'][i]['name']}')
                                             ],
                                           );
                                         }),
                                   ],
                                 )
                               : Container(),
-                          (controller.foods[index]['toppings'].length > 0)
+                          (controller.menu['toppings'].length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -165,8 +165,8 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                           fontSize: 25.sp),
                                     ),
                                     GridView.builder(
-                                        itemCount: controller
-                                            .foods[index]['toppings'].length,
+                                        itemCount:
+                                            controller.menu['toppings'].length,
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
@@ -177,31 +177,30 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.foods[index]['toppings'][i]
+                                          controller.menu['toppings'][i]
                                               ['selected'] = false;
                                           return Row(
                                             children: [
                                               Checkbox(
-                                                  value: controller.foods[index]
-                                                          ['toppings'][i]
+                                                  value: controller
+                                                          .menu['toppings'][i]
                                                       ['selected'],
                                                   onChanged: (v) {
-                                                    controller.foods[index]
-                                                                ['toppings'][i]
-                                                            ['selected'] =
-                                                        !controller.foods[index]
-                                                                ['toppings'][i]
+                                                    controller.menu['toppings']
+                                                            [i]['selected'] =
+                                                        !controller.menu[
+                                                                'toppings'][i]
                                                             ['selected'];
                                                   }),
                                               Text(
-                                                  '${controller.foods[index]['toppings'][i]['name']}')
+                                                  '${controller.menu['toppings'][i]['name']}')
                                             ],
                                           );
                                         }),
                                   ],
                                 )
                               : Container(),
-                          (controller.foods[index]['style'].length > 0)
+                          (controller.menu['style'].length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -213,8 +212,8 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                           fontSize: 25.sp),
                                     ),
                                     GridView.builder(
-                                        itemCount: controller
-                                            .foods[index]['style'].length,
+                                        itemCount:
+                                            controller.menu['style'].length,
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
@@ -225,30 +224,30 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.foods[index]['style'][i]
+                                          controller.menu['style'][i]
                                               ['selected'] = false;
                                           return Row(
                                             children: [
                                               Checkbox(
-                                                  value: controller.foods[index]
-                                                      ['style'][i]['selected'],
+                                                  value:
+                                                      controller.menu['style']
+                                                          [i]['selected'],
                                                   onChanged: (v) {
-                                                    controller.foods[index]
-                                                                ['style'][i]
+                                                    controller.menu['style'][i]
                                                             ['selected'] =
-                                                        !controller.foods[index]
-                                                                ['style'][i]
-                                                            ['selected'];
+                                                        !controller
+                                                                .menu['style']
+                                                            [i]['selected'];
                                                   }),
                                               Text(
-                                                  '${controller.foods[index]['style'][i]['name']}')
+                                                  '${controller.menu['style'][i]['name']}')
                                             ],
                                           );
                                         }),
                                   ],
                                 )
                               : Container(),
-                          (controller.foods[index]['sauce'].length > 0)
+                          (controller.menu['sauce'].length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -260,8 +259,8 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                           fontSize: 25.sp),
                                     ),
                                     GridView.builder(
-                                        itemCount: controller
-                                            .foods[index]['sauce'].length,
+                                        itemCount:
+                                            controller.menu['sauce'].length,
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
@@ -272,24 +271,24 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.foods[index]['sauce'][i]
+                                          controller.menu['sauce'][i]
                                               ['selected'] = false;
                                           return Row(
                                             children: [
                                               Checkbox(
-                                                  value: controller.foods[index]
-                                                      ['sauce'][i]['selected'],
+                                                  value:
+                                                      controller.menu['sauce']
+                                                          [i]['selected'],
                                                   onChanged: (v) {
-                                                    controller.foods[index]
-                                                                ['sauce'][i]
+                                                    controller.menu['sauce'][i]
                                                             ['selected'] =
-                                                        !controller.foods[index]
-                                                                ['sauce'][i]
-                                                            ['selected'];
+                                                        !controller
+                                                                .menu['sauce']
+                                                            [i]['selected'];
                                                   }),
                                               Expanded(
                                                 child: Text(
-                                                  '${controller.foods[index]['sauce'][i]['name']}',
+                                                  '${controller.menu['sauce'][i]['name']}',
                                                   maxLines: 3,
                                                 ),
                                               )

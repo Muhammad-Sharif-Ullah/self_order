@@ -31,13 +31,9 @@ class ComboScreenControllertwo extends GetxController {
   getComboChoices() {}
 
   var sideList = [].obs;
-  getSide() {
+  getSide(id) {
     api
-        .get(Routes.comboSide + '18/m'
-            // selectedCombo.value +
-
-            // +  selectedSize.value
-            )
+        .get(Routes.comboSide + selectedCombo.value + '/' + selectedSize.value)
         .then((value) {
       print(value);
       sideList.value = value['comboside'];

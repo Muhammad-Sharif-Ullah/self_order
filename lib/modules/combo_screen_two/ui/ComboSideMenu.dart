@@ -16,7 +16,7 @@ class _ComboSideMenuState extends State<ComboSideMenu> {
   Widget build(BuildContext context) {
     final orientation = MediaQuery.of(Get.context!).orientation;
     var controller = Get.find<ComboScreenControllertwo>();
-    controller.getSide();
+    // controller.getSide();
     return Container(
       margin: EdgeInsets.only(left: 20, right: 20),
       child: Obx(
