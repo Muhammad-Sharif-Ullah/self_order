@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:responsive_grid/responsive_grid.dart';
+import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
 import 'package:self_order/modules/combo_screen_two/controller/combo_screen_two_logic.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
+import 'package:self_order/shared/widget/quantity_item.dart';
 
 class ComboMainMenu extends StatefulWidget {
   const ComboMainMenu({Key? key}) : super(key: key);
@@ -50,13 +52,9 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
                   desiredItemWidth: 147,
                   minSpacing: 35,
                   children: controller.comboList.map((i) {
-                    i['selected'] = false;
                     return InkWell(
                       onTap: () {
-                        print('i before ${i['selected']}');
-                        i['selected'] = true;
-                        print('i is ${i['selected']}');
-                        Get.defaultDialog(content: selectComboOption());
+                        selectComboOption();
                       },
                       child: Container(
                           height: 270,
@@ -75,44 +73,88 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
     );
   }
 
-  Widget selectComboOption() {
-    return Container(
-        height: 400.h,
-        margin: EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Text('Choose an Item - Burger'),
-            SizedBox(
-              height: 30,
+  selectComboOption() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          ItemScreenController controller = Get.find();
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10.0),
             ),
-            ResponsiveGridList(
-                desiredItemWidth: 147,
-                minSpacing: 35,
-                children: controller.comboList.map((i) {
-                  i['selected'] = false;
-                  return InkWell(
-                    onTap: () {},
-                    child: Container(
-                        height: 270,
-                        alignment: Alignment(0, 0),
-                        color: Colors.white,
-                        child: CustomWidget.CustomComboPackItem(
+            content: Obx(
+              () => Container(
+                width: 656.w,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: Dimensions.SizedBoxValue30,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 30.w),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Choose a style',
+                              style: TextStyle(
+                                  color: ColorConstants.primaryButtonColor,
+                                  fontSize: 30.sp),
+                            ),
+                            Spacer(),
+                            CustomWidget.CustomCloseSection(context: context),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 40.w),
+                        child: (controller.menu['chrust'].length > 0)
+                            ? GridView.builder(
+                                itemCount: controller.menu['chrust'].length,
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 4,
+                                        childAspectRatio: 1,
+                                        crossAxisSpacing: 5,
+                                        mainAxisExtent: 200.h,
+                                        mainAxisSpacing: 5),
+                                itemBuilder: (context, i) {
+                                  return QuantityItem();
+                                })
+                            : Container(),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      CustomWidget.CustomPrimaryButton(
                           context: context,
-                          menu: i,
-                        )),
-                  );
-                }).toList()),
-            Container(
-              decoration: BoxDecoration(color: Color(0xFF5AB99D)),
-              width: double.infinity,
-              padding: EdgeInsets.all(15),
-              child: Text(
-                'Add',
-                style: TextStyle(fontSize: 16, color: Colors.white),
+                          height: 60.h,
+                          width: 596.w,
+                          borderColor: ColorConstants.primaryButtonColor,
+                          title: 'Add',
+                          titlecolor: Colors.white,
+                          titlefontSize: 24.sp,
+                          borderradius: 5,
+                          backgroundcolor: ColorConstants.primaryButtonColor,
+                          titleFontWeight: FontWeight.w700),
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            )
-          ],
-        ));
+            ),
+          );
+        });
   }
 
   Widget selectedfoodVarision({required String text, required index}) {
