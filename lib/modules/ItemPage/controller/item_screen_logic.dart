@@ -53,6 +53,7 @@ class ItemScreenController extends GetxController {
     api.get(Routes.getSubCategory + id).then((value) {
       subCategories.value = value['subcategory'];
     });
+    getCategorySubCategoryWiseProduct(id);
   }
 
   getCategorySubCategoryWiseProduct(id) {
@@ -63,19 +64,24 @@ class ItemScreenController extends GetxController {
             Routes.categorySubCategoryWiseProduct + categoryId.value + '/' + id)
         .then((value) {
       print(value);
+      print('categorySubCategoryWiseProduct');
       foods.value = value['product'];
     });
   }
 
   // sub category and sub sub category wise product
   getSubSubCategory(id) {
-    subSubCategoryId.value = id;
+    subCategoryId.value = id;
+    subSubCategories.value = [];
     api.get(Routes.subcatsubsubcat + id).then((value) {
-      subCategories.value = value['subcategory'];
+      print(value);
+      subSubCategories.value = value['product'];
+      getCategorySubCategoryWiseProduct(id);
     });
   }
 
   subSubCatProduct(id) {
+    subSubCategoryId.value = id;
     foods.value = [];
     api
         .get(Routes.subcatsubsubcatWiseProduct +
@@ -86,6 +92,7 @@ class ItemScreenController extends GetxController {
             id)
         .then((value) {
       print(value);
+      print('sub sub cat product');
       foods.value = value['product'];
     });
   }

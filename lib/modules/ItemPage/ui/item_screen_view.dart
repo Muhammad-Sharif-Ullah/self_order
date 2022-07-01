@@ -140,10 +140,11 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                   controller.subCategories.length, (index) {
                                 return GestureDetector(
                                   onTap: () {
-                                    controller
-                                        .getCategorySubCategoryWiseProduct(
-                                            controller.subCategories[index]
-                                                ['subcat_id']);
+                                    print('sub cat' +
+                                        controller.subCategories[index]
+                                            ['subcat_id']);
+                                    controller.getSubSubCategory(controller
+                                        .subCategories[index]['subcat_id']);
                                   },
                                   child: foodVarision(
                                     active: (controller.subCategoryId ==
@@ -157,6 +158,42 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                 );
                               }),
                             ),
+                            Container(
+                                margin:
+                                    EdgeInsets.only(top: 20.h, bottom: 20.h),
+                                color: ColorConstants.subCategorySelection,
+                                height: 2,
+                                width: 400.w),
+                            GridView.count(
+                              shrinkWrap: true,
+                              crossAxisCount: 4,
+                              crossAxisSpacing: 5,
+                              mainAxisSpacing: 5,
+                              childAspectRatio: 5,
+                              children: List.generate(
+                                  controller.subSubCategories.length, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    print('sub sub cat' +
+                                        controller.subSubCategories[index]
+                                            ['sub_subcat_id']);
+                                    controller.subSubCatProduct(
+                                        controller.subSubCategories[index]
+                                            ['sub_subcat_id']);
+                                  },
+                                  child: foodVarision(
+                                    active: (controller.subSubCategoryId ==
+                                            controller.subSubCategories[index]
+                                                ['sub_subcat_id'])
+                                        ? true
+                                        : false,
+                                    text:
+                                        '${controller.subSubCategories[index]['sub_subcategory_name']}',
+                                  ),
+                                );
+                              }),
+                            ),
+
                             Flexible(
                               child: SingleChildScrollView(
                                 child: Column(

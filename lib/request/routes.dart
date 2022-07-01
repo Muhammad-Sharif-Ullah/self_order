@@ -15,7 +15,7 @@ class Routes {
   static const getSubCategory = base + 'subcategory/';
   static const categorySubCategoryWiseProduct = base + 'productcatsubcat/';
 
-  static const subcatsubsubcat = base + 'subcatsubsubcat';
+  static const subcatsubsubcat = base + 'subcatsubsubcat/';
   static const subcatsubsubcatWiseProduct = base + 'productcatsubcatsubsubcat/';
 
   // products
