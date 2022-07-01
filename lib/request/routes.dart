@@ -4,14 +4,21 @@ class Routes {
   static const login = base + 'login';
   static const homePageSlider = base + 'homepageslider';
   static const homePageBanner = base + 'homepagebanner';
-  static const category = base + 'category';
-  static const customerChoice = base + 'customerchoice';
 
+  static const customerChoice = base + 'customerchoice';
   static const itemPageBanner = base + 'itempagebanner';
+
+  // category
+  static const category = base + 'category';
   static const categoryWiseProduct = base + 'productcat/';
-  static const categorySubCategoryWiseProduct = base + 'productcatsubcat/';
+
   static const getSubCategory = base + 'subcategory/';
-  static const productSubSubCategory = base + 'subcategory/';
+  static const categorySubCategoryWiseProduct = base + 'productcatsubcat/';
+
+  static const subcatsubsubcat = base + 'subcatsubsubcat';
+  static const subcatsubsubcatWiseProduct = base + 'productcatsubcatsubsubcat/';
+
+  // products
 
   static const customiseProduct = base + 'customise/';
   static const customiseExtra = base + 'customiseextra/';

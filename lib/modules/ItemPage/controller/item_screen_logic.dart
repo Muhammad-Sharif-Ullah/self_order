@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:self_order/modules/Home/controller/home_screen_logic.dart';
 import 'package:self_order/modules/ItemPage/model/MenuModel.dart';
 import 'package:self_order/request/routes.dart';
 
@@ -15,8 +16,13 @@ class ItemScreenController extends GetxController {
 
   var foods = [].obs;
   var banner = ''.obs;
+  var categories = [].obs;
   var subCategories = [].obs;
   var subSubCategories = [].obs;
+
+  var categoryId = ''.obs;
+  var subCategoryId = ''.obs;
+  var subSubCategoryId = ''.obs;
 
   itemPageBanner() {
     api.get(Routes.itemPageBanner).then((value) {
@@ -24,8 +30,24 @@ class ItemScreenController extends GetxController {
     });
   }
 
-  // get all sub category
-  var categoryId = ''.obs;
+  /*
+    category and category wise product
+  */
+  getMainCategory() {
+    HomeScreenController controller = Get.find();
+    categories.value = controller.categories.value;
+  }
+
+  getCategoryWiseProduct(id) {
+    foods.value = [];
+    api.get(Routes.categoryWiseProduct + id).then((value) {
+      foods.value = value['product'];
+    });
+  }
+
+  /*
+   get all sub category and sub category wise product
+  */
   getSubCategory(id) {
     categoryId.value = id;
     api.get(Routes.getSubCategory + id).then((value) {
@@ -33,20 +55,37 @@ class ItemScreenController extends GetxController {
     });
   }
 
-  //  Category wise product
-  getCategoryWiseProduct(id) {
-    api.get(Routes.categoryWiseProduct + id).then((value) {
+  getCategorySubCategoryWiseProduct(id) {
+    foods.value = [];
+    subCategoryId.value = id;
+    api
+        .get(
+            Routes.categorySubCategoryWiseProduct + categoryId.value + '/' + id)
+        .then((value) {
+      print(value);
       foods.value = value['product'];
     });
   }
 
-  //  Category Sub Category wise product
-  getCategorySubCategoryWiseProduct(id) {
+  // sub category and sub sub category wise product
+  getSubSubCategory(id) {
+    subSubCategoryId.value = id;
+    api.get(Routes.subcatsubsubcat + id).then((value) {
+      subCategories.value = value['subcategory'];
+    });
+  }
+
+  subSubCatProduct(id) {
     foods.value = [];
     api
-        .get(
-            Routes.categorySubCategoryWiseProduct + id + '/' + categoryId.value)
+        .get(Routes.subcatsubsubcatWiseProduct +
+            categoryId.value +
+            '/' +
+            subCategoryId.value +
+            '/' +
+            id)
         .then((value) {
+      print(value);
       foods.value = value['product'];
     });
   }

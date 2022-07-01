@@ -21,8 +21,9 @@ class ItemPageScreen extends GetView<ItemScreenController> {
   @override
   Widget build(BuildContext context) {
     Get.put<ItemScreenController>(ItemScreenController());
-    controller.getCategoryWiseProduct(id);
+    controller.getMainCategory();
     controller.getSubCategory(id);
+    controller.getCategoryWiseProduct(id);
     final orientation = MediaQuery.of(Get.context!).orientation;
     return BaseWidget(
       builder: (context, sizingInformation) => SafeArea(
@@ -74,7 +75,7 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                         Expanded(
                           flex: 2,
                           child: ListView.builder(
-                            itemCount: controller.subCategories.length,
+                            itemCount: controller.categories.length,
                             itemBuilder: (context, index) {
                               return Padding(
                                 padding: EdgeInsets.only(bottom: 40.h),
@@ -86,17 +87,40 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                             Image(
                                                 image: AssetImage(
                                                     "assets/images/item.png")),
-                                        imageUrl:
-                                            controller.subCategories[index]
-                                                    ['base_url'] +
-                                                controller.subCategories[index]
-                                                    ['image'],
+                                        imageUrl: controller.categories[index]
+                                                ['base_url'] +
+                                            controller.categories[index]
+                                                ['sub_image'],
                                         height: 70,
                                         width: 76,
                                       ),
                                     ),
-                                    Text(
-                                        '${controller.subCategories[index]['subcategory_name']}'),
+                                    Container(
+                                      padding: EdgeInsets.only(
+                                          left: 15.w,
+                                          right: 15.w,
+                                          top: 5.h,
+                                          bottom: 5.h),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(50)),
+                                          color: (controller.categoryId.value ==
+                                                  controller.categories[index]
+                                                      ['id'])
+                                              ? ColorConstants.primaryColor
+                                              : Colors.transparent),
+                                      child: Text(
+                                        '${controller.categories[index]['category_name']}',
+                                        style: TextStyle(
+                                            fontSize: 16.h,
+                                            color: (controller
+                                                        .categoryId.value ==
+                                                    controller.categories[index]
+                                                        ['id'])
+                                                ? Colors.white
+                                                : Colors.black),
+                                      ),
+                                    ),
                                   ],
                                 ),
                               );
@@ -108,12 +132,29 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                           child: Column(children: [
                             GridView.count(
                               shrinkWrap: true,
-                              crossAxisCount: 5,
-                              crossAxisSpacing: 10,
-                              mainAxisSpacing: 10,
-                              childAspectRatio: 2,
-                              children: List.generate(7, (index) {
-                                return foodVarision(text: 'Culf Beef');
+                              crossAxisCount: 4,
+                              crossAxisSpacing: 5,
+                              mainAxisSpacing: 5,
+                              childAspectRatio: 5,
+                              children: List.generate(
+                                  controller.subCategories.length, (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    controller
+                                        .getCategorySubCategoryWiseProduct(
+                                            controller.subCategories[index]
+                                                ['subcat_id']);
+                                  },
+                                  child: foodVarision(
+                                    active: (controller.subCategoryId ==
+                                            controller.subCategories[index]
+                                                ['subcat_id'])
+                                        ? true
+                                        : false,
+                                    text:
+                                        '${controller.subCategories[index]['subcategory_name']}',
+                                  ),
+                                );
                               }),
                             ),
                             Flexible(
@@ -245,31 +286,18 @@ class ItemPageScreen extends GetView<ItemScreenController> {
     );
   }
 
-  Widget foodVarision({required String text}) {
+  Widget foodVarision({required String text, required bool active}) {
     return Container(
-      height: 30,
-      width: 110,
+      padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 5.h, bottom: 5.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100),
-        border: Border.all(
-            color: ColorConstants.borderColor.withOpacity(0.2), width: 3),
+        borderRadius: BorderRadius.all(Radius.circular(50)),
+        color: active ? ColorConstants.subCategorySelection : Colors.white,
       ),
-      child: Center(child: Text(text)),
+      child: Text(
+        text,
+        style: TextStyle(
+            fontSize: 16.h, color: active ? Colors.white : Colors.black),
+      ),
     );
   }
-
-  // userChoice({required BuildContext context}) {
-  //   WidgetsBinding.instance?.addPostFrameCallback((_){
-  //     showDialog(
-  //       context: context,
-  //       builder: (context) => Dialog(
-  //         child: Container(
-  //           child: Text('hello'),
-  //         ),
-  //       ),
-  //     );
-  //   });
-  //
-  // }
-
 }

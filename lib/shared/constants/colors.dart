@@ -19,6 +19,7 @@ class ColorConstants {
   static Color selectedDesire = hexToColor("#E5F2F0");
   static Color cartImageBorderColor = hexToColor("#C4C4C4");
   static Color primaryColor = hexToColor("#5AB99D");
+  static Color subCategorySelection = hexToColor("#FF8A21");
 }
 
 Color hexToColor(String hex) {
