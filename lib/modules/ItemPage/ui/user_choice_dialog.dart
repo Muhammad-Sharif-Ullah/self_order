@@ -11,7 +11,7 @@ import 'package:self_order/modules/combo_screen_two/ui/combo_screen_two_view.dar
 import '../../../shared/constants/Dimensions.dart';
 import '../../../shared/constants/colors.dart';
 import '../../../shared/utils/customWidget_utils.dart';
-import '../model/MenuModel.dart';
+import '../model/ProductModel.dart';
 import 'item_customise_page.dart';
 import 'item_customise_page.dart';
 
@@ -28,88 +28,93 @@ uerChoiceDialog({required BuildContext context, required index}) {
           content: Obx(
             () => Container(
               width: 656.w,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: Dimensions.SizedBoxValue30,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 30.w),
-                      child: Row(
-                        children: [
-                          Text(
-                            'Make your choice',
-                            style: TextStyle(
-                                color: ColorConstants.primaryButtonColor,
-                                fontSize: 30.sp),
-                          ),
-                          Spacer(),
-                          CustomWidget.CustomCloseSection(context: context),
-                        ],
+              child: Column(
+                children: [
+                  Column(
+                    children: [
+                      SizedBox(
+                        height: Dimensions.SizedBoxValue30,
                       ),
-                    ),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 80.w),
-                      child: Row(
-                        children: [
-                          CachedNetworkImage(
-                            imageUrl: controller.foods[index]['base_url'] +
-                                controller.foods[index]['combo_image'],
-                            height: 158.h,
-                            width: 212.w,
-                          ),
-                          SizedBox(width: 30.w),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                controller.foods[index]['name'],
-                                style: TextStyle(
-                                    color: ColorConstants.primaryBigTextColor,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 30.sp),
-                              ),
-                              SizedBox(
-                                height: 8.h,
-                              ),
-                              Text(
-                                controller.foods[index]['product_description'],
-                                style: TextStyle(
-                                    color: ColorConstants.primaryBigTextColor
-                                        .withOpacity(0.5),
-                                    fontSize: 30.sp),
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                              Text(
-                                controller.foods[index]['product_price'],
-                                style: TextStyle(
-                                    color: ColorConstants.bannerHeadingTextColor
-                                        .withOpacity(0.5),
-                                    fontSize: 30.sp),
-                              ),
-                              SizedBox(
-                                height: 15.h,
-                              ),
-                            ],
-                          )
-                        ],
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 30.w),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Make your choice',
+                              style: TextStyle(
+                                  color: ColorConstants.primaryButtonColor,
+                                  fontSize: 30.sp),
+                            ),
+                            Spacer(),
+                            CustomWidget.CustomCloseSection(context: context),
+                          ],
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40.w),
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 80.w),
+                        child: Row(
+                          children: [
+                            CachedNetworkImage(
+                              imageUrl: controller.foods[index]['base_url'] +
+                                  controller.foods[index]['combo_image'],
+                              height: 158.h,
+                              width: 212.w,
+                            ),
+                            SizedBox(width: 30.w),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  controller.foods[index]['name'],
+                                  style: TextStyle(
+                                      color: ColorConstants.primaryBigTextColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 30.sp),
+                                ),
+                                SizedBox(
+                                  height: 8.h,
+                                ),
+                                Text(
+                                  controller.foods[index]
+                                      ['product_description'],
+                                  style: TextStyle(
+                                      color: ColorConstants.primaryBigTextColor
+                                          .withOpacity(0.5),
+                                      fontSize: 30.sp),
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                Text(
+                                  controller.foods[index]['product_price'],
+                                  style: TextStyle(
+                                      color: ColorConstants
+                                          .bannerHeadingTextColor
+                                          .withOpacity(0.5),
+                                      fontSize: 30.sp),
+                                ),
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 30.h,
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                    child: Container(
                       child: ListView(
                         shrinkWrap: true,
                         children: [
-                          (controller.menu['chrust'].length > 0)
+                          (controller.product.value.chrust.length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -121,44 +126,46 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                           fontSize: 25.sp),
                                     ),
                                     GridView.builder(
-                                        itemCount:
-                                            controller.menu['chrust'].length,
+                                        itemCount: controller
+                                            .product.value.chrust.length,
                                         shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
                                             SliverGridDelegateWithFixedCrossAxisCount(
                                                 crossAxisCount: 3,
                                                 childAspectRatio: 1,
-                                                crossAxisSpacing: 5,
+                                                crossAxisSpacing: 1,
                                                 mainAxisExtent: 40,
-                                                mainAxisSpacing: 5),
+                                                mainAxisSpacing: 1),
                                         itemBuilder: (context, i) {
-                                          controller.menu['chrust'][i]
-                                              ['selected'] = false;
-                                          return Row(
-                                            children: [
-                                              StatefulBuilder(
-                                                  builder: (context, setState) {
-                                                return Checkbox(
-                                                    activeColor: Colors.green,
-                                                    value: controller
-                                                            .menu['chrust'][i]
-                                                        ['selected'],
-                                                    onChanged: (v) {
-                                                      controller.menu['chrust']
-                                                              [i]['selected'] =
-                                                          !controller.menu[
-                                                                  'chrust'][i]
-                                                              ['selected'];
-                                                      setState(() {});
-                                                      print(
-                                                          'combo id ${controller.menu['chrust'][i]['selected']}');
-                                                    });
-                                              }),
-                                              Text(
-                                                  '${controller.menu['chrust'][i]['name']}')
-                                            ],
-                                          );
+                                          return StatefulBuilder(
+                                              builder: (context, setState) {
+                                            return RadioListTile(
+                                                contentPadding:
+                                                    EdgeInsets.all(0),
+                                                value: i,
+                                                activeColor:
+                                                    ColorConstants.primaryColor,
+                                                selected: (controller
+                                                            .product
+                                                            .value
+                                                            .selectedChrustId ==
+                                                        i)
+                                                    ? true
+                                                    : false,
+                                                title: Text(
+                                                    '${controller.product.value.chrust[i].name}',
+                                                    style: TextStyle(
+                                                      fontSize: 16.h,
+                                                    )),
+                                                groupValue: controller.product
+                                                    .value.selectedChrustId,
+                                                onChanged: (v) {
+                                                  setState(() {
+                                                    controller.product.value
+                                                        .selectedChrustId = i;
+                                                  });
+                                                });
+                                          });
                                         }),
                                   ],
                                 )
@@ -175,8 +182,8 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                           fontSize: 25.sp),
                                     ),
                                     GridView.builder(
-                                        itemCount:
-                                            controller.menu['toppings'].length,
+                                        itemCount: controller
+                                            .product.value.toppings.length,
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
@@ -187,25 +194,39 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.menu['toppings'][i]
-                                              ['selected'] = false;
-                                          return Row(
-                                            children: [
-                                              Checkbox(
-                                                  value: controller
-                                                          .menu['toppings'][i]
-                                                      ['selected'],
-                                                  onChanged: (v) {
-                                                    controller.menu['toppings']
-                                                            [i]['selected'] =
-                                                        !controller.menu[
-                                                                'toppings'][i]
-                                                            ['selected'];
-                                                  }),
-                                              Text(
-                                                  '${controller.menu['toppings'][i]['name']}')
-                                            ],
-                                          );
+                                          return StatefulBuilder(
+                                              builder: (context, setState) {
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    activeColor: ColorConstants
+                                                        .primaryColor,
+                                                    value: controller
+                                                        .product
+                                                        .value
+                                                        .toppings[i]
+                                                        .selected,
+                                                    onChanged: (v) {
+                                                      setState(() {
+                                                        controller
+                                                                .product
+                                                                .value
+                                                                .toppings[i]
+                                                                .selected =
+                                                            !controller
+                                                                .product
+                                                                .value
+                                                                .toppings[i]
+                                                                .selected;
+                                                      });
+                                                    }),
+                                                Text(
+                                                    '${controller.product.value.toppings[i].name}')
+                                              ],
+                                            );
+                                          });
                                         }),
                                   ],
                                 )
@@ -620,10 +641,11 @@ uerChoiceDialog({required BuildContext context, required index}) {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: Dimensions.padding30),
-                      child: Row(
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           InkWell(
                             onTap: () {
@@ -643,7 +665,6 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                     ColorConstants.priceborderColor,
                                 titleFontWeight: FontWeight.w700),
                           ),
-                          Spacer(),
                           InkWell(
                             onTap: () {
                               Get.to(ItemCustomisePage(
@@ -670,26 +691,26 @@ uerChoiceDialog({required BuildContext context, required index}) {
                           )
                         ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    CustomWidget.CustomPrimaryButton(
-                        context: context,
-                        height: 60.h,
-                        width: 596.w,
-                        borderColor: ColorConstants.primaryButtonColor,
-                        title: 'Add to cart',
-                        titlecolor: Colors.white,
-                        titlefontSize: 24.sp,
-                        borderradius: 5,
-                        backgroundcolor: ColorConstants.primaryButtonColor,
-                        titleFontWeight: FontWeight.w700),
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                  ],
-                ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      CustomWidget.CustomPrimaryButton(
+                          context: context,
+                          height: 60.h,
+                          width: double.infinity,
+                          borderColor: ColorConstants.primaryButtonColor,
+                          title: 'Add to cart',
+                          titlecolor: Colors.white,
+                          titlefontSize: 24.sp,
+                          borderradius: 5,
+                          backgroundcolor: ColorConstants.primaryButtonColor,
+                          titleFontWeight: FontWeight.w700),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
           ),

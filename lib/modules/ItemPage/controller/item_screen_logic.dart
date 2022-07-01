@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:self_order/modules/Home/controller/home_screen_logic.dart';
-import 'package:self_order/modules/ItemPage/model/MenuModel.dart';
+import 'package:self_order/modules/ItemPage/model/ProductModel.dart';
 import 'package:self_order/request/routes.dart';
 
 import '../../../request/api_provider.dart';
@@ -101,9 +101,11 @@ class ItemScreenController extends GetxController {
   * get single product detail
   */
   var menu = {}.obs;
+  var product = ProductModel().obs;
   var style = [].obs;
   getFood(index) {
     menu.value = foods[index];
+    product.value = ProductModel.fromJson(foods[index]);
     style.value = foods[index]['style'];
   }
 
