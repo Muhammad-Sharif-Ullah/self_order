@@ -7,8 +7,9 @@ class ComboScreenControllertwo extends GetxController {
 
   var currentStatus = 1.obs;
 
-  var selectedCombo = '18'.obs;
-  var selectedSize = 'm'.obs;
+  var selectedProductId = ''.obs;
+  var selectedComboId = ''.obs;
+  var selectedSize = ''.obs;
 
   dynamic selectedFoodVersion = ''.obs;
 
@@ -18,8 +19,7 @@ class ComboScreenControllertwo extends GetxController {
   getCombo() {
     api
         .get(Routes.combo +
-            '/246' +
-            // selectedCombo.toString() +
+            '${selectedProductId.value}' +
             '/' +
             selectedSize.value)
         .then((value) {
@@ -31,9 +31,10 @@ class ComboScreenControllertwo extends GetxController {
   getComboChoices() {}
 
   var sideList = [].obs;
-  getSide(id) {
+  getSide() {
     api
-        .get(Routes.comboSide + selectedCombo.value + '/' + selectedSize.value)
+        .get(
+            Routes.comboSide + selectedComboId.value + '/' + selectedSize.value)
         .then((value) {
       print(value);
       sideList.value = value['comboside'];
@@ -43,12 +44,7 @@ class ComboScreenControllertwo extends GetxController {
   var drinkList = [].obs;
   getDrinks() {
     api
-        .get(Routes.comboDrink + '18/m'
-            // +
-            // selectedCombo.value +
-            // '/' +
-            // selectedSize.value
-            )
+        .get(Routes.comboDrink + selectedComboId.value + '/${selectedSize}')
         .then((value) {
       print(value);
       drinkList.value = value['combodrink'];

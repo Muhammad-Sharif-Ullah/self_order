@@ -22,9 +22,12 @@ class _ComboDrinkMenuState extends State<ComboDrinkMenu> {
         margin: EdgeInsets.only(left: 20, right: 20),
         child: ListView(
           children: [
-            Text('Choose a Drinks'),
+            Text(
+              'Choose a Drinks',
+              style: TextStyle(fontSize: 20.h),
+            ),
             SizedBox(
-              height: 30.h,
+              height: 30,
             ),
             GridView.builder(
                 shrinkWrap: true,

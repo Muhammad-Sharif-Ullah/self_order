@@ -14,12 +14,14 @@ import '../controller/item_screen_logic.dart';
 
 class ItemPageScreen extends GetView<ItemScreenController> {
   String id;
-  ItemPageScreen({Key? key, required this.id}) : super(key: key);
+  String name;
+  ItemPageScreen({Key? key, required this.id, required this.name})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Get.put<ItemScreenController>(ItemScreenController());
-    controller.getFoods(id);
+    controller.getCategoryWiseProduct(id);
     controller.getSubCategory(id);
     final orientation = MediaQuery.of(Get.context!).orientation;
     return BaseWidget(
@@ -53,7 +55,7 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
                   child: Text(
-                    'Burger',
+                    '${name}',
                     style: TextStyle(
                         fontSize: 24.sp,
                         fontWeight: FontWeight.w700,
@@ -80,6 +82,10 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                   children: [
                                     Container(
                                       child: CachedNetworkImage(
+                                        errorWidget: (context, url, error) =>
+                                            Image(
+                                                image: AssetImage(
+                                                    "assets/images/item.png")),
                                         imageUrl:
                                             controller.subCategories[index]
                                                     ['base_url'] +
@@ -100,16 +106,16 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                         Expanded(
                           flex: 7,
                           child: Column(children: [
-                            // GridView.count(
-                            //   shrinkWrap: true,
-                            //   crossAxisCount: 5,
-                            //   crossAxisSpacing: 10,
-                            //   mainAxisSpacing: 10,
-                            //   childAspectRatio: 2,
-                            //   children: List.generate(7, (index) {
-                            //     return foodVarision(text: 'Culf Beef');
-                            //   }),
-                            // ),
+                            GridView.count(
+                              shrinkWrap: true,
+                              crossAxisCount: 5,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 2,
+                              children: List.generate(7, (index) {
+                                return foodVarision(text: 'Culf Beef');
+                              }),
+                            ),
                             Flexible(
                               child: SingleChildScrollView(
                                 child: Column(
@@ -145,6 +151,11 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                                 CachedNetworkImage(
                                                   width: 208.w,
                                                   height: 90.h,
+                                                  errorWidget: (context, url,
+                                                          error) =>
+                                                      Image(
+                                                          image: AssetImage(
+                                                              "assets/images/item.png")),
                                                   imageUrl: controller
                                                               .foods[index]
                                                           ['base_url'] +

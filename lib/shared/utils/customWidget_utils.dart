@@ -187,6 +187,7 @@ class CustomWidget {
           return GestureDetector(
             onTap: () => Get.to(ItemPageScreen(
               id: controller.categories[index]['id'],
+              name: controller.categories[index]['category_name'],
             )),
             child: Padding(
               padding: EdgeInsets.only(bottom: 30.h, left: 30.w),
@@ -210,6 +211,8 @@ class CustomWidget {
                     CachedNetworkImage(
                         width: 208.w,
                         height: 100.h,
+                        errorWidget: (context, url, error) =>
+                            Image(image: AssetImage("assets/images/item.png")),
                         imageUrl: controller.categories[index]['base_url'] +
                             controller.categories[index]['sub_image']),
                     SizedBox(
@@ -587,7 +590,10 @@ class CustomWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          CachedNetworkImage(imageUrl: menu['base_url'] + menu['label_image']),
+          CachedNetworkImage(
+              errorWidget: (context, url, error) =>
+                  Image(image: AssetImage("assets/images/item.png")),
+              imageUrl: menu['base_url'] + menu['label_image']),
           SizedBox(
             height: Dimensions.SizedBoxValue20,
           ),

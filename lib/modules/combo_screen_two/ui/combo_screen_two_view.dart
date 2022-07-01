@@ -56,11 +56,16 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                             padding: EdgeInsets.all(15),
                             child: Text('LARGE'),
                           ),
+                          Container(
+                            decoration: BoxDecoration(color: Color(0xFFE5F2F0)),
+                            padding: EdgeInsets.all(15),
+                            child: Text('EX LARGE'),
+                          ),
                         ],
                       )),
                       Expanded(
                           child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Container(
                               child: Column(
@@ -72,11 +77,9 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(50)),
                                     border: Border.all(
-                                        color:
-                                            ColorConstants.priceborderColor)),
+                                        color: ColorConstants.primaryColor)),
                                 child: Image(
-                                  image: AssetImage(
-                                      "assets/images/smallburger.png"),
+                                  image: AssetImage("assets/images/item.png"),
                                   height: 50.h,
                                   width: 60.w,
                                 ),
@@ -84,6 +87,11 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                               Text('Sub Burger')
                             ],
                           )),
+                          Container(
+                            height: 1.h,
+                            width: 50.w,
+                            color: ColorConstants.primaryColor,
+                          ),
                           Container(
                               child: Column(
                             children: [
@@ -94,11 +102,9 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(50)),
                                     border: Border.all(
-                                        color:
-                                            ColorConstants.priceborderColor)),
+                                        color: ColorConstants.primaryColor)),
                                 child: Image(
-                                  image: AssetImage(
-                                      "assets/images/smallburger.png"),
+                                  image: AssetImage("assets/images/item.png"),
                                   height: 50.h,
                                   width: 60.w,
                                 ),
@@ -106,6 +112,11 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                               Text('Sub Burger')
                             ],
                           )),
+                          Container(
+                            height: 1.h,
+                            width: 50.w,
+                            color: ColorConstants.primaryColor,
+                          ),
                           Container(
                               child: Column(
                             children: [
@@ -116,11 +127,9 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(50)),
                                     border: Border.all(
-                                        color:
-                                            ColorConstants.priceborderColor)),
+                                        color: ColorConstants.primaryColor)),
                                 child: Image(
-                                  image: AssetImage(
-                                      "assets/images/smallburger.png"),
+                                  image: AssetImage("assets/images/item.png"),
                                   height: 50.h,
                                   width: 60.w,
                                 ),
@@ -163,9 +172,9 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                             width: 320.0,
                             height: 60.0,
                             borderradius: 5.0,
-                            backgroundcolor:
-                                ColorConstants.textFormFieldUnderlineColor,
-                            titlecolor: Colors.black,
+                            backgroundcolor: Colors.transparent,
+                            titlecolor: Color(0xFF505050),
+                            borderColor: Color(0xFF505050),
                             title: 'Back'),
                       ),
                       Spacer(),
@@ -182,7 +191,9 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                             width: 320.0,
                             height: 60.0,
                             borderradius: 5.0,
-                            backgroundcolor: ColorConstants.primaryButtonColor,
+                            titlecolor: Color(0xFFFF000E),
+                            borderColor: Color(0xFFFF000E),
+                            backgroundcolor: Colors.transparent,
                             title: 'CONTINUE'),
                       )
                     ],

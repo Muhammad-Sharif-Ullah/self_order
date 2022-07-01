@@ -24,18 +24,36 @@ class ItemScreenController extends GetxController {
     });
   }
 
+  // get all sub category
+  var categoryId = ''.obs;
   getSubCategory(id) {
-    api.get(Routes.productSubCategory + id).then((value) {
+    categoryId.value = id;
+    api.get(Routes.getSubCategory + id).then((value) {
       subCategories.value = value['subcategory'];
     });
   }
 
-  getSubSubCategory(id) {
-    api.get(Routes.productSubCategory + id).then((value) {
-      subCategories.value = value['subcategory'];
+  //  Category wise product
+  getCategoryWiseProduct(id) {
+    api.get(Routes.categoryWiseProduct + id).then((value) {
+      foods.value = value['product'];
     });
   }
 
+  //  Category Sub Category wise product
+  getCategorySubCategoryWiseProduct(id) {
+    foods.value = [];
+    api
+        .get(
+            Routes.categorySubCategoryWiseProduct + id + '/' + categoryId.value)
+        .then((value) {
+      foods.value = value['product'];
+    });
+  }
+
+  /*
+  * get single product detail
+  */
   var menu = {}.obs;
   var style = [].obs;
   getFood(index) {
@@ -43,18 +61,14 @@ class ItemScreenController extends GetxController {
     style.value = foods[index]['style'];
   }
 
-  getFoods(id) {
-    api.get(Routes.productCategory + id).then((value) {
-      foods.value = value['product'];
-    });
-  }
-
+  /*
+  *  Customise Products
+  */
   var customiseFoods = [].obs;
   var customiseExtraFoods = [].obs;
   var customiseExtraOptions = [].obs;
   getCustomiseFood(id) {
     api.get(Routes.customiseProduct + '246').then((value) {
-      print(value);
       customiseFoods.value = value['customise'];
     });
   }

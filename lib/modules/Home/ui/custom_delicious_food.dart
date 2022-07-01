@@ -39,6 +39,8 @@ Widget customDeliciousFood({required BuildContext context}) {
                     CachedNetworkImage(
                         height: 56.h,
                         width: 76.w,
+                        errorWidget: (context, url, error) =>
+                            Image(image: AssetImage("assets/images/item.png")),
                         imageUrl: controller.customerChoices[index]
                                 ['base_url'] +
                             controller.customerChoices[index]['product_image']),

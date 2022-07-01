@@ -181,6 +181,9 @@ class ItemCustomisePage extends StatelessWidget {
                             child: Column(
                               children: [
                                 CachedNetworkImage(
+                                  errorWidget: (context, url, error) => Image(
+                                      image: AssetImage(
+                                          "assets/images/homescreen.png")),
                                   imageUrl: i['base_url'] + i['image'],
                                   height: 70,
                                   width: 130,

@@ -8,8 +8,9 @@ class Routes {
   static const customerChoice = base + 'customerchoice';
 
   static const itemPageBanner = base + 'itempagebanner';
-  static const productCategory = base + 'productcat/';
-  static const productSubCategory = base + 'subcategory/';
+  static const categoryWiseProduct = base + 'productcat/';
+  static const categorySubCategoryWiseProduct = base + 'productcatsubcat/';
+  static const getSubCategory = base + 'subcategory/';
   static const productSubSubCategory = base + 'subcategory/';
 
   static const customiseProduct = base + 'customise/';

@@ -5,7 +5,7 @@ import 'package:self_order/modules/combo_screen_two/controller/combo_screen_two_
 import 'package:self_order/shared/utils/customWidget_utils.dart';
 
 class ComboSideMenu extends StatefulWidget {
-  const ComboSideMenu({Key? key}) : super(key: key);
+  ComboSideMenu({Key? key}) : super(key: key);
 
   @override
   State<ComboSideMenu> createState() => _ComboSideMenuState();
@@ -16,13 +16,16 @@ class _ComboSideMenuState extends State<ComboSideMenu> {
   Widget build(BuildContext context) {
     final orientation = MediaQuery.of(Get.context!).orientation;
     var controller = Get.find<ComboScreenControllertwo>();
-    // controller.getSide();
+    controller.getSide();
     return Container(
       margin: EdgeInsets.only(left: 20, right: 20),
       child: Obx(
         () => ListView(
           children: [
-            Text('Choose Side Menu'),
+            Text(
+              'Choose a Sides',
+              style: TextStyle(fontSize: 20.h),
+            ),
             SizedBox(
               height: 30,
             ),

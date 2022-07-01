@@ -33,18 +33,25 @@ class HomeScreen extends GetView<HomeScreenController> {
                     alignment: Alignment.topRight,
                     children: [
                       (controller.sliders.value.length > 0)
-                          ? CarouselSlider.builder(
-                              itemCount: controller.sliders.value.length,
-                              options: CarouselOptions(
-                                  autoPlay: true, viewportFraction: 1),
-                              itemBuilder: (BuildContext context, int itemIndex,
-                                      int pageViewIndex) =>
-                                  Container(
-                                child: CachedNetworkImage(
-                                    imageUrl: controller.sliders
-                                            .value[itemIndex]['base_url'] +
-                                        controller.sliders.value[itemIndex]
-                                            ['image']),
+                          ? Container(
+                              height: 300.h,
+                              width: double.infinity,
+                              child: CarouselSlider.builder(
+                                itemCount: controller.sliders.value.length,
+                                options: CarouselOptions(
+                                    autoPlay: true, viewportFraction: 1),
+                                itemBuilder: (BuildContext context,
+                                        int itemIndex, int pageViewIndex) =>
+                                    CachedNetworkImage(
+                                        width: double.infinity,
+                                        height: double.infinity,
+                                        errorWidget: (context, url, error) => Image(
+                                            image: AssetImage(
+                                                "assets/images/homescreen.png")),
+                                        imageUrl: controller.sliders
+                                                .value[itemIndex]['base_url'] +
+                                            controller.sliders.value[itemIndex]
+                                                ['image']),
                               ),
                             )
                           : Image(
@@ -206,7 +213,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                   // ),
                   InkWell(
                     onTap: () {
-                      Get.to(ComboScreenViewOne());
+                      Get.to(ComboScreenViewOne(id: '246'));
                     },
                     child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 30.w),

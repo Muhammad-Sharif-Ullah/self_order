@@ -12,14 +12,14 @@ import '../../base_widget.dart';
 import '../controller/combo_screen_one_logic.dart';
 
 class ComboScreenViewOne extends GetView<ComboScreenControllertwo> {
-  String? id;
-  ComboScreenViewOne({Key? key, String? id}) : super(key: key);
+  String id;
+  ComboScreenViewOne({Key? key, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Get.put<ComboScreenControllertwo>(ComboScreenControllertwo());
-    // controller.selectedCombo.value = id;
-    // print('selected combo is ${controller.selectedCombo.value}');
+    controller.selectedProductId.value = id;
+    print('selected combo is ${controller.selectedProductId.value}');
     return BaseWidget(
       builder: (context, sizingInformation) => SafeArea(
         child: Scaffold(
@@ -96,21 +96,25 @@ class ComboScreenViewOne extends GetView<ComboScreenControllertwo> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
                       onTap: () => Get.back(),
                       child: CustomWidget.CustomPrimaryButton(
                           title: 'Back',
                           borderradius: 11.0,
-                          backgroundcolor: ColorConstants.bannerBackgroundColor,
+                          backgroundcolor: Colors.transparent,
+                          titlecolor: Color(0xFF505050),
+                          borderColor: Color(0xFF505050),
                           height: 60.0,
                           width: 320.0),
                     ),
-                    Spacer(),
                     CustomWidget.CustomPrimaryButton(
                         title: 'Cancel Combo',
                         borderradius: 11.0,
-                        backgroundcolor: ColorConstants.redButtonColor,
+                        backgroundcolor: Colors.transparent,
+                        titlecolor: ColorConstants.redButtonColor,
+                        borderColor: ColorConstants.redButtonColor,
                         height: 60.0,
                         width: 320.0),
                   ],

@@ -21,11 +21,11 @@ uerChoiceDialog({required BuildContext context, required index}) {
       builder: (BuildContext context) {
         ItemScreenController controller = Get.find();
         controller.getFood(index);
-        return Dialog(
+        return AlertDialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          child: Obx(
+          content: Obx(
             () => Container(
               width: 656.w,
               child: SingleChildScrollView(
@@ -101,8 +101,11 @@ uerChoiceDialog({required BuildContext context, required index}) {
                         ],
                       ),
                     ),
+                    SizedBox(
+                      height: 30.h,
+                    ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 80.w),
+                      padding: EdgeInsets.symmetric(horizontal: 40.w),
                       child: ListView(
                         shrinkWrap: true,
                         children: [
@@ -134,17 +137,24 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                               ['selected'] = false;
                                           return Row(
                                             children: [
-                                              Checkbox(
-                                                  value:
+                                              StatefulBuilder(
+                                                  builder: (context, setState) {
+                                                return Checkbox(
+                                                    activeColor: Colors.green,
+                                                    value: controller
+                                                            .menu['chrust'][i]
+                                                        ['selected'],
+                                                    onChanged: (v) {
                                                       controller.menu['chrust']
-                                                          [i]['selected'],
-                                                  onChanged: (v) {
-                                                    controller.menu['chrust'][i]
-                                                            ['selected'] =
-                                                        !controller
-                                                                .menu['chrust']
-                                                            [i]['selected'];
-                                                  }),
+                                                              [i]['selected'] =
+                                                          !controller.menu[
+                                                                  'chrust'][i]
+                                                              ['selected'];
+                                                      setState(() {});
+                                                      print(
+                                                          'combo id ${controller.menu['chrust'][i]['selected']}');
+                                                    });
+                                              }),
                                               Text(
                                                   '${controller.menu['chrust'][i]['name']}')
                                             ],
@@ -586,12 +596,14 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                   value: controller.foods[index]
                                                       ['meal'][i]['selected'],
                                                   onChanged: (v) {
-                                                    controller.foods[index]
-                                                                ['meal'][i]
-                                                            ['selected'] =
-                                                        !controller.foods[index]
-                                                                ['meal'][i]
-                                                            ['selected'];
+                                                    // setState(() {
+                                                    //   controller.foods[index]
+                                                    //               ['meal'][i]
+                                                    //           ['selected'] =
+                                                    //       !controller.foods[
+                                                    //               index]['meal']
+                                                    //           [i]['selected'];
+                                                    // });
                                                   }),
                                               Expanded(
                                                 child: Text(
