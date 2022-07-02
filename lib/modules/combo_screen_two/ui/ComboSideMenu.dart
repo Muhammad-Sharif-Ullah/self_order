@@ -24,7 +24,7 @@ class _ComboSideMenuState extends State<ComboSideMenu> {
           children: [
             Text(
               'Choose a Sides',
-              style: TextStyle(fontSize: 20.h),
+              style: TextStyle(fontSize: 30.sp),
             ),
             SizedBox(
               height: 30,

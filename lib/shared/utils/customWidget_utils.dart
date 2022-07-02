@@ -602,7 +602,7 @@ class CustomWidget {
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
-              fontSize: Dimensions.TextSize20,
+              fontSize: Dimensions.TextSize25,
             ),
           ),
           SizedBox(
@@ -615,7 +615,7 @@ class CustomWidget {
                 style: TextStyle(
                     color: ColorConstants.primaryBigTextColor,
                     fontWeight: FontWeight.bold,
-                    fontSize: Dimensions.TextSize18),
+                    fontSize: Dimensions.TextSize20),
               ),
               SizedBox(
                 width: 60,

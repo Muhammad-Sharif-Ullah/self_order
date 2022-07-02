@@ -112,7 +112,7 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                       child: Text(
                                         '${controller.categories[index]['category_name']}',
                                         style: TextStyle(
-                                            fontSize: 16.h,
+                                            fontSize: Dimensions.TextSize20,
                                             color: (controller
                                                         .categoryId.value ==
                                                     controller.categories[index]
@@ -207,11 +207,11 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                         gridDelegate:
                                             SliverGridDelegateWithFixedCrossAxisCount(
                                                 mainAxisSpacing: 20,
-                                                // crossAxisSpacing: 20,
+                                                mainAxisExtent: 230.h,
                                                 crossAxisCount: (orientation ==
                                                         Orientation.portrait)
-                                                    ? 3
-                                                    : 4),
+                                                    ? 4
+                                                    : 5),
                                         physics: ScrollPhysics(),
                                         itemBuilder: (context, index) {
                                           return GestureDetector(
@@ -233,7 +233,7 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                                           error) =>
                                                       Image(
                                                           image: AssetImage(
-                                                              "assets/images/item.png")),
+                                                              "assets/images/bannerImage.png")),
                                                   imageUrl: controller
                                                               .foods[index]
                                                           ['base_url'] +
@@ -264,13 +264,16 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                                       fontWeight:
                                                           FontWeight.bold,
                                                       fontSize: Dimensions
-                                                          .TextSize15),
+                                                          .TextSize18),
                                                 ),
-                                                // SizedBox(
-                                                //   height: Dimensions
-                                                //       .SizedBoxValue25,
-                                                // ),
+                                                SizedBox(
+                                                  height: Dimensions
+                                                      .SizedBoxValue25,
+                                                ),
                                                 Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     Text(
                                                       '\$${controller.foods[index]['product_price']}',
@@ -280,16 +283,14 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                                           fontWeight:
                                                               FontWeight.bold,
                                                           fontSize: Dimensions
-                                                              .TextSize18),
-                                                    ),
-                                                    SizedBox(
-                                                      width: 60,
+                                                              .TextSize20),
                                                     ),
                                                     Container(
                                                       height: 30,
                                                       width: 30,
                                                       decoration: BoxDecoration(
-                                                        color: Colors.grey,
+                                                        color: Colors.black
+                                                            .withOpacity(0.08),
                                                         borderRadius:
                                                             BorderRadius
                                                                 .circular(20),
@@ -324,17 +325,22 @@ class ItemPageScreen extends GetView<ItemScreenController> {
   }
 
   Widget foodVarision({required String text, required bool active}) {
-    return Container(
-      padding: EdgeInsets.only(left: 15.w, right: 15.w, top: 5.h, bottom: 5.h),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(50)),
-        color: active ? ColorConstants.subCategorySelection : Colors.white,
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-            fontSize: 16.h, color: active ? Colors.white : Colors.black),
-      ),
+    return Row(
+      children: [
+        Container(
+          padding:
+              EdgeInsets.only(left: 15.w, right: 15.w, top: 5.h, bottom: 5.h),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(50)),
+            color: active ? ColorConstants.subCategorySelection : Colors.white,
+          ),
+          child: Text(
+            text,
+            style: TextStyle(
+                fontSize: 16.h, color: active ? Colors.white : Colors.black),
+          ),
+        ),
+      ],
     );
   }
 }

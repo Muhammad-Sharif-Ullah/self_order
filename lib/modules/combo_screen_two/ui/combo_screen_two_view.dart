@@ -7,6 +7,7 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:self_order/modules/combo_screen_two/ui/ComboDrinkMenu.dart';
 import 'package:self_order/modules/combo_screen_two/ui/ComboMainMenu.dart';
 import 'package:self_order/modules/combo_screen_two/ui/ComboSideMenu.dart';
+import 'package:self_order/modules/combo_screen_two/ui/combo_cart.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
@@ -84,7 +85,38 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                                   width: 60.w,
                                 ),
                               ),
-                              Text('Sub Burger')
+                              Text(
+                                'Sub Burger',
+                                style: TextStyle(fontSize: 16.sp),
+                              )
+                            ],
+                          )),
+                          Container(
+                            height: 1.h,
+                            width: 50.w,
+                            color: ColorConstants.primaryColor,
+                          ),
+                          Container(
+                              child: Column(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(bottom: 15),
+                                decoration: BoxDecoration(
+                                    // color: ColorConstants.primaryBigTextColor,
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50)),
+                                    border: Border.all(
+                                        color: ColorConstants.primaryColor)),
+                                child: Image(
+                                  image: AssetImage("assets/images/item.png"),
+                                  height: 60.h,
+                                  width: 60.w,
+                                ),
+                              ),
+                              Text(
+                                'Sub Burger',
+                                style: TextStyle(fontSize: 16.sp),
+                              )
                             ],
                           )),
                           Container(
@@ -109,32 +141,10 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                                   width: 60.w,
                                 ),
                               ),
-                              Text('Sub Burger')
-                            ],
-                          )),
-                          Container(
-                            height: 1.h,
-                            width: 50.w,
-                            color: ColorConstants.primaryColor,
-                          ),
-                          Container(
-                              child: Column(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(bottom: 15),
-                                decoration: BoxDecoration(
-                                    // color: ColorConstants.primaryBigTextColor,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(50)),
-                                    border: Border.all(
-                                        color: ColorConstants.primaryColor)),
-                                child: Image(
-                                  image: AssetImage("assets/images/item.png"),
-                                  height: 50.h,
-                                  width: 60.w,
-                                ),
-                              ),
-                              Text('Sub Burger')
+                              Text(
+                                'Sub Burger',
+                                style: TextStyle(fontSize: 16.sp),
+                              )
                             ],
                           )),
                         ],
@@ -184,6 +194,8 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                             controller.currentStatus.value++;
                           } else if (controller.currentStatus == 2) {
                             controller.currentStatus.value++;
+                          } else if (controller.currentStatus == 3) {
+                            Get.to(ComboCart());
                           }
                         },
                         child: CustomWidget.CustomPrimaryButton(
@@ -200,7 +212,7 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
               ],
             ),

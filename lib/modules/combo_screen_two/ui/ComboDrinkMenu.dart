@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:self_order/modules/combo_screen_two/controller/combo_screen_two_logic.dart';
+import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
 
 class ComboDrinkMenu extends StatefulWidget {
@@ -24,7 +25,7 @@ class _ComboDrinkMenuState extends State<ComboDrinkMenu> {
           children: [
             Text(
               'Choose a Drinks',
-              style: TextStyle(fontSize: 20.h),
+              style: TextStyle(fontSize: Dimensions.TextSize25),
             ),
             SizedBox(
               height: 30,

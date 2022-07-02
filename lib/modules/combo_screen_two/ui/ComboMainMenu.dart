@@ -52,8 +52,9 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
                   desiredItemWidth: 147,
                   minSpacing: 35,
                   children: controller.comboList.map((i) {
-                    return InkWell(
+                    return GestureDetector(
                       onTap: () {
+                        controller.selectedComboId.value = i['id'];
                         selectComboOption();
                       },
                       child: Container(
@@ -105,9 +106,6 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
                             CustomWidget.CustomCloseSection(context: context),
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        height: 30.h,
                       ),
                       SizedBox(
                         height: 30.h,
