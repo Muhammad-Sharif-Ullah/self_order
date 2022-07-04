@@ -108,6 +108,10 @@ class ItemScreenController extends GetxController {
     product.value = ProductModel.fromJson(foods[index]);
   }
 
+  setCustomerChoiceFood(food) {
+    product.value = ProductModel.fromJson(food);
+  }
+
   /*
   *  Customise Products
   */

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
 import 'package:self_order/modules/ItemPage/ui/item_screen_view.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
@@ -19,6 +20,7 @@ class HomeScreen extends GetView<HomeScreenController> {
   @override
   Widget build(BuildContext context) {
     Get.put<HomeScreenController>(HomeScreenController());
+    ItemScreenController itemScreenController = Get.put(ItemScreenController());
     return BaseWidget(
       builder: (context, sizingInformation) => SafeArea(
         child: Scaffold(
@@ -377,7 +379,7 @@ class HomeScreen extends GetView<HomeScreenController> {
 
                   (controller.categories.length > 0)
                       ? Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 30),
+                          padding: EdgeInsets.symmetric(horizontal: 10),
                           child: CustomWidget.CustomTitleWithVariation())
                       : Container(),
                   SizedBox(

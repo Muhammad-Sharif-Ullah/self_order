@@ -15,12 +15,12 @@ import '../model/ProductModel.dart';
 import 'item_customise_page.dart';
 import 'item_customise_page.dart';
 
-uerChoiceDialog({required BuildContext context, required index}) {
+userChoiceDialog({required BuildContext context}) {
   showDialog(
       context: context,
       builder: (BuildContext context) {
         ItemScreenController controller = Get.find();
-        controller.getFood(index);
+
         return AlertDialog(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
@@ -58,8 +58,8 @@ uerChoiceDialog({required BuildContext context, required index}) {
                         child: Row(
                           children: [
                             CachedNetworkImage(
-                              imageUrl: controller.foods[index]['base_url'] +
-                                  controller.foods[index]['combo_image'],
+                              imageUrl: controller.product.value.baseUrl! +
+                                  controller.product.value.productImage!,
                               height: 158.h,
                               width: 212.w,
                             ),
@@ -68,7 +68,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  controller.foods[index]['name'],
+                                  '${controller.product.value.name}',
                                   style: TextStyle(
                                       color: ColorConstants.primaryBigTextColor,
                                       fontWeight: FontWeight.bold,
@@ -78,8 +78,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                   height: 8.h,
                                 ),
                                 Text(
-                                  controller.foods[index]
-                                      ['product_description'],
+                                  '${controller.product.value.productDescription}',
                                   style: TextStyle(
                                       color: ColorConstants.primaryBigTextColor
                                           .withOpacity(0.5),
@@ -88,20 +87,33 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                 SizedBox(
                                   height: 15.h,
                                 ),
-                                Text(
-                                  controller.foods[index]['product_price'],
-                                  style: TextStyle(
-                                      color: ColorConstants
-                                          .bannerHeadingTextColor
-                                          .withOpacity(0.5),
-                                      fontSize: 30.sp),
+                                Row(
+                                  children: [
+                                    Text(
+                                      '\$${controller.product.value.productPrice}',
+                                      style: TextStyle(
+                                          color: ColorConstants
+                                              .bannerHeadingTextColor
+                                              .withOpacity(0.5),
+                                          fontSize: 30.sp),
+                                    ),
+                                    SizedBox(
+                                      width: 20.w,
+                                    ),
+                                    Text(
+                                      'X ${controller.product.value.productPrice}',
+                                      style: TextStyle(
+                                          color: ColorConstants
+                                              .bannerHeadingTextColor
+                                              .withOpacity(0.5),
+                                          fontSize: 30.sp),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(
                                   height: 15.h,
                                 ),
-                                Row(
-                                  children: [],
-                                )
+                                CustomWidget.ItemCountSection(),
                               ],
                             )
                           ],
@@ -173,7 +185,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                   ],
                                 )
                               : Container(),
-                          (controller.menu['toppings'].length > 0)
+                          (controller.product.value.toppings.length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -234,7 +246,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                   ],
                                 )
                               : Container(),
-                          (controller.menu['style'].length > 0)
+                          (controller.product.value.style.length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -258,30 +270,40 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.menu['style'][i]
-                                              ['selected'] = false;
-                                          return Row(
-                                            children: [
-                                              Checkbox(
-                                                  value:
-                                                      controller.menu['style']
-                                                          [i]['selected'],
-                                                  onChanged: (v) {
-                                                    controller.menu['style'][i]
-                                                            ['selected'] =
-                                                        !controller
-                                                                .menu['style']
-                                                            [i]['selected'];
-                                                  }),
-                                              Text(
-                                                  '${controller.menu['style'][i]['name']}')
-                                            ],
-                                          );
+                                          return StatefulBuilder(
+                                              builder: (context, setState) {
+                                            return RadioListTile(
+                                                contentPadding:
+                                                    EdgeInsets.all(0),
+                                                value: i,
+                                                activeColor:
+                                                    ColorConstants.primaryColor,
+                                                selected: (controller
+                                                            .product
+                                                            .value
+                                                            .selectedStyleId ==
+                                                        i)
+                                                    ? true
+                                                    : false,
+                                                title: Text(
+                                                    '${controller.product.value.style[i].name}',
+                                                    style: TextStyle(
+                                                      fontSize: 16.h,
+                                                    )),
+                                                groupValue: controller.product
+                                                    .value.selectedStyleId,
+                                                onChanged: (v) {
+                                                  setState(() {
+                                                    controller.product.value
+                                                        .selectedStyleId = i;
+                                                  });
+                                                });
+                                          });
                                         }),
                                   ],
                                 )
                               : Container(),
-                          (controller.menu['sauce'].length > 0)
+                          (controller.product.value.sauce.length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -293,8 +315,8 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                           fontSize: 25.sp),
                                     ),
                                     GridView.builder(
-                                        itemCount:
-                                            controller.menu['sauce'].length,
+                                        itemCount: controller
+                                            .product.value.sauce.length,
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
@@ -305,34 +327,48 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.menu['sauce'][i]
-                                              ['selected'] = false;
-                                          return Row(
-                                            children: [
-                                              Checkbox(
-                                                  value:
-                                                      controller.menu['sauce']
-                                                          [i]['selected'],
-                                                  onChanged: (v) {
-                                                    controller.menu['sauce'][i]
-                                                            ['selected'] =
-                                                        !controller
-                                                                .menu['sauce']
-                                                            [i]['selected'];
-                                                  }),
-                                              Expanded(
-                                                child: Text(
-                                                  '${controller.menu['sauce'][i]['name']}',
-                                                  maxLines: 3,
-                                                ),
-                                              )
-                                            ],
-                                          );
+                                          return StatefulBuilder(
+                                              builder: (context, setState) {
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    activeColor: ColorConstants
+                                                        .primaryColor,
+                                                    value: controller
+                                                        .product
+                                                        .value
+                                                        .sauce[i]
+                                                        .selected,
+                                                    onChanged: (v) {
+                                                      setState(() {
+                                                        controller
+                                                                .product
+                                                                .value
+                                                                .sauce[i]
+                                                                .selected =
+                                                            !controller
+                                                                .product
+                                                                .value
+                                                                .sauce[i]
+                                                                .selected;
+                                                      });
+                                                    }),
+                                                Expanded(
+                                                  child: Text(
+                                                    '${controller.product.value.sauce[i].name}',
+                                                    maxLines: 3,
+                                                  ),
+                                                )
+                                              ],
+                                            );
+                                          });
                                         }),
                                   ],
                                 )
                               : Container(),
-                          (controller.foods[index]['soda'].length > 0)
+                          (controller.product.value.soda.length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -345,7 +381,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                     ),
                                     GridView.builder(
                                         itemCount: controller
-                                            .foods[index]['soda'].length,
+                                            .product.value.soda.length,
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
@@ -356,34 +392,41 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.foods[index]['soda'][i]
-                                              ['selected'] = false;
-                                          return Row(
-                                            children: [
-                                              Checkbox(
-                                                  value: controller.foods[index]
-                                                      ['soda'][i]['selected'],
-                                                  onChanged: (v) {
-                                                    controller.foods[index]
-                                                                ['soda'][i]
-                                                            ['selected'] =
-                                                        !controller.foods[index]
-                                                                ['soda'][i]
-                                                            ['selected'];
-                                                  }),
-                                              Expanded(
-                                                child: Text(
-                                                  '${controller.foods[index]['soda'][i]['name']}',
-                                                  maxLines: 3,
-                                                ),
-                                              )
-                                            ],
-                                          );
+                                          return StatefulBuilder(
+                                              builder: (context, setState) {
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    activeColor: ColorConstants
+                                                        .primaryColor,
+                                                    value: controller.product
+                                                        .value.soda[i].selected,
+                                                    onChanged: (v) {
+                                                      setState(() {
+                                                        controller
+                                                                .product
+                                                                .value
+                                                                .sauce[i]
+                                                                .selected =
+                                                            !controller
+                                                                .product
+                                                                .value
+                                                                .soda[i]
+                                                                .selected;
+                                                      });
+                                                    }),
+                                                Text(
+                                                    '${controller.product.value.soda[i].name}')
+                                              ],
+                                            );
+                                          });
                                         }),
                                   ],
                                 )
                               : Container(),
-                          (controller.foods[index]['side'].length > 0)
+                          (controller.product.value.side.length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -396,7 +439,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                     ),
                                     GridView.builder(
                                         itemCount: controller
-                                            .foods[index]['side'].length,
+                                            .product.value.side.length,
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
@@ -407,34 +450,41 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.foods[index]['side'][i]
-                                              ['selected'] = false;
-                                          return Row(
-                                            children: [
-                                              Checkbox(
-                                                  value: controller.foods[index]
-                                                      ['side'][i]['selected'],
-                                                  onChanged: (v) {
-                                                    controller.foods[index]
-                                                                ['side'][i]
-                                                            ['selected'] =
-                                                        !controller.foods[index]
-                                                                ['side'][i]
-                                                            ['selected'];
-                                                  }),
-                                              Expanded(
-                                                child: Text(
-                                                  '${controller.foods[index]['side'][i]['name']}',
-                                                  maxLines: 3,
-                                                ),
-                                              )
-                                            ],
-                                          );
+                                          return StatefulBuilder(
+                                              builder: (context, setState) {
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    activeColor: ColorConstants
+                                                        .primaryColor,
+                                                    value: controller.product
+                                                        .value.side[i].selected,
+                                                    onChanged: (v) {
+                                                      setState(() {
+                                                        controller
+                                                                .product
+                                                                .value
+                                                                .side[i]
+                                                                .selected =
+                                                            !controller
+                                                                .product
+                                                                .value
+                                                                .side[i]
+                                                                .selected;
+                                                      });
+                                                    }),
+                                                Text(
+                                                    '${controller.product.value.side[i].name}')
+                                              ],
+                                            );
+                                          });
                                         }),
                                   ],
                                 )
                               : Container(),
-                          (controller.foods[index]['extra'].length > 0)
+                          (controller.product.value.extra.length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -447,7 +497,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                     ),
                                     GridView.builder(
                                         itemCount: controller
-                                            .foods[index]['extra'].length,
+                                            .product.value.extra.length,
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
@@ -458,34 +508,44 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.foods[index]['extra'][i]
-                                              ['selected'] = false;
-                                          return Row(
-                                            children: [
-                                              Checkbox(
-                                                  value: controller.foods[index]
-                                                      ['extra'][i]['selected'],
-                                                  onChanged: (v) {
-                                                    controller.foods[index]
-                                                                ['extra'][i]
-                                                            ['selected'] =
-                                                        !controller.foods[index]
-                                                                ['extra'][i]
-                                                            ['selected'];
-                                                  }),
-                                              Expanded(
-                                                child: Text(
-                                                  '${controller.foods[index]['extra'][i]['name']}',
-                                                  maxLines: 3,
-                                                ),
-                                              )
-                                            ],
-                                          );
+                                          return StatefulBuilder(
+                                              builder: (context, setState) {
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    activeColor: ColorConstants
+                                                        .primaryColor,
+                                                    value: controller
+                                                        .product
+                                                        .value
+                                                        .extra[i]
+                                                        .selected,
+                                                    onChanged: (v) {
+                                                      setState(() {
+                                                        controller
+                                                                .product
+                                                                .value
+                                                                .sauce[i]
+                                                                .selected =
+                                                            !controller
+                                                                .product
+                                                                .value
+                                                                .extra[i]
+                                                                .selected;
+                                                      });
+                                                    }),
+                                                Text(
+                                                    '${controller.product.value.extra[i].name}')
+                                              ],
+                                            );
+                                          });
                                         }),
                                   ],
                                 )
                               : Container(),
-                          (controller.foods[index]['preparation'].length > 0)
+                          (controller.product.value.preparation.length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -498,7 +558,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                     ),
                                     GridView.builder(
                                         itemCount: controller
-                                            .foods[index]['preparation'].length,
+                                            .product.value.preparation.length,
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
@@ -509,35 +569,42 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.foods[index]['preparation']
-                                              [i]['selected'] = false;
-                                          return Row(
-                                            children: [
-                                              Checkbox(
-                                                  value: controller.foods[index]
-                                                          ['preparation'][i]
-                                                      ['selected'],
-                                                  onChanged: (v) {
-                                                    controller.foods[index]
-                                                                ['preparation']
-                                                            [i]['selected'] =
-                                                        !controller.foods[index]
-                                                                ['preparation']
-                                                            [i]['selected'];
-                                                  }),
-                                              Expanded(
-                                                child: Text(
-                                                  '${controller.foods[index]['preparation'][i]['name']}',
-                                                  maxLines: 3,
-                                                ),
-                                              )
-                                            ],
-                                          );
+                                          return StatefulBuilder(
+                                              builder: (context, setState) {
+                                            return RadioListTile(
+                                                contentPadding:
+                                                    EdgeInsets.all(0),
+                                                value: i,
+                                                activeColor:
+                                                    ColorConstants.primaryColor,
+                                                selected: (controller
+                                                            .product
+                                                            .value
+                                                            .selectedPreparationId ==
+                                                        i)
+                                                    ? true
+                                                    : false,
+                                                title: Text(
+                                                    '${controller.product.value.preparation[i].name}',
+                                                    style: TextStyle(
+                                                      fontSize: 16.h,
+                                                    )),
+                                                groupValue: controller
+                                                    .product
+                                                    .value
+                                                    .selectedPreparationId,
+                                                onChanged: (v) {
+                                                  setState(() {
+                                                    controller.product.value
+                                                        .selectedPreparationId = i;
+                                                  });
+                                                });
+                                          });
                                         }),
                                   ],
                                 )
                               : Container(),
-                          (controller.foods[index]['bacon'].length > 0)
+                          (controller.product.value.bacon.length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -550,7 +617,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                     ),
                                     GridView.builder(
                                         itemCount: controller
-                                            .foods[index]['bacon'].length,
+                                            .product.value.bacon.length,
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
@@ -561,34 +628,44 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.foods[index]['bacon'][i]
-                                              ['selected'] = false;
-                                          return Row(
-                                            children: [
-                                              Checkbox(
-                                                  value: controller.foods[index]
-                                                      ['bacon'][i]['selected'],
-                                                  onChanged: (v) {
-                                                    controller.foods[index]
-                                                                ['bacon'][i]
-                                                            ['selected'] =
-                                                        !controller.foods[index]
-                                                                ['bacon'][i]
-                                                            ['selected'];
-                                                  }),
-                                              Expanded(
-                                                child: Text(
-                                                  '${controller.foods[index]['bacon'][i]['name']}',
-                                                  maxLines: 3,
-                                                ),
-                                              )
-                                            ],
-                                          );
+                                          return StatefulBuilder(
+                                              builder: (context, setState) {
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    activeColor: ColorConstants
+                                                        .primaryColor,
+                                                    value: controller
+                                                        .product
+                                                        .value
+                                                        .bacon[i]
+                                                        .selected,
+                                                    onChanged: (v) {
+                                                      setState(() {
+                                                        controller
+                                                                .product
+                                                                .value
+                                                                .sauce[i]
+                                                                .selected =
+                                                            !controller
+                                                                .product
+                                                                .value
+                                                                .bacon[i]
+                                                                .selected;
+                                                      });
+                                                    }),
+                                                Text(
+                                                    '${controller.product.value.bacon[i].name}')
+                                              ],
+                                            );
+                                          });
                                         }),
                                   ],
                                 )
                               : Container(),
-                          (controller.foods[index]['meal'].length > 0)
+                          (controller.product.value.meal.length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -601,7 +678,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                     ),
                                     GridView.builder(
                                         itemCount: controller
-                                            .foods[index]['meal'].length,
+                                            .product.value.meal.length,
                                         shrinkWrap: true,
                                         physics: NeverScrollableScrollPhysics(),
                                         gridDelegate:
@@ -612,35 +689,42 @@ uerChoiceDialog({required BuildContext context, required index}) {
                                                 mainAxisExtent: 40,
                                                 mainAxisSpacing: 5),
                                         itemBuilder: (context, i) {
-                                          controller.foods[index]['meal'][i]
-                                              ['selected'] = false;
-                                          return Row(
-                                            children: [
-                                              Checkbox(
-                                                  value: controller.foods[index]
-                                                      ['meal'][i]['selected'],
-                                                  onChanged: (v) {
-                                                    // setState(() {
-                                                    //   controller.foods[index]
-                                                    //               ['meal'][i]
-                                                    //           ['selected'] =
-                                                    //       !controller.foods[
-                                                    //               index]['meal']
-                                                    //           [i]['selected'];
-                                                    // });
-                                                  }),
-                                              Expanded(
-                                                child: Text(
-                                                  '${controller.foods[index]['meal'][i]['name']}',
-                                                  maxLines: 3,
-                                                ),
-                                              )
-                                            ],
-                                          );
+                                          return StatefulBuilder(
+                                              builder: (context, setState) {
+                                            return RadioListTile(
+                                                contentPadding:
+                                                    EdgeInsets.all(0),
+                                                value: i,
+                                                activeColor:
+                                                    ColorConstants.primaryColor,
+                                                selected: (controller
+                                                            .product
+                                                            .value
+                                                            .selectedMealId ==
+                                                        i)
+                                                    ? true
+                                                    : false,
+                                                title: Text(
+                                                    '${controller.product.value.meal[i].name}',
+                                                    style: TextStyle(
+                                                      fontSize: 16.h,
+                                                    )),
+                                                groupValue: controller.product
+                                                    .value.selectedMealId,
+                                                onChanged: (v) {
+                                                  setState(() {
+                                                    controller.product.value
+                                                        .selectedMealId = i;
+                                                  });
+                                                });
+                                          });
                                         }),
                                   ],
                                 )
                               : Container(),
+                          SizedBox(
+                            height: 30,
+                          ),
                         ],
                       ),
                     ),
@@ -653,7 +737,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                           InkWell(
                             onTap: () {
                               Get.to(ComboScreenViewOne(
-                                  id: controller.foods[index]['id']));
+                                  id: controller.product.value.id!));
                             },
                             child: CustomWidget.CustomPrimaryButton(
                                 context: context,
@@ -671,7 +755,7 @@ uerChoiceDialog({required BuildContext context, required index}) {
                           InkWell(
                             onTap: () {
                               Get.to(ItemCustomisePage(
-                                  id: controller.foods[index]['id']));
+                                  id: controller.product.value.id!));
                               // Navigator.pushNamed(context, '/itemcustomisePage',
                               //     arguments: PageRouteArguments(
                               //         data: [],

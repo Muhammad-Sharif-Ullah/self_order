@@ -28,11 +28,7 @@ Widget customDeliciousFood({required BuildContext context}) {
               child: InkWell(
                 onTap: () {
                   controller.selectedItemColor.value = index;
-                  Navigator.pushNamed(context, '/itempagescreen',
-                      arguments: PageRouteArguments(
-                          data: [],
-                          fromPage: 'homescreen',
-                          toPage: 'itempageScreen'));
+                  controller.selectCustomerChoice(index);
                 },
                 child: Column(
                   children: [

@@ -181,7 +181,7 @@ class CustomWidget {
     return GridView.builder(
         shrinkWrap: true,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: (orientation == Orientation.portrait) ? 3 : 4),
+            crossAxisCount: (orientation == Orientation.portrait) ? 4 : 5),
         itemCount: controller.categories.length,
         physics: NeverScrollableScrollPhysics(),
         itemBuilder: (context, int index) {

@@ -214,11 +214,11 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                                     : 5),
                                         physics: ScrollPhysics(),
                                         itemBuilder: (context, index) {
+                                          controller.getFood(index);
                                           return GestureDetector(
                                             onTap: () {
-                                              uerChoiceDialog(
-                                                  context: context,
-                                                  index: index);
+                                              userChoiceDialog(
+                                                  context: context);
                                             },
                                             child: Column(
                                               crossAxisAlignment:
