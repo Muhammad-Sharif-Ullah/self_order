@@ -140,48 +140,51 @@ userChoiceDialog({required BuildContext context}) {
                                               ColorConstants.primaryButtonColor,
                                           fontSize: 25.sp),
                                     ),
-                                    GridView.builder(
-                                        itemCount: controller
-                                            .product.value.chrust.length,
-                                        shrinkWrap: true,
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 4,
-                                                childAspectRatio: 1,
-                                                crossAxisSpacing: 1,
-                                                mainAxisExtent: 40,
-                                                mainAxisSpacing: 1),
-                                        itemBuilder: (context, i) {
-                                          return StatefulBuilder(
-                                              builder: (context, setState) {
-                                            return RadioListTile(
-                                                contentPadding:
-                                                    EdgeInsets.all(0),
-                                                value: i,
-                                                activeColor:
-                                                    ColorConstants.primaryColor,
-                                                selected: (controller
-                                                            .product
-                                                            .value
-                                                            .selectedChrustId ==
-                                                        i)
-                                                    ? true
-                                                    : false,
-                                                title: Text(
-                                                    '${controller.product.value.chrust[i].name}',
-                                                    style: TextStyle(
-                                                      fontSize: 16.h,
-                                                    )),
-                                                groupValue: controller.product
-                                                    .value.selectedChrustId,
-                                                onChanged: (v) {
-                                                  setState(() {
-                                                    controller.product.value
-                                                        .selectedChrustId = i;
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 20.h),
+                                      child: GridView.builder(
+                                          itemCount: controller
+                                              .product.value.chrust.length,
+                                          shrinkWrap: true,
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 4,
+                                                  childAspectRatio: 1,
+                                                  crossAxisSpacing: 1,
+                                                  mainAxisExtent: 50,
+                                                  mainAxisSpacing: 1),
+                                          itemBuilder: (context, i) {
+                                            return StatefulBuilder(
+                                                builder: (context, setState) {
+                                              return RadioListTile(
+                                                  contentPadding:
+                                                      EdgeInsets.all(0),
+                                                  value: i,
+                                                  activeColor: ColorConstants
+                                                      .primaryColor,
+                                                  selected: (controller
+                                                              .product
+                                                              .value
+                                                              .selectedChrustId ==
+                                                          i)
+                                                      ? true
+                                                      : false,
+                                                  title: Text(
+                                                      '${controller.product.value.chrust[i].name}',
+                                                      style: TextStyle(
+                                                        fontSize: 16.h,
+                                                      )),
+                                                  groupValue: controller.product
+                                                      .value.selectedChrustId,
+                                                  onChanged: (v) {
+                                                    setState(() {
+                                                      controller.product.value
+                                                          .selectedChrustId = i;
+                                                    });
                                                   });
-                                                });
-                                          });
-                                        }),
+                                            });
+                                          }),
+                                    ),
                                   ],
                                 )
                               : Container(),
@@ -196,53 +199,64 @@ userChoiceDialog({required BuildContext context}) {
                                               ColorConstants.primaryButtonColor,
                                           fontSize: 25.sp),
                                     ),
-                                    GridView.builder(
-                                        itemCount: controller
-                                            .product.value.toppings.length,
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 4,
-                                                childAspectRatio: 1,
-                                                crossAxisSpacing: 5,
-                                                mainAxisExtent: 40,
-                                                mainAxisSpacing: 5),
-                                        itemBuilder: (context, i) {
-                                          return StatefulBuilder(
-                                              builder: (context, setState) {
-                                            return Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Checkbox(
-                                                    activeColor: ColorConstants
-                                                        .primaryColor,
-                                                    value: controller
-                                                        .product
-                                                        .value
-                                                        .toppings[i]
-                                                        .selected,
-                                                    onChanged: (v) {
-                                                      setState(() {
-                                                        controller
-                                                                .product
-                                                                .value
-                                                                .toppings[i]
-                                                                .selected =
-                                                            !controller
-                                                                .product
-                                                                .value
-                                                                .toppings[i]
-                                                                .selected;
-                                                      });
-                                                    }),
-                                                Text(
-                                                    '${controller.product.value.toppings[i].name}')
-                                              ],
-                                            );
-                                          });
-                                        }),
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 20.h),
+                                      child: GridView.builder(
+                                          itemCount: controller
+                                              .product.value.toppings.length,
+                                          shrinkWrap: true,
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 4,
+                                                  childAspectRatio: 1,
+                                                  crossAxisSpacing: 5,
+                                                  mainAxisExtent: 50,
+                                                  mainAxisSpacing: 5),
+                                          itemBuilder: (context, i) {
+                                            return StatefulBuilder(
+                                                builder: (context, setState) {
+                                              return Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Checkbox(
+                                                      activeColor:
+                                                          ColorConstants
+                                                              .primaryColor,
+                                                      value: controller
+                                                          .product
+                                                          .value
+                                                          .toppings[i]
+                                                          .selected,
+                                                      onChanged: (v) {
+                                                        setState(() {
+                                                          controller
+                                                                  .product
+                                                                  .value
+                                                                  .toppings[i]
+                                                                  .selected =
+                                                              !controller
+                                                                  .product
+                                                                  .value
+                                                                  .toppings[i]
+                                                                  .selected;
+                                                        });
+                                                      }),
+                                                  Expanded(
+                                                    child: Text(
+                                                      '${controller.product.value.toppings[i].name}',
+                                                      maxLines: 2,
+                                                      style: TextStyle(
+                                                          fontSize: 20.sp),
+                                                    ),
+                                                  )
+                                                ],
+                                              );
+                                            });
+                                          }),
+                                    ),
                                   ],
                                 )
                               : Container(),
@@ -257,49 +271,54 @@ userChoiceDialog({required BuildContext context}) {
                                               ColorConstants.primaryButtonColor,
                                           fontSize: 25.sp),
                                     ),
-                                    GridView.builder(
-                                        itemCount:
-                                            controller.menu['style'].length,
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 4,
-                                                childAspectRatio: 1,
-                                                crossAxisSpacing: 5,
-                                                mainAxisExtent: 40,
-                                                mainAxisSpacing: 5),
-                                        itemBuilder: (context, i) {
-                                          return StatefulBuilder(
-                                              builder: (context, setState) {
-                                            return RadioListTile(
-                                                contentPadding:
-                                                    EdgeInsets.all(0),
-                                                value: i,
-                                                activeColor:
-                                                    ColorConstants.primaryColor,
-                                                selected: (controller
-                                                            .product
-                                                            .value
-                                                            .selectedStyleId ==
-                                                        i)
-                                                    ? true
-                                                    : false,
-                                                title: Text(
-                                                    '${controller.product.value.style[i].name}',
-                                                    style: TextStyle(
-                                                      fontSize: 16.h,
-                                                    )),
-                                                groupValue: controller.product
-                                                    .value.selectedStyleId,
-                                                onChanged: (v) {
-                                                  setState(() {
-                                                    controller.product.value
-                                                        .selectedStyleId = i;
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 20.h),
+                                      child: GridView.builder(
+                                          itemCount:
+                                              controller.menu['style'].length,
+                                          shrinkWrap: true,
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 4,
+                                                  childAspectRatio: 1,
+                                                  crossAxisSpacing: 5,
+                                                  mainAxisExtent: 50,
+                                                  mainAxisSpacing: 5),
+                                          itemBuilder: (context, i) {
+                                            return StatefulBuilder(
+                                                builder: (context, setState) {
+                                              return RadioListTile(
+                                                  contentPadding:
+                                                      EdgeInsets.all(0),
+                                                  value: i,
+                                                  activeColor: ColorConstants
+                                                      .primaryColor,
+                                                  selected: (controller
+                                                              .product
+                                                              .value
+                                                              .selectedStyleId ==
+                                                          i)
+                                                      ? true
+                                                      : false,
+                                                  title: Text(
+                                                      '${controller.product.value.style[i].name}',
+                                                      maxLines: 2,
+                                                      style: TextStyle(
+                                                        fontSize: 20.h,
+                                                      )),
+                                                  groupValue: controller.product
+                                                      .value.selectedStyleId,
+                                                  onChanged: (v) {
+                                                    setState(() {
+                                                      controller.product.value
+                                                          .selectedStyleId = i;
+                                                    });
                                                   });
-                                                });
-                                          });
-                                        }),
+                                            });
+                                          }),
+                                    ),
                                   ],
                                 )
                               : Container(),
@@ -314,57 +333,64 @@ userChoiceDialog({required BuildContext context}) {
                                               ColorConstants.primaryButtonColor,
                                           fontSize: 25.sp),
                                     ),
-                                    GridView.builder(
-                                        itemCount: controller
-                                            .product.value.sauce.length,
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 4,
-                                                childAspectRatio: 1,
-                                                crossAxisSpacing: 5,
-                                                mainAxisExtent: 40,
-                                                mainAxisSpacing: 5),
-                                        itemBuilder: (context, i) {
-                                          return StatefulBuilder(
-                                              builder: (context, setState) {
-                                            return Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Checkbox(
-                                                    activeColor: ColorConstants
-                                                        .primaryColor,
-                                                    value: controller
-                                                        .product
-                                                        .value
-                                                        .sauce[i]
-                                                        .selected,
-                                                    onChanged: (v) {
-                                                      setState(() {
-                                                        controller
-                                                                .product
-                                                                .value
-                                                                .sauce[i]
-                                                                .selected =
-                                                            !controller
-                                                                .product
-                                                                .value
-                                                                .sauce[i]
-                                                                .selected;
-                                                      });
-                                                    }),
-                                                Expanded(
-                                                  child: Text(
-                                                    '${controller.product.value.sauce[i].name}',
-                                                    maxLines: 3,
-                                                  ),
-                                                )
-                                              ],
-                                            );
-                                          });
-                                        }),
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 20.h),
+                                      child: GridView.builder(
+                                          itemCount: controller
+                                              .product.value.sauce.length,
+                                          shrinkWrap: true,
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 4,
+                                                  childAspectRatio: 1,
+                                                  crossAxisSpacing: 5,
+                                                  mainAxisExtent: 50,
+                                                  mainAxisSpacing: 5),
+                                          itemBuilder: (context, i) {
+                                            return StatefulBuilder(
+                                                builder: (context, setState) {
+                                              return Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Checkbox(
+                                                      activeColor:
+                                                          ColorConstants
+                                                              .primaryColor,
+                                                      value: controller
+                                                          .product
+                                                          .value
+                                                          .sauce[i]
+                                                          .selected,
+                                                      onChanged: (v) {
+                                                        setState(() {
+                                                          controller
+                                                                  .product
+                                                                  .value
+                                                                  .sauce[i]
+                                                                  .selected =
+                                                              !controller
+                                                                  .product
+                                                                  .value
+                                                                  .sauce[i]
+                                                                  .selected;
+                                                        });
+                                                      }),
+                                                  Expanded(
+                                                    child: Text(
+                                                      '${controller.product.value.sauce[i].name}',
+                                                      maxLines: 3,
+                                                      style: TextStyle(
+                                                          fontSize: 20.sp),
+                                                    ),
+                                                  )
+                                                ],
+                                              );
+                                            });
+                                          }),
+                                    ),
                                   ],
                                 )
                               : Container(),
@@ -379,50 +405,64 @@ userChoiceDialog({required BuildContext context}) {
                                               ColorConstants.primaryButtonColor,
                                           fontSize: 25.sp),
                                     ),
-                                    GridView.builder(
-                                        itemCount: controller
-                                            .product.value.soda.length,
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 4,
-                                                childAspectRatio: 1,
-                                                crossAxisSpacing: 5,
-                                                mainAxisExtent: 40,
-                                                mainAxisSpacing: 5),
-                                        itemBuilder: (context, i) {
-                                          return StatefulBuilder(
-                                              builder: (context, setState) {
-                                            return Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Checkbox(
-                                                    activeColor: ColorConstants
-                                                        .primaryColor,
-                                                    value: controller.product
-                                                        .value.soda[i].selected,
-                                                    onChanged: (v) {
-                                                      setState(() {
-                                                        controller
-                                                                .product
-                                                                .value
-                                                                .sauce[i]
-                                                                .selected =
-                                                            !controller
-                                                                .product
-                                                                .value
-                                                                .soda[i]
-                                                                .selected;
-                                                      });
-                                                    }),
-                                                Text(
-                                                    '${controller.product.value.soda[i].name}')
-                                              ],
-                                            );
-                                          });
-                                        }),
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 20.h),
+                                      child: GridView.builder(
+                                          itemCount: controller
+                                              .product.value.soda.length,
+                                          shrinkWrap: true,
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 4,
+                                                  childAspectRatio: 1,
+                                                  crossAxisSpacing: 5,
+                                                  mainAxisExtent: 50,
+                                                  mainAxisSpacing: 5),
+                                          itemBuilder: (context, i) {
+                                            return StatefulBuilder(
+                                                builder: (context, setState) {
+                                              return Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Checkbox(
+                                                      activeColor:
+                                                          ColorConstants
+                                                              .primaryColor,
+                                                      value: controller
+                                                          .product
+                                                          .value
+                                                          .soda[i]
+                                                          .selected,
+                                                      onChanged: (v) {
+                                                        setState(() {
+                                                          controller
+                                                                  .product
+                                                                  .value
+                                                                  .sauce[i]
+                                                                  .selected =
+                                                              !controller
+                                                                  .product
+                                                                  .value
+                                                                  .soda[i]
+                                                                  .selected;
+                                                        });
+                                                      }),
+                                                  Expanded(
+                                                    child: Text(
+                                                      '${controller.product.value.soda[i].name}',
+                                                      maxLines: 3,
+                                                      style: TextStyle(
+                                                          fontSize: 20.sp),
+                                                    ),
+                                                  )
+                                                ],
+                                              );
+                                            });
+                                          }),
+                                    ),
                                   ],
                                 )
                               : Container(),
@@ -437,50 +477,64 @@ userChoiceDialog({required BuildContext context}) {
                                               ColorConstants.primaryButtonColor,
                                           fontSize: 25.sp),
                                     ),
-                                    GridView.builder(
-                                        itemCount: controller
-                                            .product.value.side.length,
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 3,
-                                                childAspectRatio: 1,
-                                                crossAxisSpacing: 5,
-                                                mainAxisExtent: 40,
-                                                mainAxisSpacing: 5),
-                                        itemBuilder: (context, i) {
-                                          return StatefulBuilder(
-                                              builder: (context, setState) {
-                                            return Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Checkbox(
-                                                    activeColor: ColorConstants
-                                                        .primaryColor,
-                                                    value: controller.product
-                                                        .value.side[i].selected,
-                                                    onChanged: (v) {
-                                                      setState(() {
-                                                        controller
-                                                                .product
-                                                                .value
-                                                                .side[i]
-                                                                .selected =
-                                                            !controller
-                                                                .product
-                                                                .value
-                                                                .side[i]
-                                                                .selected;
-                                                      });
-                                                    }),
-                                                Text(
-                                                    '${controller.product.value.side[i].name}')
-                                              ],
-                                            );
-                                          });
-                                        }),
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 20.h),
+                                      child: GridView.builder(
+                                          itemCount: controller
+                                              .product.value.side.length,
+                                          shrinkWrap: true,
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 3,
+                                                  childAspectRatio: 1,
+                                                  crossAxisSpacing: 5,
+                                                  mainAxisExtent: 50,
+                                                  mainAxisSpacing: 5),
+                                          itemBuilder: (context, i) {
+                                            return StatefulBuilder(
+                                                builder: (context, setState) {
+                                              return Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Checkbox(
+                                                      activeColor:
+                                                          ColorConstants
+                                                              .primaryColor,
+                                                      value: controller
+                                                          .product
+                                                          .value
+                                                          .side[i]
+                                                          .selected,
+                                                      onChanged: (v) {
+                                                        setState(() {
+                                                          controller
+                                                                  .product
+                                                                  .value
+                                                                  .side[i]
+                                                                  .selected =
+                                                              !controller
+                                                                  .product
+                                                                  .value
+                                                                  .side[i]
+                                                                  .selected;
+                                                        });
+                                                      }),
+                                                  Expanded(
+                                                    child: Text(
+                                                      '${controller.product.value.side[i].name}',
+                                                      maxLines: 3,
+                                                      style: TextStyle(
+                                                          fontSize: 20.sp),
+                                                    ),
+                                                  )
+                                                ],
+                                              );
+                                            });
+                                          }),
+                                    ),
                                   ],
                                 )
                               : Container(),
@@ -495,53 +549,64 @@ userChoiceDialog({required BuildContext context}) {
                                               ColorConstants.primaryButtonColor,
                                           fontSize: 25.sp),
                                     ),
-                                    GridView.builder(
-                                        itemCount: controller
-                                            .product.value.extra.length,
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 3,
-                                                childAspectRatio: 1,
-                                                crossAxisSpacing: 5,
-                                                mainAxisExtent: 40,
-                                                mainAxisSpacing: 5),
-                                        itemBuilder: (context, i) {
-                                          return StatefulBuilder(
-                                              builder: (context, setState) {
-                                            return Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Checkbox(
-                                                    activeColor: ColorConstants
-                                                        .primaryColor,
-                                                    value: controller
-                                                        .product
-                                                        .value
-                                                        .extra[i]
-                                                        .selected,
-                                                    onChanged: (v) {
-                                                      setState(() {
-                                                        controller
-                                                                .product
-                                                                .value
-                                                                .sauce[i]
-                                                                .selected =
-                                                            !controller
-                                                                .product
-                                                                .value
-                                                                .extra[i]
-                                                                .selected;
-                                                      });
-                                                    }),
-                                                Text(
-                                                    '${controller.product.value.extra[i].name}')
-                                              ],
-                                            );
-                                          });
-                                        }),
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 20.h),
+                                      child: GridView.builder(
+                                          itemCount: controller
+                                              .product.value.extra.length,
+                                          shrinkWrap: true,
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 3,
+                                                  childAspectRatio: 1,
+                                                  crossAxisSpacing: 5,
+                                                  mainAxisExtent: 50,
+                                                  mainAxisSpacing: 5),
+                                          itemBuilder: (context, i) {
+                                            return StatefulBuilder(
+                                                builder: (context, setState) {
+                                              return Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Checkbox(
+                                                      activeColor:
+                                                          ColorConstants
+                                                              .primaryColor,
+                                                      value: controller
+                                                          .product
+                                                          .value
+                                                          .extra[i]
+                                                          .selected,
+                                                      onChanged: (v) {
+                                                        setState(() {
+                                                          controller
+                                                                  .product
+                                                                  .value
+                                                                  .sauce[i]
+                                                                  .selected =
+                                                              !controller
+                                                                  .product
+                                                                  .value
+                                                                  .extra[i]
+                                                                  .selected;
+                                                        });
+                                                      }),
+                                                  Expanded(
+                                                    child: Text(
+                                                      '${controller.product.value.extra[i].name}',
+                                                      maxLines: 3,
+                                                      style: TextStyle(
+                                                          fontSize: 20.sp),
+                                                    ),
+                                                  )
+                                                ],
+                                              );
+                                            });
+                                          }),
+                                    ),
                                   ],
                                 )
                               : Container(),
@@ -556,51 +621,55 @@ userChoiceDialog({required BuildContext context}) {
                                               ColorConstants.primaryButtonColor,
                                           fontSize: 25.sp),
                                     ),
-                                    GridView.builder(
-                                        itemCount: controller
-                                            .product.value.preparation.length,
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 3,
-                                                childAspectRatio: 1,
-                                                crossAxisSpacing: 5,
-                                                mainAxisExtent: 40,
-                                                mainAxisSpacing: 5),
-                                        itemBuilder: (context, i) {
-                                          return StatefulBuilder(
-                                              builder: (context, setState) {
-                                            return RadioListTile(
-                                                contentPadding:
-                                                    EdgeInsets.all(0),
-                                                value: i,
-                                                activeColor:
-                                                    ColorConstants.primaryColor,
-                                                selected: (controller
-                                                            .product
-                                                            .value
-                                                            .selectedPreparationId ==
-                                                        i)
-                                                    ? true
-                                                    : false,
-                                                title: Text(
-                                                    '${controller.product.value.preparation[i].name}',
-                                                    style: TextStyle(
-                                                      fontSize: 16.h,
-                                                    )),
-                                                groupValue: controller
-                                                    .product
-                                                    .value
-                                                    .selectedPreparationId,
-                                                onChanged: (v) {
-                                                  setState(() {
-                                                    controller.product.value
-                                                        .selectedPreparationId = i;
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 20.h),
+                                      child: GridView.builder(
+                                          itemCount: controller
+                                              .product.value.preparation.length,
+                                          shrinkWrap: true,
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 3,
+                                                  childAspectRatio: 1,
+                                                  crossAxisSpacing: 5,
+                                                  mainAxisExtent: 50,
+                                                  mainAxisSpacing: 5),
+                                          itemBuilder: (context, i) {
+                                            return StatefulBuilder(
+                                                builder: (context, setState) {
+                                              return RadioListTile(
+                                                  contentPadding:
+                                                      EdgeInsets.all(0),
+                                                  value: i,
+                                                  activeColor: ColorConstants
+                                                      .primaryColor,
+                                                  selected: (controller
+                                                              .product
+                                                              .value
+                                                              .selectedPreparationId ==
+                                                          i)
+                                                      ? true
+                                                      : false,
+                                                  title: Text(
+                                                      '${controller.product.value.preparation[i].name}',
+                                                      style: TextStyle(
+                                                        fontSize: 20.sp,
+                                                      )),
+                                                  groupValue: controller
+                                                      .product
+                                                      .value
+                                                      .selectedPreparationId,
+                                                  onChanged: (v) {
+                                                    setState(() {
+                                                      controller.product.value
+                                                          .selectedPreparationId = i;
+                                                    });
                                                   });
-                                                });
-                                          });
-                                        }),
+                                            });
+                                          }),
+                                    ),
                                   ],
                                 )
                               : Container(),
@@ -615,53 +684,64 @@ userChoiceDialog({required BuildContext context}) {
                                               ColorConstants.primaryButtonColor,
                                           fontSize: 25.sp),
                                     ),
-                                    GridView.builder(
-                                        itemCount: controller
-                                            .product.value.bacon.length,
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 3,
-                                                childAspectRatio: 1,
-                                                crossAxisSpacing: 5,
-                                                mainAxisExtent: 40,
-                                                mainAxisSpacing: 5),
-                                        itemBuilder: (context, i) {
-                                          return StatefulBuilder(
-                                              builder: (context, setState) {
-                                            return Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Checkbox(
-                                                    activeColor: ColorConstants
-                                                        .primaryColor,
-                                                    value: controller
-                                                        .product
-                                                        .value
-                                                        .bacon[i]
-                                                        .selected,
-                                                    onChanged: (v) {
-                                                      setState(() {
-                                                        controller
-                                                                .product
-                                                                .value
-                                                                .sauce[i]
-                                                                .selected =
-                                                            !controller
-                                                                .product
-                                                                .value
-                                                                .bacon[i]
-                                                                .selected;
-                                                      });
-                                                    }),
-                                                Text(
-                                                    '${controller.product.value.bacon[i].name}')
-                                              ],
-                                            );
-                                          });
-                                        }),
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 20.h),
+                                      child: GridView.builder(
+                                          itemCount: controller
+                                              .product.value.bacon.length,
+                                          shrinkWrap: true,
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 3,
+                                                  childAspectRatio: 1,
+                                                  crossAxisSpacing: 5,
+                                                  mainAxisExtent: 50,
+                                                  mainAxisSpacing: 5),
+                                          itemBuilder: (context, i) {
+                                            return StatefulBuilder(
+                                                builder: (context, setState) {
+                                              return Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Checkbox(
+                                                      activeColor:
+                                                          ColorConstants
+                                                              .primaryColor,
+                                                      value: controller
+                                                          .product
+                                                          .value
+                                                          .bacon[i]
+                                                          .selected,
+                                                      onChanged: (v) {
+                                                        setState(() {
+                                                          controller
+                                                                  .product
+                                                                  .value
+                                                                  .sauce[i]
+                                                                  .selected =
+                                                              !controller
+                                                                  .product
+                                                                  .value
+                                                                  .bacon[i]
+                                                                  .selected;
+                                                        });
+                                                      }),
+                                                  Expanded(
+                                                    child: Text(
+                                                      '${controller.product.value.bacon[i].name}',
+                                                      maxLines: 3,
+                                                      style: TextStyle(
+                                                          fontSize: 20.sp),
+                                                    ),
+                                                  )
+                                                ],
+                                              );
+                                            });
+                                          }),
+                                    ),
                                   ],
                                 )
                               : Container(),
@@ -676,49 +756,53 @@ userChoiceDialog({required BuildContext context}) {
                                               ColorConstants.primaryButtonColor,
                                           fontSize: 25.sp),
                                     ),
-                                    GridView.builder(
-                                        itemCount: controller
-                                            .product.value.meal.length,
-                                        shrinkWrap: true,
-                                        physics: NeverScrollableScrollPhysics(),
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                crossAxisCount: 3,
-                                                childAspectRatio: 1,
-                                                crossAxisSpacing: 5,
-                                                mainAxisExtent: 40,
-                                                mainAxisSpacing: 5),
-                                        itemBuilder: (context, i) {
-                                          return StatefulBuilder(
-                                              builder: (context, setState) {
-                                            return RadioListTile(
-                                                contentPadding:
-                                                    EdgeInsets.all(0),
-                                                value: i,
-                                                activeColor:
-                                                    ColorConstants.primaryColor,
-                                                selected: (controller
-                                                            .product
-                                                            .value
-                                                            .selectedMealId ==
-                                                        i)
-                                                    ? true
-                                                    : false,
-                                                title: Text(
-                                                    '${controller.product.value.meal[i].name}',
-                                                    style: TextStyle(
-                                                      fontSize: 16.h,
-                                                    )),
-                                                groupValue: controller.product
-                                                    .value.selectedMealId,
-                                                onChanged: (v) {
-                                                  setState(() {
-                                                    controller.product.value
-                                                        .selectedMealId = i;
+                                    Container(
+                                      margin: EdgeInsets.only(bottom: 20.h),
+                                      child: GridView.builder(
+                                          itemCount: controller
+                                              .product.value.meal.length,
+                                          shrinkWrap: true,
+                                          physics:
+                                              NeverScrollableScrollPhysics(),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 3,
+                                                  childAspectRatio: 1,
+                                                  crossAxisSpacing: 5,
+                                                  mainAxisExtent: 50,
+                                                  mainAxisSpacing: 5),
+                                          itemBuilder: (context, i) {
+                                            return StatefulBuilder(
+                                                builder: (context, setState) {
+                                              return RadioListTile(
+                                                  contentPadding:
+                                                      EdgeInsets.all(0),
+                                                  value: i,
+                                                  activeColor: ColorConstants
+                                                      .primaryColor,
+                                                  selected: (controller
+                                                              .product
+                                                              .value
+                                                              .selectedMealId ==
+                                                          i)
+                                                      ? true
+                                                      : false,
+                                                  title: Text(
+                                                      '${controller.product.value.meal[i].name}',
+                                                      style: TextStyle(
+                                                        fontSize: 16.h,
+                                                      )),
+                                                  groupValue: controller.product
+                                                      .value.selectedMealId,
+                                                  onChanged: (v) {
+                                                    setState(() {
+                                                      controller.product.value
+                                                          .selectedMealId = i;
+                                                    });
                                                   });
-                                                });
-                                          });
-                                        }),
+                                            });
+                                          }),
+                                    ),
                                   ],
                                 )
                               : Container(),

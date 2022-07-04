@@ -67,7 +67,7 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                   height: 30.h,
                 ),
                 Expanded(
-                  child: Padding(
+                  child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 0.w),
                     child: Row(
                       children: [
@@ -129,188 +129,197 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                         ),
                         Expanded(
                           flex: 7,
-                          child: Column(children: [
-                            GridView.count(
-                              shrinkWrap: true,
-                              crossAxisCount: 4,
-                              crossAxisSpacing: 5,
-                              mainAxisSpacing: 5,
-                              childAspectRatio: 5,
-                              children: List.generate(
-                                  controller.subCategories.length, (index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    print('sub cat' +
-                                        controller.subCategories[index]
-                                            ['subcat_id']);
-                                    controller.getSubSubCategory(controller
-                                        .subCategories[index]['subcat_id']);
-                                  },
-                                  child: foodVarision(
-                                    active: (controller.subCategoryId ==
-                                            controller.subCategories[index]
-                                                ['subcat_id'])
-                                        ? true
-                                        : false,
-                                    text:
-                                        '${controller.subCategories[index]['subcategory_name']}',
-                                  ),
-                                );
-                              }),
-                            ),
-                            Container(
-                                margin:
-                                    EdgeInsets.only(top: 20.h, bottom: 20.h),
-                                color: ColorConstants.subCategorySelection,
-                                height: 2,
-                                width: 400.w),
-                            GridView.count(
-                              shrinkWrap: true,
-                              crossAxisCount: 4,
-                              crossAxisSpacing: 5,
-                              mainAxisSpacing: 5,
-                              childAspectRatio: 5,
-                              children: List.generate(
-                                  controller.subSubCategories.length, (index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    print('sub sub cat' +
-                                        controller.subSubCategories[index]
-                                            ['sub_subcat_id']);
-                                    controller.subSubCatProduct(
-                                        controller.subSubCategories[index]
-                                            ['sub_subcat_id']);
-                                  },
-                                  child: foodVarision(
-                                    active: (controller.subSubCategoryId ==
-                                            controller.subSubCategories[index]
-                                                ['sub_subcat_id'])
-                                        ? true
-                                        : false,
-                                    text:
-                                        '${controller.subSubCategories[index]['sub_subcategory_name']}',
-                                  ),
-                                );
-                              }),
-                            ),
-
-                            Flexible(
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    SizedBox(
-                                      height: Dimensions.SizedBoxValue30,
+                          child: Container(
+                            margin: EdgeInsets.only(right: 10),
+                            child: Column(children: [
+                              GridView.count(
+                                shrinkWrap: true,
+                                crossAxisCount: 4,
+                                crossAxisSpacing: 5,
+                                mainAxisSpacing: 5,
+                                childAspectRatio: 5,
+                                children: List.generate(
+                                    controller.subCategories.length, (index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      print('sub cat' +
+                                          controller.subCategories[index]
+                                              ['subcat_id']);
+                                      controller.getSubSubCategory(controller
+                                          .subCategories[index]['subcat_id']);
+                                    },
+                                    child: foodVarision(
+                                      active: (controller.subCategoryId ==
+                                              controller.subCategories[index]
+                                                  ['subcat_id'])
+                                          ? true
+                                          : false,
+                                      text:
+                                          '${controller.subCategories[index]['subcategory_name']}',
                                     ),
-                                    GridView.builder(
-                                        shrinkWrap: true,
-                                        itemCount: controller.foods.length,
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                                mainAxisSpacing: 20,
-                                                mainAxisExtent: 230.h,
-                                                crossAxisCount: (orientation ==
-                                                        Orientation.portrait)
-                                                    ? 4
-                                                    : 5),
-                                        physics: ScrollPhysics(),
-                                        itemBuilder: (context, index) {
-                                          controller.getFood(index);
-                                          return GestureDetector(
-                                            onTap: () {
-                                              userChoiceDialog(
-                                                  context: context);
-                                            },
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                CachedNetworkImage(
-                                                  width: 208.w,
-                                                  height: 90.h,
-                                                  errorWidget: (context, url,
-                                                          error) =>
-                                                      Image(
-                                                          image: AssetImage(
-                                                              "assets/images/bannerImage.png")),
-                                                  imageUrl: controller
-                                                              .foods[index]
-                                                          ['base_url'] +
-                                                      controller.foods[index]
-                                                          ['product_image'],
-                                                ),
-                                                SizedBox(
-                                                  height: Dimensions
-                                                      .SizedBoxValue20,
-                                                ),
-                                                Text(
-                                                  '${controller.foods[index]['name']}',
-                                                  style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontSize:
-                                                        Dimensions.TextSize20,
+                                  );
+                                }),
+                              ),
+                              Container(
+                                  margin:
+                                      EdgeInsets.only(top: 20.h, bottom: 20.h),
+                                  color: ColorConstants.subCategorySelection,
+                                  height: 2,
+                                  width: double.infinity),
+                              GridView.count(
+                                shrinkWrap: true,
+                                crossAxisCount: 4,
+                                crossAxisSpacing: 5,
+                                mainAxisSpacing: 5,
+                                childAspectRatio: 5,
+                                children: List.generate(
+                                    controller.subSubCategories.length,
+                                    (index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      print('sub sub cat' +
+                                          controller.subSubCategories[index]
+                                              ['sub_subcat_id']);
+                                      controller.subSubCatProduct(
+                                          controller.subSubCategories[index]
+                                              ['sub_subcat_id']);
+                                    },
+                                    child: foodVarision(
+                                      active: (controller.subSubCategoryId ==
+                                              controller.subSubCategories[index]
+                                                  ['sub_subcat_id'])
+                                          ? true
+                                          : false,
+                                      text:
+                                          '${controller.subSubCategories[index]['sub_subcategory_name']}',
+                                    ),
+                                  );
+                                }),
+                              ),
+
+                              Flexible(
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: Dimensions.SizedBoxValue30,
+                                      ),
+                                      GridView.builder(
+                                          shrinkWrap: true,
+                                          itemCount: controller.foods.length,
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                                  mainAxisSpacing: 20,
+                                                  mainAxisExtent: 230.h,
+                                                  crossAxisCount:
+                                                      (orientation ==
+                                                              Orientation
+                                                                  .portrait)
+                                                          ? 4
+                                                          : 5),
+                                          physics: ScrollPhysics(),
+                                          itemBuilder: (context, index) {
+                                            controller.getFood(index);
+                                            return GestureDetector(
+                                              onTap: () {
+                                                userChoiceDialog(
+                                                    context: context);
+                                              },
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  CachedNetworkImage(
+                                                    width: 208.w,
+                                                    height: 90.h,
+                                                    errorWidget: (context, url,
+                                                            error) =>
+                                                        Image(
+                                                            image: AssetImage(
+                                                                "assets/images/bannerImage.png")),
+                                                    imageUrl: controller
+                                                                .foods[index]
+                                                            ['base_url'] +
+                                                        controller.foods[index]
+                                                            ['product_image'],
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  '${controller.foods[index]['product_description']}',
-                                                  style: TextStyle(
-                                                      color: ColorConstants
-                                                          .primaryBigTextColor,
+                                                  SizedBox(
+                                                    height: Dimensions
+                                                        .SizedBoxValue20,
+                                                  ),
+                                                  Text(
+                                                    '${controller.foods[index]['name']}',
+                                                    style: TextStyle(
+                                                      color: Colors.black,
                                                       fontWeight:
                                                           FontWeight.bold,
-                                                      fontSize: Dimensions
-                                                          .TextSize18),
-                                                ),
-                                                SizedBox(
-                                                  height: Dimensions
-                                                      .SizedBoxValue25,
-                                                ),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      '\$${controller.foods[index]['product_price']}',
-                                                      style: TextStyle(
-                                                          color: ColorConstants
-                                                              .primaryBigTextColor,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: Dimensions
-                                                              .TextSize20),
+                                                      fontSize:
+                                                          Dimensions.TextSize20,
                                                     ),
-                                                    Container(
-                                                      height: 30,
-                                                      width: 30,
-                                                      decoration: BoxDecoration(
-                                                        color: Colors.black
-                                                            .withOpacity(0.08),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(20),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 5,
+                                                  ),
+                                                  Text(
+                                                    '${controller.foods[index]['product_description']}',
+                                                    style: TextStyle(
+                                                        color: ColorConstants
+                                                            .primaryBigTextColor,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: Dimensions
+                                                            .TextSize18),
+                                                  ),
+                                                  SizedBox(
+                                                    height: Dimensions
+                                                        .SizedBoxValue25,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        '\$${controller.foods[index]['product_price']}',
+                                                        style: TextStyle(
+                                                            color: ColorConstants
+                                                                .primaryBigTextColor,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: Dimensions
+                                                                .TextSize20),
                                                       ),
-                                                      child: Icon(
-                                                          FeatherIcons.plus),
-                                                    )
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                          );
-                                        }),
-                                  ],
+                                                      Container(
+                                                        height: 30,
+                                                        width: 30,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors.black
+                                                              .withOpacity(
+                                                                  0.08),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(20),
+                                                        ),
+                                                        child: Icon(
+                                                            FeatherIcons.plus),
+                                                      )
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            );
+                                          }),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            )
+                              )
 
-                            // CustomWidget.CustomItemwithPrice(Tap:userChoice(context: context) ),
-                          ]),
+                              // CustomWidget.CustomItemwithPrice(Tap:userChoice(context: context) ),
+                            ]),
+                          ),
                         ),
                       ],
                     ),
@@ -334,10 +343,13 @@ class ItemPageScreen extends GetView<ItemScreenController> {
             borderRadius: BorderRadius.all(Radius.circular(50)),
             color: active ? ColorConstants.subCategorySelection : Colors.white,
           ),
-          child: Text(
-            text,
-            style: TextStyle(
-                fontSize: 16.h, color: active ? Colors.white : Colors.black),
+          child: Expanded(
+            child: Text(
+              text,
+              maxLines: 2,
+              style: TextStyle(
+                  fontSize: 16.sp, color: active ? Colors.white : Colors.black),
+            ),
           ),
         ),
       ],
