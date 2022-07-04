@@ -72,6 +72,7 @@ class ItemScreenController extends GetxController {
   // sub category and sub sub category wise product
   getSubSubCategory(id) {
     subCategoryId.value = id;
+    subSubCategoryId.value = '';
     subSubCategories.value = [];
     api.get(Routes.subcatsubsubcat + id).then((value) {
       print(value);
@@ -102,11 +103,9 @@ class ItemScreenController extends GetxController {
   */
   var menu = {}.obs;
   var product = ProductModel().obs;
-  var style = [].obs;
   getFood(index) {
     menu.value = foods[index];
     product.value = ProductModel.fromJson(foods[index]);
-    style.value = foods[index]['style'];
   }
 
   /*

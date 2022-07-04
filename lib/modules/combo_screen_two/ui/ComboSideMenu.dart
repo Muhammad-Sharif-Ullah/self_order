@@ -38,14 +38,21 @@ class _ComboSideMenuState extends State<ComboSideMenu> {
                     mainAxisExtent: 200.h,
                     crossAxisCount:
                         (orientation == Orientation.portrait) ? 4 : 5),
-                physics: ScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return Container(
-                      height: 270,
-                      alignment: Alignment(0, 0),
-                      color: Colors.white,
-                      child: CustomWidget.CustomComboPackItem(
-                          context: context, menu: controller.sideList[index]));
+                  return GestureDetector(
+                    onTap: () {
+                      controller.selectedSideId.value =
+                          controller.sideList[index]['id'];
+                      controller.selectedSide.value =
+                          controller.sideList[index];
+                    },
+                    child: Container(
+                        height: 270,
+                        color: Colors.white,
+                        child: CustomWidget.CustomComboPackItem(
+                            context: context,
+                            menu: controller.sideList[index])),
+                  );
                 })
           ],
         ),

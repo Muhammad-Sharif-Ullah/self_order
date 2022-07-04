@@ -8,8 +8,16 @@ class ComboScreenControllertwo extends GetxController {
   var currentStatus = 1.obs;
 
   var selectedProductId = ''.obs;
-  var selectedComboId = ''.obs;
   var selectedSize = ''.obs;
+
+  var selectedComboId = ''.obs;
+  var selectedCombo = {}.obs;
+
+  var selectedSideId = ''.obs;
+  var selectedSide = {}.obs;
+
+  var selectedDrinkId = ''.obs;
+  var selectedDrink = {}.obs;
 
   dynamic selectedFoodVersion = ''.obs;
 

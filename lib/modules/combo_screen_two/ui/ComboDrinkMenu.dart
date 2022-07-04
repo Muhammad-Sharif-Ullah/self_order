@@ -20,7 +20,7 @@ class _ComboDrinkMenuState extends State<ComboDrinkMenu> {
     controller.getDrinks();
     return Obx(
       () => Container(
-        margin: EdgeInsets.only(left: 20, right: 20),
+        margin: EdgeInsets.only(left: 20.sp, right: 20.sp),
         child: ListView(
           children: [
             Text(
@@ -28,7 +28,7 @@ class _ComboDrinkMenuState extends State<ComboDrinkMenu> {
               style: TextStyle(fontSize: Dimensions.TextSize25),
             ),
             SizedBox(
-              height: 30,
+              height: 30.h,
             ),
             GridView.builder(
                 shrinkWrap: true,
@@ -39,12 +39,16 @@ class _ComboDrinkMenuState extends State<ComboDrinkMenu> {
                     mainAxisExtent: 200.h,
                     crossAxisCount:
                         (orientation == Orientation.portrait) ? 4 : 5),
-                physics: ScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return Container(
+                  return GestureDetector(
+                    onTap: () {
+                      controller.selectedDrinkId.value =
+                          controller.drinkList[index]['id'];
+                      controller.selectedDrink.value =
+                          controller.drinkList[index];
+                    },
                     child: Container(
                         height: 270,
-                        alignment: Alignment(0, 0),
                         color: Colors.white,
                         child: CustomWidget.CustomComboPackItem(
                             context: context,

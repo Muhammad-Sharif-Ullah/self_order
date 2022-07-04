@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 import 'package:self_order/modules/ItemPage/ui/item_screen_view.dart';
+import 'package:self_order/modules/combo_screen_two/controller/combo_screen_two_logic.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 
@@ -584,55 +585,52 @@ class CustomWidget {
   }
 
   static CustomComboPackItem({context, menu}) {
-    return GestureDetector(
-      onTap: () {},
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          CachedNetworkImage(
-              errorWidget: (context, url, error) =>
-                  Image(image: AssetImage("assets/images/item.png")),
-              imageUrl: menu['base_url'] + menu['label_image']),
-          SizedBox(
-            height: Dimensions.SizedBoxValue20,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        CachedNetworkImage(
+            errorWidget: (context, url, error) =>
+                Image(image: AssetImage("assets/images/item.png")),
+            imageUrl: menu['base_url'] + menu['label_image']),
+        SizedBox(
+          height: Dimensions.SizedBoxValue20,
+        ),
+        Text(
+          '${menu['label']}',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: Dimensions.TextSize25,
           ),
-          Text(
-            '${menu['label']}',
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: Dimensions.TextSize25,
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        Row(
+          children: [
+            Text(
+              '\$${menu['price']}',
+              style: TextStyle(
+                  color: ColorConstants.primaryBigTextColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: Dimensions.TextSize20),
             ),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Row(
-            children: [
-              Text(
-                '\$${menu['price']}',
-                style: TextStyle(
-                    color: ColorConstants.primaryBigTextColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: Dimensions.TextSize20),
+            SizedBox(
+              width: 60,
+            ),
+            Container(
+              height: 30,
+              width: 30,
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.08),
+                borderRadius: BorderRadius.circular(20),
               ),
-              SizedBox(
-                width: 60,
-              ),
-              Container(
-                height: 30,
-                width: 30,
-                decoration: BoxDecoration(
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Icon(FeatherIcons.plus),
-              )
-            ],
-          )
-        ],
-      ),
+              child: Icon(FeatherIcons.plus),
+            )
+          ],
+        )
+      ],
     );
   }
 

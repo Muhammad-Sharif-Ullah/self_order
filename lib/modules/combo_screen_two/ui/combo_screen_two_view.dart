@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,85 +69,121 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                           child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          Container(
-                              child: Column(
+                          Column(
                             children: [
                               Container(
+                                height: 60.h,
+                                width: 60.w,
                                 margin: EdgeInsets.only(bottom: 15),
                                 decoration: BoxDecoration(
                                     // color: ColorConstants.primaryBigTextColor,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(50)),
                                     border: Border.all(
+                                        width: 2.0,
                                         color: ColorConstants.primaryColor)),
-                                child: Image(
-                                  image: AssetImage("assets/images/item.png"),
-                                  height: 50.h,
-                                  width: 60.w,
-                                ),
+                                child: (controller.selectedComboId.value != '')
+                                    ? CachedNetworkImage(
+                                        height: 50.h,
+                                        width: 50.w,
+                                        errorWidget: (context, url, error) =>
+                                            Image(
+                                                image: AssetImage(
+                                                    "assets/images/item.png")),
+                                        imageUrl: controller.selectedCombo
+                                                .value['base_url'] +
+                                            controller.selectedCombo
+                                                .value['label_image'])
+                                    : Container(),
                               ),
-                              Text(
-                                'Sub Burger',
-                                style: TextStyle(fontSize: 16.sp),
-                              )
+                              (controller.selectedComboId.value != '')
+                                  ? Text(
+                                      '${controller.selectedCombo.value['label']}',
+                                      style: TextStyle(fontSize: 16.sp),
+                                    )
+                                  : Container()
                             ],
-                          )),
+                          ),
                           Container(
+                            height: 2.h,
+                            margin: EdgeInsets.only(bottom: 20.h),
+                            width: 50.w,
+                            color: ColorConstants.primaryColor,
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                height: 60.h,
+                                width: 60.w,
+                                margin: EdgeInsets.only(bottom: 15),
+                                decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(50)),
+                                    border: Border.all(
+                                        width: 2.0,
+                                        color: ColorConstants.primaryColor)),
+                                child: (controller.selectedSideId.value != '')
+                                    ? CachedNetworkImage(
+                                        height: 50.h,
+                                        width: 50.w,
+                                        errorWidget: (context, url, error) =>
+                                            Image(
+                                                image: AssetImage(
+                                                    "assets/images/item.png")),
+                                        imageUrl: controller.selectedSide
+                                                .value['base_url'] +
+                                            controller.selectedSide
+                                                .value['label_image'])
+                                    : Container(),
+                              ),
+                              (controller.selectedSideId.value != '')
+                                  ? Text(
+                                      '${controller.selectedSide.value['label']}',
+                                      style: TextStyle(fontSize: 16.sp),
+                                    )
+                                  : Container()
+                            ],
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(bottom: 20.h),
                             height: 1.h,
                             width: 50.w,
                             color: ColorConstants.primaryColor,
                           ),
-                          Container(
-                              child: Column(
+                          Column(
                             children: [
                               Container(
+                                height: 60.h,
+                                width: 60.w,
                                 margin: EdgeInsets.only(bottom: 15),
                                 decoration: BoxDecoration(
-                                    // color: ColorConstants.primaryBigTextColor,
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(50)),
                                     border: Border.all(
+                                        width: 2.0,
                                         color: ColorConstants.primaryColor)),
-                                child: Image(
-                                  image: AssetImage("assets/images/item.png"),
-                                  height: 60.h,
-                                  width: 60.w,
-                                ),
+                                child: (controller.selectedDrinkId.value != '')
+                                    ? CachedNetworkImage(
+                                        height: 50.h,
+                                        width: 50.w,
+                                        errorWidget: (context, url, error) =>
+                                            Image(
+                                                image: AssetImage(
+                                                    "assets/images/item.png")),
+                                        imageUrl: controller.selectedDrink
+                                                .value['base_url'] +
+                                            controller.selectedSide
+                                                .value['label_image'])
+                                    : Container(),
                               ),
-                              Text(
-                                'Sub Burger',
-                                style: TextStyle(fontSize: 16.sp),
-                              )
+                              (controller.selectedDrinkId.value != '')
+                                  ? Text(
+                                      '${controller.selectedDrink.value['label']}',
+                                      style: TextStyle(fontSize: 16.sp),
+                                    )
+                                  : Container()
                             ],
-                          )),
-                          Container(
-                            height: 1.h,
-                            width: 50.w,
-                            color: ColorConstants.primaryColor,
                           ),
-                          Container(
-                              child: Column(
-                            children: [
-                              Container(
-                                margin: EdgeInsets.only(bottom: 15),
-                                decoration: BoxDecoration(
-                                    // color: ColorConstants.primaryBigTextColor,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(50)),
-                                    border: Border.all(
-                                        color: ColorConstants.primaryColor)),
-                                child: Image(
-                                  image: AssetImage("assets/images/item.png"),
-                                  height: 50.h,
-                                  width: 60.w,
-                                ),
-                              ),
-                              Text(
-                                'Sub Burger',
-                                style: TextStyle(fontSize: 16.sp),
-                              )
-                            ],
-                          )),
                         ],
                       )),
                     ],

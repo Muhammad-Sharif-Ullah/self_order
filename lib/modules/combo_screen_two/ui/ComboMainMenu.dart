@@ -55,7 +55,8 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
                     return GestureDetector(
                       onTap: () {
                         controller.selectedComboId.value = i['id'];
-                        selectComboOption();
+                        controller.selectedCombo.value = i;
+                        // selectComboOption();
                       },
                       child: Container(
                           height: 270,
@@ -125,24 +126,32 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
                                         mainAxisExtent: 200.h,
                                         mainAxisSpacing: 5),
                                 itemBuilder: (context, i) {
-                                  return QuantityItem();
+                                  return QuantityItem(
+                                    name: controller.menu['chrust'][i]['name'],
+                                    image: controller.menu['chrust'][i]
+                                        ['image'],
+                                    price: controller.menu['chrust'][i]
+                                        ['price'],
+                                  );
                                 })
                             : Container(),
                       ),
                       SizedBox(
                         height: 20.h,
                       ),
-                      CustomWidget.CustomPrimaryButton(
-                          context: context,
-                          height: 60.h,
-                          width: 596.w,
-                          borderColor: ColorConstants.primaryButtonColor,
-                          title: 'Add',
-                          titlecolor: Colors.white,
-                          titlefontSize: 24.sp,
-                          borderradius: 5,
-                          backgroundcolor: ColorConstants.primaryButtonColor,
-                          titleFontWeight: FontWeight.w700),
+                      GestureDetector(
+                        child: CustomWidget.CustomPrimaryButton(
+                            context: context,
+                            height: 60.h,
+                            width: 596.w,
+                            borderColor: ColorConstants.primaryButtonColor,
+                            title: 'Add',
+                            titlecolor: Colors.white,
+                            titlefontSize: 24.sp,
+                            borderradius: 5,
+                            backgroundcolor: ColorConstants.primaryButtonColor,
+                            titleFontWeight: FontWeight.w700),
+                      ),
                       SizedBox(
                         height: 30.h,
                       ),
