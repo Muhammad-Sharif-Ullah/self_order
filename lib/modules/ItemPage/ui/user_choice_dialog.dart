@@ -441,7 +441,7 @@ userChoiceDialog({required BuildContext context}) {
                                                           controller
                                                                   .product
                                                                   .value
-                                                                  .sauce[i]
+                                                                  .soda[i]
                                                                   .selected =
                                                               !controller
                                                                   .product
@@ -581,11 +581,12 @@ userChoiceDialog({required BuildContext context}) {
                                                           .extra[i]
                                                           .selected,
                                                       onChanged: (v) {
+                                                        print('v is $v');
                                                         setState(() {
                                                           controller
                                                                   .product
                                                                   .value
-                                                                  .sauce[i]
+                                                                  .extra[i]
                                                                   .selected =
                                                               !controller
                                                                   .product
@@ -720,7 +721,7 @@ userChoiceDialog({required BuildContext context}) {
                                                           controller
                                                                   .product
                                                                   .value
-                                                                  .sauce[i]
+                                                                  .bacon[i]
                                                                   .selected =
                                                               !controller
                                                                   .product

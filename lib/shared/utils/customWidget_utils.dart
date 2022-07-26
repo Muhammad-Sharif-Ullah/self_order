@@ -474,6 +474,79 @@ class CustomWidget {
     );
   }
 
+  static ComboCartView(comboItem) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              height: Dimensions.height65,
+              width: 70.w,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(1),
+                border: Border.all(color: ColorConstants.primaryButtonColor),
+              ),
+              child: Image(
+                image: AssetImage('assets/images/bug.png'),
+                height: Dimensions.height60,
+                width: Dimensions.width70,
+              ),
+            ),
+            SizedBox(
+              width: Dimensions.SizedBoxValue20,
+            ),
+            Expanded(
+              child: Text(
+                '${comboItem['label']}',
+                style: TextStyle(
+                    fontSize: Dimensions.TextSize20,
+                    fontWeight: FontWeight.w700),
+              ),
+            ),
+            SizedBox(
+              width: Dimensions.SizedBoxValue30,
+            ),
+            Text(
+              '\$${comboItem['price']}',
+              style: TextStyle(
+                fontSize: Dimensions.SizedBoxValue20,
+              ),
+            ),
+            SizedBox(
+              width: 30,
+            ),
+            Container(
+              height: Dimensions.height25,
+              width: Dimensions.width85,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(96),
+                color: ColorConstants.bannerHeadingTextColor,
+              ),
+              child: Center(
+                child: Text(
+                  'Change',
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w900),
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        Divider(
+            color: ColorConstants.bannerBackgroundColor,
+            height: 8,
+            endIndent: 100,
+            indent: 165),
+      ],
+    );
+  }
+
   static CustomCartModalBottomSheet({context}) {
     return Column(
       children: [

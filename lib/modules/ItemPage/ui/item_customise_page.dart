@@ -17,255 +17,276 @@ class ItemCustomisePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller.getCustomiseFood(id);
-    controller.getCustomiseExtra(id);
+    controller.getCustomiseExtraOption(id);
     return Obx(
       () => SafeArea(
           child: Scaffold(
         body: Column(
           children: [
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 60.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30.w),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Whats on it:',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              color: ColorConstants.primaryButtonColor,
-                              fontSize: 24.sp),
-                        ),
-                        Spacer(),
-                        Text(
-                          'Total:  \$18.36',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700,
-                              color: ColorConstants.bannerHeadingTextColor,
-                              fontSize: 24.sp),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: 30.h,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30.w),
-                    child: Row(
+            (controller.customiseExtra.value.status != null &&
+                    controller.customiseProduct.value.status != null)
+                ? Expanded(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Image(
-                          image: AssetImage("assets/images/customisebug.png"),
-                          height: 109,
-                          width: 147,
-                        ),
                         SizedBox(
-                          width: 34,
+                          height: 60.h,
                         ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 30.w),
+                          child: Row(
                             children: [
-                              SizedBox(
-                                width: 32.w,
-                              ),
                               Text(
-                                'Beef Burger',
+                                'Whats on it:',
                                 style: TextStyle(
-                                    color: ColorConstants.primaryBigTextColor,
                                     fontWeight: FontWeight.w700,
+                                    color: ColorConstants.primaryButtonColor,
                                     fontSize: 24.sp),
                               ),
-                              SizedBox(
-                                height: 35.h,
+                              Spacer(),
+                              Text(
+                                'Total:  \$18.36',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                    color:
+                                        ColorConstants.bannerHeadingTextColor,
+                                    fontSize: 24.sp),
                               ),
-                              GridView.builder(
-                                  itemCount:
-                                      controller.customiseFoods.value.length,
-                                  shrinkWrap: true,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 5,
-                                          childAspectRatio: 2,
-                                          crossAxisSpacing: 10,
-                                          mainAxisSpacing: 10),
-                                  itemBuilder: (context, index) {
-                                    return Stack(
-                                      children: [
-                                        Container(
-                                          height: 50,
-                                          width: 95,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(150),
-                                              border: Border.all(
-                                                  color: ColorConstants
-                                                      .borderColor
-                                                      .withOpacity(0.02))),
-                                          child: Center(
-                                            child: Text(
-                                              '${controller.customiseFoods[index]['name']}',
-                                              style: TextStyle(
-                                                color: ColorConstants
-                                                    .primaryBigTextColor,
-                                                fontSize: 14.sp,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          right: 5,
-                                          top: -3,
-                                          child: Container(
-                                            height: 20.h,
-                                            width: 20.w,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              color: ColorConstants
-                                                  .bannerHeadingTextColor,
-                                            ),
-                                            child: Icon(
-                                              FeatherIcons.x,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        )
-                                      ],
-                                    );
-                                  })
                             ],
                           ),
-                        )
-                      ],
-                    ),
-                  ),
+                        ),
 
-                  SizedBox(
-                    height: 50.h,
-                  ),
-
-                  /// Todo : Add Extra //
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30.w),
-                    child: Text(
-                      'Add extra:',
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 24.sp,
-                          color: ColorConstants.primaryButtonColor),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 30.h,
-                  ),
-                  Expanded(
-                    child: ResponsiveGridList(
-                        desiredItemWidth: 130.w,
-                        minSpacing: 50.h,
-                        children: controller.customiseExtraFoods.map((i) {
-                          return InkWell(
-                            onTap: () {
-                              addExtraCustomisePage(context: context);
-                            },
-                            child: Column(
-                              children: [
-                                CachedNetworkImage(
-                                  errorWidget: (context, url, error) => Image(
-                                      image: AssetImage(
-                                          "assets/images/homescreen.png")),
-                                  imageUrl: i['base_url'] + i['image'],
-                                  height: 70,
-                                  width: 130,
-                                ),
-                                SizedBox(
-                                  height: 10.h,
-                                ),
-                                Text(
-                                  '${i['label']}',
-                                  style: TextStyle(
-                                    color: ColorConstants.primaryBigTextColor,
-                                    fontSize: 14.sp,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Text(
-                                  '\$${i['price']}',
-                                  style: TextStyle(
-                                      color:
-                                          ColorConstants.bannerHeadingTextColor,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14.sp),
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                        SizedBox(
+                          height: 30.h,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 30.w),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image(
+                                image: AssetImage(
+                                    "assets/images/customisebug.png"),
+                                height: 109,
+                                width: 147,
+                              ),
+                              SizedBox(
+                                width: 34,
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    CustomWidget.CustomPrimaryButton(
-                                      context: context,
-                                      width: 26.51.w,
-                                      height: 16.87.h,
-                                      borderColor: ColorConstants
-                                          .primaryBigTextColor
-                                          .withOpacity(0.5),
-                                      backgroundcolor: Colors.white,
-                                      borderradius: 6,
-                                      buttonType: 'icon',
-                                      icon: Icon(
-                                        FeatherIcons.minus,
-                                        size: 12,
-                                      ),
+                                    SizedBox(
+                                      width: 32.w,
                                     ),
                                     Text(
-                                      '1',
+                                      'Beef Burger',
                                       style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
                                           color: ColorConstants
-                                              .primaryBigTextColor),
+                                              .primaryBigTextColor,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 24.sp),
                                     ),
-                                    CustomWidget.CustomPrimaryButton(
-                                      context: context,
-                                      width: 26.51.w,
-                                      height: 16.87.h,
-                                      borderColor:
-                                          ColorConstants.bannerHeadingTextColor,
-                                      backgroundcolor:
-                                          ColorConstants.bannerHeadingTextColor,
-                                      borderradius: 6,
-                                      buttonType: 'icon',
-                                      icon: Icon(
-                                        FeatherIcons.plus,
-                                        size: 12,
-                                        color: Colors.white,
-                                      ),
+                                    SizedBox(
+                                      height: 35.h,
                                     ),
+                                    (controller.customiseProduct.value
+                                                .customise!.length ==
+                                            null)
+                                        ? Container(
+                                            child: Text(
+                                                '${controller.customiseProduct.value.customise!.length}'),
+                                          )
+                                        : Text(
+                                            '${controller.customiseExtra.value.status}')
+                                    // GridView.builder(
+                                    //     itemCount: controller
+                                    //         .customiseExtra
+                                    //         .value
+                                    //         .customiseExtraOptions!
+                                    //         .length,
+                                    //     shrinkWrap: true,
+                                    //     gridDelegate:
+                                    //         SliverGridDelegateWithFixedCrossAxisCount(
+                                    //             crossAxisCount: 5,
+                                    //             childAspectRatio: 2,
+                                    //             crossAxisSpacing: 10,
+                                    //             mainAxisSpacing: 10),
+                                    //     itemBuilder: (context, index) {
+                                    //       return Stack(
+                                    //         children: [
+                                    //           Container(
+                                    //             height: 50,
+                                    //             width: 95,
+                                    //             decoration: BoxDecoration(
+                                    //                 borderRadius:
+                                    //                     BorderRadius
+                                    //                         .circular(150),
+                                    //                 border: Border.all(
+                                    //                     color: ColorConstants
+                                    //                         .borderColor
+                                    //                         .withOpacity(
+                                    //                             0.02))),
+                                    //             child: Center(
+                                    //               child: Text(
+                                    //                 '${controller.customiseExtra.value.customiseExtraOptions![index].label}',
+                                    //                 style: TextStyle(
+                                    //                   color: ColorConstants
+                                    //                       .primaryBigTextColor,
+                                    //                   fontSize: 14.sp,
+                                    //                   fontWeight:
+                                    //                       FontWeight.w400,
+                                    //                 ),
+                                    //               ),
+                                    //             ),
+                                    //           ),
+                                    //           Positioned(
+                                    //             right: 5,
+                                    //             top: -3,
+                                    //             child: Container(
+                                    //               height: 20.h,
+                                    //               width: 20.w,
+                                    //               decoration: BoxDecoration(
+                                    //                 borderRadius:
+                                    //                     BorderRadius
+                                    //                         .circular(25),
+                                    //                 color: ColorConstants
+                                    //                     .bannerHeadingTextColor,
+                                    //               ),
+                                    //               child: Icon(
+                                    //                 FeatherIcons.x,
+                                    //                 color: Colors.white,
+                                    //               ),
+                                    //             ),
+                                    //           )
+                                    //         ],
+                                    //       );
+                                    //     })
                                   ],
-                                )
-                              ],
-                            ),
-                          );
-                        }).toList()),
-                  ),
-                ],
-              ),
-            ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+
+                        SizedBox(
+                          height: 50.h,
+                        ),
+
+                        /// Todo : Add Extra //
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 30.w),
+                          child: Text(
+                            'Add extra:',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 24.sp,
+                                color: ColorConstants.primaryButtonColor),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 30.h,
+                        ),
+                        Expanded(
+                          child: (controller.customiseExtra.value
+                                      .customiseExtraOptions ==
+                                  null)
+                              ? Container()
+                              : Text(
+                                  '${controller.customiseExtra.value.customiseExtraOptions!.length}'),
+                          // ResponsiveGridList(
+                          //     desiredItemWidth: 130.w,
+                          //     minSpacing: 50.h,
+                          //     children: controller
+                          //         .customiseProduct.value.customise!
+                          //         .map((i) {
+                          //       return InkWell(
+                          //         onTap: () {
+                          //           addExtraCustomisePage(context: context);
+                          //         },
+                          //         child: Column(
+                          //           children: [
+                          //             CachedNetworkImage(
+                          //               errorWidget:
+                          //                   (context, url, error) => Image(
+                          //                       image: AssetImage(
+                          //                           "assets/images/homescreen.png")),
+                          //               imageUrl: i.baseUrl! + i.image!,
+                          //               height: 70,
+                          //               width: 130,
+                          //             ),
+                          //             SizedBox(
+                          //               height: 10.h,
+                          //             ),
+                          //             Text(
+                          //               '${i.name}',
+                          //               style: TextStyle(
+                          //                 color: ColorConstants
+                          //                     .primaryBigTextColor,
+                          //                 fontSize: 14.sp,
+                          //                 fontWeight: FontWeight.w400,
+                          //               ),
+                          //             ),
+                          //             SizedBox(
+                          //               height: 10,
+                          //             ),
+                          //             Row(
+                          //               mainAxisAlignment:
+                          //                   MainAxisAlignment.spaceBetween,
+                          //               children: [
+                          //                 CustomWidget.CustomPrimaryButton(
+                          //                   context: context,
+                          //                   width: 26.51.w,
+                          //                   height: 16.87.h,
+                          //                   borderColor: ColorConstants
+                          //                       .primaryBigTextColor
+                          //                       .withOpacity(0.5),
+                          //                   backgroundcolor: Colors.white,
+                          //                   borderradius: 6,
+                          //                   buttonType: 'icon',
+                          //                   icon: Icon(
+                          //                     FeatherIcons.minus,
+                          //                     size: 12,
+                          //                   ),
+                          //                 ),
+                          //                 Text(
+                          //                   '1',
+                          //                   style: TextStyle(
+                          //                       fontSize: 16,
+                          //                       fontWeight: FontWeight.w700,
+                          //                       color: ColorConstants
+                          //                           .primaryBigTextColor),
+                          //                 ),
+                          //                 CustomWidget.CustomPrimaryButton(
+                          //                   context: context,
+                          //                   width: 26.51.w,
+                          //                   height: 16.87.h,
+                          //                   borderColor: ColorConstants
+                          //                       .bannerHeadingTextColor,
+                          //                   backgroundcolor: ColorConstants
+                          //                       .bannerHeadingTextColor,
+                          //                   borderradius: 6,
+                          //                   buttonType: 'icon',
+                          //                   icon: Icon(
+                          //                     FeatherIcons.plus,
+                          //                     size: 12,
+                          //                     color: Colors.white,
+                          //                   ),
+                          //                 ),
+                          //               ],
+                          //             )
+                          //           ],
+                          //         ),
+                          //       );
+                          //     }).toList()),
+                        ),
+                      ],
+                    ),
+                  )
+                : Container(),
             SizedBox(
               height: 20.h,
             ),

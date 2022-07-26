@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:self_order/Data/Model/page_route_arguments.dart';
+import 'package:self_order/modules/combo_screen_two/controller/combo_screen_two_logic.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
@@ -15,11 +16,12 @@ class ComboCart extends StatefulWidget {
 }
 
 class _ComboCartState extends State<ComboCart> {
+  var controller = Get.find<ComboScreenControllertwo>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
+      body: Obx(
+        () => Column(
           children: [
             Container(
               height: 250.h,
@@ -36,26 +38,25 @@ class _ComboCartState extends State<ComboCart> {
                   'Is your order correct?',
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontSize: Dimensions.TextSize50,
+                    fontSize: Dimensions.TextSize30,
                     color: ColorConstants.primaryButtonColor,
                   ),
                 ),
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 50,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.only(bottom: 20),
-                    child: CustomWidget.CustomOrderView(),
-                  );
-                },
+                child: Container(
+              margin: EdgeInsets.only(left: 100.w, right: 100.w),
+              child: ListView(
+                children: [
+                  CustomWidget.ComboCartView(controller.selectedCombo.value),
+                  CustomWidget.ComboCartView(controller.selectedSide.value),
+                  CustomWidget.ComboCartView(controller.selectedDrink.value)
+                ],
               ),
-            ),
+            )),
             Container(
-              margin: EdgeInsets.only(left: 30.sp, right: 30.sp),
+              margin: EdgeInsets.only(left: 30, right: 30, bottom: 10),
               child: Column(
                 children: [
                   SizedBox(
@@ -69,7 +70,7 @@ class _ComboCartState extends State<ComboCart> {
                         child: CustomWidget.CustomPrimaryButton(
                             context: context,
                             height: 60.h,
-                            width: 282.w,
+                            width: 280.w,
                             titlecolor: Color(0xFFFF000E),
                             borderColor: Color(0xFFFF000E),
                             backgroundcolor: Colors.transparent,
@@ -83,7 +84,7 @@ class _ComboCartState extends State<ComboCart> {
                         child: CustomWidget.CustomPrimaryButton(
                           context: context,
                           height: 60.h,
-                          width: 282.w,
+                          width: 280.w,
                           title: 'Checkout',
                           titlefontSize: 24.sp,
                           borderradius: 5,

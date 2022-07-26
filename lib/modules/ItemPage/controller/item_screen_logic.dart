@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:self_order/modules/Home/controller/home_screen_logic.dart';
+import 'package:self_order/modules/ItemPage/model/CustomiseExtraProduct.dart';
+import 'package:self_order/modules/ItemPage/model/CustomiseOption.dart';
 import 'package:self_order/modules/ItemPage/model/ProductModel.dart';
 import 'package:self_order/request/routes.dart';
 
@@ -115,24 +117,17 @@ class ItemScreenController extends GetxController {
   /*
   *  Customise Products
   */
-  var customiseFoods = [].obs;
-  var customiseExtraFoods = [].obs;
-  var customiseExtraOptions = [].obs;
+  var customiseExtra = CustomiseExtraProduct().obs;
+  var customiseProduct = CustomiseProduct().obs;
   getCustomiseFood(id) {
-    api.get(Routes.customiseProduct + '246').then((value) {
-      customiseFoods.value = value['customise'];
-    });
-  }
-
-  getCustomiseExtra(id) {
-    api.get(Routes.customiseExtra + '22').then((value) {
-      customiseExtraFoods.value = value['customiseextra'];
+    api.get(Routes.customiseProduct + id).then((value) {
+      customiseProduct.value = CustomiseProduct.fromJson(value);
     });
   }
 
   getCustomiseExtraOption(id) {
-    api.get(Routes.customiseExtra + '34').then((value) {
-      customiseExtraOptions.value = value['customise_extra_options'];
+    api.get(Routes.customiseExtra + id).then((value) {
+      customiseExtra.value = CustomiseExtraProduct.fromJson(value);
     });
   }
 }

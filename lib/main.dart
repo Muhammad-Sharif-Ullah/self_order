@@ -15,9 +15,11 @@ import 'package:self_order/shared/Route/route.dart';
 import 'package:self_order/shared/theme/theme_service.dart';
 import 'package:self_order/shared/theme/themes.dart';
 
+var token;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  token = await Session.getToken();
   runApp(
     DevicePreview(
       enabled: false,
@@ -34,7 +36,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Session.getToken().then((value) => print('token is ' + value));
     return ScreenUtilInit(
       designSize: Size(744, 1133),
       builder: (_) {
@@ -48,9 +49,7 @@ class MyApp extends StatelessWidget {
           title: 'SelfOrder',
           // enableLog: true,
           onGenerateRoute: appRouter!.onGeneratedRoute,
-          home: (Session.getToken().toString() == '')
-              ? LoginScreen()
-              : VideoScreenView(),
+          home: (token == '') ? LoginScreen() : VideoScreenView(),
         );
       },
     );
