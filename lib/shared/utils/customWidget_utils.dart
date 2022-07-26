@@ -5,8 +5,10 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:responsive_grid/responsive_grid.dart';
+import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
 import 'package:self_order/modules/ItemPage/ui/item_screen_view.dart';
 import 'package:self_order/modules/combo_screen_two/controller/combo_screen_two_logic.dart';
+import 'package:self_order/modules/combo_screen_two/ui/combo_screen_two_view.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 
@@ -265,45 +267,53 @@ class CustomWidget {
     );
   }
 
-  static ItemCountSection() {
+  static ItemCountSection(quantity) {
+    ItemScreenController controller = Get.find();
     return Row(
       children: [
-        Container(
-            height: 24,
-            width: 37,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(9),
-                color: Colors.white,
-                border: Border.all(color: ColorConstants.primaryBigTextColor)),
-            child: Icon(
-              FeatherIcons.minus,
-              size: Dimensions.TextSize15,
-              color: ColorConstants.primaryBigTextColor,
-            )),
+        GestureDetector(
+          onTap: () => controller.decreaseQuantity(),
+          child: Container(
+              height: 24,
+              width: 37,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(9),
+                  color: Colors.white,
+                  border:
+                      Border.all(color: ColorConstants.primaryBigTextColor)),
+              child: Icon(
+                FeatherIcons.minus,
+                size: Dimensions.TextSize15,
+                color: ColorConstants.primaryBigTextColor,
+              )),
+        ),
         SizedBox(
           width: Dimensions.SizedBoxValue25,
         ),
         Text(
-          '2',
+          '$quantity',
           style: TextStyle(
               fontSize: Dimensions.TextSize30, fontWeight: FontWeight.bold),
         ),
         SizedBox(
           width: Dimensions.SizedBoxValue25,
         ),
-        Container(
-            height: 24,
-            width: 37,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(9),
-                color: ColorConstants.bannerHeadingTextColor,
-                border:
-                    Border.all(color: ColorConstants.bannerHeadingTextColor)),
-            child: Icon(
-              FeatherIcons.plus,
-              size: Dimensions.TextSize15,
-              color: Colors.white,
-            )),
+        GestureDetector(
+          onTap: () => controller.increaseQuantity(),
+          child: Container(
+              height: 24,
+              width: 37,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(9),
+                  color: ColorConstants.bannerHeadingTextColor,
+                  border:
+                      Border.all(color: ColorConstants.bannerHeadingTextColor)),
+              child: Icon(
+                FeatherIcons.plus,
+                size: Dimensions.TextSize15,
+                color: Colors.white,
+              )),
+        ),
       ],
     );
   }
@@ -474,7 +484,8 @@ class CustomWidget {
     );
   }
 
-  static ComboCartView(comboItem) {
+  static ComboCartView(comboItem, type) {
+    ComboScreenControllertwo controller = Get.find();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -502,7 +513,7 @@ class CustomWidget {
               child: Text(
                 '${comboItem['label']}',
                 style: TextStyle(
-                    fontSize: Dimensions.TextSize20,
+                    fontSize: Dimensions.TextSize25,
                     fontWeight: FontWeight.w700),
               ),
             ),
@@ -512,24 +523,44 @@ class CustomWidget {
             Text(
               '\$${comboItem['price']}',
               style: TextStyle(
-                fontSize: Dimensions.SizedBoxValue20,
+                fontSize: Dimensions.TextSize25,
               ),
             ),
             SizedBox(
-              width: 30,
+              width: 30.w,
             ),
-            Container(
-              height: Dimensions.height25,
-              width: Dimensions.width85,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(96),
-                color: ColorConstants.bannerHeadingTextColor,
-              ),
-              child: Center(
-                child: Text(
-                  'Change',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w900),
+            GestureDetector(
+              onTap: () {
+                switch (type) {
+                  case 'main':
+                    controller.currentStatus.value = 1;
+                    Get.to(ComboScreenViewTwo());
+                    break;
+                  case 'side':
+                    controller.currentStatus.value = 2;
+                    Get.to(ComboScreenViewTwo());
+                    break;
+                  case 'drink':
+                    controller.currentStatus.value = 3;
+                    Get.to(ComboScreenViewTwo());
+                    break;
+                  default:
+                }
+              },
+              child: Container(
+                padding: EdgeInsets.all(10.sp),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(96),
+                  color: ColorConstants.bannerHeadingTextColor,
+                ),
+                child: Center(
+                  child: Text(
+                    'Change',
+                    style: TextStyle(
+                        fontSize: Dimensions.TextSize20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w900),
+                  ),
                 ),
               ),
             ),

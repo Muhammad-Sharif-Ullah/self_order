@@ -24,6 +24,20 @@ class ComboScreenControllertwo extends GetxController {
   List count = [3, 5, 8];
 
   var comboList = [].obs;
+
+  var comboTotal = 0.obs;
+
+  setSelectedSize(String size) {
+    selectedSize.value = size;
+    if (currentStatus.value == 1) {
+      getCombo();
+    } else if (currentStatus.value == 2) {
+      getSide();
+    } else if (currentStatus.value == 3) {
+      getDrinks();
+    }
+  }
+
   getCombo() {
     api
         .get(Routes.combo +
@@ -31,6 +45,7 @@ class ComboScreenControllertwo extends GetxController {
             '/' +
             selectedSize.value)
         .then((value) {
+      print(value);
       comboList.value = value['combo'];
     });
   }
@@ -58,4 +73,14 @@ class ComboScreenControllertwo extends GetxController {
       drinkList.value = value['combodrink'];
     });
   }
+
+  getTotal() {
+    var total = 0;
+    total += (int.parse(selectedCombo['price'])) as int;
+    total += (int.parse(selectedSide['price'])) as int;
+    total += (int.parse(selectedDrink['price'])) as int;
+    comboTotal.value = total;
+  }
+
+  checkOut() {}
 }

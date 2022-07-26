@@ -4,6 +4,7 @@ class ProductModel {
   String? name;
   String? productDescription;
   String? productPrice;
+  int quantity = 1;
   String? productImage;
   String? categoryId;
   String? subCategoryId;
@@ -27,6 +28,7 @@ class ProductModel {
   late List<MultiSelect> extra;
   late List<MultiSelect> bacon;
   late List<SingleSelect> meal;
+  String? productTotal;
 
   ProductModel();
 
@@ -36,6 +38,7 @@ class ProductModel {
     name = json['name'];
     productDescription = json['product_description'];
     productPrice = json['product_price'];
+    productTotal = json['product_price'];
     productImage = json['product_image'];
     categoryId = json['category_id'];
     subCategoryId = json['sub_category_id'];
@@ -175,34 +178,34 @@ class ProductModel {
 }
 
 class SingleSelect {
-  String? name;
-  String? price;
+  late String name;
+  late String price;
 
-  SingleSelect({this.name, this.price});
+  SingleSelect();
 
   SingleSelect.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    price = json['price'];
+    price = '0';
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
-    data['price'] = this.price;
+    data['price'] = '1';
     return data;
   }
 }
 
 class MultiSelect {
-  String? name;
-  String? price;
+  late String name;
+  late String price;
   bool selected = false;
 
   MultiSelect();
 
   MultiSelect.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    price = json['price'];
+    price = '0';
     selected = false;
   }
 

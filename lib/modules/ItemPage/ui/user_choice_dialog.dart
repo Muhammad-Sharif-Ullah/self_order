@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -25,8 +26,8 @@ userChoiceDialog({required BuildContext context}) {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          content: Obx(
-            () => Container(
+          content: StatefulBuilder(builder: (context, setState) {
+            return Container(
               width: 656.w,
               child: Column(
                 children: [
@@ -101,7 +102,7 @@ userChoiceDialog({required BuildContext context}) {
                                       width: 20.w,
                                     ),
                                     Text(
-                                      'X ${controller.product.value.productPrice}',
+                                      'X ${controller.product.value.quantity}',
                                       style: TextStyle(
                                           color: ColorConstants
                                               .bannerHeadingTextColor
@@ -113,7 +114,73 @@ userChoiceDialog({required BuildContext context}) {
                                 SizedBox(
                                   height: 15.h,
                                 ),
-                                CustomWidget.ItemCountSection(),
+                                Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          (controller.product.value.quantity >
+                                                  1)
+                                              ? controller
+                                                  .product.value.quantity--
+                                              : 1;
+                                        });
+                                        controller.product.update((val) {});
+                                      },
+                                      child: Container(
+                                          height: 24,
+                                          width: 37,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(9),
+                                              color: Colors.white,
+                                              border: Border.all(
+                                                  color: ColorConstants
+                                                      .primaryBigTextColor)),
+                                          child: Icon(
+                                            FeatherIcons.minus,
+                                            size: Dimensions.TextSize15,
+                                            color: ColorConstants
+                                                .primaryBigTextColor,
+                                          )),
+                                    ),
+                                    SizedBox(
+                                      width: Dimensions.SizedBoxValue25,
+                                    ),
+                                    Text(
+                                      '${controller.product.value.quantity}',
+                                      style: TextStyle(
+                                          fontSize: Dimensions.TextSize30,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      width: Dimensions.SizedBoxValue25,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          controller.product.value.quantity++;
+                                        });
+                                      },
+                                      child: Container(
+                                          height: 24,
+                                          width: 37,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(9),
+                                              color: ColorConstants
+                                                  .bannerHeadingTextColor,
+                                              border: Border.all(
+                                                  color: ColorConstants
+                                                      .bannerHeadingTextColor)),
+                                          child: Icon(
+                                            FeatherIcons.plus,
+                                            size: Dimensions.TextSize15,
+                                            color: Colors.white,
+                                          )),
+                                    ),
+                                  ],
+                                ),
                               ],
                             )
                           ],
@@ -212,49 +279,50 @@ userChoiceDialog({required BuildContext context}) {
                                                   crossAxisCount: 4,
                                                   childAspectRatio: 1,
                                                   crossAxisSpacing: 5,
-                                                  mainAxisExtent: 50,
+                                                  mainAxisExtent: 60.sp,
                                                   mainAxisSpacing: 5),
                                           itemBuilder: (context, i) {
-                                            return StatefulBuilder(
-                                                builder: (context, setState) {
-                                              return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Checkbox(
-                                                      activeColor:
-                                                          ColorConstants
-                                                              .primaryColor,
-                                                      value: controller
-                                                          .product
-                                                          .value
-                                                          .toppings[i]
-                                                          .selected,
-                                                      onChanged: (v) {
-                                                        setState(() {
-                                                          controller
-                                                                  .product
-                                                                  .value
-                                                                  .toppings[i]
-                                                                  .selected =
-                                                              !controller
-                                                                  .product
-                                                                  .value
-                                                                  .toppings[i]
-                                                                  .selected;
-                                                        });
-                                                      }),
-                                                  Expanded(
-                                                    child: Text(
-                                                      '${controller.product.value.toppings[i].name}',
-                                                      maxLines: 2,
-                                                      style: TextStyle(
-                                                          fontSize: 20.sp),
-                                                    ),
-                                                  )
-                                                ],
-                                              );
-                                            });
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    activeColor: ColorConstants
+                                                        .primaryColor,
+                                                    value: controller
+                                                        .product
+                                                        .value
+                                                        .toppings[i]
+                                                        .selected,
+                                                    onChanged: (v) {
+                                                      setState(() {
+                                                        controller
+                                                                .product
+                                                                .value
+                                                                .toppings[i]
+                                                                .selected =
+                                                            !controller
+                                                                .product
+                                                                .value
+                                                                .toppings[i]
+                                                                .selected;
+                                                        // var total = controller
+                                                        //     .productTotal();
+                                                        // controller.product.value
+                                                        //         .productTotal =
+                                                        //     total;
+                                                      });
+                                                    }),
+                                                Expanded(
+                                                  child: Text(
+                                                    '${controller.product.value.toppings[i].name}',
+                                                    maxLines: 2,
+                                                    style: TextStyle(
+                                                        fontSize: 20.sp),
+                                                  ),
+                                                )
+                                              ],
+                                            );
                                           }),
                                     ),
                                   ],
@@ -287,36 +355,37 @@ userChoiceDialog({required BuildContext context}) {
                                                   mainAxisExtent: 50,
                                                   mainAxisSpacing: 5),
                                           itemBuilder: (context, i) {
-                                            return StatefulBuilder(
-                                                builder: (context, setState) {
-                                              return RadioListTile(
-                                                  contentPadding:
-                                                      EdgeInsets.all(0),
-                                                  value: i,
-                                                  activeColor: ColorConstants
-                                                      .primaryColor,
-                                                  selected: (controller
-                                                              .product
-                                                              .value
-                                                              .selectedStyleId ==
-                                                          i)
-                                                      ? true
-                                                      : false,
-                                                  title: Text(
-                                                      '${controller.product.value.style[i].name}',
-                                                      maxLines: 2,
-                                                      style: TextStyle(
-                                                        fontSize: 20.h,
-                                                      )),
-                                                  groupValue: controller.product
-                                                      .value.selectedStyleId,
-                                                  onChanged: (v) {
-                                                    setState(() {
-                                                      controller.product.value
-                                                          .selectedStyleId = i;
-                                                    });
+                                            return RadioListTile(
+                                                contentPadding:
+                                                    EdgeInsets.all(0),
+                                                value: i,
+                                                activeColor:
+                                                    ColorConstants.primaryColor,
+                                                selected: (controller
+                                                            .product
+                                                            .value
+                                                            .selectedStyleId ==
+                                                        i)
+                                                    ? true
+                                                    : false,
+                                                title: Text(
+                                                    '${controller.product.value.style[i].name}',
+                                                    maxLines: 2,
+                                                    style: TextStyle(
+                                                      fontSize: 20.h,
+                                                    )),
+                                                groupValue: controller.product
+                                                    .value.selectedStyleId,
+                                                onChanged: (v) {
+                                                  setState(() {
+                                                    controller.product.value
+                                                        .selectedStyleId = i;
+                                                    // var total =
+                                                    //     controller.productTotal();
+                                                    // controller.product.value
+                                                    //     .productTotal = total;
                                                   });
-                                            });
+                                                });
                                           }),
                                     ),
                                   ],
@@ -349,46 +418,47 @@ userChoiceDialog({required BuildContext context}) {
                                                   mainAxisExtent: 50,
                                                   mainAxisSpacing: 5),
                                           itemBuilder: (context, i) {
-                                            return StatefulBuilder(
-                                                builder: (context, setState) {
-                                              return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Checkbox(
-                                                      activeColor:
-                                                          ColorConstants
-                                                              .primaryColor,
-                                                      value: controller
-                                                          .product
-                                                          .value
-                                                          .sauce[i]
-                                                          .selected,
-                                                      onChanged: (v) {
-                                                        setState(() {
-                                                          controller
-                                                                  .product
-                                                                  .value
-                                                                  .sauce[i]
-                                                                  .selected =
-                                                              !controller
-                                                                  .product
-                                                                  .value
-                                                                  .sauce[i]
-                                                                  .selected;
-                                                        });
-                                                      }),
-                                                  Expanded(
-                                                    child: Text(
-                                                      '${controller.product.value.sauce[i].name}',
-                                                      maxLines: 3,
-                                                      style: TextStyle(
-                                                          fontSize: 20.sp),
-                                                    ),
-                                                  )
-                                                ],
-                                              );
-                                            });
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    activeColor: ColorConstants
+                                                        .primaryColor,
+                                                    value: controller
+                                                        .product
+                                                        .value
+                                                        .sauce[i]
+                                                        .selected,
+                                                    onChanged: (v) {
+                                                      setState(() {
+                                                        controller
+                                                                .product
+                                                                .value
+                                                                .sauce[i]
+                                                                .selected =
+                                                            !controller
+                                                                .product
+                                                                .value
+                                                                .sauce[i]
+                                                                .selected;
+                                                        // var total = controller
+                                                        //     .productTotal();
+                                                        // controller.product.value
+                                                        //         .productTotal =
+                                                        //     total;
+                                                      });
+                                                    }),
+                                                Expanded(
+                                                  child: Text(
+                                                    '${controller.product.value.sauce[i].name}',
+                                                    maxLines: 3,
+                                                    style: TextStyle(
+                                                        fontSize: 20.sp),
+                                                  ),
+                                                )
+                                              ],
+                                            );
                                           }),
                                     ),
                                   ],
@@ -421,46 +491,44 @@ userChoiceDialog({required BuildContext context}) {
                                                   mainAxisExtent: 50,
                                                   mainAxisSpacing: 5),
                                           itemBuilder: (context, i) {
-                                            return StatefulBuilder(
-                                                builder: (context, setState) {
-                                              return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Checkbox(
-                                                      activeColor:
-                                                          ColorConstants
-                                                              .primaryColor,
-                                                      value: controller
-                                                          .product
-                                                          .value
-                                                          .soda[i]
-                                                          .selected,
-                                                      onChanged: (v) {
-                                                        setState(() {
-                                                          controller
-                                                                  .product
-                                                                  .value
-                                                                  .soda[i]
-                                                                  .selected =
-                                                              !controller
-                                                                  .product
-                                                                  .value
-                                                                  .soda[i]
-                                                                  .selected;
-                                                        });
-                                                      }),
-                                                  Expanded(
-                                                    child: Text(
-                                                      '${controller.product.value.soda[i].name}',
-                                                      maxLines: 3,
-                                                      style: TextStyle(
-                                                          fontSize: 20.sp),
-                                                    ),
-                                                  )
-                                                ],
-                                              );
-                                            });
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    activeColor: ColorConstants
+                                                        .primaryColor,
+                                                    value: controller.product
+                                                        .value.soda[i].selected,
+                                                    onChanged: (v) {
+                                                      setState(() {
+                                                        controller
+                                                                .product
+                                                                .value
+                                                                .soda[i]
+                                                                .selected =
+                                                            !controller
+                                                                .product
+                                                                .value
+                                                                .soda[i]
+                                                                .selected;
+                                                        // var total = controller
+                                                        //     .productTotal();
+                                                        // controller.product.value
+                                                        //         .productTotal =
+                                                        //     total;
+                                                      });
+                                                    }),
+                                                Expanded(
+                                                  child: Text(
+                                                    '${controller.product.value.soda[i].name}',
+                                                    maxLines: 3,
+                                                    style: TextStyle(
+                                                        fontSize: 20.sp),
+                                                  ),
+                                                )
+                                              ],
+                                            );
                                           }),
                                     ),
                                   ],
@@ -493,46 +561,44 @@ userChoiceDialog({required BuildContext context}) {
                                                   mainAxisExtent: 50,
                                                   mainAxisSpacing: 5),
                                           itemBuilder: (context, i) {
-                                            return StatefulBuilder(
-                                                builder: (context, setState) {
-                                              return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Checkbox(
-                                                      activeColor:
-                                                          ColorConstants
-                                                              .primaryColor,
-                                                      value: controller
-                                                          .product
-                                                          .value
-                                                          .side[i]
-                                                          .selected,
-                                                      onChanged: (v) {
-                                                        setState(() {
-                                                          controller
-                                                                  .product
-                                                                  .value
-                                                                  .side[i]
-                                                                  .selected =
-                                                              !controller
-                                                                  .product
-                                                                  .value
-                                                                  .side[i]
-                                                                  .selected;
-                                                        });
-                                                      }),
-                                                  Expanded(
-                                                    child: Text(
-                                                      '${controller.product.value.side[i].name}',
-                                                      maxLines: 3,
-                                                      style: TextStyle(
-                                                          fontSize: 20.sp),
-                                                    ),
-                                                  )
-                                                ],
-                                              );
-                                            });
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    activeColor: ColorConstants
+                                                        .primaryColor,
+                                                    value: controller.product
+                                                        .value.side[i].selected,
+                                                    onChanged: (v) {
+                                                      setState(() {
+                                                        controller
+                                                                .product
+                                                                .value
+                                                                .side[i]
+                                                                .selected =
+                                                            !controller
+                                                                .product
+                                                                .value
+                                                                .side[i]
+                                                                .selected;
+                                                        // var total = controller
+                                                        //     .productTotal();
+                                                        // controller.product.value
+                                                        //         .productTotal =
+                                                        //     total;
+                                                      });
+                                                    }),
+                                                Expanded(
+                                                  child: Text(
+                                                    '${controller.product.value.side[i].name}',
+                                                    maxLines: 3,
+                                                    style: TextStyle(
+                                                        fontSize: 20.sp),
+                                                  ),
+                                                )
+                                              ],
+                                            );
                                           }),
                                     ),
                                   ],
@@ -565,47 +631,48 @@ userChoiceDialog({required BuildContext context}) {
                                                   mainAxisExtent: 50,
                                                   mainAxisSpacing: 5),
                                           itemBuilder: (context, i) {
-                                            return StatefulBuilder(
-                                                builder: (context, setState) {
-                                              return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Checkbox(
-                                                      activeColor:
-                                                          ColorConstants
-                                                              .primaryColor,
-                                                      value: controller
-                                                          .product
-                                                          .value
-                                                          .extra[i]
-                                                          .selected,
-                                                      onChanged: (v) {
-                                                        print('v is $v');
-                                                        setState(() {
-                                                          controller
-                                                                  .product
-                                                                  .value
-                                                                  .extra[i]
-                                                                  .selected =
-                                                              !controller
-                                                                  .product
-                                                                  .value
-                                                                  .extra[i]
-                                                                  .selected;
-                                                        });
-                                                      }),
-                                                  Expanded(
-                                                    child: Text(
-                                                      '${controller.product.value.extra[i].name}',
-                                                      maxLines: 3,
-                                                      style: TextStyle(
-                                                          fontSize: 20.sp),
-                                                    ),
-                                                  )
-                                                ],
-                                              );
-                                            });
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    activeColor: ColorConstants
+                                                        .primaryColor,
+                                                    value: controller
+                                                        .product
+                                                        .value
+                                                        .extra[i]
+                                                        .selected,
+                                                    onChanged: (v) {
+                                                      print('v is $v');
+                                                      setState(() {
+                                                        controller
+                                                                .product
+                                                                .value
+                                                                .extra[i]
+                                                                .selected =
+                                                            !controller
+                                                                .product
+                                                                .value
+                                                                .extra[i]
+                                                                .selected;
+                                                        // var total = controller
+                                                        //     .productTotal();
+                                                        // controller.product.value
+                                                        //         .productTotal =
+                                                        //     total;
+                                                      });
+                                                    }),
+                                                Expanded(
+                                                  child: Text(
+                                                    '${controller.product.value.extra[i].name}',
+                                                    maxLines: 3,
+                                                    style: TextStyle(
+                                                        fontSize: 20.sp),
+                                                  ),
+                                                )
+                                              ],
+                                            );
                                           }),
                                     ),
                                   ],
@@ -701,46 +768,42 @@ userChoiceDialog({required BuildContext context}) {
                                                   mainAxisExtent: 50,
                                                   mainAxisSpacing: 5),
                                           itemBuilder: (context, i) {
-                                            return StatefulBuilder(
-                                                builder: (context, setState) {
-                                              return Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Checkbox(
-                                                      activeColor:
-                                                          ColorConstants
-                                                              .primaryColor,
-                                                      value: controller
-                                                          .product
-                                                          .value
-                                                          .bacon[i]
-                                                          .selected,
-                                                      onChanged: (v) {
-                                                        setState(() {
-                                                          controller
-                                                                  .product
-                                                                  .value
-                                                                  .bacon[i]
-                                                                  .selected =
-                                                              !controller
-                                                                  .product
-                                                                  .value
-                                                                  .bacon[i]
-                                                                  .selected;
-                                                        });
-                                                      }),
-                                                  Expanded(
-                                                    child: Text(
-                                                      '${controller.product.value.bacon[i].name}',
-                                                      maxLines: 3,
-                                                      style: TextStyle(
-                                                          fontSize: 20.sp),
-                                                    ),
-                                                  )
-                                                ],
-                                              );
-                                            });
+                                            return Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Checkbox(
+                                                    activeColor: ColorConstants
+                                                        .primaryColor,
+                                                    value: controller
+                                                        .product
+                                                        .value
+                                                        .bacon[i]
+                                                        .selected,
+                                                    onChanged: (v) {
+                                                      setState(() {
+                                                        controller
+                                                                .product
+                                                                .value
+                                                                .bacon[i]
+                                                                .selected =
+                                                            !controller
+                                                                .product
+                                                                .value
+                                                                .bacon[i]
+                                                                .selected;
+                                                      });
+                                                    }),
+                                                Expanded(
+                                                  child: Text(
+                                                    '${controller.product.value.bacon[i].name}',
+                                                    maxLines: 3,
+                                                    style: TextStyle(
+                                                        fontSize: 20.sp),
+                                                  ),
+                                                )
+                                              ],
+                                            );
                                           }),
                                     ),
                                   ],
@@ -773,35 +836,32 @@ userChoiceDialog({required BuildContext context}) {
                                                   mainAxisExtent: 50,
                                                   mainAxisSpacing: 5),
                                           itemBuilder: (context, i) {
-                                            return StatefulBuilder(
-                                                builder: (context, setState) {
-                                              return RadioListTile(
-                                                  contentPadding:
-                                                      EdgeInsets.all(0),
-                                                  value: i,
-                                                  activeColor: ColorConstants
-                                                      .primaryColor,
-                                                  selected: (controller
-                                                              .product
-                                                              .value
-                                                              .selectedMealId ==
-                                                          i)
-                                                      ? true
-                                                      : false,
-                                                  title: Text(
-                                                      '${controller.product.value.meal[i].name}',
-                                                      style: TextStyle(
-                                                        fontSize: 16.h,
-                                                      )),
-                                                  groupValue: controller.product
-                                                      .value.selectedMealId,
-                                                  onChanged: (v) {
-                                                    setState(() {
-                                                      controller.product.value
-                                                          .selectedMealId = i;
-                                                    });
+                                            return RadioListTile(
+                                                contentPadding:
+                                                    EdgeInsets.all(0),
+                                                value: i,
+                                                activeColor:
+                                                    ColorConstants.primaryColor,
+                                                selected: (controller
+                                                            .product
+                                                            .value
+                                                            .selectedMealId ==
+                                                        i)
+                                                    ? true
+                                                    : false,
+                                                title: Text(
+                                                    '${controller.product.value.meal[i].name}',
+                                                    style: TextStyle(
+                                                      fontSize: 16.h,
+                                                    )),
+                                                groupValue: controller.product
+                                                    .value.selectedMealId,
+                                                onChanged: (v) {
+                                                  setState(() {
+                                                    controller.product.value
+                                                        .selectedMealId = i;
                                                   });
-                                            });
+                                                });
                                           }),
                                     ),
                                   ],
@@ -884,8 +944,8 @@ userChoiceDialog({required BuildContext context}) {
                   )
                 ],
               ),
-            ),
-          ),
+            );
+          }),
         );
       });
 }

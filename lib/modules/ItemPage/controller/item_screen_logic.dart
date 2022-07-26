@@ -67,7 +67,7 @@ class ItemScreenController extends GetxController {
         .then((value) {
       print(value);
       print('categorySubCategoryWiseProduct');
-      foods.value = value['product'];
+      foods.value = (value['product'] != null) ? value['product'] : [];
     });
   }
 
@@ -112,6 +112,68 @@ class ItemScreenController extends GetxController {
 
   setCustomerChoiceFood(food) {
     product.value = ProductModel.fromJson(food);
+  }
+
+  /*
+  * User Choice Customisation
+  */
+  increaseQuantity() {
+    print('item update');
+    product.value.quantity++;
+  }
+
+  decreaseQuantity() {
+    product.value.quantity--;
+  }
+
+  productTotal() {
+    var total = 0;
+    total += (product.value.selectedChrustId == null)
+        ? int.parse(product.value.chrust[product.value.selectedChrustId!].price)
+        : 0;
+    total += (product.value.selectedStyleId == null)
+        ? int.parse(product.value.style[product.value.selectedStyleId!].price)
+        : 0;
+    total += (product.value.selectedPreparationId == null)
+        ? int.parse(
+            product.value.meal[product.value.selectedPreparationId!].price)
+        : 0;
+    total += (product.value.selectedMealId == null)
+        ? int.parse(product.value.meal[product.value.selectedMealId!].price)
+        : 0;
+
+    // multi select
+    product.value.toppings.forEach((element) {
+      if (element.selected == true) {
+        total += (int.parse(element.price)) as int;
+      }
+    });
+    product.value.sauce.forEach((element) {
+      if (element.selected == true) {
+        total += (int.parse(element.price)) as int;
+      }
+    });
+    product.value.soda.forEach((element) {
+      if (element.selected == true) {
+        total += (int.parse(element.price)) as int;
+      }
+    });
+    product.value.side.forEach((element) {
+      if (element.selected == true) {
+        total += (int.parse(element.price)) as int;
+      }
+    });
+    product.value.extra.forEach((element) {
+      if (element.selected == true) {
+        total += (int.parse(element.price)) as int;
+      }
+    });
+    product.value.bacon.forEach((element) {
+      if (element.selected == true) {
+        total += (int.parse(element.price)) as int;
+      }
+    });
+    return total;
   }
 
   /*

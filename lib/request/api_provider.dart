@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:self_order/modules/LogIn/ui/Login_screen.dart';
 import 'package:self_order/request/dialog.dart';
 import 'package:self_order/request/routes.dart';
 import 'package:self_order/request/session.dart';
@@ -104,6 +105,7 @@ class ApiProvider {
       case 400:
         throw BadRequestException(response.body.toString());
       case 401:
+        Get.to(LoginScreen());
         return CustomWidgets.showErrorSnachbar(
             "UNAUTHORISED", "You are not allowed to do this");
         throw UnauthorisedException(response.body.toString());

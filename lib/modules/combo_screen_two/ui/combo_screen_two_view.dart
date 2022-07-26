@@ -43,25 +43,69 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                       Expanded(
                           child: Row(
                         children: [
-                          Container(
-                            decoration: BoxDecoration(color: Color(0xFFFFF4EC)),
-                            padding: EdgeInsets.all(15),
-                            child: Text('SMALL'),
+                          GestureDetector(
+                            onTap: () => controller.setSelectedSize('s'),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: (controller.selectedSize == 's')
+                                          ? ColorConstants.primaryButtonColor
+                                          : Color(0xFFE5F2F0),
+                                    ),
+                                  ),
+                                  color: Color(0xFFFFF4EC)),
+                              padding: EdgeInsets.all(15),
+                              child: Text('SMALL'),
+                            ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(color: Color(0xFFF9EAE7)),
-                            padding: EdgeInsets.all(15),
-                            child: Text('MEDIUM'),
+                          GestureDetector(
+                            onTap: () => controller.setSelectedSize('m'),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: (controller.selectedSize == 'm')
+                                          ? ColorConstants.primaryButtonColor
+                                          : Color(0xFFE5F2F0),
+                                    ),
+                                  ),
+                                  color: Color(0xFFF9EAE7)),
+                              padding: EdgeInsets.all(15),
+                              child: Text('MEDIUM'),
+                            ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(color: Color(0xFFE5F2F0)),
-                            padding: EdgeInsets.all(15),
-                            child: Text('LARGE'),
+                          GestureDetector(
+                            onTap: () => controller.setSelectedSize('l'),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: (controller.selectedSize == 'l')
+                                          ? ColorConstants.primaryButtonColor
+                                          : Color(0xFFE5F2F0),
+                                    ),
+                                  ),
+                                  color: Color(0xFFE5F2F0)),
+                              padding: const EdgeInsets.all(15),
+                              child: const Text('LARGE'),
+                            ),
                           ),
-                          Container(
-                            decoration: BoxDecoration(color: Color(0xFFE5F2F0)),
-                            padding: EdgeInsets.all(15),
-                            child: Text('EX LARGE'),
+                          GestureDetector(
+                            onTap: () => controller.setSelectedSize('el'),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                    bottom: BorderSide(
+                                      color: (controller.selectedSize == 'el')
+                                          ? ColorConstants.primaryButtonColor
+                                          : Color(0xFFE5F2F0),
+                                    ),
+                                  ),
+                                  color: Color(0xFFE5F2F0)),
+                              padding: EdgeInsets.all(15),
+                              child: Text('EX LARGE'),
+                            ),
                           ),
                         ],
                       )),
@@ -217,7 +261,7 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                         child: CustomWidget.CustomPrimaryButton(
                             context: context,
                             width: 320.0,
-                            height: 60.0,
+                            height: 50.h,
                             borderradius: 5.0,
                             backgroundcolor: Colors.transparent,
                             titlecolor: Color(0xFF505050),
@@ -238,7 +282,7 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                         child: CustomWidget.CustomPrimaryButton(
                             context: context,
                             width: 320.0,
-                            height: 60.0,
+                            height: 50.h,
                             borderradius: 5.0,
                             titlecolor: Color(0xFFFF000E),
                             borderColor: Color(0xFFFF000E),

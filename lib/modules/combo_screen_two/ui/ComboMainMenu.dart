@@ -27,23 +27,6 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
             SizedBox(
               height: 40,
             ),
-            Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: Dimensions.SizedBoxValue30),
-              child: Container(
-                height: 30,
-                child: ListView.builder(
-                  itemCount: 10,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                        padding: EdgeInsets.only(right: 15),
-                        child:
-                            selectedfoodVarision(text: 'pizza', index: index));
-                  },
-                ),
-              ),
-            ),
             SizedBox(
               height: 40,
             ),

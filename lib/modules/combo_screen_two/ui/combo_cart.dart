@@ -19,6 +19,7 @@ class _ComboCartState extends State<ComboCart> {
   var controller = Get.find<ComboScreenControllertwo>();
   @override
   Widget build(BuildContext context) {
+    controller.getTotal();
     return Scaffold(
       body: Obx(
         () => Column(
@@ -49,9 +50,43 @@ class _ComboCartState extends State<ComboCart> {
               margin: EdgeInsets.only(left: 100.w, right: 100.w),
               child: ListView(
                 children: [
-                  CustomWidget.ComboCartView(controller.selectedCombo.value),
-                  CustomWidget.ComboCartView(controller.selectedSide.value),
-                  CustomWidget.ComboCartView(controller.selectedDrink.value)
+                  CustomWidget.ComboCartView(
+                      controller.selectedCombo.value, 'main'),
+                  CustomWidget.ComboCartView(
+                      controller.selectedSide.value, 'side'),
+                  CustomWidget.ComboCartView(
+                      controller.selectedDrink.value, 'drink'),
+                  Divider(
+                    color: ColorConstants.borderColor,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          margin: EdgeInsets.only(left: 20.w, right: 20.w),
+                          child: Text(
+                            'Total:',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: Dimensions.TextSize30,
+                              color: ColorConstants.primaryButtonColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(left: 20.w, right: 20.w),
+                        child: Text(
+                          '\$${controller.comboTotal.value}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: Dimensions.TextSize30,
+                            color: ColorConstants.primaryButtonColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             )),
@@ -80,7 +115,7 @@ class _ComboCartState extends State<ComboCart> {
                             titleFontWeight: FontWeight.w700),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () => controller.checkOut(),
                         child: CustomWidget.CustomPrimaryButton(
                           context: context,
                           height: 60.h,
