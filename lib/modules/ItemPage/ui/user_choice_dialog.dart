@@ -55,134 +55,145 @@ userChoiceDialog({required BuildContext context}) {
                         height: 30.h,
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 80.w),
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
                         child: Row(
                           children: [
                             CachedNetworkImage(
                               imageUrl: controller.product.value.baseUrl! +
                                   controller.product.value.productImage!,
                               height: 158.h,
-                              width: 212.w,
+                              width: 150.w,
                             ),
-                            SizedBox(width: 30.w),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${controller.product.value.name}',
-                                  style: TextStyle(
-                                      color: ColorConstants.primaryBigTextColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 30.sp),
-                                ),
-                                SizedBox(
-                                  height: 8.h,
-                                ),
-                                Text(
-                                  '${controller.product.value.productDescription}',
-                                  style: TextStyle(
-                                      color: ColorConstants.primaryBigTextColor
-                                          .withOpacity(0.5),
-                                      fontSize: 30.sp),
-                                ),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      '\$${controller.product.value.productPrice}',
-                                      style: TextStyle(
-                                          color: ColorConstants
-                                              .bannerHeadingTextColor
-                                              .withOpacity(0.5),
-                                          fontSize: 30.sp),
-                                    ),
-                                    SizedBox(
-                                      width: 20.w,
-                                    ),
-                                    Text(
-                                      'X ${controller.product.value.quantity}',
-                                      style: TextStyle(
-                                          color: ColorConstants
-                                              .bannerHeadingTextColor
-                                              .withOpacity(0.5),
-                                          fontSize: 30.sp),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                                Row(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          (controller.product.value.quantity >
-                                                  1)
-                                              ? controller
-                                                  .product.value.quantity--
-                                              : 1;
-                                        });
-                                        controller.product.update((val) {});
-                                      },
-                                      child: Container(
-                                          height: 24,
-                                          width: 37,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(9),
-                                              color: Colors.white,
-                                              border: Border.all(
-                                                  color: ColorConstants
-                                                      .primaryBigTextColor)),
-                                          child: Icon(
-                                            FeatherIcons.minus,
-                                            size: Dimensions.TextSize15,
+                            SizedBox(
+                              width: 20.w,
+                            ),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    '${controller.product.value.name}',
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                        color:
+                                            ColorConstants.primaryBigTextColor,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 30.sp),
+                                  ),
+                                  SizedBox(
+                                    height: 8.h,
+                                  ),
+                                  Text(
+                                    '${controller.product.value.productDescription}',
+                                    maxLines: 3,
+                                    style: TextStyle(
+                                        color: ColorConstants
+                                            .primaryBigTextColor
+                                            .withOpacity(0.5),
+                                        fontSize: 24.sp),
+                                  ),
+                                  SizedBox(
+                                    height: 15.h,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        '\$${controller.product.value.productTotal}',
+                                        style: TextStyle(
                                             color: ColorConstants
-                                                .primaryBigTextColor,
-                                          )),
-                                    ),
-                                    SizedBox(
-                                      width: Dimensions.SizedBoxValue25,
-                                    ),
-                                    Text(
-                                      '${controller.product.value.quantity}',
-                                      style: TextStyle(
-                                          fontSize: Dimensions.TextSize30,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    SizedBox(
-                                      width: Dimensions.SizedBoxValue25,
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        setState(() {
-                                          controller.product.value.quantity++;
-                                        });
-                                      },
-                                      child: Container(
-                                          height: 24,
-                                          width: 37,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(9),
+                                                .bannerHeadingTextColor
+                                                .withOpacity(0.5),
+                                            fontSize: 30.sp),
+                                      ),
+                                      SizedBox(
+                                        width: 20.w,
+                                      ),
+                                      Text(
+                                        'X ${controller.product.value.quantity}',
+                                        style: TextStyle(
+                                            color: ColorConstants
+                                                .bannerHeadingTextColor
+                                                .withOpacity(0.5),
+                                            fontSize: 30.sp),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 15.h,
+                                  ),
+                                  Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            (controller.product.value.quantity >
+                                                    1)
+                                                ? controller
+                                                    .product.value.quantity--
+                                                : 1;
+                                          });
+                                          controller.product.update((val) {});
+                                        },
+                                        child: Container(
+                                            height: 24,
+                                            width: 37,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(9),
+                                                color: Colors.white,
+                                                border: Border.all(
+                                                    color: ColorConstants
+                                                        .primaryBigTextColor)),
+                                            child: Icon(
+                                              FeatherIcons.minus,
+                                              size: Dimensions.TextSize15,
                                               color: ColorConstants
-                                                  .bannerHeadingTextColor,
-                                              border: Border.all(
-                                                  color: ColorConstants
-                                                      .bannerHeadingTextColor)),
-                                          child: Icon(
-                                            FeatherIcons.plus,
-                                            size: Dimensions.TextSize15,
-                                            color: Colors.white,
-                                          )),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            )
+                                                  .primaryBigTextColor,
+                                            )),
+                                      ),
+                                      SizedBox(
+                                        width: Dimensions.SizedBoxValue25,
+                                      ),
+                                      Text(
+                                        '${controller.product.value.quantity}',
+                                        style: TextStyle(
+                                            fontSize: Dimensions.TextSize30,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(
+                                        width: Dimensions.SizedBoxValue25,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            controller.product.value.quantity++;
+                                          });
+                                        },
+                                        child: Container(
+                                            height: 24,
+                                            width: 37,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(9),
+                                                color: ColorConstants
+                                                    .bannerHeadingTextColor,
+                                                border: Border.all(
+                                                    color: ColorConstants
+                                                        .bannerHeadingTextColor)),
+                                            child: Icon(
+                                              FeatherIcons.plus,
+                                              size: Dimensions.TextSize15,
+                                              color: Colors.white,
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
                           ],
                         ),
                       ),
@@ -247,6 +258,10 @@ userChoiceDialog({required BuildContext context}) {
                                                     setState(() {
                                                       controller.product.value
                                                           .selectedChrustId = i;
+                                                      var total = controller
+                                                          .productTotal();
+                                                      controller.product.value
+                                                          .productPrice = total;
                                                     });
                                                   });
                                             });
@@ -255,79 +270,81 @@ userChoiceDialog({required BuildContext context}) {
                                   ],
                                 )
                               : Container(),
-                          (controller.product.value.toppings.length > 0)
-                              ? Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Toppings',
-                                      style: TextStyle(
-                                          color:
-                                              ColorConstants.primaryButtonColor,
-                                          fontSize: 25.sp),
-                                    ),
-                                    Container(
-                                      margin: EdgeInsets.only(bottom: 20.h),
-                                      child: GridView.builder(
-                                          itemCount: controller
-                                              .product.value.toppings.length,
-                                          shrinkWrap: true,
-                                          physics:
-                                              NeverScrollableScrollPhysics(),
-                                          gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
-                                                  crossAxisCount: 4,
-                                                  childAspectRatio: 1,
-                                                  crossAxisSpacing: 5,
-                                                  mainAxisExtent: 60.sp,
-                                                  mainAxisSpacing: 5),
-                                          itemBuilder: (context, i) {
-                                            return Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Checkbox(
-                                                    activeColor: ColorConstants
-                                                        .primaryColor,
-                                                    value: controller
-                                                        .product
-                                                        .value
-                                                        .toppings[i]
-                                                        .selected,
-                                                    onChanged: (v) {
-                                                      setState(() {
-                                                        controller
-                                                                .product
-                                                                .value
-                                                                .toppings[i]
-                                                                .selected =
-                                                            !controller
-                                                                .product
-                                                                .value
-                                                                .toppings[i]
-                                                                .selected;
-                                                        // var total = controller
-                                                        //     .productTotal();
-                                                        // controller.product.value
-                                                        //         .productTotal =
-                                                        //     total;
-                                                      });
-                                                    }),
-                                                Expanded(
-                                                  child: Text(
-                                                    '${controller.product.value.toppings[i].name}',
-                                                    maxLines: 2,
-                                                    style: TextStyle(
-                                                        fontSize: 20.sp),
-                                                  ),
-                                                )
-                                              ],
-                                            );
-                                          }),
-                                    ),
-                                  ],
-                                )
-                              : Container(),
+                          // (controller.product.value.toppings.length > 0)
+                          //     ? Column(
+                          //         crossAxisAlignment: CrossAxisAlignment.start,
+                          //         children: [
+                          //           Text(
+                          //             'Toppings',
+                          //             style: TextStyle(
+                          //                 color:
+                          //                     ColorConstants.primaryButtonColor,
+                          //                 fontSize: 25.sp),
+                          //           ),
+                          //           Container(
+                          //             margin: EdgeInsets.only(bottom: 20.h),
+                          //             child: GridView.builder(
+                          //                 itemCount: controller
+                          //                     .product.value.toppings.length,
+                          //                 shrinkWrap: true,
+                          //                 physics:
+                          //                     NeverScrollableScrollPhysics(),
+                          //                 gridDelegate:
+                          //                     SliverGridDelegateWithFixedCrossAxisCount(
+                          //                         crossAxisCount: 4,
+                          //                         childAspectRatio: 1,
+                          //                         crossAxisSpacing: 5,
+                          //                         mainAxisExtent: 60.sp,
+                          //                         mainAxisSpacing: 5),
+                          //                 itemBuilder: (context, i) {
+                          //                   return Row(
+                          //                     mainAxisAlignment:
+                          //                         MainAxisAlignment.start,
+                          //                     children: [
+                          //                       Checkbox(
+                          //                           activeColor: ColorConstants
+                          //                               .primaryColor,
+                          //                           value: controller
+                          //                               .product
+                          //                               .value
+                          //                               .toppings[i]
+                          //                               .selected,
+                          //                           onChanged: (v) {
+                          //                             setState(() {
+                          //                               controller
+                          //                                       .product
+                          //                                       .value
+                          //                                       .toppings[i]
+                          //                                       .selected =
+                          //                                   !controller
+                          //                                       .product
+                          //                                       .value
+                          //                                       .toppings[i]
+                          //                                       .selected;
+                          //                               var total = controller
+                          //                                   .productTotal();
+                          //                               print(
+                          //                                   'from view $total');
+                          //                               controller.product.value
+                          //                                       .productPrice =
+                          //                                   total.toString();
+                          //                             });
+                          //                           }),
+                          //                       Expanded(
+                          //                         child: Text(
+                          //                           '${controller.product.value.toppings[i].name}',
+                          //                           maxLines: 2,
+                          //                           style: TextStyle(
+                          //                               fontSize: 20.sp),
+                          //                         ),
+                          //                       )
+                          //                     ],
+                          //                   );
+                          //                 }),
+                          //           ),
+                          //         ],
+                          //       )
+                          //     : Container(),
                           (controller.product.value.style.length > 0)
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -380,10 +397,10 @@ userChoiceDialog({required BuildContext context}) {
                                                   setState(() {
                                                     controller.product.value
                                                         .selectedStyleId = i;
-                                                    // var total =
-                                                    //     controller.productTotal();
-                                                    // controller.product.value
-                                                    //     .productTotal = total;
+                                                    var total = controller
+                                                        .productTotal();
+                                                    controller.product.value
+                                                        .productTotal = total;
                                                   });
                                                 });
                                           }),
@@ -442,11 +459,11 @@ userChoiceDialog({required BuildContext context}) {
                                                                 .value
                                                                 .sauce[i]
                                                                 .selected;
-                                                        // var total = controller
-                                                        //     .productTotal();
-                                                        // controller.product.value
-                                                        //         .productTotal =
-                                                        //     total;
+                                                        var total = controller
+                                                            .productTotal();
+                                                        controller.product.value
+                                                                .productTotal =
+                                                            total;
                                                       });
                                                     }),
                                                 Expanded(
@@ -512,11 +529,11 @@ userChoiceDialog({required BuildContext context}) {
                                                                 .value
                                                                 .soda[i]
                                                                 .selected;
-                                                        // var total = controller
-                                                        //     .productTotal();
-                                                        // controller.product.value
-                                                        //         .productTotal =
-                                                        //     total;
+                                                        var total = controller
+                                                            .productTotal();
+                                                        controller.product.value
+                                                                .productTotal =
+                                                            total;
                                                       });
                                                     }),
                                                 Expanded(
@@ -582,11 +599,11 @@ userChoiceDialog({required BuildContext context}) {
                                                                 .value
                                                                 .side[i]
                                                                 .selected;
-                                                        // var total = controller
-                                                        //     .productTotal();
-                                                        // controller.product.value
-                                                        //         .productTotal =
-                                                        //     total;
+                                                        var total = controller
+                                                            .productTotal();
+                                                        controller.product.value
+                                                                .productTotal =
+                                                            total;
                                                       });
                                                     }),
                                                 Expanded(
@@ -656,11 +673,11 @@ userChoiceDialog({required BuildContext context}) {
                                                                 .value
                                                                 .extra[i]
                                                                 .selected;
-                                                        // var total = controller
-                                                        //     .productTotal();
-                                                        // controller.product.value
-                                                        //         .productTotal =
-                                                        //     total;
+                                                        var total = controller
+                                                            .productTotal();
+                                                        controller.product.value
+                                                                .productTotal =
+                                                            total;
                                                       });
                                                     }),
                                                 Expanded(

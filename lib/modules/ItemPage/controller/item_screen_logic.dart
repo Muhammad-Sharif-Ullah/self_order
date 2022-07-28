@@ -128,51 +128,51 @@ class ItemScreenController extends GetxController {
 
   productTotal() {
     var total = 0;
-    total += (product.value.selectedChrustId == null)
-        ? int.parse(product.value.chrust[product.value.selectedChrustId!].price)
+    total += (product.value.selectedChrustId != null)
+        ? product.value.chrust[product.value.selectedChrustId!].price
         : 0;
-    total += (product.value.selectedStyleId == null)
-        ? int.parse(product.value.style[product.value.selectedStyleId!].price)
+    total += (product.value.selectedStyleId != null)
+        ? product.value.style[product.value.selectedStyleId!].price
         : 0;
-    total += (product.value.selectedPreparationId == null)
-        ? int.parse(
-            product.value.meal[product.value.selectedPreparationId!].price)
+    total += (product.value.selectedPreparationId != null)
+        ? product.value.meal[product.value.selectedPreparationId!].price
         : 0;
-    total += (product.value.selectedMealId == null)
-        ? int.parse(product.value.meal[product.value.selectedMealId!].price)
+    total += (product.value.selectedMealId != null)
+        ? product.value.meal[product.value.selectedPreparationId!].price
         : 0;
 
     // multi select
-    product.value.toppings.forEach((element) {
-      if (element.selected == true) {
-        total += (int.parse(element.price)) as int;
-      }
-    });
+    // product.value.toppings.forEach((element) {
+    //   if (element.selected == true) {
+    //     total += element.price;
+    //   }
+    // });
     product.value.sauce.forEach((element) {
       if (element.selected == true) {
-        total += (int.parse(element.price)) as int;
+        total += element.price;
       }
     });
     product.value.soda.forEach((element) {
       if (element.selected == true) {
-        total += (int.parse(element.price)) as int;
+        total += element.price;
       }
     });
     product.value.side.forEach((element) {
       if (element.selected == true) {
-        total += (int.parse(element.price)) as int;
+        total += element.price;
       }
     });
     product.value.extra.forEach((element) {
       if (element.selected == true) {
-        total += (int.parse(element.price)) as int;
+        total += element.price;
       }
     });
     product.value.bacon.forEach((element) {
       if (element.selected == true) {
-        total += (int.parse(element.price)) as int;
+        total += element.price;
       }
     });
+    print('total $total');
     return total;
   }
 
@@ -189,6 +189,8 @@ class ItemScreenController extends GetxController {
 
   getCustomiseExtraOption(id) {
     api.get(Routes.customiseExtra + id).then((value) {
+      print('id is $id');
+      print(value);
       customiseExtra.value = CustomiseExtraProduct.fromJson(value);
     });
   }

@@ -3,7 +3,7 @@ class ProductModel {
   String? userId;
   String? name;
   String? productDescription;
-  String? productPrice;
+  late int productPrice;
   int quantity = 1;
   String? productImage;
   String? categoryId;
@@ -18,7 +18,7 @@ class ProductModel {
   int? selectedPreparationId;
   int? selectedMealId;
   late List<SingleSelect> chrust;
-  late List<MultiSelect> toppings;
+  // late List<MultiSelect> toppings;
   late List<SingleSelect> style;
   late List<MultiSelect> sauce;
   late List<MultiSelect> soda;
@@ -28,7 +28,7 @@ class ProductModel {
   late List<MultiSelect> extra;
   late List<MultiSelect> bacon;
   late List<SingleSelect> meal;
-  String? productTotal;
+  late int productTotal;
 
   ProductModel();
 
@@ -37,8 +37,8 @@ class ProductModel {
     userId = json['user_id'];
     name = json['name'];
     productDescription = json['product_description'];
-    productPrice = json['product_price'];
-    productTotal = json['product_price'];
+    productPrice = int.parse(json['product_price']);
+    productTotal = int.parse(json['product_price']);
     productImage = json['product_image'];
     categoryId = json['category_id'];
     subCategoryId = json['sub_category_id'];
@@ -59,12 +59,12 @@ class ProductModel {
     } else {
       chrust = [];
     }
-    if (json['toppings'] != null) {
-      toppings = <MultiSelect>[];
-      json['toppings'].forEach((v) {
-        toppings.add(new MultiSelect.fromJson(v));
-      });
-    }
+    // if (json['toppings'] != null) {
+    //   toppings = <MultiSelect>[];
+    //   json['toppings'].forEach((v) {
+    //     toppings.add(new MultiSelect.fromJson(v));
+    //   });
+    // }
     if (json['style'] != null) {
       style = <SingleSelect>[];
       json['style'].forEach((v) {
@@ -143,9 +143,9 @@ class ProductModel {
     if (this.chrust != null) {
       data['chrust'] = this.chrust.map((v) => v.toJson()).toList();
     }
-    if (this.toppings != null) {
-      data['toppings'] = this.toppings.map((v) => v.toJson()).toList();
-    }
+    // if (this.toppings != null) {
+    //   data['toppings'] = this.toppings.map((v) => v.toJson()).toList();
+    // }
     if (this.style != null) {
       data['style'] = this.style.map((v) => v.toJson()).toList();
     }
@@ -179,33 +179,33 @@ class ProductModel {
 
 class SingleSelect {
   late String name;
-  late String price;
+  late int price;
 
   SingleSelect();
 
   SingleSelect.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    price = '0';
+    price = int.parse(json['price']);
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
-    data['price'] = '1';
+    data['price'] = this.price;
     return data;
   }
 }
 
 class MultiSelect {
   late String name;
-  late String price;
+  late int price;
   bool selected = false;
 
   MultiSelect();
 
   MultiSelect.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    price = '0';
+    price = int.parse(json['price']);
     selected = false;
   }
 

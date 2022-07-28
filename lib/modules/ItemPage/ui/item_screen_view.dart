@@ -251,6 +251,9 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                                   ),
                                                   Text(
                                                     '${controller.foods[index]['name']}',
+                                                    maxLines: 1,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                     style: TextStyle(
                                                       color: Colors.black,
                                                       fontWeight:
@@ -264,6 +267,9 @@ class ItemPageScreen extends GetView<ItemScreenController> {
                                                   ),
                                                   Text(
                                                     '${controller.foods[index]['product_description']}',
+                                                    maxLines: 2,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
                                                     style: TextStyle(
                                                         color: ColorConstants
                                                             .primaryBigTextColor,

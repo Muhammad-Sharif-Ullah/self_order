@@ -23,10 +23,10 @@ class ItemCustomisePage extends StatelessWidget {
           child: Scaffold(
         body: Column(
           children: [
-            (controller.customiseExtra.value.status != null &&
-                    controller.customiseProduct.value.status != null)
-                ? Expanded(
-                    child: Column(
+            Expanded(
+              child: (controller.customiseExtra.value.status != null &&
+                      controller.customiseProduct.value.status != null)
+                  ? Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -46,7 +46,7 @@ class ItemCustomisePage extends StatelessWidget {
                               ),
                               Spacer(),
                               Text(
-                                'Total:  \$18.36',
+                                'Total:  \$18',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     color:
@@ -195,98 +195,99 @@ class ItemCustomisePage extends StatelessWidget {
                                       .customiseExtraOptions ==
                                   null)
                               ? Container()
-                              : Text(
-                                  '${controller.customiseExtra.value.customiseExtraOptions!.length}'),
-                          // ResponsiveGridList(
-                          //     desiredItemWidth: 130.w,
-                          //     minSpacing: 50.h,
-                          //     children: controller
-                          //         .customiseProduct.value.customise!
-                          //         .map((i) {
-                          //       return InkWell(
-                          //         onTap: () {
-                          //           addExtraCustomisePage(context: context);
-                          //         },
-                          //         child: Column(
-                          //           children: [
-                          //             CachedNetworkImage(
-                          //               errorWidget:
-                          //                   (context, url, error) => Image(
-                          //                       image: AssetImage(
-                          //                           "assets/images/homescreen.png")),
-                          //               imageUrl: i.baseUrl! + i.image!,
-                          //               height: 70,
-                          //               width: 130,
-                          //             ),
-                          //             SizedBox(
-                          //               height: 10.h,
-                          //             ),
-                          //             Text(
-                          //               '${i.name}',
-                          //               style: TextStyle(
-                          //                 color: ColorConstants
-                          //                     .primaryBigTextColor,
-                          //                 fontSize: 14.sp,
-                          //                 fontWeight: FontWeight.w400,
-                          //               ),
-                          //             ),
-                          //             SizedBox(
-                          //               height: 10,
-                          //             ),
-                          //             Row(
-                          //               mainAxisAlignment:
-                          //                   MainAxisAlignment.spaceBetween,
-                          //               children: [
-                          //                 CustomWidget.CustomPrimaryButton(
-                          //                   context: context,
-                          //                   width: 26.51.w,
-                          //                   height: 16.87.h,
-                          //                   borderColor: ColorConstants
-                          //                       .primaryBigTextColor
-                          //                       .withOpacity(0.5),
-                          //                   backgroundcolor: Colors.white,
-                          //                   borderradius: 6,
-                          //                   buttonType: 'icon',
-                          //                   icon: Icon(
-                          //                     FeatherIcons.minus,
-                          //                     size: 12,
-                          //                   ),
-                          //                 ),
-                          //                 Text(
-                          //                   '1',
-                          //                   style: TextStyle(
-                          //                       fontSize: 16,
-                          //                       fontWeight: FontWeight.w700,
-                          //                       color: ColorConstants
-                          //                           .primaryBigTextColor),
-                          //                 ),
-                          //                 CustomWidget.CustomPrimaryButton(
-                          //                   context: context,
-                          //                   width: 26.51.w,
-                          //                   height: 16.87.h,
-                          //                   borderColor: ColorConstants
-                          //                       .bannerHeadingTextColor,
-                          //                   backgroundcolor: ColorConstants
-                          //                       .bannerHeadingTextColor,
-                          //                   borderradius: 6,
-                          //                   buttonType: 'icon',
-                          //                   icon: Icon(
-                          //                     FeatherIcons.plus,
-                          //                     size: 12,
-                          //                     color: Colors.white,
-                          //                   ),
-                          //                 ),
-                          //               ],
-                          //             )
-                          //           ],
-                          //         ),
-                          //       );
-                          //     }).toList()),
+                              :
+                              // Text(
+                              //     '${controller.customiseExtra.value.customiseExtraOptions!.length}'),
+                              ResponsiveGridList(
+                                  desiredItemWidth: 130.w,
+                                  minSpacing: 50.h,
+                                  children: controller
+                                      .customiseProduct.value.customise!
+                                      .map((i) {
+                                    return InkWell(
+                                      onTap: () {
+                                        addExtraCustomisePage(context: context);
+                                      },
+                                      child: Column(
+                                        children: [
+                                          CachedNetworkImage(
+                                            errorWidget:
+                                                (context, url, error) => Image(
+                                                    image: AssetImage(
+                                                        "assets/images/homescreen.png")),
+                                            imageUrl: i.baseUrl! + i.image!,
+                                            height: 70,
+                                            width: 130,
+                                          ),
+                                          SizedBox(
+                                            height: 10.h,
+                                          ),
+                                          Text(
+                                            '${i.name}',
+                                            style: TextStyle(
+                                              color: ColorConstants
+                                                  .primaryBigTextColor,
+                                              fontSize: 14.sp,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              CustomWidget.CustomPrimaryButton(
+                                                context: context,
+                                                width: 26.51.w,
+                                                height: 16.87.h,
+                                                borderColor: ColorConstants
+                                                    .primaryBigTextColor
+                                                    .withOpacity(0.5),
+                                                backgroundcolor: Colors.white,
+                                                borderradius: 6,
+                                                buttonType: 'icon',
+                                                icon: Icon(
+                                                  FeatherIcons.minus,
+                                                  size: 12,
+                                                ),
+                                              ),
+                                              Text(
+                                                '1',
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: ColorConstants
+                                                        .primaryBigTextColor),
+                                              ),
+                                              CustomWidget.CustomPrimaryButton(
+                                                context: context,
+                                                width: 26.51.w,
+                                                height: 16.87.h,
+                                                borderColor: ColorConstants
+                                                    .bannerHeadingTextColor,
+                                                backgroundcolor: ColorConstants
+                                                    .bannerHeadingTextColor,
+                                                borderradius: 6,
+                                                buttonType: 'icon',
+                                                icon: Icon(
+                                                  FeatherIcons.plus,
+                                                  size: 12,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    );
+                                  }).toList()),
                         ),
                       ],
-                    ),
-                  )
-                : Container(),
+                    )
+                  : Container(),
+            ),
             SizedBox(
               height: 20.h,
             ),
