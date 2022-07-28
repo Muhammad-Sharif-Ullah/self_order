@@ -46,7 +46,7 @@ class ItemCustomisePage extends StatelessWidget {
                               ),
                               Spacer(),
                               Text(
-                                'Total:  \$18',
+                                'Total:  ${controller.product.value.productTotal}',
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     color:
@@ -66,11 +66,14 @@ class ItemCustomisePage extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Image(
-                                image: AssetImage(
-                                    "assets/images/customisebug.png"),
-                                height: 109,
-                                width: 147,
+                              CachedNetworkImage(
+                                imageUrl: controller.product.value.baseUrl! +
+                                    controller.product.value.productImage!,
+                                height: 158.h,
+                                width: 150.w,
+                              ),
+                              SizedBox(
+                                width: 20.w,
                               ),
                               SizedBox(
                                 width: 34,
@@ -83,7 +86,7 @@ class ItemCustomisePage extends StatelessWidget {
                                       width: 32.w,
                                     ),
                                     Text(
-                                      'Beef Burger',
+                                      '${controller.product.value.name}',
                                       style: TextStyle(
                                           color: ColorConstants
                                               .primaryBigTextColor,
@@ -91,80 +94,68 @@ class ItemCustomisePage extends StatelessWidget {
                                           fontSize: 24.sp),
                                     ),
                                     SizedBox(
-                                      height: 35.h,
+                                      height: 30.h,
                                     ),
-                                    (controller.customiseProduct.value
-                                                .customise!.length ==
-                                            null)
-                                        ? Container(
-                                            child: Text(
-                                                '${controller.customiseProduct.value.customise!.length}'),
-                                          )
-                                        : Text(
-                                            '${controller.customiseExtra.value.status}')
-                                    // GridView.builder(
-                                    //     itemCount: controller
-                                    //         .customiseExtra
-                                    //         .value
-                                    //         .customiseExtraOptions!
-                                    //         .length,
-                                    //     shrinkWrap: true,
-                                    //     gridDelegate:
-                                    //         SliverGridDelegateWithFixedCrossAxisCount(
-                                    //             crossAxisCount: 5,
-                                    //             childAspectRatio: 2,
-                                    //             crossAxisSpacing: 10,
-                                    //             mainAxisSpacing: 10),
-                                    //     itemBuilder: (context, index) {
-                                    //       return Stack(
-                                    //         children: [
-                                    //           Container(
-                                    //             height: 50,
-                                    //             width: 95,
-                                    //             decoration: BoxDecoration(
-                                    //                 borderRadius:
-                                    //                     BorderRadius
-                                    //                         .circular(150),
-                                    //                 border: Border.all(
-                                    //                     color: ColorConstants
-                                    //                         .borderColor
-                                    //                         .withOpacity(
-                                    //                             0.02))),
-                                    //             child: Center(
-                                    //               child: Text(
-                                    //                 '${controller.customiseExtra.value.customiseExtraOptions![index].label}',
-                                    //                 style: TextStyle(
-                                    //                   color: ColorConstants
-                                    //                       .primaryBigTextColor,
-                                    //                   fontSize: 14.sp,
-                                    //                   fontWeight:
-                                    //                       FontWeight.w400,
-                                    //                 ),
-                                    //               ),
-                                    //             ),
-                                    //           ),
-                                    //           Positioned(
-                                    //             right: 5,
-                                    //             top: -3,
-                                    //             child: Container(
-                                    //               height: 20.h,
-                                    //               width: 20.w,
-                                    //               decoration: BoxDecoration(
-                                    //                 borderRadius:
-                                    //                     BorderRadius
-                                    //                         .circular(25),
-                                    //                 color: ColorConstants
-                                    //                     .bannerHeadingTextColor,
-                                    //               ),
-                                    //               child: Icon(
-                                    //                 FeatherIcons.x,
-                                    //                 color: Colors.white,
-                                    //               ),
-                                    //             ),
-                                    //           )
-                                    //         ],
-                                    //       );
-                                    //     })
+                                    GridView.builder(
+                                        itemCount: controller.customiseProduct
+                                            .value.customise!.length,
+                                        shrinkWrap: true,
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                                crossAxisCount: 4,
+                                                childAspectRatio: 2,
+                                                crossAxisSpacing: 10,
+                                                mainAxisSpacing: 10),
+                                        itemBuilder: (context, index) {
+                                          return Stack(
+                                            children: [
+                                              Container(
+                                                height: 50,
+                                                width: 95,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            150),
+                                                    border: Border.all(
+                                                        color: ColorConstants
+                                                            .borderColor
+                                                            .withOpacity(
+                                                                0.02))),
+                                                child: Center(
+                                                  child: Text(
+                                                    '${controller.customiseProduct.value.customise![index].name}',
+                                                    style: TextStyle(
+                                                      color: ColorConstants
+                                                          .primaryBigTextColor,
+                                                      fontSize: 18.sp,
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Positioned(
+                                                right: 5,
+                                                top: -3,
+                                                child: Container(
+                                                  height: 20.h,
+                                                  width: 20.w,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            25),
+                                                    color: ColorConstants
+                                                        .bannerHeadingTextColor,
+                                                  ),
+                                                  child: Icon(
+                                                    FeatherIcons.x,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          );
+                                        })
                                   ],
                                 ),
                               )
@@ -201,8 +192,8 @@ class ItemCustomisePage extends StatelessWidget {
                               ResponsiveGridList(
                                   desiredItemWidth: 130.w,
                                   minSpacing: 50.h,
-                                  children: controller
-                                      .customiseProduct.value.customise!
+                                  children: controller.customiseExtra.value
+                                      .customiseExtraOptions!
                                       .map((i) {
                                     return InkWell(
                                       onTap: () {
@@ -223,7 +214,7 @@ class ItemCustomisePage extends StatelessWidget {
                                             height: 10.h,
                                           ),
                                           Text(
-                                            '${i.name}',
+                                            '${i.label}',
                                             style: TextStyle(
                                               color: ColorConstants
                                                   .primaryBigTextColor,
