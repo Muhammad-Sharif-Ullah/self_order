@@ -1,15 +1,15 @@
 class CustomiseExtraProduct {
   String? status;
-  List<CustomiseExtraOptions>? customiseExtraOptions;
+  List<Customiseextra>? customiseextra;
 
-  CustomiseExtraProduct();
+  CustomiseExtraProduct({this.status, this.customiseextra});
 
   CustomiseExtraProduct.fromJson(Map<String, dynamic> json) {
     status = json['status'];
-    if (json['customise_extra_options'] != null) {
-      customiseExtraOptions = <CustomiseExtraOptions>[];
-      json['customise_extra_options'].forEach((v) {
-        customiseExtraOptions!.add(new CustomiseExtraOptions.fromJson(v));
+    if (json['customiseextra'] != null) {
+      customiseextra = <Customiseextra>[];
+      json['customiseextra'].forEach((v) {
+        customiseextra!.add(new Customiseextra.fromJson(v));
       });
     }
   }
@@ -17,48 +17,59 @@ class CustomiseExtraProduct {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
-    if (this.customiseExtraOptions != null) {
-      data['customise_extra_options'] =
-          this.customiseExtraOptions!.map((v) => v.toJson()).toList();
+    if (this.customiseextra != null) {
+      data['customiseextra'] =
+          this.customiseextra!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
-class CustomiseExtraOptions {
+class Customiseextra {
   String? id;
-  String? userId;
-  String? customiseExtraId;
-  String? label;
-  String? image;
+  String? custId;
   String? price;
+  String? calorie;
+  String? label;
+  Null? makeDefault;
+  String? userId;
+  String? image;
   String? baseUrl;
-  String? size;
-  int quantity = 0;
 
-  CustomiseExtraOptions();
+  Customiseextra(
+      {this.id,
+      this.custId,
+      this.price,
+      this.calorie,
+      this.label,
+      this.makeDefault,
+      this.userId,
+      this.image,
+      this.baseUrl});
 
-  CustomiseExtraOptions.fromJson(Map<String, dynamic> json) {
+  Customiseextra.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    userId = json['user_id'];
-    customiseExtraId = json['customise_extra_id'];
-    label = json['label'];
-    image = json['image'];
+    custId = json['cust_id'];
     price = json['price'];
+    calorie = json['calorie'];
+    label = json['label'];
+    makeDefault = json['make_default'];
+    userId = json['user_id'];
+    image = json['image'];
     baseUrl = json['base_url'];
-    size = json['size'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['user_id'] = this.userId;
-    data['customise_extra_id'] = this.customiseExtraId;
-    data['label'] = this.label;
-    data['image'] = this.image;
+    data['cust_id'] = this.custId;
     data['price'] = this.price;
+    data['calorie'] = this.calorie;
+    data['label'] = this.label;
+    data['make_default'] = this.makeDefault;
+    data['user_id'] = this.userId;
+    data['image'] = this.image;
     data['base_url'] = this.baseUrl;
-    data['size'] = this.size;
     return data;
   }
 }

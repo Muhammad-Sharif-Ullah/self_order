@@ -188,6 +188,13 @@ class ItemScreenController extends GetxController {
     });
   }
 
+  getCustomiseExtra(id) {
+    api.get(Routes.customiseExtra + id).then((value) {
+      print(value);
+      customiseExtra.value = CustomiseExtraProduct.fromJson(value);
+    });
+  }
+
   getCustomiseExtraOption(id) {
     api.get(Routes.customiseExtra + id).then((value) {
       print('id is $id');

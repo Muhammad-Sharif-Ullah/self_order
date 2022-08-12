@@ -22,7 +22,7 @@ void main() async {
   token = await Session.getToken();
   runApp(
     DevicePreview(
-      enabled: false,
+      enabled: true,
       builder: (context) => MyApp(
         appRouter: AppRouter(),
       ),
@@ -44,10 +44,9 @@ class MyApp extends StatelessWidget {
           theme: Themes().lightTheme,
           darkTheme: Themes().darkTheme,
           themeMode: ThemeService().getThemeMode(),
-          // builder: EasyLoading.init(),
-          //theme: ThemeConfig.lightTheme,
+          builder: EasyLoading.init(),
           title: 'SelfOrder',
-          // enableLog: true,
+          enableLog: true,
           onGenerateRoute: appRouter!.onGeneratedRoute,
           home: (token == '') ? LoginScreen() : VideoScreenView(),
         );

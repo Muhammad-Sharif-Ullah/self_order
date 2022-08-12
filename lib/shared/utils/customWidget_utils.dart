@@ -48,12 +48,13 @@ class CustomWidget {
     return Container(
       height: height * 1.0,
       width: width * 1.0,
+      padding: EdgeInsets.symmetric(vertical: 15.h),
       decoration: BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(Dimensions.BorderRadius10),
       ),
       child: Padding(
-        padding: EdgeInsets.only(left: 30, right: 30),
+        padding: EdgeInsets.only(left: 30.w, right: 30.w),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -65,7 +66,7 @@ class CustomWidget {
               text,
               style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: 30,
+                  fontSize: 30.sp,
                   color: Colors.white),
             ),
           ],
@@ -394,83 +395,100 @@ class CustomWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: Dimensions.height65,
-              // width: 100,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(1),
-                border: Border.all(color: ColorConstants.primaryButtonColor),
+        Container(
+          width: Get.width / 1.1,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CachedNetworkImage(
+                imageUrl:
+                    'https://img.freepik.com/free-photo/delicious-fried-chicken-plate_144627-27383.jpg',
+                height: 158.h,
+                width: 120.w,
               ),
-              child: Image(
-                image: AssetImage('assets/images/bug.png'),
-                height: Dimensions.height60,
-                width: Dimensions.width70,
+              SizedBox(
+                width: Dimensions.SizedBoxValue20,
               ),
-            ),
-            SizedBox(
-              width: Dimensions.SizedBoxValue20,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Beef Burger',
-                  style: TextStyle(
-                      fontSize: Dimensions.TextSize20,
-                      fontWeight: FontWeight.w700),
-                ),
-                SizedBox(
-                  width: 150,
-                ),
-                SizedBox(
-                  height: Dimensions.SizedBoxValue15,
-                ),
-                Text(
-                  '+ 1 Beef patty',
-                  style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: Dimensions.TextSize15,
-                      color:
-                          ColorConstants.primaryBigTextColor.withOpacity(0.5)),
-                ),
-                SizedBox(
-                  height: Dimensions.SizedBoxValue10,
-                ),
-              ],
-            ),
-            SizedBox(
-              width: Dimensions.SizedBoxValue30,
-            ),
-            Text(
-              '2X \$18.00',
-              style: TextStyle(
-                fontSize: Dimensions.SizedBoxValue20,
-              ),
-            ),
-            SizedBox(
-              width: 30,
-            ),
-            Container(
-              height: Dimensions.height25,
-              width: Dimensions.width85,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(96),
-                color: ColorConstants.bannerHeadingTextColor,
-              ),
-              child: Center(
-                child: Text(
-                  'Customise',
-                  style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w900),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Beef Burger',
+                      style: TextStyle(
+                          fontSize: Dimensions.TextSize25,
+                          fontWeight: FontWeight.w700),
+                    ),
+                    SizedBox(
+                      height: Dimensions.SizedBoxValue15,
+                    ),
+                    Text(
+                      '+ 1 Beef patty, or make a list non-nullable Miraz Khan | Arohi Mim | Jamrul Razu | Bangla New Natok 2022',
+                      maxLines: 3,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: Dimensions.TextSize20,
+                          color: ColorConstants.primaryBigTextColor
+                              .withOpacity(0.5)),
+                    ),
+                    SizedBox(
+                      height: Dimensions.SizedBoxValue10,
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+              SizedBox(
+                width: 20.w,
+              ),
+              Text(
+                '2X \$18.00',
+                style: TextStyle(
+                  fontSize: Dimensions.SizedBoxValue20,
+                ),
+              ),
+              SizedBox(
+                width: 10.w,
+              ),
+              Container(
+                padding:
+                    EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(96),
+                  color: ColorConstants.bannerHeadingTextColor,
+                ),
+                child: Center(
+                  child: Text(
+                    'Customise',
+                    style: TextStyle(
+                        fontSize: 14.sp,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w900),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 10.w,
+              ),
+              Container(
+                padding:
+                    EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(96),
+                  color: ColorConstants.priceborderColor,
+                ),
+                child: Center(
+                  child: Text(
+                    'Combo',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w900),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
         SizedBox(
           height: 20,
@@ -901,6 +919,7 @@ class CustomWidget {
     return Container(
       height: height * 1.0,
       width: width * 1.0,
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderradius * 1.0),
         color: backgroundcolor,
@@ -912,7 +931,7 @@ class CustomWidget {
                 title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: titlefontSize,
                     fontWeight: titleFontWeight,
                     color: titlecolor),
               ),

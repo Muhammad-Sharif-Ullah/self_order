@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
@@ -23,27 +24,28 @@ class CheckoutScreen extends GetView<CheckoutController> {
           body: Column(
             children: [
               SizedBox(
-                height: Dimensions.SizedBoxValue100,
+                height: Dimensions.SizedBoxValue59,
               ),
               Center(
                 child: Text(
                   'Is your order correct?',
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    fontSize: Dimensions.TextSize50,
+                    fontSize: Dimensions.TextSize30,
                     color: ColorConstants.primaryButtonColor,
                   ),
                 ),
               ),
               SizedBox(
-                height: Dimensions.height90,
+                height: Dimensions.SizedBoxValue20,
               ),
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: 50,
+                  itemCount: 7,
                   itemBuilder: (context, index) {
-                    return Padding(
+                    return Container(
+                      width: Get.width / 2.5,
                       padding: EdgeInsets.only(bottom: 20),
                       child: CustomWidget.CustomOrderView(),
                     );
@@ -57,55 +59,77 @@ class CheckoutScreen extends GetView<CheckoutController> {
               SizedBox(
                 height: Dimensions.SizedBoxValue30,
               ),
-              Padding(
+              Container(
+                color: ColorConstants.promoColor,
                 padding: EdgeInsets.only(left: 30),
                 child: Row(
                   children: [
-                    Text(
-                      'Add promo:',
-                      style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 24),
+                    Expanded(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text('Add promos'),
+                        TextField(),
+                      ],
+                    )),
+                    Divider(
+                      height: 100.h,
+                      thickness: 5,
+                      color: Colors.black,
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      height: 54,
-                      width: 265,
-                      child: TextFormField(
-                        decoration: InputDecoration(
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: ColorConstants.bannerBackgroundColor),
+                    Expanded(
+                        child: Container(
+                      padding: EdgeInsets.all(40.w),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Sub Total',
+                                style: TextStyle(fontSize: 18.sp),
+                              ),
+                              Text(
+                                '1800',
+                                style: TextStyle(fontSize: 18.sp),
+                              ),
+                            ],
                           ),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: ColorConstants.bannerBackgroundColor),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Tax',
+                                style: TextStyle(fontSize: 18.sp),
+                              ),
+                              Text(
+                                '300',
+                                style: TextStyle(fontSize: 18.sp),
+                              ),
+                            ],
                           ),
-                        ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Total',
+                                style: TextStyle(fontSize: 18.sp),
+                              ),
+                              Text(
+                                '1600',
+                                style: TextStyle(fontSize: 18.sp),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Container(
-                      height: 54,
-                      width: 244,
-                      child: Center(child: Text('Total:      \$43.20',style: TextStyle(color: ColorConstants.primaryBigTextColor,fontWeight: FontWeight.bold,fontSize: 24),textAlign: TextAlign.center,)),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: ColorConstants.secondBackgroundColor,
-                        border: Border.all(color: ColorConstants.priceborderColor),
-                      ),
-                    )
+                    )),
                   ],
                 ),
               ),
               SizedBox(
                 height: Dimensions.SizedBoxValue30,
               ),
-
-              Divider(height: 5,color: ColorConstants.textFormFieldUnderlineColor,),
               SizedBox(
                 height: Dimensions.height25,
               ),
@@ -113,22 +137,24 @@ class CheckoutScreen extends GetView<CheckoutController> {
                 padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
                 child: Row(
                   children: [
-                    CustomWidget.CustomRedButton(height: Dimensions.height60 * 1.0, width: Dimensions.width320 * 1.0, text: 'cancel order', context: context),
+                    CustomWidget.CustomRedButton(
+                        height: Dimensions.height60 * 1.0,
+                        width: Dimensions.width320 * 1.0,
+                        text: 'cancel order',
+                        context: context),
                     Spacer(),
-
-                        InkWell(
-                          onTap: (){
-                            Navigator.pushNamed(context, '/paymentscreen',arguments: PageRouteArguments(
-                                data: [],
-                                fromPage: "a",
-                                toPage: "b"
-                            ));
-                          },
-                          child:CustomWidget.CustomAddtoCartButton(height: Dimensions.height60 * 1.0, width: Dimensions.width320 * 1.0, text: 'Confirm', context: context,
-                        )
-                        )
-
-
+                    InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, '/paymentscreen',
+                              arguments: PageRouteArguments(
+                                  data: [], fromPage: "a", toPage: "b"));
+                        },
+                        child: CustomWidget.CustomAddtoCartButton(
+                          height: Dimensions.height60 * 1.0,
+                          width: Dimensions.width320 * 1.0,
+                          text: 'Confirm',
+                          context: context,
+                        ))
                   ],
                 ),
               ),

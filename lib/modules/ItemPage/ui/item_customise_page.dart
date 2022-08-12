@@ -107,53 +107,61 @@ class ItemCustomisePage extends StatelessWidget {
                                                 crossAxisSpacing: 10,
                                                 mainAxisSpacing: 10),
                                         itemBuilder: (context, index) {
-                                          return Stack(
-                                            children: [
-                                              Container(
-                                                height: 50,
-                                                width: 95,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            150),
-                                                    border: Border.all(
+                                          return GestureDetector(
+                                            onTap: () => controller
+                                                .getCustomiseExtra(controller
+                                                    .customiseProduct
+                                                    .value
+                                                    .customise![index]
+                                                    .id),
+                                            child: Stack(
+                                              children: [
+                                                Container(
+                                                  height: 50,
+                                                  width: 95,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              150),
+                                                      border: Border.all(
+                                                          color: ColorConstants
+                                                              .borderColor
+                                                              .withOpacity(
+                                                                  0.02))),
+                                                  child: Center(
+                                                    child: Text(
+                                                      '${controller.customiseProduct.value.customise![index].name}',
+                                                      style: TextStyle(
                                                         color: ColorConstants
-                                                            .borderColor
-                                                            .withOpacity(
-                                                                0.02))),
-                                                child: Center(
-                                                  child: Text(
-                                                    '${controller.customiseProduct.value.customise![index].name}',
-                                                    style: TextStyle(
-                                                      color: ColorConstants
-                                                          .primaryBigTextColor,
-                                                      fontSize: 18.sp,
-                                                      fontWeight:
-                                                          FontWeight.w400,
+                                                            .primaryBigTextColor,
+                                                        fontSize: 18.sp,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              Positioned(
-                                                right: 5,
-                                                top: -3,
-                                                child: Container(
-                                                  height: 20.h,
-                                                  width: 20.w,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            25),
-                                                    color: ColorConstants
-                                                        .bannerHeadingTextColor,
+                                                Positioned(
+                                                  right: 5,
+                                                  top: -3,
+                                                  child: Container(
+                                                    height: 20.h,
+                                                    width: 20.w,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              25),
+                                                      color: ColorConstants
+                                                          .bannerHeadingTextColor,
+                                                    ),
+                                                    child: Icon(
+                                                      FeatherIcons.x,
+                                                      color: Colors.white,
+                                                    ),
                                                   ),
-                                                  child: Icon(
-                                                    FeatherIcons.x,
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              )
-                                            ],
+                                                )
+                                              ],
+                                            ),
                                           );
                                         })
                                   ],
@@ -182,18 +190,18 @@ class ItemCustomisePage extends StatelessWidget {
                           height: 30.h,
                         ),
                         Expanded(
-                          child: (controller.customiseExtra.value
-                                      .customiseExtraOptions ==
+                          child: (controller
+                                      .customiseExtra.value.customiseextra ==
                                   null)
                               ? Container()
                               :
                               // Text(
                               //     '${controller.customiseExtra.value.customiseExtraOptions!.length}'),
                               ResponsiveGridList(
-                                  desiredItemWidth: 130.w,
+                                  desiredItemWidth: Get.width / 6,
                                   minSpacing: 50.h,
-                                  children: controller.customiseExtra.value
-                                      .customiseExtraOptions!
+                                  children: controller
+                                      .customiseExtra.value.customiseextra!
                                       .map((i) {
                                     return InkWell(
                                       onTap: () {
@@ -207,8 +215,8 @@ class ItemCustomisePage extends StatelessWidget {
                                                     image: AssetImage(
                                                         "assets/images/homescreen.png")),
                                             imageUrl: i.baseUrl! + i.image!,
-                                            height: 70,
-                                            width: 130,
+                                            height: 70.h,
+                                            width: double.infinity,
                                           ),
                                           SizedBox(
                                             height: 10.h,

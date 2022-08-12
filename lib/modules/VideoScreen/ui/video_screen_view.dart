@@ -21,58 +21,13 @@ class VideoScreenView extends GetView<VideoScreenController> {
     Get.put<VideoScreenController>(VideoScreenController());
     return BaseWidget(
       builder: (context, sizingInformation) => Scaffold(
-        // body: Container(
-        //   child: Stack(
-        //     alignment: Alignment.bottomCenter,
-        //     children: [
-        //       SizedBox(
-        //         height: Get.height,
-        //         child: Image(
-        //           image: AssetImage("assets/images/5minw8.png"),
-        //           fit: BoxFit.fitHeight,
-        //         ),
-        //       ),
-        //       Positioned(
-        //         bottom: Dimensions.SizedBoxValue100,
-        //         child: InkWell(
-        //           onTap: () {
-        //             Get.to(UserChoiceScreen(), transition: Transition.fade);
-        //           },
-        //           child: CustomWidget.CustomButton(
-        //               color: ColorConstants.videoScreenButtonColor,
-        //               text: 'Tap to Start'),
-        //         ),
-        //       ),
-        //       Positioned(
-        //         top: 150.h,
-        //         child: DotsIndicator(
-        //           dotsCount: 4,
-        //           position: 1,
-        //           decorator: DotsDecorator(
-        //             color: Colors.red, // Inactive color
-        //             activeColor: Colors.white,
-        //           ),
-        //         ),
-        //       ),
-        //       Positioned(
-        //           top: 114,
-        //           child: Image(
-        //             image: AssetImage("assets/images/orderhere.png"),
-        //             height: 162,
-        //             width: 232,
-        //           )),
-        //
-        //     ],
-        //   ),
-        // ),
-
         body: Container(
-          height: Get.height,
-          width: Get.width,
+          height: double.infinity,
+          width: double.infinity,
           decoration: BoxDecoration(
               image: DecorationImage(
             image: AssetImage("assets/images/5minw8.png"),
-            fit: BoxFit.cover,
+            fit: BoxFit.fitWidth,
           )),
           child: Column(
             children: [
