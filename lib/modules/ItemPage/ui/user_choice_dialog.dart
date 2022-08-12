@@ -7,11 +7,10 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 import 'package:self_order/Data/Model/page_route_arguments.dart';
 import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
-import 'package:self_order/modules/combo_screen_one/ui/combo_screen_one_view.dart';
-import 'package:self_order/modules/combo_screen_two/ui/combo_screen_two_view.dart';
 import '../../../shared/constants/Dimensions.dart';
 import '../../../shared/constants/colors.dart';
 import '../../../shared/utils/customWidget_utils.dart';
+import '../../combo_screen_two/ui/combo_screen_one_view.dart';
 import '../model/ProductModel.dart';
 import 'item_customise_page.dart';
 import 'item_customise_page.dart';
@@ -44,7 +43,7 @@ userChoiceDialog({required BuildContext context}) {
                               'Make your choice',
                               style: TextStyle(
                                   color: ColorConstants.primaryButtonColor,
-                                  fontSize: 30.sp),
+                                  fontSize: 24.sp),
                             ),
                             Spacer(),
                             CustomWidget.CustomCloseSection(context: context),
@@ -63,9 +62,6 @@ userChoiceDialog({required BuildContext context}) {
                                   controller.product.value.productImage!,
                               height: 158.h,
                               width: 150.w,
-                            ),
-                            SizedBox(
-                              width: 20.w,
                             ),
                             Expanded(
                               child: Column(
@@ -903,7 +899,7 @@ userChoiceDialog({required BuildContext context}) {
                             },
                             child: CustomWidget.CustomPrimaryButton(
                                 context: context,
-                                height: 60.h,
+                                height: 70.h,
                                 width: 282.w,
                                 borderColor: ColorConstants.priceborderColor,
                                 title: 'Make it combo',
@@ -916,8 +912,8 @@ userChoiceDialog({required BuildContext context}) {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.to(ItemCustomisePage(
-                                  id: controller.product.value.id!));
+                              // Get.to(ComboScreenViewOne(
+                              //     id: controller.product.value.id!));
                               // Navigator.pushNamed(context, '/itemcustomisePage',
                               //     arguments: PageRouteArguments(
                               //         data: [],
@@ -926,7 +922,7 @@ userChoiceDialog({required BuildContext context}) {
                             },
                             child: CustomWidget.CustomPrimaryButton(
                                 context: context,
-                                height: 60.h,
+                                height: 70.h,
                                 width: 282.w,
                                 borderColor:
                                     ColorConstants.bannerHeadingTextColor,
@@ -945,7 +941,7 @@ userChoiceDialog({required BuildContext context}) {
                       ),
                       CustomWidget.CustomPrimaryButton(
                           context: context,
-                          height: 60.h,
+                          height: 70.h,
                           width: double.infinity,
                           borderColor: ColorConstants.primaryButtonColor,
                           title: 'Add to cart',

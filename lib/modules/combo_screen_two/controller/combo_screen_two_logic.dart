@@ -38,6 +38,13 @@ class ComboScreenControllertwo extends GetxController {
     }
   }
 
+  getAllCombo() {
+    api.get(Routes.combo + '${selectedProductId.value}').then((value) {
+      print(value);
+      comboList.value = value['combo'];
+    });
+  }
+
   getCombo() {
     api
         .get(Routes.combo +

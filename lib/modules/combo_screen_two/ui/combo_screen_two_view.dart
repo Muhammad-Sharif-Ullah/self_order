@@ -261,12 +261,13 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                         child: CustomWidget.CustomPrimaryButton(
                             context: context,
                             width: 320.0,
-                            height: 50.h,
+                            height: 70.h,
                             borderradius: 5.0,
                             backgroundcolor: Colors.transparent,
                             titlecolor: Color(0xFF505050),
                             borderColor: Color(0xFF505050),
-                            title: 'Back'),
+                            title: 'Back',
+                            titlefontSize: 25.sp),
                       ),
                       Spacer(),
                       InkWell(
@@ -282,12 +283,13 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
                         child: CustomWidget.CustomPrimaryButton(
                             context: context,
                             width: 320.0,
-                            height: 50.h,
+                            height: 70.h,
                             borderradius: 5.0,
                             titlecolor: Color(0xFFFF000E),
                             borderColor: Color(0xFFFF000E),
                             backgroundcolor: Colors.transparent,
-                            title: 'CONTINUE'),
+                            title: 'CONTINUE',
+                            titlefontSize: 25.sp),
                       )
                     ],
                   ),

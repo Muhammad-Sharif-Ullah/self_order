@@ -10,7 +10,7 @@ import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
 import '../../base_widget.dart';
-import '../../combo_screen_one/ui/combo_screen_one_view.dart';
+import '../../combo_screen_two/ui/combo_screen_one_view.dart';
 import '../controller/home_screen_logic.dart';
 import 'custom_delicious_food.dart';
 
@@ -215,7 +215,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                   // ),
                   InkWell(
                     onTap: () {
-                      Get.to(ComboScreenViewOne(id: '246'));
+                      Get.to(ComboScreenViewOne());
                     },
                     child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 30.w),
