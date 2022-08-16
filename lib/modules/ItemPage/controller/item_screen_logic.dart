@@ -127,7 +127,7 @@ class ItemScreenController extends GetxController {
   }
 
   productTotal() {
-    var total = 0;
+    var total = product.value.productPrice;
     total += (product.value.selectedChrustId != null)
         ? product.value.chrust[product.value.selectedChrustId!].price
         : 0;
