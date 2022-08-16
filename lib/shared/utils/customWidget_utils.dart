@@ -538,12 +538,19 @@ class CustomWidget {
             SizedBox(
               width: Dimensions.SizedBoxValue30,
             ),
-            Text(
-              '\$${comboItem['price']}',
-              style: TextStyle(
-                fontSize: Dimensions.TextSize25,
-              ),
-            ),
+            (type == 'main')
+                ? Text(
+                    '\$${controller.productTotal.value + int.parse(comboItem['price'])}',
+                    style: TextStyle(
+                      fontSize: Dimensions.TextSize25,
+                    ),
+                  )
+                : Text(
+                    '\$${int.parse(comboItem['price'])}',
+                    style: TextStyle(
+                      fontSize: Dimensions.TextSize25,
+                    ),
+                  ),
             SizedBox(
               width: 30.w,
             ),

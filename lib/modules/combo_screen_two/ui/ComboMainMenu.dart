@@ -42,7 +42,7 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
                               controller.selectedCombo.value = i;
                             },
                             child: Container(
-                                height: 270,
+                                height: 300,
                                 alignment: Alignment(0, 0),
                                 color: Colors.white,
                                 child: CustomWidget.CustomComboPackItem(
@@ -64,7 +64,7 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
                               // selectComboOption();
                             },
                             child: Container(
-                                height: 270,
+                                height: 300,
                                 alignment: Alignment(0, 0),
                                 color: Colors.white,
                                 child: CustomWidget.CustomComboPackItem(

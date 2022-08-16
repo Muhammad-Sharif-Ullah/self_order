@@ -95,7 +95,7 @@ class _ComboCartState extends State<ComboCart> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 20.sp,
+                    height: 20.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,12 +104,12 @@ class _ComboCartState extends State<ComboCart> {
                         onTap: () {},
                         child: CustomWidget.CustomPrimaryButton(
                             context: context,
-                            height: 60.h,
+                            height: 70.h,
                             width: 280.w,
                             titlecolor: Color(0xFFFF000E),
                             borderColor: Color(0xFFFF000E),
                             backgroundcolor: Colors.transparent,
-                            title: 'Cancel combo',
+                            title: 'Add to cart',
                             titlefontSize: 24.sp,
                             borderradius: 5,
                             titleFontWeight: FontWeight.w700),
@@ -118,7 +118,7 @@ class _ComboCartState extends State<ComboCart> {
                         onTap: () => controller.checkOut(),
                         child: CustomWidget.CustomPrimaryButton(
                           context: context,
-                          height: 60.h,
+                          height: 70.h,
                           width: 280.w,
                           title: 'Checkout',
                           titlefontSize: 24.sp,
@@ -130,7 +130,7 @@ class _ComboCartState extends State<ComboCart> {
                     ],
                   ),
                   SizedBox(
-                    height: 20.sp,
+                    height: 20.h,
                   ),
                 ],
               ),

@@ -22,6 +22,8 @@ class ComboScreenControllertwo extends GetxController {
 
   dynamic selectedFoodVersion = ''.obs;
 
+  var productTotal = 0.obs;
+
   List count = [3, 5, 8];
 
   var allComboList = [].obs;
@@ -44,6 +46,8 @@ class ComboScreenControllertwo extends GetxController {
   }
 
   getAllCombo() {
+    ItemScreenController item = Get.find();
+    productTotal.value = item.product.value.productTotal;
     api.get(Routes.combo + '${selectedProductId.value}').then((value) {
       print(value);
       allComboList.value = value['combo'];
@@ -93,6 +97,7 @@ class ComboScreenControllertwo extends GetxController {
 
   getTotal() {
     var total = 0;
+    total += productTotal.value;
     total += (int.parse(selectedCombo['price'])) as int;
     total += (int.parse(selectedSide['price'])) as int;
     total += (int.parse(selectedDrink['price'])) as int;
