@@ -97,8 +97,10 @@ class ItemCustomisePage extends StatelessWidget {
                                       height: 30.h,
                                     ),
                                     GridView.builder(
-                                        itemCount: controller.customiseProduct
-                                            .value.customise!.length,
+                                        itemCount: controller
+                                            .defaultCustomiseProduct
+                                            .value
+                                            .length,
                                         shrinkWrap: true,
                                         gridDelegate:
                                             SliverGridDelegateWithFixedCrossAxisCount(
@@ -110,9 +112,8 @@ class ItemCustomisePage extends StatelessWidget {
                                           return GestureDetector(
                                             onTap: () => controller
                                                 .getCustomiseExtra(controller
-                                                    .customiseProduct
-                                                    .value
-                                                    .customise![index]
+                                                    .defaultCustomiseProduct
+                                                    .value[index]
                                                     .id),
                                             child: Stack(
                                               children: [
@@ -130,7 +131,7 @@ class ItemCustomisePage extends StatelessWidget {
                                                                   0.02))),
                                                   child: Center(
                                                     child: Text(
-                                                      '${controller.customiseProduct.value.customise![index].name}',
+                                                      '${controller.defaultCustomiseProduct.value[index].name}',
                                                       style: TextStyle(
                                                         color: ColorConstants
                                                             .primaryBigTextColor,
@@ -190,8 +191,7 @@ class ItemCustomisePage extends StatelessWidget {
                           height: 30.h,
                         ),
                         Expanded(
-                          child: (controller
-                                      .customiseExtra.value.customiseextra ==
+                          child: (controller.customiseProduct.value.customise ==
                                   null)
                               ? Container()
                               :
@@ -201,7 +201,7 @@ class ItemCustomisePage extends StatelessWidget {
                                   desiredItemWidth: Get.width / 6,
                                   minSpacing: 50.h,
                                   children: controller
-                                      .customiseExtra.value.customiseextra!
+                                      .customiseProduct.value.customise!
                                       .map((i) {
                                     return InkWell(
                                       onTap: () {
@@ -222,7 +222,7 @@ class ItemCustomisePage extends StatelessWidget {
                                             height: 10.h,
                                           ),
                                           Text(
-                                            '${i.label}',
+                                            '${i.name}',
                                             style: TextStyle(
                                               color: ColorConstants
                                                   .primaryBigTextColor,

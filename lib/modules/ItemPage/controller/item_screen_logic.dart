@@ -181,10 +181,16 @@ class ItemScreenController extends GetxController {
   */
   var customiseExtra = CustomiseExtraProduct().obs;
   var customiseProduct = CustomiseProduct().obs;
+  var defaultCustomiseProduct = [].obs;
   getCustomiseFood(id) {
     api.get(Routes.customiseProduct + id).then((value) {
       print(value);
       customiseProduct.value = CustomiseProduct.fromJson(value);
+      customiseProduct.value.customise!.forEach((element) {
+        if (element.selected == true) {
+          defaultCustomiseProduct.value.add(element);
+        }
+      });
     });
   }
 
