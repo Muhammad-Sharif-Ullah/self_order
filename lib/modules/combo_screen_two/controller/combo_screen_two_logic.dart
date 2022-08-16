@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
 import 'package:self_order/request/api_provider.dart';
 import '../../../request/routes.dart';
 
@@ -24,8 +25,11 @@ class ComboScreenControllertwo extends GetxController {
   List count = [3, 5, 8];
 
   var comboList = [].obs;
+  var styleList = [].obs;
 
   var comboTotal = 0.obs;
+
+  var selectedStyle = {};
 
   setSelectedSize(String size) {
     selectedSize.value = size;
@@ -43,6 +47,11 @@ class ComboScreenControllertwo extends GetxController {
       print(value);
       comboList.value = value['combo'];
     });
+  }
+
+  getStyle() async {
+    ItemScreenController controller = Get.find();
+    print('style ${await controller.product.value.style}');
   }
 
   getCombo() {

@@ -30,28 +30,50 @@ class _ComboMainMenuState extends State<ComboMainMenu> {
             SizedBox(
               height: 40,
             ),
-            Expanded(
-              child: ResponsiveGridList(
-                  desiredItemWidth: 147,
-                  minSpacing: 35,
-                  children: controller.comboList.map((i) {
-                    return GestureDetector(
-                      onTap: () {
-                        controller.selectedComboId.value = i['id'];
-                        controller.selectedCombo.value = i;
-                        // selectComboOption();
-                      },
-                      child: Container(
-                          height: 270,
-                          alignment: Alignment(0, 0),
-                          color: Colors.white,
-                          child: CustomWidget.CustomComboPackItem(
-                            context: context,
-                            menu: i,
-                          )),
-                    );
-                  }).toList()),
-            ),
+            (controller.styleList.length > 0)
+                ? Expanded(
+                    child: ResponsiveGridList(
+                        desiredItemWidth: 147,
+                        minSpacing: 35,
+                        children: controller.styleList.map((i) {
+                          return GestureDetector(
+                            onTap: () {
+                              controller.selectedComboId.value = i['id'];
+                              controller.selectedCombo.value = i;
+                            },
+                            child: Container(
+                                height: 270,
+                                alignment: Alignment(0, 0),
+                                color: Colors.white,
+                                child: CustomWidget.CustomComboPackItem(
+                                  context: context,
+                                  menu: i,
+                                )),
+                          );
+                        }).toList()),
+                  )
+                : Expanded(
+                    child: ResponsiveGridList(
+                        desiredItemWidth: 147,
+                        minSpacing: 35,
+                        children: controller.comboList.map((i) {
+                          return GestureDetector(
+                            onTap: () {
+                              controller.selectedComboId.value = i['id'];
+                              controller.selectedCombo.value = i;
+                              // selectComboOption();
+                            },
+                            child: Container(
+                                height: 270,
+                                alignment: Alignment(0, 0),
+                                color: Colors.white,
+                                child: CustomWidget.CustomComboPackItem(
+                                  context: context,
+                                  menu: i,
+                                )),
+                          );
+                        }).toList()),
+                  ),
           ],
         ),
       ),

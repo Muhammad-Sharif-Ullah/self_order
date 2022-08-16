@@ -24,6 +24,7 @@ class ComboScreenViewTwo extends GetView<ComboScreenControllertwo> {
   Widget build(BuildContext context) {
     Get.find<ComboScreenControllertwo>();
     controller.getCombo();
+    controller.getStyle();
     return BaseWidget(
       builder: (context, sizingInformation) => SafeArea(
         child: Scaffold(

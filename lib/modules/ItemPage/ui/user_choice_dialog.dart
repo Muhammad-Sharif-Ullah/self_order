@@ -912,13 +912,13 @@ userChoiceDialog({required BuildContext context}) {
                           ),
                           InkWell(
                             onTap: () {
-                              // Get.to(ComboScreenViewOne(
-                              //     id: controller.product.value.id!));
-                              // Navigator.pushNamed(context, '/itemcustomisePage',
-                              //     arguments: PageRouteArguments(
-                              //         data: [],
-                              //         fromPage: 'itempage',
-                              //         toPage: 'itemcustomisePage'));
+                              Get.to(ItemCustomisePage(
+                                  id: controller.product.value.id!));
+                              Navigator.pushNamed(context, '/itemcustomisePage',
+                                  arguments: PageRouteArguments(
+                                      data: [],
+                                      fromPage: 'itempage',
+                                      toPage: 'itemcustomisePage'));
                             },
                             child: CustomWidget.CustomPrimaryButton(
                                 context: context,
