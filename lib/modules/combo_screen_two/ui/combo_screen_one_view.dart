@@ -26,7 +26,8 @@ class _ComboScreenViewOneState extends State<ComboScreenViewOne> {
     return BaseWidget(
       builder: (context, sizingInformation) => Scaffold(
         body: Obx(
-          () => Column(
+          () => ListView(
+            physics: NeverScrollableScrollPhysics(),
             children: [
               Container(
                 height: 200.h,
@@ -43,32 +44,32 @@ class _ComboScreenViewOneState extends State<ComboScreenViewOne> {
               ),
               Text(
                 'Choose your desire',
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     color: ColorConstants.primaryBigTextColor,
                     fontWeight: FontWeight.w700,
-                    fontSize: 24),
+                    fontSize: 24.sp),
               ),
               SizedBox(
                 height: 30,
               ),
-              Container(
-                child: GridView.builder(
-                    shrinkWrap: true,
-                    itemCount: controller.comboList.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisSpacing: 20,
-                        crossAxisSpacing: 20,
-                        mainAxisExtent: 200.h,
-                        crossAxisCount:
-                            (orientation == Orientation.portrait) ? 2 : 4),
-                    itemBuilder: (context, index) {
-                      return customDesire(
-                          imageUrl: controller.comboList[index]['base_url'] +
-                              controller.comboList[index]['label_image'],
-                          price: controller.comboList[index]['price'],
-                          size: controller.comboList[index]['size']);
-                    }),
-              )
+              GridView.builder(
+                  shrinkWrap: true,
+                  physics: AlwaysScrollableScrollPhysics(),
+                  itemCount: controller.allComboList.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisSpacing: 20,
+                      crossAxisSpacing: 20,
+                      mainAxisExtent: 200.h,
+                      crossAxisCount:
+                          (orientation == Orientation.portrait) ? 2 : 4),
+                  itemBuilder: (context, index) {
+                    return customDesire(
+                        imageUrl: controller.allComboList[index]['base_url'] +
+                            controller.allComboList[index]['label_image'],
+                        price: controller.allComboList[index]['price'],
+                        size: controller.allComboList[index]['size']);
+                  })
             ],
           ),
         ),

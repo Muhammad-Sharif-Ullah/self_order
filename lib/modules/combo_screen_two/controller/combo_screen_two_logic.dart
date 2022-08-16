@@ -24,6 +24,7 @@ class ComboScreenControllertwo extends GetxController {
 
   List count = [3, 5, 8];
 
+  var allComboList = [].obs;
   var comboList = [].obs;
   var styleList = [].obs;
 
@@ -45,7 +46,7 @@ class ComboScreenControllertwo extends GetxController {
   getAllCombo() {
     api.get(Routes.combo + '${selectedProductId.value}').then((value) {
       print(value);
-      comboList.value = value['combo'];
+      allComboList.value = value['combo'];
     });
   }
 
