@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:self_order/request/api_provider.dart';
+
 import '../../../request/routes.dart';
 
 class ComboScreenControllertwo extends GetxController {
@@ -9,7 +10,19 @@ class ComboScreenControllertwo extends GetxController {
 
   var selectedCombo = '18'.obs;
   var selectedSize = 'm'.obs;
+  Map<String, String> comboSelection = <String, String>{
+    "s": "Small Combo",
+    "m": "Medium Combo",
+    "l": "Large Combo",
+    "el": "Extra Large Combo",
+  };
 
+  List<String> comboSectionImage = [
+    "assets/images/small_type.png",
+    "assets/images/medium_type.png",
+    "assets/images/large_type.png",
+    "assets/images/large_type.png"
+  ];
   dynamic selectedFoodVersion = ''.obs;
 
   List count = [];

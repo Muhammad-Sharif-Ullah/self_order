@@ -4,13 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:self_order/modules/Home/ui/home_screen_view.dart';
-import 'package:self_order/modules/VideoScreen/ui/video_screen_view.dart';
-import 'package:self_order/routes/app_routes.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
 
-import '../../../Data/Model/page_route_arguments.dart';
 import '../../../shared/constants/colors.dart';
 import '../../../shared/theme/theme_service.dart';
 import '../../base_widget.dart';
@@ -26,7 +22,7 @@ class LoginScreen extends GetView<LoginScreenController> {
     return BaseWidget(
       builder: (context, sizingInformation) => SafeArea(
         child: Scaffold(
-          backgroundColor: Theme.of(context).backgroundColor,
+          backgroundColor: Colors.white,
           body: Container(
             child: FormBuilder(
               key: _formKey,
@@ -39,7 +35,7 @@ class LoginScreen extends GetView<LoginScreenController> {
                     child: Text(
                       'Welcome',
                       style: TextStyle(
-                          color: Theme.of(context).buttonColor,
+                          color: ColorConstants.primaryButtonColor,
                           fontSize: Dimensions.TextSize50,
                           fontWeight: FontWeight.w400),
                     ),

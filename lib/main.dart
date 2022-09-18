@@ -4,12 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:self_order/modules/Home/ui/home_screen_view.dart';
 import 'package:self_order/modules/LogIn/ui/Login_screen.dart';
 import 'package:self_order/modules/VideoScreen/ui/video_screen_view.dart';
-import 'package:self_order/modules/combo_screen_two/ui/combo_screen_two_view.dart';
 import 'package:self_order/request/session.dart';
 import 'package:self_order/shared/Route/route.dart';
 import 'package:self_order/shared/theme/theme_service.dart';
@@ -20,7 +17,7 @@ void main() async {
   await GetStorage.init();
   runApp(
     DevicePreview(
-      enabled: false,
+      enabled: !kReleaseMode,
       builder: (context) => MyApp(
         appRouter: AppRouter(),
       ),
@@ -35,11 +32,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(744, 1133),
-      builder: (_) {
+      designSize: const Size(744, 1133),
+      // minTextAdapt: true,
+      // splitScreenMode: true,
+      // designSize: const Size(375, 812),
+      builder: (context, _) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          theme: Themes().lightTheme,
+          // theme: Themes().lightTheme,
           darkTheme: Themes().darkTheme,
           themeMode: ThemeService().getThemeMode(),
           // builder: EasyLoading.init(),
@@ -47,9 +47,10 @@ class MyApp extends StatelessWidget {
           title: 'SelfOrder',
           // enableLog: true,
           onGenerateRoute: appRouter!.onGeneratedRoute,
-          home:
-              // ComboScreenViewTwo(itemtype: 'l'),
-              (Session.getToken() == '') ? LoginScreen() : VideoScreenView(),
+          home: Session.getToken().isBlank!
+              ? const LoginScreen()
+              : const VideoScreenView(),
+          // home: const LoginScreen(),
         );
       },
     );

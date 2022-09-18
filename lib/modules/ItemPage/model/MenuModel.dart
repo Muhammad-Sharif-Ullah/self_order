@@ -9,16 +9,16 @@ class Menu {
     if (json['product'] != null) {
       product = <Product>[];
       json['product'].forEach((v) {
-        product!.add(new Product.fromJson(v));
+        product!.add(Product.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    if (this.product != null) {
-      data['product'] = this.product!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    if (product != null) {
+      data['product'] = product!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -114,110 +114,143 @@ class Product {
     if (json['toppings'] != null) {
       toppings = <Toppings>[];
       json['toppings'].forEach((v) {
-        toppings!.add(Toppings.fromJson(v));
+        if (v is! List) {
+          toppings!.add(Toppings.fromJson(v));
+        }
       });
     }
     if (json['style'] != null) {
       style = <GeneralItem>[];
       json['style'].forEach((v) {
-        style!.add(GeneralItem.fromJson(v));
+        if (v is! List) {
+          style!.add(GeneralItem.fromJson(v));
+        }
       });
     }
     if (json['sauce'] != null) {
       sauce = <GeneralItem>[];
+
       json['sauce'].forEach((v) {
-        sauce!.add(GeneralItem.fromJson(v));
+        if (v is! List) {
+          sauce!.add(GeneralItem.fromJson(v));
+        }
       });
     }
     if (json['soda'] != null) {
       soda = <GeneralItem>[];
       json['soda'].forEach((v) {
-        soda!.add(GeneralItem.fromJson(v));
+        if (v is! List) {
+          soda!.add(GeneralItem.fromJson(v));
+        }
       });
     }
     if (json['dressing'] != null) {
       dressing = <GeneralItem>[];
+
       json['dressing'].forEach((v) {
-        dressing!.add(GeneralItem.fromJson(v));
+        if (v is! List) {
+          dressing!.add(GeneralItem.fromJson(v));
+        }
       });
     }
     if (json['side'] != null) {
       side = <GeneralItem>[];
       json['side'].forEach((v) {
-        side!.add(GeneralItem.fromJson(v));
+        if (v is! List) {
+          side!.add(GeneralItem.fromJson(v));
+        }
       });
     }
     if (json['preparation'] != null) {
       preparation = <GeneralItem>[];
       json['preparation'].forEach((v) {
-        preparation!.add(GeneralItem.fromJson(v));
+        if (v is! List) {
+          preparation!.add(GeneralItem.fromJson(v));
+        }
       });
     }
-    if (json['extra'] != null) {
+    if (json['extra'] != null && List.from(json['extra']).isNotEmpty) {
       extra = <GeneralItem>[];
       json['extra'].forEach((v) {
-        extra!.add(GeneralItem.fromJson(v));
+        if (v is! List) {
+          extra!.add(GeneralItem.fromJson(v));
+        }
       });
     }
     if (json['bacon'] != null) {
       bacon = <GeneralItem>[];
       json['bacon'].forEach((v) {
-        bacon!.add(GeneralItem.fromJson(v));
+        if (v is! List) {
+          bacon!.add(GeneralItem.fromJson(v));
+        }
       });
     }
     if (json['meal'] != null) {
       meal = <GeneralItem>[];
       json['meal'].forEach((v) {
-        meal!.add(GeneralItem.fromJson(v));
+        if (v is! List) {
+          meal!.add(GeneralItem.fromJson(v));
+        }
+      });
+    }
+    if (json['chrust'] != null) {
+      chrust = <GeneralItem>[];
+      json['chrust'].forEach((v) {
+        if (v is! List) {
+          chrust!.add(GeneralItem.fromJson(v));
+        }
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_id'] = this.userId;
-    data['name'] = this.name;
-    data['product_description'] = this.productDescription;
-    data['product_price'] = this.productPrice;
-    data['product_image'] = this.productImage;
-    data['category_id'] = this.categoryId;
-    data['sub_category_id'] = this.subCategoryId;
-    data['product_subsubcategory'] = this.productSubsubcategory;
-    data['combo_image'] = this.comboImage;
-    data['calories'] = this.calories;
-    data['delivery_option'] = this.deliveryOption;
-    data['base_url'] = this.baseUrl;
-    data['selected_chrust'] = this.selectedChrust;
-    if (this.toppings != null) {
-      data['toppings'] = this.toppings!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['user_id'] = userId;
+    data['name'] = name;
+    data['product_description'] = productDescription;
+    data['product_price'] = productPrice;
+    data['product_image'] = productImage;
+    data['category_id'] = categoryId;
+    data['sub_category_id'] = subCategoryId;
+    data['product_subsubcategory'] = productSubsubcategory;
+    data['combo_image'] = comboImage;
+    data['calories'] = calories;
+    data['delivery_option'] = deliveryOption;
+    data['base_url'] = baseUrl;
+    data['selected_chrust'] = selectedChrust;
+    if (toppings != null) {
+      data['toppings'] = toppings!.map((v) => v.toJson()).toList();
     }
-    if (this.style != null) {
-      data['style'] = this.style!.map((v) => v.toJson()).toList();
+    if (style != null) {
+      data['style'] = style!.map((v) => v.toJson()).toList();
     }
-    if (this.sauce != null) {
-      data['sauce'] = this.sauce!.map((v) => v.toJson()).toList();
+    if (sauce != null) {
+      data['sauce'] = sauce!.map((v) => v.toJson()).toList();
     }
-    if (this.soda != null) {
-      data['soda'] = this.soda!.map((v) => v.toJson()).toList();
+    if (soda != null) {
+      data['soda'] = soda!.map((v) => v.toJson()).toList();
     }
-    if (this.dressing != null) {
-      data['dressing'] = this.dressing!.map((v) => v.toJson()).toList();
+    if (dressing != null) {
+      data['dressing'] = dressing!.map((v) => v.toJson()).toList();
     }
-    if (this.side != null) {
-      data['side'] = this.side!.map((v) => v.toJson()).toList();
+    if (side != null) {
+      data['side'] = side!.map((v) => v.toJson()).toList();
     }
-    if (this.preparation != null) {
-      data['preparation'] = this.preparation!.map((v) => v.toJson()).toList();
+    if (preparation != null) {
+      data['preparation'] = preparation!.map((v) => v.toJson()).toList();
     }
-    if (this.extra != null) {
-      data['extra'] = this.extra!.map((v) => v.toJson()).toList();
+    if (extra != null) {
+      data['extra'] = extra!.map((v) => v.toJson()).toList();
     }
-    if (this.bacon != null) {
-      data['bacon'] = this.bacon!.map((v) => v.toJson()).toList();
+    if (bacon != null) {
+      data['bacon'] = bacon!.map((v) => v.toJson()).toList();
     }
-    if (this.meal != null) {
-      data['meal'] = this.meal!.map((v) => v.toJson()).toList();
+    if (meal != null) {
+      data['meal'] = meal!.map((v) => v.toJson()).toList();
+    }
+    if (chrust != null) {
+      data['chrust'] = chrust!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -239,9 +272,9 @@ class GeneralItem {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['price'] = this.price;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['price'] = price;
     return data;
   }
 }
@@ -264,12 +297,12 @@ class Toppings {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['half_1'] = this.half1;
-    data['half_2'] = this.half2;
-    data['whole'] = this.whole;
-    data['size'] = this.size;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['half_1'] = half1;
+    data['half_2'] = half2;
+    data['whole'] = whole;
+    data['size'] = size;
     return data;
   }
 }

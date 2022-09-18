@@ -1,13 +1,15 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_grid/responsive_grid.dart';
+import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
 import 'package:self_order/modules/ItemPage/ui/item_screen_view.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
+import 'package:self_order/shared/utils/on_network_image.dart';
 
 import '../../modules/Home/controller/home_screen_logic.dart';
 import '../../modules/check_out/ui/check_out_view.dart';
@@ -50,7 +52,7 @@ class CustomWidget {
         borderRadius: BorderRadius.circular(Dimensions.BorderRadius10),
       ),
       child: Padding(
-        padding: EdgeInsets.only(left: 30, right: 30),
+        padding: const EdgeInsets.only(left: 30, right: 30),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -62,7 +64,7 @@ class CustomWidget {
               text,
               style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: 30,
+                  fontSize: 30.sp,
                   color: Colors.white),
             ),
           ],
@@ -82,7 +84,7 @@ class CustomWidget {
           color: Colors.white,
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(100),
@@ -109,7 +111,7 @@ class CustomWidget {
       crossAxisSpacing: 20,
       mainAxisSpacing: 15.0,
       childAspectRatio: 0.6,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       children: List.generate(15, (index) {
         return GestureDetector(
           onTap: Tap != null ? Tap : null,
@@ -117,7 +119,7 @@ class CustomWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image(
+              const Image(
                 image: AssetImage("assets/images/item.png"),
               ),
               SizedBox(
@@ -131,7 +133,7 @@ class CustomWidget {
                   fontSize: Dimensions.TextSize20,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(
@@ -153,7 +155,7 @@ class CustomWidget {
                         fontWeight: FontWeight.bold,
                         fontSize: Dimensions.TextSize18),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 60,
                   ),
                   Container(
@@ -163,7 +165,7 @@ class CustomWidget {
                       color: Colors.grey,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                    child: Icon(FeatherIcons.plus),
+                    child: const Icon(FeatherIcons.plus),
                   )
                 ],
               )
@@ -174,90 +176,136 @@ class CustomWidget {
     );
   }
 
-  static CustomTitleWithVariation() {
+  static customTitleWithVariation(BuildContext context) {
     HomeScreenController controller = Get.find();
     final orientation = MediaQuery.of(Get.context!).orientation;
-    return GridView.builder(
-        shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: (orientation == Orientation.portrait) ? 3 : 4),
-        itemCount: controller.categories.length,
-        physics: NeverScrollableScrollPhysics(),
-        itemBuilder: (context, int index) {
-          return GestureDetector(
-            onTap: () => Get.to(ItemPageScreen(
-              id: controller.categories[index]['id'],
-            )),
-            child: Padding(
-              padding: EdgeInsets.only(bottom: 30.h, left: 30.w),
-              child: Container(
-                height: 209.h,
-                width: 208.w,
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                        color: ColorConstants.primaryBigTextColor
-                            .withOpacity(0.03),
-                        offset: Offset(0, 9),
-                        blurRadius: 10,
-                        spreadRadius: 1)
-                  ],
-                ),
+    return LayoutBuilder(builder: (context, constraints) {
+      return GridView.builder(
+          padding: EdgeInsets.zero,
+          shrinkWrap: true,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: constraints.maxWidth < 600 ? 3 : 4,
+            mainAxisExtent: 200.h,
+          ),
+          itemCount: controller.categories.length,
+          physics: const NeverScrollableScrollPhysics(),
+          itemBuilder: (context, int index) {
+            String image = controller.categories[index]['base_url'] +
+                "/" +
+                controller.categories[index]['sub_image'];
+            return GestureDetector(
+              onTap: () {
+                // Get.put<ItemScreenController>(ItemScreenController());
+                final cnt = Get.find<ItemScreenController>();
+                cnt.id.value = controller.categories[index]['id'];
+                cnt.title.value = controller.categories[index]['category_name'];
+                Get.to(() => ItemPageScreen(
+                      id: controller.categories[index]['id'],
+                      title: controller.categories[index]['category_name'],
+                    ));
+              },
+              child: Card(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CachedNetworkImage(
-                        width: 208.w,
-                        height: 100.h,
-                        imageUrl: controller.categories[index]['base_url'] +
-                            controller.categories[index]['sub_image']),
-                    SizedBox(
-                      height: Dimensions.SizedBoxValue20,
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: OnNetWorkImage(
+                          width: 208.w,
+                          height: 100.h,
+                          url: image,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
                     ),
-                    Center(
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
                         '${controller.categories[index]['category_name']}',
-                        style: TextStyle(
-                          color: Colors.black,
+                        style: GoogleFonts.roboto(
+                          color: const Color(0xFF505050),
                           fontWeight: FontWeight.bold,
                           fontSize: Dimensions.TextSize20,
                         ),
+                        // style: TextStyle(
+                        //   color: const Color(0xFF505050),
+                        //   fontWeight: FontWeight.bold,
+                        //   fontSize: Dimensions.TextSize20,
+                        // ),
                         textAlign: TextAlign.center,
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
-          );
-        });
+              /*
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 30.h, left: 30.w),
+                  child: Container(
+                    height: 209.h,
+                    width: 208.w,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            color: ColorConstants.primaryBigTextColor
+                                .withOpacity(0.03),
+                            offset: const Offset(0, 9),
+                            blurRadius: 10,
+                            spreadRadius: 1)
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        OnNetWorkImage(
+                          width: 208.w,
+                          height: 100.h,
+                          url: image,
+                        ),
+                        // CachedNetworkImage(
+                        //     width: 208.w,
+                        //     height: 100.h,
+                        //     imageUrl: controller.categories[index]['base_url'] +
+                        //         controller.categories[index]['sub_image']),
+                        SizedBox(
+                          height: Dimensions.SizedBoxValue20,
+                        ),
+                        Center(
+                          child: Text(
+                            '${controller.categories[index]['category_name']}',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: Dimensions.TextSize20,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              
+              */
+            );
+          });
+    });
   }
 
-  static CustomCloseSection({required BuildContext context}) {
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).pop();
-      },
-      child: Container(
-        height: 50,
-        width: 50,
-        child: Icon(
-          Icons.close,
-          color: Colors.white,
-          size: 40,
-        ),
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: ColorConstants.primaryBigTextColor.withOpacity(0.2),
-            border: Border.all(color: Colors.white, width: 2),
-            boxShadow: [
-              BoxShadow(
-                  color: ColorConstants.primaryBigTextColor.withOpacity(.15),
-                  blurRadius: 0.2,
-                  offset: Offset(1, 1))
-            ]),
-      ),
+  static customCloseSection({required BuildContext context}) {
+    return SizedBox(
+      height: 55.r,
+      width: 55.r,
+      child: FloatingActionButton.small(
+          elevation: 0,
+          backgroundColor: ColorConstants.primaryBigTextColor.withOpacity(0.2),
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Icon(
+            Icons.close,
+            color: Colors.white,
+            // size: 40,
+          )),
     );
   }
 
@@ -392,7 +440,7 @@ class CustomWidget {
                 border: Border.all(color: ColorConstants.primaryButtonColor),
               ),
               child: Image(
-                image: AssetImage('assets/images/bug.png'),
+                image: const AssetImage('assets/images/bug.png'),
                 height: Dimensions.height60,
                 width: Dimensions.width70,
               ),
@@ -410,7 +458,7 @@ class CustomWidget {
                       fontSize: Dimensions.TextSize20,
                       fontWeight: FontWeight.w700),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 150,
                 ),
                 SizedBox(
@@ -438,7 +486,7 @@ class CustomWidget {
                 fontSize: Dimensions.SizedBoxValue20,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 30,
             ),
             Container(
@@ -448,7 +496,7 @@ class CustomWidget {
                 borderRadius: BorderRadius.circular(96),
                 color: ColorConstants.bannerHeadingTextColor,
               ),
-              child: Center(
+              child: const Center(
                 child: Text(
                   'Customise',
                   style: TextStyle(
@@ -458,7 +506,7 @@ class CustomWidget {
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Divider(
@@ -487,7 +535,7 @@ class CustomWidget {
                       fontWeight: FontWeight.bold,
                       fontSize: Dimensions.TextSize25),
                 ),
-                Spacer(),
+                const Spacer(),
                 Text(
                   'Total:  \$72.00',
                   style: TextStyle(
@@ -510,7 +558,7 @@ class CustomWidget {
               //  shrinkWrap: true,
               crossAxisCount: 2,
               childAspectRatio: 3,
-              physics: ScrollPhysics(),
+              physics: const ScrollPhysics(),
               children: List.generate(
                 70,
                 (index) {
@@ -531,14 +579,14 @@ class CustomWidget {
                     width: 320.0,
                     text: 'Cancel Order',
                     context: context),
-                Spacer(),
+                const Spacer(),
                 CustomWidget.CustomAddtoCartButton(
                     height: 60.0,
                     width: 320.0,
                     text: 'Done',
                     context: context,
                     ontap: () {
-                      Get.to(CheckoutScreen());
+                      Get.to(const CheckoutScreen());
                     }),
               ],
             ),
@@ -556,11 +604,11 @@ class CustomWidget {
           borderRadius: BorderRadius.circular(11),
           color: ColorConstants.selectedDesire),
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           children: [
             img,
-            SizedBox(
+            const SizedBox(
               width: 15,
             ),
             Text(
@@ -599,7 +647,7 @@ class CustomWidget {
               fontSize: Dimensions.TextSize20,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text(
@@ -621,7 +669,7 @@ class CustomWidget {
                     fontWeight: FontWeight.bold,
                     fontSize: Dimensions.TextSize18),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 60,
               ),
               Container(
@@ -631,7 +679,7 @@ class CustomWidget {
                   color: Colors.grey,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: Icon(FeatherIcons.plus),
+                child: const Icon(FeatherIcons.plus),
               )
             ],
           )
@@ -654,15 +702,15 @@ class CustomWidget {
           padding: EdgeInsets.symmetric(horizontal: Dimensions.padding30),
           child: Row(
             children: [
-              Text(
+              const Text(
                 'My order (Eat in)',
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                     fontSize: 24),
               ),
-              Spacer(),
-              Text(
+              const Spacer(),
+              const Text(
                 'Total:  \$20.00',
                 style: TextStyle(
                     color: Colors.white,
@@ -673,7 +721,7 @@ class CustomWidget {
           ),
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 25,
       ),
       Container(
@@ -684,7 +732,7 @@ class CustomWidget {
             children: count.map((i) {
               return Container(
                   height: 90,
-                  alignment: Alignment(0, 0),
+                  alignment: const Alignment(0, 0),
                   color: Colors.white,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -697,22 +745,22 @@ class CustomWidget {
                             border: Border.all(
                                 color: ColorConstants.cartImageBorderColor),
                           ),
-                          child: Image(
+                          child: const Image(
                             image: AssetImage("assets/images/bug.png"),
                             height: 60,
                             width: 80,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         width: 20,
                       ),
                       Column(
                         children: [
-                          Text(
+                          const Text(
                             'Beef Burger',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 7,
                           ),
                           Text(
@@ -721,7 +769,7 @@ class CustomWidget {
                                 color: ColorConstants.primaryBigTextColor
                                     .withOpacity(0.5)),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 7,
                           ),
                           Text(
@@ -760,7 +808,7 @@ class CustomWidget {
       keyboardType:
           TextType == 'number' ? TextInputType.number : TextInputType.text,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 15),
+          contentPadding: const EdgeInsets.symmetric(vertical: 15),
           labelText: labelText,
           labelStyle: TextStyle(
               color: helperTextColor,
@@ -786,7 +834,7 @@ class CustomWidget {
     );
   }
 
-  static CustomPrimaryButton(
+  static Widget CustomPrimaryButton(
       {context,
       height,
       width,
