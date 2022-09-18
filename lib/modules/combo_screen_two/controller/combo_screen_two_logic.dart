@@ -14,14 +14,14 @@ class ComboScreenControllertwo extends GetxController {
     "s": "Small Combo",
     "m": "Medium Combo",
     "l": "Large Combo",
-    "el": "Extra Large Combo",
+    // "el": "Extra Large Combo",
   };
 
   List<String> comboSectionImage = [
     "assets/images/small_type.png",
     "assets/images/medium_type.png",
     "assets/images/large_type.png",
-    "assets/images/large_type.png"
+    // "assets/images/large_type.png"
   ];
   dynamic selectedFoodVersion = ''.obs;
 
