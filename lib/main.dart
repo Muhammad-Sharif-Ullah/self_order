@@ -7,14 +7,18 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:self_order/modules/LogIn/ui/Login_screen.dart';
 import 'package:self_order/modules/VideoScreen/ui/video_screen_view.dart';
-import 'package:self_order/request/session.dart';
 import 'package:self_order/shared/Route/route.dart';
 import 'package:self_order/shared/theme/theme_service.dart';
 import 'package:self_order/shared/theme/themes.dart';
 
+import 'request/session.dart';
+
+var token;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+  token = await Session.getToken();
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
@@ -38,20 +42,20 @@ class MyApp extends StatelessWidget {
       // designSize: const Size(375, 812),
       builder: (context, _) {
         return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          // theme: Themes().lightTheme,
-          darkTheme: Themes().darkTheme,
-          themeMode: ThemeService().getThemeMode(),
-          // builder: EasyLoading.init(),
-          //theme: ThemeConfig.lightTheme,
-          title: 'SelfOrder',
-          // enableLog: true,
-          onGenerateRoute: appRouter!.onGeneratedRoute,
-          home: Session.getToken().isBlank!
-              ? const LoginScreen()
-              : const VideoScreenView(),
-          // home: const LoginScreen(),
-        );
+            debugShowCheckedModeBanner: false,
+            // theme: Themes().lightTheme,
+            darkTheme: Themes().darkTheme,
+            themeMode: ThemeService().getThemeMode(),
+            // builder: EasyLoading.init(),
+            //theme: ThemeConfig.lightTheme,
+            title: 'SelfOrder',
+            // enableLog: true,
+            onGenerateRoute: appRouter!.onGeneratedRoute,
+            home:
+                (token == '') ? const LoginScreen() : const VideoScreenView());
+        // home: Session.getToken().isBlank!
+        //     ? const LoginScreen()
+        //     : const VideoScreenView(),
       },
     );
   }
