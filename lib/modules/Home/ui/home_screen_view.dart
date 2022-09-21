@@ -159,6 +159,7 @@ class HomeScreen extends GetView<HomeScreenController> {
                               ),
                               SizedBox(
                                 width: 110.w,
+                                height: 54.h,
                                 child: FittedBox(
                                   child: ElevatedButton.icon(
                                     style: ElevatedButton.styleFrom(

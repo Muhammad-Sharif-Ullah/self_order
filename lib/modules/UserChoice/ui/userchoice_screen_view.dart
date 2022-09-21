@@ -168,7 +168,7 @@ class UserChoiceScreen extends GetView<UserChoiceController> {
                     width: 4.w,
                   ),
                   Image.asset(
-                    "assets/images/smallBurger.png",
+                    "assets/images/smallburger.png",
                     height: 50.h,
                     width: 60.w,
                   ),
