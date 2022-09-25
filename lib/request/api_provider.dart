@@ -1,11 +1,12 @@
-import 'package:get/get.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:http/http.dart' as http;
 import 'package:self_order/request/dialog.dart';
 import 'package:self_order/request/routes.dart';
 import 'package:self_order/request/session.dart';
-import 'dart:io';
-import 'dart:convert';
-import 'dart:async';
+
 import 'api_exception.dart';
 
 class ApiProvider {

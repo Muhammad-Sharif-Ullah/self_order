@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:self_order/modules/ItemPage/model/MenuModel.dart';
+import 'package:self_order/modules/ItemPage/model/ProductModel.dart';
 import 'package:self_order/request/routes.dart';
 
 import '../../../request/api_provider.dart';
@@ -33,6 +34,10 @@ class ItemScreenController extends GetxController {
   /// For Action String
   RxBool isEatIn = true.obs;
   List extraFood = [1, 2, 3, 33, 3, 33, 3, 3, 3, 3, 3, 3, 3];
+
+  /// RR
+  ///
+  var product = ProductModel().obs;
 
   /// This variable is for Bottom Sheet
   RxBool isOrderActive = false.obs;
@@ -179,5 +184,55 @@ class ItemScreenController extends GetxController {
     selectedItemIndex = RxInt(-1);
     selectedFoodIndex = RxInt(-1);
     clearItemsSelector();
+  }
+
+  productTotal() {
+    var total = product.value.productPrice;
+    total += (product.value.selectedChrustId != null)
+        ? product.value.chrust[product.value.selectedChrustId!].price
+        : 0;
+    total += (product.value.selectedStyleId != null)
+        ? product.value.style[product.value.selectedStyleId!].price
+        : 0;
+    total += (product.value.selectedPreparationId != null)
+        ? product.value.meal[product.value.selectedPreparationId!].price
+        : 0;
+    total += (product.value.selectedMealId != null)
+        ? product.value.meal[product.value.selectedPreparationId!].price
+        : 0;
+
+    // multi select
+    // product.value.toppings.forEach((element) {
+    //   if (element.selected == true) {
+    //     total += element.price;
+    //   }
+    // });
+    product.value.sauce.forEach((element) {
+      if (element.selected == true) {
+        total += element.price;
+      }
+    });
+    product.value.soda.forEach((element) {
+      if (element.selected == true) {
+        total += element.price;
+      }
+    });
+    product.value.side.forEach((element) {
+      if (element.selected == true) {
+        total += element.price;
+      }
+    });
+    product.value.extra.forEach((element) {
+      if (element.selected == true) {
+        total += element.price;
+      }
+    });
+    product.value.bacon.forEach((element) {
+      if (element.selected == true) {
+        total += element.price;
+      }
+    });
+    print('total $total');
+    return total;
   }
 }

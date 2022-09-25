@@ -3,15 +3,14 @@ import 'dart:developer';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:draggable_bottom_sheet/draggable_bottom_sheet.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:self_order/Data/Model/page_route_arguments.dart';
-import 'package:self_order/modules/Home/ui/home_screen_view.dart';
 import 'package:self_order/modules/ItemPage/ui/user_choice_dialog.dart';
+import 'package:self_order/shared/Route/route.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 import 'package:self_order/shared/utils/on_network_image.dart';
@@ -20,122 +19,127 @@ import '../controller/item_screen_logic.dart';
 
 // GetView<ItemScreenController>
 class ItemPageScreen extends StatefulWidget {
-  final String title;
-  final String id;
+  final PageRouteArguments? arguments;
 
   // final ItemScreenController controller = Get.find<ItemScreenController>();
 
-  const ItemPageScreen({Key? key, required this.title, required this.id})
-      : super(key: key);
+  const ItemPageScreen({Key? key, this.arguments}) : super(key: key);
 
   @override
   State<ItemPageScreen> createState() => _ItemPageScreenState();
 }
 
 class _ItemPageScreenState extends State<ItemPageScreen> {
+  late final String id = widget.arguments?.data!.first;
+  late final String title = widget.arguments?.data!.last;
   final ItemScreenController controller = Get.find<ItemScreenController>();
 
   @override
   Widget build(BuildContext context) {
     // Get.put<ItemScreenController>(ItemScreenController());
-    controller.getFoods(widget.id);
-    controller.getSubCategory(widget.id);
-    final orientation = MediaQuery.of(Get.context!).orientation;
+    controller.getFoods(id);
+    controller.getSubCategory(id);
     return WillPopScope(
       onWillPop: () async {
         controller.dispose();
-        Get.off(() => const HomeScreen());
+        // Get.off(() => const HomeScreen());
+        Get.back();
         return true;
       },
       child: SafeArea(
         bottom: false,
         child: Scaffold(
-            backgroundColor: Colors.white,
-            body: Obx(
-              () => DraggableBottomSheet(
+          backgroundColor: Colors.white,
+          body: GetX<ItemScreenController>(
+            init: ItemScreenController(),
+            initState: (itCNT) {},
+            builder: (itCNT) {
+              return DraggableBottomSheet(
                 minExtent: 135.h,
                 useSafeArea: false,
                 curve: Curves.elasticIn,
-                onDragging: (pos) {},
+                onDragging: (pos) {
+                  log(pos.toString());
+                },
+                // collapsed: false,
                 previewWidget: previewWidget(),
                 expandedWidget: expandedWidget(),
                 maxExtent: MediaQuery.of(context).size.height * 0.7,
-                backgroundWidget: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    bannerSection(),
+                backgroundWidget: backgroundBody(),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Column backgroundBody() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        bannerSection(),
+        10.verticalSpace,
+        burgerTitle(title),
+        20.verticalSpace,
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 15.w),
+            child: Row(
+              children: [
+                /// ToDo: Do here///
+                leftMenu(),
+                15.horizontalSpace,
+                Expanded(
+                  flex: 7,
+                  child: Column(children: [
+                    subMenuList(),
                     10.verticalSpace,
-                    burgerTitle(widget.title),
-                    20.verticalSpace,
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15.w),
-                        child: Row(
+                    const Divider(thickness: 2, color: Color(0xFFFF8A21)),
+
+                    subSubMenuList(),
+
+                    10.verticalSpace,
+                    Flexible(
+                      child: SingleChildScrollView(
+                        child: Column(
                           children: [
-                            /// ToDo: Do here///
-                            leftMenu(),
-                            15.horizontalSpace,
-                            Expanded(
-                              flex: 7,
-                              child: Column(children: [
-                                subMenuList(),
-                                10.verticalSpace,
-                                const Divider(
-                                    thickness: 2, color: Color(0xFFFF8A21)),
-
-                                subSubMenuList(),
-
-                                10.verticalSpace,
-                                Flexible(
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        20.verticalSpace,
-                                        LayoutBuilder(
-                                            builder: (context, constraints) {
-                                          return GridView.builder(
-                                              shrinkWrap: true,
-                                              itemCount:
-                                                  controller.foods.length,
-                                              gridDelegate:
-                                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                                mainAxisSpacing: 10,
-                                                crossAxisSpacing: 5,
-                                                crossAxisCount:
-                                                    constraints.maxWidth < 600
-                                                        ? 3
-                                                        : 2,
-                                                mainAxisExtent: 157,
-                                              ),
-                                              physics: const ScrollPhysics(),
-                                              itemBuilder: (context, index) {
-                                                final String image =
-                                                    controller.foods[index]
-                                                            ['base_url'] +
-                                                        controller.foods[index]
-                                                            ['product_image'];
-                                                return foodItemCard(
-                                                    index, context, image);
-                                              });
-                                        }),
-                                      ],
-                                    ),
+                            20.verticalSpace,
+                            LayoutBuilder(builder: (context, constraints) {
+                              return GridView.builder(
+                                  shrinkWrap: true,
+                                  itemCount: controller.foods.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    mainAxisSpacing: 10,
+                                    crossAxisSpacing: 5,
+                                    crossAxisCount:
+                                        constraints.maxWidth < 600 ? 3 : 2,
+                                    mainAxisExtent: 157,
                                   ),
-                                )
-
-                                // CustomCustomItemwithPrice(Tap:userChoice(context: context) ),
-                              ]),
-                            ),
+                                  physics: const ScrollPhysics(),
+                                  itemBuilder: (context, index) {
+                                    final String image = controller.foods[index]
+                                            ['base_url'] +
+                                        controller.foods[index]
+                                            ['product_image'];
+                                    return foodItemCard(index, context, image);
+                                  });
+                            }),
                           ],
                         ),
                       ),
                     )
-                  ],
+
+                    // CustomCustomItemwithPrice(Tap:userChoice(context: context) ),
+                  ]),
                 ),
-              ),
-            )),
-      ),
+              ],
+            ),
+          ),
+        )
+      ],
     );
   }
 
@@ -326,11 +330,11 @@ class _ItemPageScreenState extends State<ItemPageScreen> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/checkoutPage',
+                              Navigator.pushNamed(context, AppRoutes.Checkout,
                                   arguments: PageRouteArguments(
                                       data: [],
-                                      toPage: "checkoutPage",
-                                      fromPage: "itemcustomisePage"));
+                                      toPage: AppRoutes.Checkout,
+                                      fromPage: AppRoutes.ItemCustomize));
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF5AB99D),
@@ -424,11 +428,11 @@ class _ItemPageScreenState extends State<ItemPageScreen> {
                         Expanded(
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushNamed(context, '/checkoutPage',
+                              Navigator.pushNamed(context, AppRoutes.Checkout,
                                   arguments: PageRouteArguments(
                                       data: [],
-                                      toPage: "checkoutPage",
-                                      fromPage: "itemcustomisePage"));
+                                      toPage: AppRoutes.Checkout,
+                                      fromPage: AppRoutes.ItemCustomize));
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xFF5AB99D),
@@ -806,7 +810,8 @@ class _ItemPageScreenState extends State<ItemPageScreen> {
               onPressed: () {
                 controller.clearAllCache();
                 // controller.onClose();
-                Get.off(() => const HomeScreen());
+                // Get.off(() => const HomeScreen());
+                Navigator.pop(context);
               },
               icon: const Icon(
                 Icons.chevron_left_outlined,

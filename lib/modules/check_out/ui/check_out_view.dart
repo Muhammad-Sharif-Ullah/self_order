@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:self_order/Data/Model/page_route_arguments.dart';
 import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
+import 'package:self_order/shared/Route/route.dart';
 import 'package:self_order/shared/constants/colors.dart';
 
 import '../controller/check_out_logic.dart';
@@ -54,7 +54,7 @@ class CheckoutScreen extends GetView<CheckoutController> {
             Expanded(
               child: ListView.separated(
                 separatorBuilder: (context, index) => 10.verticalSpace,
-                // padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
                 shrinkWrap: true,
                 itemCount: 50,
                 itemBuilder: (context, index) {
@@ -68,10 +68,9 @@ class CheckoutScreen extends GetView<CheckoutController> {
                         height: 150.h,
                         child: Row(
                           children: [
-                            InkWell(
-                              child: const Icon(CupertinoIcons.clear_circled),
-                              onTap: () {},
-                            ),
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(CupertinoIcons.clear_circled)),
                             10.horizontalSpace,
                             Expanded(
                               // height: 80.h,
@@ -340,7 +339,14 @@ class CheckoutScreen extends GetView<CheckoutController> {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: const Color(0xFF5AB99D),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, AppRoutes.Payment,
+                                      arguments: PageRouteArguments(
+                                          data: [],
+                                          toPage: AppRoutes.Payment,
+                                          fromPage: AppRoutes.ItemScreen));
+                                },
                                 child: const Text("Confirm"))),
                       ],
                     ),

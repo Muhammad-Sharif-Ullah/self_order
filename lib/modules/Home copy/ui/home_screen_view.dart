@@ -7,7 +7,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:self_order/modules/Home/ui/custom_delicious_food.dart';
 import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
 import 'package:self_order/modules/UserChoice/controller/userchoice_screen_logic.dart';
-import 'package:self_order/shared/Route/route.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 import 'package:self_order/shared/utils/customWidget_utils.dart';
@@ -30,9 +29,9 @@ class HomeScreen extends GetView<HomeScreenController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              topSliderWidget(context),
+              topSliderWidget(),
               10.verticalSpace,
-              homeBannerRow(context),
+              homeBannerRow(),
               Padding(
                 padding: EdgeInsets.only(left: 30.w, right: 30.w),
                 child: Row(children: [
@@ -47,7 +46,10 @@ class HomeScreen extends GetView<HomeScreenController> {
                   ),
                   const Spacer(),
                   ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.changeThemeMode(
+                            Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
+                      },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.all(10.r),
                         backgroundColor: const Color(0xFFFF8A21),
@@ -107,7 +109,7 @@ class HomeScreen extends GetView<HomeScreenController> {
     );
   }
 
-  Padding homeBannerRow(BuildContext context) {
+  Padding homeBannerRow() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: SizedBox(
@@ -118,7 +120,8 @@ class HomeScreen extends GetView<HomeScreenController> {
             Expanded(
               child: RawMaterialButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.BannerCombo);
+                  // TODO: fix
+                  // Get.to(ComboScreenViewOne());
                 },
                 child: Card(
                   elevation: 1,
@@ -167,8 +170,8 @@ class HomeScreen extends GetView<HomeScreenController> {
                                       shape: const StadiumBorder(),
                                     ),
                                     onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, AppRoutes.BannerCombo);
+                                      // TODO: Fixe
+                                      // Get.to(ComboScreenViewOne());
                                     },
                                     label: const Text(
                                       "Lets get started",
@@ -197,73 +200,65 @@ class HomeScreen extends GetView<HomeScreenController> {
               ),
             ),
             Expanded(
-              child: RawMaterialButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.BannerDeals);
-                },
-                child: Card(
-                  elevation: 1,
-                  child: Padding(
-                    padding: EdgeInsets.all(8.0.r),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 1,
-                          child: Image.asset(
-                            "assets/images/home_banner_img_2.png",
-                          ),
+              child: Card(
+                elevation: 1,
+                child: Padding(
+                  padding: EdgeInsets.all(8.0.r),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Image.asset(
+                          "assets/images/home_banner_img_2.png",
                         ),
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Looking for YUMMY deal?',
-                                style: TextStyle(
-                                  fontSize: 20.sp,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.white,
-                                  fontFamily: "Advent Pro",
-                                ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Looking for YUMMY deal?',
+                              style: TextStyle(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                                fontFamily: "Advent Pro",
                               ),
-                              SizedBox(
-                                width: 110.w,
-                                child: FittedBox(
-                                  child: ElevatedButton.icon(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.white,
-                                      shape: const StadiumBorder(),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                          context, AppRoutes.BannerDeals);
-                                    },
-                                    label: const Text(
-                                      "Add Deal",
-                                      style: TextStyle(
-                                        // fontSize: 10.sp,
-                                        fontWeight: FontWeight.w400,
-                                        color: Color(0xFFFF8A21),
-                                        fontFamily: "Advent Pro",
-                                      ),
-                                    ),
-                                    icon: const Icon(
-                                      Icons.arrow_right_alt,
+                            ),
+                            SizedBox(
+                              width: 110.w,
+                              child: FittedBox(
+                                child: ElevatedButton.icon(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    shape: const StadiumBorder(),
+                                  ),
+                                  onPressed: () {},
+                                  label: const Text(
+                                    "Add Deal",
+                                    style: TextStyle(
+                                      // fontSize: 10.sp,
+                                      fontWeight: FontWeight.w400,
                                       color: Color(0xFFFF8A21),
+                                      fontFamily: "Advent Pro",
                                     ),
+                                  ),
+                                  icon: const Icon(
+                                    Icons.arrow_right_alt,
+                                    color: Color(0xFFFF8A21),
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
-                  color: const Color(0xFFF6D1A7),
                 ),
+                color: const Color(0xFFF6D1A7),
               ),
             ),
           ],
@@ -272,7 +267,7 @@ class HomeScreen extends GetView<HomeScreenController> {
     );
   }
 
-  Stack topSliderWidget(BuildContext context) {
+  Stack topSliderWidget() {
     final itemScreenController = Get.find<ItemScreenController>();
     return Stack(
       alignment: Alignment.topRight,
@@ -315,7 +310,7 @@ class HomeScreen extends GetView<HomeScreenController> {
           child: FloatingActionButton.small(
             backgroundColor: Colors.grey.shade800,
             onPressed: () {
-              Navigator.pop(context);
+              Get.back();
             },
             child: const Icon(Icons.arrow_back),
           ),

@@ -2,20 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:self_order/Data/Model/page_route_arguments.dart';
 import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
 import 'package:self_order/modules/ItemPage/ui/add_extra_customise.dart';
-import 'package:self_order/modules/ItemPage/ui/item_screen_view.dart';
 
 import '../../../shared/constants/colors.dart';
 import '../../../shared/utils/customWidget_utils.dart';
 
 class ItemCustomizePage extends StatelessWidget {
-  ItemScreenController controller = Get.put(ItemScreenController());
-  String id;
-  ItemCustomizePage({Key? key, required this.id}) : super(key: key);
+  final PageRouteArguments? arguments;
+  ItemCustomizePage({Key? key, this.arguments}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    controller.getCustomiseFood(id);
+    ItemScreenController controller = Get.put(ItemScreenController());
+
+    controller.getCustomiseFood(arguments?.data!.first);
     return Obx(
       () => SafeArea(
           bottom: false,
@@ -380,12 +381,12 @@ class ItemCustomizePage extends StatelessWidget {
                     child: InkWell(
                       onTap: () {
                         // Get.off(()=> );
-                        final cnt = Get.find<ItemScreenController>();
-                        cnt.isOrderActive = true.obs;
-
+                        // final cnt = Get.find<ItemScreenController>();
+                        // cnt.isOrderActive = true.obs;
+                        Navigator.pop(context, true);
                         // Get.back();
-                        Get.off(() => ItemPageScreen(
-                            id: cnt.id.value, title: cnt.title.value));
+                        // Get.off(() => ItemPageScreen(
+                        //     id: cnt.id.value, title: cnt.title.value));
                         // Navigator.pushNamed(context, '/checkoutPage',
                         //     arguments: PageRouteArguments(
                         //         data: [],

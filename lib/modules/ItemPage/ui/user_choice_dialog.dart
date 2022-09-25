@@ -4,9 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:self_order/Data/Model/page_route_arguments.dart';
 import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
-import 'package:self_order/modules/ItemPage/ui/item_customise_page.dart';
-import 'package:self_order/modules/combo_screen_one/ui/combo_screen_one_view.dart';
+import 'package:self_order/modules/combo_screen_two/ui/combo_screen_one_view.dart';
+import 'package:self_order/shared/Route/route.dart';
+
+// import 'package:self_order/modules/combo_screen_one/ui/combo_screen_one_view.dart';
 
 import '../../../shared/constants/Dimensions.dart';
 import '../../../shared/constants/colors.dart';
@@ -384,11 +387,15 @@ Widget dialogBody(BuildContext context, Product data) {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.back();
-                        Get.to(ComboScreenViewOne(id: data.id));
+                        // Get.back();
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    ComboScreenViewOne(id: data.id!)));
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: ColorConstants.priceborderColor,
+                        backgroundColor: ColorConstants.priceBorderColor,
                       ),
                       child: Text(
                         "Make it Combo",
@@ -403,9 +410,18 @@ Widget dialogBody(BuildContext context, Product data) {
                   20.horizontalSpace,
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
                         Get.back();
-                        Get.to(ItemCustomizePage(id: data.id!));
+                        // Get.to(ItemCustomizePage(id: data.id!));
+                        final bool isChose = await Navigator.pushNamed(
+                            context, AppRoutes.ItemCustomize,
+                            arguments: PageRouteArguments(
+                                data: [data.id],
+                                toPage: AppRoutes.ItemCustomize,
+                                fromPage: AppRoutes.ItemScreen)) as bool;
+                        if (isChose != null && isChose) {
+                          controller.isOrderActive.value = isChose;
+                        }
                         // Get.off(() => ItemCustomizePage(id: data.id!));
                       },
                       style: ElevatedButton.styleFrom(

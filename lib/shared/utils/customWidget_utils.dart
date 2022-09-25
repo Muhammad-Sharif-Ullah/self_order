@@ -5,8 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_grid/responsive_grid.dart';
+import 'package:self_order/Data/Model/page_route_arguments.dart';
 import 'package:self_order/modules/ItemPage/controller/item_screen_logic.dart';
-import 'package:self_order/modules/ItemPage/ui/item_screen_view.dart';
+import 'package:self_order/shared/Route/route.dart';
 import 'package:self_order/shared/constants/Dimensions.dart';
 import 'package:self_order/shared/constants/colors.dart';
 import 'package:self_order/shared/utils/on_network_image.dart';
@@ -199,10 +200,18 @@ class CustomWidget {
                 final cnt = Get.find<ItemScreenController>();
                 cnt.id.value = controller.categories[index]['id'];
                 cnt.title.value = controller.categories[index]['category_name'];
-                Get.to(() => ItemPageScreen(
-                      id: controller.categories[index]['id'],
-                      title: controller.categories[index]['category_name'],
-                    ));
+                Navigator.pushNamed(context, AppRoutes.ItemScreen,
+                    arguments: PageRouteArguments(
+                        data: [
+                          controller.categories[index]['id'],
+                          controller.categories[index]['category_name']
+                        ],
+                        fromPage: AppRoutes.HomeScreen,
+                        toPage: AppRoutes.ItemScreen));
+                // Get.to(() => ItemPageScreen(
+                //       id: controller.categories[index]['id'],
+                //       title: controller.categories[index]['category_name'],
+                //     ));
               },
               child: Card(
                 child: Column(

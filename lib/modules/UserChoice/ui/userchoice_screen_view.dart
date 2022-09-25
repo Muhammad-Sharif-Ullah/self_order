@@ -207,9 +207,6 @@ class UserChoiceScreen extends GetView<UserChoiceController> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
                         onPressed: () {
-                          final itemScreenController =
-                              Get.find<ItemScreenController>();
-                          itemScreenController.isEatIn = true.obs;
                           controller.setUserChoice('E');
                         },
                         child: Row(
@@ -244,9 +241,6 @@ class UserChoiceScreen extends GetView<UserChoiceController> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
                         onPressed: () {
-                          final itemScreenController =
-                              Get.find<ItemScreenController>();
-                          itemScreenController.isEatIn = false.obs;
                           controller.setUserChoice('T');
                         },
                         child: Row(

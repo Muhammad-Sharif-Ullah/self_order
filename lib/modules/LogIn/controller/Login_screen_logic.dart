@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:self_order/Data/Model/page_route_arguments.dart';
 import 'package:self_order/request/api_provider.dart';
-import 'package:http/http.dart' as http;
+import 'package:self_order/shared/Route/route.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../request/routes.dart';
 
 class LoginScreenController extends GetxController {
@@ -33,9 +35,11 @@ class LoginScreenController extends GetxController {
       prefs.setString('category', profile['category']);
       prefs.setString('token', profile['token']);
 
-      Navigator.pushNamed(Get.context!, '/videoscreen',
+      Navigator.pushNamed(Get.context!, AppRoutes.VideoScreen,
           arguments: PageRouteArguments(
-              data: [], fromPage: 'LoginPage', toPage: 'VideoScreen'));
+              data: [],
+              fromPage: AppRoutes.Login,
+              toPage: AppRoutes.VideoScreen));
     }
     return;
   }
